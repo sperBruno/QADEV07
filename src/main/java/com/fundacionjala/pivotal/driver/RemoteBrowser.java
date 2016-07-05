@@ -1,4 +1,4 @@
-package com.fundacionjala.PivotalFinalTest.driver;
+package com.fundacionjala.pivotal.driver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
