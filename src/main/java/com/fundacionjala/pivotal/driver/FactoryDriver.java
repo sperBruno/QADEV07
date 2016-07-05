@@ -1,4 +1,4 @@
-package com.fundacionjala.PivotalFinalTest.driver;
+package com.fundacionjala.pivotal.driver;
 
 import org.openqa.selenium.WebDriverException;
 
