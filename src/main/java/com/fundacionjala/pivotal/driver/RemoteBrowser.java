@@ -11,32 +11,31 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static com.fundacionjala.pivotal.PropertiesInfo.getInstance;
 
-
 public class RemoteBrowser implements IDriver {
 
 
+    private static final String CAPABILITY_NAME = "name";
+
+    private static final String REMOTE_URL_AUTH = "@ondemand.saucelabs.com:80/wd/hub";
+
+    private static final String HTTP_PROXY_HOST = "http.proxyHost";
+
+    private static final String HTTP_PROXY_PORT = "http.proxyPort";
 
     public WebDriver initDriver() {
-
+        System.getProperties().put(HTTP_PROXY_HOST, getInstance().getProxyHost());
+        System.getProperties().put(HTTP_PROXY_PORT, getInstance().getProxyPort());
         URL url=null;
-        DesiredCapabilities caps;
-
-        caps = new DesiredCapabilities().chrome();
+        DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(CapabilityType.BROWSER_NAME, getInstance().getRemoteBrowser());
         caps.setCapability(CapabilityType.VERSION, getInstance().getBrowserVersion());
         caps.setCapability(CapabilityType.PLATFORM, getInstance().getPlatform());
-        caps.setCapability("name", "example remote test");
-        caps.setCapability("timeZone","La Paz");
-        org.openqa.selenium.Proxy proxy = new org.openqa.selenium.Proxy();
-        proxy.setHttpProxy(getInstance().getProxy())
-                .setFtpProxy(getInstance().getProxy())
-                .setSslProxy(getInstance().getProxy());
-        caps.setCapability(CapabilityType.PROXY, proxy);
+        caps.setCapability(CAPABILITY_NAME, getInstance().getRemoteTestName());
         String sauceUrl = new StringBuilder().append("http://")
                 .append(getInstance().getSauceUser())
                 .append(":")
                 .append(getInstance().getSauceAccessKey())
-                .append("@ondemand.saucelabs.com:80/wd/hub").toString();
+                .append(REMOTE_URL_AUTH).toString();
         try {
             url = new URL(sauceUrl);
         }

@@ -1,9 +1,10 @@
 package com.fundacionjala.pivotal.driver;
 
-import com.fundacionjala.pivotal.PropertiesInfo;
-import org.openqa.selenium.WebDriver;
-
 import java.util.concurrent.TimeUnit;
+
+import com.fundacionjala.pivotal.PropertiesInfo;
+
+import org.openqa.selenium.WebDriver;
 
 public class DriverManager {
 
