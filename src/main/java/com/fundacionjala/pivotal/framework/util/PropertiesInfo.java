@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal;
+package com.fundacionjala.pivotal.framework.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +21,7 @@ public class PropertiesInfo {
 
     public static PropertiesInfo getInstance() {
         if (instance == null) {
-            return new PropertiesInfo();
+            instance = new PropertiesInfo();
         }
         return instance;
     }
@@ -97,5 +97,9 @@ public class PropertiesInfo {
     }
     public String getRemoteTestName() {
         return getProperty("remoteTestName");
+    }
+
+    public static void main(String[] args) {
+        System.out.println(PropertiesInfo.getInstance().getBrowser());
     }
 }
