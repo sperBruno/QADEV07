@@ -1,7 +1,6 @@
 package com.fundacionjala.pivotal.driver;
 
-import com.fundacionjala.todoistTest.PropertiesInfo;
-
+import com.fundacionjala.pivotal.PropertiesInfo;
 import org.openqa.selenium.WebDriver;
 
 import java.util.concurrent.TimeUnit;

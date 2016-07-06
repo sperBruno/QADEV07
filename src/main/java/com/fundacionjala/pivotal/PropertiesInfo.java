@@ -81,4 +81,5 @@ public class PropertiesInfo {
     public String getProxy() {
         return getProperty("proxy");
     }
+
 }
