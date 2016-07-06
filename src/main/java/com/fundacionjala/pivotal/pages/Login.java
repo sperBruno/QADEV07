@@ -1,9 +1,9 @@
-package com.fundacionjala.pivotal;
+package com.fundacionjala.pivotal.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.PropertiesInfo.*;
+import static com.fundacionjala.pivotal.framework.util.PropertiesInfo.*;
 
 public class Login extends BasePage {
 

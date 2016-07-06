@@ -1,5 +1,6 @@
-package com.fundacionjala.pivotal;
+package com.fundacionjala.pivotal.pages;
 
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

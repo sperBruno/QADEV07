@@ -1,9 +1,9 @@
 package com.fundacionjala.pivotal.stepdefinition;
 
-import com.fundacionjala.pivotal.Dashboard;
-import com.fundacionjala.pivotal.Login;
-import com.fundacionjala.pivotal.PivotalHome;
-import com.fundacionjala.pivotal.PropertiesInfo;
+import com.fundacionjala.pivotal.pages.Dashboard;
+import com.fundacionjala.pivotal.pages.Login;
+import com.fundacionjala.pivotal.pages.PivotalHome;
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
@@ -48,7 +48,7 @@ public class RequestStepdefs {
 
     @When("^I type in the username input field$")
     public void iTypeInTheUsernameInputField() {
-        login.setUserNameTestField(PropertiesInfo.getInstance().getPassword());
+        login.setUserNameTestField(PropertiesInfo.getInstance().getEmail());
     }
 
     public Dashboard getDashboard() {
