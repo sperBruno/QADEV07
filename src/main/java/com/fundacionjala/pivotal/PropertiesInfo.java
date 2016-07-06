@@ -55,7 +55,7 @@ public class PropertiesInfo {
     }
 
     public String getBrowser() {
-        return getProperty("browser");
+        return getProperty("localBrowser");
     }
 
     public String getRemoteBrowser() {
@@ -63,22 +63,34 @@ public class PropertiesInfo {
     }
 
     public String getBrowserVersion() {
-        return getProperty("browserVersion");
+        return getProperty("remoteBrowserVersion");
     }
 
     public String getPlatform() {
-        return getProperty("platform");
+        return getProperty("remotePlatform");
     }
 
     public String getSauceUser() {
-        return getProperty("sauceUser");
+        return getProperty("remoteUser");
     }
 
     public String getSauceAccessKey() {
-        return getProperty("sauceAccessKey");
+        return getProperty("remoteAccessKey");
     }
 
     public String getProxy() {
-        return getProperty("proxy");
+        return new StringBuilder().append("http://")
+                .append(getProxyHost())
+                .append(":")
+                .append(getProxyPort()).toString();
+    }
+    public String getProxyHost() {
+        return getProperty("proxyHost");
+    }
+    public String getProxyPort() {
+        return getProperty("proxyPort");
+    }
+    public String getRemoteTestName() {
+        return getProperty("remoteTestName");
     }
 }
