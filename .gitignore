@@ -97,3 +97,4 @@ fabric.properties
 target/
 movies/target/
 movies/movies.iml
+*.fundacionjala.PivotalFinalTest.iml
