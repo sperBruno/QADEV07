@@ -100,4 +100,5 @@ public class PropertiesInfo {
     public String getApiToken() {
         return getProperty("apiToken");
     }
+
 }

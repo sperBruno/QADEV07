@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.stepdefinition;
+package com.fundacionjala.pivotal.cucumber.stepdefinition.login;
 
 import com.fundacionjala.pivotal.pages.Dashboard;
 import com.fundacionjala.pivotal.pages.Login;
