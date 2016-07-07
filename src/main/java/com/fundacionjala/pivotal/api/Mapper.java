@@ -28,12 +28,12 @@ public class Mapper {
     public static String mapEndpoint(String endPoint, Map<String, Response> listResponses) {
         Matcher matches = Pattern.compile(REGEX_INSIDE_BRACKETS).matcher(endPoint);
         StringBuffer newEndPoint = new StringBuffer();
-        String replaceParameter = "";
+
         while (matches.find()) {
             String[] parametersParts = matches.group().split(REGEX_DOT, 2);
-            String parameter = parametersParts[0];
-            String field = parametersParts[1];
-            replaceParameter = Mapper.getField(listResponses.get(parameter), field);
+            String key = parametersParts[0];
+            String value = parametersParts[1];
+            final String replaceParameter = Mapper.getField(listResponses.get(key), value);
             matches.appendReplacement(newEndPoint, replaceParameter);
         }
         matches.appendTail(newEndPoint);
@@ -41,11 +41,8 @@ public class Mapper {
     }
 
     public static String mapUrlToDeleteProject(String endPoint) {
-        String projectUrlPart = "";
         Matcher matches = Pattern.compile(REGEX_UNTIL_PROJECT).matcher(endPoint);
-        while (matches.find()) {
-            projectUrlPart = matches.group();
-        }
+        String projectUrlPart = matches.find()?matches.group():"";
         return projectUrlPart;
     }
 }

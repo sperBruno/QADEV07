@@ -1,6 +1,7 @@
 package com.fundacionjala.pivotal.api;
 
-import com.fundacionjala.pivotal.PropertiesInfo;
+
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.specification.RequestSpecification;
 

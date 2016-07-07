@@ -15,15 +15,15 @@ public abstract class BasePage {
 
     protected WebDriver driver;
 
-    protected Actions action;
-
     protected WebDriverWait wait;
+
+    protected Actions action;
 
     public BasePage() {
         driver = getInstance().getDriver();
-        PageFactory.initElements(driver, this);
         action = new Actions(driver);
         wait = new WebDriverWait(driver, WAIT_TIME);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean webElementExists(WebElement webElement) {
