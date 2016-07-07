@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.driver;
+package com.fundacionjala.pivotal.framework.selenium;
 
 import org.openqa.selenium.WebDriverException;
 
@@ -8,13 +8,13 @@ public final class FactoryDriver {
     }
 
     public static IDriver getDriver(String browser) {
-        if (Browser.CHROME.getBrowser().equalsIgnoreCase(browser)) {
+        if (Browser.CHROME.toString().equalsIgnoreCase(browser)) {
             return new Chrome();
-        } else if (Browser.FIREFOX.getBrowser().equalsIgnoreCase(browser)) {
+        } else if (Browser.FIREFOX.toString().equalsIgnoreCase(browser)) {
             return new Firefox();
-        } else if(Browser.REMOTE.getBrowser().equalsIgnoreCase(browser)){
+        } else if (Browser.REMOTE.toString().equalsIgnoreCase(browser)) {
             return new RemoteBrowser();
-        }else {
+        } else {
             throw new WebDriverException("Browser not found : " + browser);
         }
     }
