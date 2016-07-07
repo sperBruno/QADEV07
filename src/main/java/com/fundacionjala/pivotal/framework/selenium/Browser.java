@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.driver;
+package com.fundacionjala.pivotal.framework.selenium;
 
 
 public enum Browser {
