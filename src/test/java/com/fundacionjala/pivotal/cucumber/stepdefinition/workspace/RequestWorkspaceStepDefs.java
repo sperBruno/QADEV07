@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.stepdefinition;
+package com.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 
 import com.fundacionjala.pivotal.pages.CreateWorkspace;
 import com.fundacionjala.pivotal.pages.Login;
@@ -13,14 +13,8 @@ public class RequestWorkspaceStepDefs {
 
     private CreateWorkspace createWorkspace;
     private Workspace workspace;
-    private RequestStepdefs requestStepdefs;
 
-    public RequestWorkspaceStepDefs(RequestStepdefs requestStepDefs){
-        this.requestStepdefs = requestStepDefs;
-    }
-
-
-    @Given("^I am on Pivotal Dashboard page$")
+   @Given("^I am on Pivotal Dashboard page$")
     public void iAmOnPivotalDashboardPage() {
 
     }

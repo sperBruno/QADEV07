@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.stepdefinition;
+package com.fundacionjala.pivotal.cucumber.stepdefinition.login;
 
 import com.fundacionjala.pivotal.pages.Dashboard;
 import com.fundacionjala.pivotal.pages.Login;
@@ -8,7 +8,7 @@ import cucumber.api.java.en.When;
 /**
  * Created by mijhailvillarroel on 7/6/2016.
  */
-public class RequestStepdefs {
+public class LoginStepDef {
     PivotalHome pivotalHome;
     private Login login;
     private Dashboard dashboard;

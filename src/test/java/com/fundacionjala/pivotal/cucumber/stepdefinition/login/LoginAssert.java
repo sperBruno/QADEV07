@@ -1,19 +1,17 @@
-package com.fundacionjala.pivotal.stepdefinition;
+package com.fundacionjala.pivotal.cucumber.stepdefinition.login;
 
-import com.fundacionjala.pivotal.pages.Login;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * Created by mijhailvillarroel on 6/30/2016.
  */
-public class ResponseStepdefs {
+public class LoginAssert {
 
-    private RequestStepdefs projectsStepdefs;
+    private LoginStepDef projectsStepdefs;
 
-    public ResponseStepdefs(RequestStepdefs projectsStepdefs) {
+    public LoginAssert (LoginStepDef projectsStepdefs) {
         this.projectsStepdefs = projectsStepdefs;
     }
 

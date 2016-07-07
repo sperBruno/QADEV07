@@ -89,17 +89,21 @@ public class PropertiesInfo {
                 .append(":")
                 .append(getProxyPort()).toString();
     }
+
     public String getProxyHost() {
         return getProperty("proxyHost");
     }
+
     public String getProxyPort() {
         return getProperty("proxyPort");
     }
+
     public String getRemoteTestName() {
         return getProperty("remoteTestName");
     }
 
-    public static void main(String[] args) {
-        System.out.println(PropertiesInfo.getInstance().getBrowser());
+    public String getApiToken() {
+        return getProperty("apiToken");
     }
+
 }

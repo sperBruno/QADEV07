@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.stepdefinition;
+package com.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
