@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.pages;
 
 
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ import static com.fundacionjala.pivotal.framework.selenium.DriverManager.*;
 
 public abstract class BasePage {
 
+    private Logger LOGGER = Logger.getLogger(BasePage.class.getSimpleName());
     protected WebDriver driver;
 
     protected Actions action;
@@ -32,6 +34,7 @@ public abstract class BasePage {
             webElement.isEnabled();
             exists = true;
         } catch (StaleElementReferenceException e) {
+            LOGGER.warn("The element has already deleted" + e);
             exists = false;
         }
         return exists;

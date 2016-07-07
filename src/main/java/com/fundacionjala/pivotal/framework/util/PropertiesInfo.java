@@ -5,12 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 /**
  * This class is for get the properties defined into properties file
  *
  * @author RosarioGarcia
  */
 public class PropertiesInfo {
+
+    private static Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
+
     private static PropertiesInfo instance;
 
     private Properties properties;
@@ -38,8 +43,10 @@ public class PropertiesInfo {
             properties.load(fileInputStream);
             fileInputStream.close();
         } catch (FileNotFoundException e) {
+            LOGGER.warn("The properties file couldn't be found" + e);
         } catch (IOException e) {
             e.printStackTrace();
+            LOGGER.warn("A problem of type"+ e.getCause());
         }
     }
 

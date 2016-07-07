@@ -3,6 +3,7 @@ package com.fundacionjala.pivotal.framework.selenium;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,6 +13,7 @@ import static com.fundacionjala.pivotal.framework.util.PropertiesInfo.getInstanc
 
 public class RemoteBrowser implements IDriver {
 
+    private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
 
     private static final String CAPABILITY_NAME = "name";
 
@@ -38,7 +40,7 @@ public class RemoteBrowser implements IDriver {
         try {
             url = new URL(sauceUrl);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            LOGGER.warn("The url is not correct" + e);
         }
         return new RemoteWebDriver(url, caps);
     }
