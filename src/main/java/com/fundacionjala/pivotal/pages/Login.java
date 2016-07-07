@@ -3,9 +3,11 @@ package com.fundacionjala.pivotal.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.framework.util.PropertiesInfo.*;
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 public class Login extends BasePage {
+
+    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
     @FindBy(id = "credentials_username")
     private WebElement userNameTestField;
@@ -53,7 +55,7 @@ public class Login extends BasePage {
     }
 
     public static Dashboard loginAsPrimaryUser() {
-        return loginAs(getInstance().getEmail(),
-                getInstance().getPassword());
+        return loginAs(PROPERTIES_INFO.getEmail(),
+                PROPERTIES_INFO.getPassword());
     }
 }
