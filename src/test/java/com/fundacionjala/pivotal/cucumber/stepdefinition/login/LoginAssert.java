@@ -19,6 +19,4 @@ public class LoginAssert {
     public void itIsExpectedThatTheDisplayNameEqualsWALTER_MERCADO_JALA(String nameUser) {
         assertEquals(nameUser, projectsStepdefs.getDashboard().getUserNameText());
     }
-
-
 }
