@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Bruno on 7/7/2016.
  */
-public class Project extends BasePage{
+public class Project extends BasePage {
     @FindBy(css = "span[class='raw_context_name']")
     private WebElement projectName;
 

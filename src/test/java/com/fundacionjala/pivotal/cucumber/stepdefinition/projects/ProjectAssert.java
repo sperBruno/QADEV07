@@ -11,12 +11,12 @@ public class ProjectAssert {
 
     private ProjectsStepDef projectsStepDef;
 
-    public ProjectAssert(ProjectsStepDef projectsStepDef){
-        this.projectsStepDef=projectsStepDef;
+    public ProjectAssert(ProjectsStepDef projectsStepDef) {
+        this.projectsStepDef = projectsStepDef;
     }
 
     @Then("^A project page with set title (.*) must appear$")
     public void aProjectPageWithSetTitleProjectSeleniumTestMustAppear(String expectedTitle) {
-        assertEquals(expectedTitle,projectsStepDef.getProject().existsElement());
+        assertEquals(expectedTitle, projectsStepDef.getProject().existsElement());
     }
 }
