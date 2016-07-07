@@ -1,8 +1,8 @@
-package com.fundacionjala.pivotal.driver;
+package com.fundacionjala.pivotal.framework.selenium;
 
 import java.util.concurrent.TimeUnit;
 
-import com.fundacionjala.pivotal.PropertiesInfo;
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 import org.openqa.selenium.WebDriver;
 
@@ -30,6 +30,7 @@ public class DriverManager {
     }
 
     private void initWebDriver() {
+        PropertiesInfo.getInstance().getUrl();
         driver = FactoryDriver.getDriver(PropertiesInfo.getInstance().getBrowser()).initDriver();
 
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);

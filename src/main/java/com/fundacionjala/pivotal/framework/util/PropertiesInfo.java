@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal;
+package com.fundacionjala.pivotal.framework.util;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,10 +21,15 @@ public class PropertiesInfo {
 
     public static PropertiesInfo getInstance() {
         if (instance == null) {
-            return new PropertiesInfo();
+            instance = new PropertiesInfo();
         }
         return instance;
     }
+
+
+    /**
+     * asdasdsdad
+     */
 
     private void loadProperties() {
         properties = new Properties();
@@ -84,13 +89,21 @@ public class PropertiesInfo {
                 .append(":")
                 .append(getProxyPort()).toString();
     }
+
     public String getProxyHost() {
         return getProperty("proxyHost");
     }
+
     public String getProxyPort() {
         return getProperty("proxyPort");
     }
+
     public String getRemoteTestName() {
         return getProperty("remoteTestName");
     }
+
+    public String getApiToken() {
+        return getProperty("apiToken");
+    }
+
 }
