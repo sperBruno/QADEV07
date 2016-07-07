@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.driver;
+package com.fundacionjala.pivotal.framework.selenium;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import static com.fundacionjala.pivotal.PropertiesInfo.getInstance;
+import static com.fundacionjala.pivotal.framework.util.PropertiesInfo.getInstance;
 
 public class RemoteBrowser implements IDriver {
 
