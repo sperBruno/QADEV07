@@ -1,0 +1,41 @@
+package com.fundacionjala.pivotal.pages;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_FAIL_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_WAIT_TIME;
+
+/**
+ * Created by Daniel
+ */
+public class Workspace extends BasePage {
+
+    @FindBy(className = "raw_context_name")
+    private WebElement workspaceNameText;
+
+    @FindBy(css = ".tc_header_item.tc_header_logo")
+    private WebElement returnDashboardLink;
+
+
+    public Dashboard clickReturnDashboardLink() {
+        returnDashboardLink.click();
+        return new Dashboard ();
+    }
+
+    public String getWorkspaceNameText() {
+        String workspaceName = "";
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            workspaceName = workspaceNameText.getText();
+        } catch (NoSuchElementException e) {
+
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
+        return workspaceName;
+    }
+}

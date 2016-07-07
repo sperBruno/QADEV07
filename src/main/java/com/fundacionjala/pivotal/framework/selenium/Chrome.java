@@ -5,10 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Chrome implements IDriver {
 
-    private static String driverPath = "/lib/";
+    private static final String DRIVER_PATH = "lib/chromedriver.exe";
 
-    public WebDriver initDriver() {
-        System.setProperty("webdriver.chrome.selenium", driverPath + "chromedriver.exe");
-        return new ChromeDriver();
+    public WebDriver initDriver () {
+        System.setProperty ("webdriver.chrome.driver", DRIVER_PATH);
+        return new ChromeDriver ();
     }
 }
