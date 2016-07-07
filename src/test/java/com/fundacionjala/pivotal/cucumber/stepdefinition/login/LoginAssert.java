@@ -7,11 +7,11 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by mijhailvillarroel on 6/30/2016.
  */
-public class ResponseStepdefs {
+public class LoginAssert {
 
-    private RequestStepdefs projectsStepdefs;
+    private LoginStepDef projectsStepdefs;
 
-    public ResponseStepdefs(RequestStepdefs projectsStepdefs) {
+    public LoginAssert (LoginStepDef projectsStepdefs) {
         this.projectsStepdefs = projectsStepdefs;
     }
 
@@ -19,4 +19,6 @@ public class ResponseStepdefs {
     public void itIsExpectedThatTheDisplayNameEqualsWALTER_MERCADO_JALA(String nameUser) {
         assertEquals(nameUser, projectsStepdefs.getDashboard().getUserNameText());
     }
+
+
 }

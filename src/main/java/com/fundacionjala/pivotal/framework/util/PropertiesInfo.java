@@ -26,6 +26,11 @@ public class PropertiesInfo {
         return instance;
     }
 
+
+    /**
+     * asdasdsdad
+     */
+
     private void loadProperties() {
         properties = new Properties();
         try {
