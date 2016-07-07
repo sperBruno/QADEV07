@@ -17,15 +17,15 @@ public abstract class BasePage {
     private Logger LOGGER = Logger.getLogger(BasePage.class.getSimpleName());
     protected WebDriver driver;
 
-    protected Actions action;
-
     protected WebDriverWait wait;
+
+    protected Actions action;
 
     public BasePage() {
         driver = getInstance().getDriver();
-        PageFactory.initElements(driver, this);
-        action = new Actions(driver);
         wait = new WebDriverWait(driver, WAIT_TIME);
+        action = new Actions(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean webElementExists(WebElement webElement) {

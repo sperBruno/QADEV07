@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,8 @@ import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICI
  * Created by Daniel
  */
 public class Workspace extends BasePage {
+
+    private static Logger LOGGER = Logger.getLogger(Workspace.class.getSimpleName());
 
     @FindBy(className = "raw_context_name")
     private WebElement workspaceNameText;
@@ -32,7 +35,7 @@ public class Workspace extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             workspaceName = workspaceNameText.getText();
         } catch (NoSuchElementException e) {
-
+            LOGGER.warn("The element could not be found" + e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }

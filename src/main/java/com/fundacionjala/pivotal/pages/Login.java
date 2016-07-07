@@ -35,7 +35,7 @@ public class Login extends BasePage {
         passwordTestField.sendKeys(password);
     }
 
-    public static Dashboard loginAS(String userName, String password) {
+    public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
         if (!dashboard.getUserNameText().equalsIgnoreCase (userName)) {
             //Dashboard.logout();
@@ -59,7 +59,7 @@ public class Login extends BasePage {
     }
 
     public static Dashboard loginAsPrimaryUser() {
-        return loginAS(getInstance().getEmail(),
+        return loginAs(getInstance().getEmail(),
                 getInstance().getPassword());
     }
 }
