@@ -14,9 +14,9 @@ public class Mapper {
 
     private static final String REGEX_DOT = "\\.";
 
-    public static final String REGEX_BRACKETS = "[\\[\\]]";
+    private static final String REGEX_BRACKETS = "[\\[\\]]";
 
-    public static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
+    private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
 
     private Mapper() {
     }
