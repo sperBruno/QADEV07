@@ -21,7 +21,7 @@ public class Dashboard extends BasePage {
     private WebElement createProjectLink;
 
     @FindBy(id = "notice")
-    private WebElement messageTestDelete;
+    private WebElement DeleteMessageText;
 
     /**
      *
@@ -54,6 +54,6 @@ public class Dashboard extends BasePage {
      * @return
      */
     public String getMessageTextDelete() {
-        return messageTestDelete.getText();
+        return DeleteMessageText.getText();
     }
 }

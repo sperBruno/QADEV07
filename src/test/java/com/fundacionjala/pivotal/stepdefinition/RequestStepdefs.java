@@ -12,7 +12,7 @@ import cucumber.api.java.en.When;
  * Created by mijhailvillarroel on 7/6/2016.
  */
 public class RequestStepdefs {
-    PivotalHome pivotalHome;
+    private PivotalHome pivotalHome;
     private Login login;
     private Dashboard dashboard;
 
@@ -24,11 +24,6 @@ public class RequestStepdefs {
     @When("^I click on the SigIn button$")
     public void iClickOnTheSigInButton() {
         login = pivotalHome.clickSingInLink();
-    }
-
-    @And("^It show the login form$")
-    public void itShowTheLoginForm() {
-
     }
 
     @And("^I click the next button$")

@@ -93,8 +93,4 @@ public class PropertiesInfo {
     public String getRemoteTestName() {
         return getProperty("remoteTestName");
     }
-
-    public static void main(String[] args) {
-        System.out.println(PropertiesInfo.getInstance().getBrowser());
-    }
 }
