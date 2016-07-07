@@ -3,9 +3,11 @@ package com.fundacionjala.pivotal.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.framework.util.PropertiesInfo.*;
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 public class Login extends BasePage {
+
+    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
     @FindBy(id = "credentials_username")
     private WebElement userNameTestField;
@@ -19,12 +21,6 @@ public class Login extends BasePage {
     @FindBy(css = ".app_signin_action_button")
     private WebElement buttonNext;
 
-    private static Dashboard dashboard = new Dashboard ();;
-
-    public Login() {
-        dashboard = new Dashboard();
-    }
-
     public void setUserNameTestField(String username) {
         userNameTestField.clear();
         userNameTestField.sendKeys(username);
@@ -35,9 +31,10 @@ public class Login extends BasePage {
         passwordTestField.sendKeys(password);
     }
 
-    public static Dashboard loginAS(String userName, String password) {
+    public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
         if (!dashboard.getUserNameText().equalsIgnoreCase (userName)) {
+
             //Dashboard.logout();
             PivotalHome pivotalHome = new PivotalHome();
             Login login = pivotalHome.clickSingInLink();
@@ -59,7 +56,7 @@ public class Login extends BasePage {
     }
 
     public static Dashboard loginAsPrimaryUser() {
-        return loginAS(getInstance().getEmail(),
-                getInstance().getPassword());
+        return loginAs(PROPERTIES_INFO.getEmail(),
+                PROPERTIES_INFO.getPassword());
     }
 }
