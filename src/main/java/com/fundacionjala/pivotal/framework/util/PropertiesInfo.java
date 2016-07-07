@@ -97,7 +97,7 @@ public class PropertiesInfo {
         return getProperty("remoteTestName");
     }
 
-    public static void main(String[] args) {
-        System.out.println(PropertiesInfo.getInstance().getBrowser());
+    public String getApiToken() {
+        return getProperty("apiToken");
     }
 }
