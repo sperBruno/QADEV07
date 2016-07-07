@@ -7,7 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
 /**
- * Created by Zeus on 07/07/2016.
+ * Created by Daniel on 07/07/2016.
  */
 public class RequestWorkspaceStepDefs {
 
@@ -22,8 +22,8 @@ public class RequestWorkspaceStepDefs {
     @When("^click on the Create Workspace button of the (Dashboard|Form)$")
     public void iClickOnTheCreateWorkspaceButton(String page) {
 
-        if (page.equalsIgnoreCase("Dashboard")) createWorkspace = Login.loginAsPrimaryUser ().clickCreateWorkspaceLink ();
-        else workspace = createWorkspace.clickCreateWorkspaceLink();
+        if (page.equalsIgnoreCase("Dashboard")) {createWorkspace = Login.loginAsPrimaryUser ().clickCreateWorkspaceLink ();}
+        else {workspace = createWorkspace.clickCreateWorkspaceLink();}
     }
 
     @Given("^I am on Pivotal Create Workspace form$")
