@@ -33,8 +33,7 @@ public class Login extends BasePage {
 
     public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
-        if (!dashboard.getUserNameText().equalsIgnoreCase (userName)) {
-
+        if (!dashboard.getUserNameText().equalsIgnoreCase(userName)) {
             //Dashboard.logout();
             PivotalHome pivotalHome = new PivotalHome();
             Login login = pivotalHome.clickSingInLink();
@@ -43,7 +42,7 @@ public class Login extends BasePage {
             login.setPasswordTestField(password);
             return login.clickSignInButton();
         }
-            return dashboard;
+        return dashboard;
     }
 
     public void clickNextButton() {
