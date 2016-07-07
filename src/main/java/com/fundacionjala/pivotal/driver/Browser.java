@@ -2,15 +2,7 @@ package com.fundacionjala.pivotal.driver;
 
 
 public enum Browser {
-    FIREFOX ("firefox"),
-    CHROME("chrome"),
-    REMOTE("remote");
-
-    private final String browser;
-    Browser(String browser) {
-        this.browser=browser;
-    }
-    public String getBrowser() {
-        return browser;
-    }
+    FIREFOX,
+    CHROME,
+    REMOTE
 }

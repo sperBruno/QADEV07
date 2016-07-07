@@ -24,7 +24,7 @@ public class RemoteBrowser implements IDriver {
     public WebDriver initDriver() {
         System.getProperties().put(HTTP_PROXY_HOST, getInstance().getProxyHost());
         System.getProperties().put(HTTP_PROXY_PORT, getInstance().getProxyPort());
-        URL url=null;
+        URL url = null;
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(CapabilityType.BROWSER_NAME, getInstance().getRemoteBrowser());
         caps.setCapability(CapabilityType.VERSION, getInstance().getBrowserVersion());
@@ -37,8 +37,7 @@ public class RemoteBrowser implements IDriver {
                 .append(REMOTE_URL_AUTH).toString();
         try {
             url = new URL(sauceUrl);
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return new RemoteWebDriver(url, caps);
