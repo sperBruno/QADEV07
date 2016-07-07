@@ -1,11 +1,10 @@
 package com.fundacionjala.pivotal.stepdefinition;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
+import com.fundacionjala.pivotal.pages.Login;
 import cucumber.api.java.en.Then;
-import org.junit.Assert;
+import cucumber.api.java.en.When;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by mijhailvillarroel on 6/30/2016.
@@ -22,4 +21,6 @@ public class ResponseStepdefs {
     public void itIsExpectedThatTheDisplayNameEqualsWALTER_MERCADO_JALA(String nameUser) {
         assertEquals(nameUser, projectsStepdefs.getDashboard().getUserNameText());
     }
+
+
 }

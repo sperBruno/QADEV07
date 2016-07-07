@@ -20,11 +20,13 @@ public class Dashboard extends BasePage {
     @FindBy(id = "create_new_project_button")
     private WebElement createProjectLink;
 
+    @FindBy(id = "create_new_workspace_button")
+    private WebElement createWorkspaceLink;
+
     @FindBy(id = "notice")
     private WebElement messageTestDelete;
 
     /**
-     *
      * @return
      */
     public CreateProject clickCreateProjectLink() {
@@ -33,7 +35,14 @@ public class Dashboard extends BasePage {
     }
 
     /**
-     *
+     * @return CreateWorkspace()
+     */
+    public CreateWorkspace clickCreateWorkspaceLink() {
+        createWorkspaceLink.click();
+        return new CreateWorkspace();
+    }
+
+    /**
      * @return
      */
     public String getUserNameText() {
@@ -50,7 +59,6 @@ public class Dashboard extends BasePage {
     }
 
     /**
-     *
      * @return
      */
     public String getMessageTextDelete() {

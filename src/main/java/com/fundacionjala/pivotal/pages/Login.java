@@ -19,7 +19,7 @@ public class Login extends BasePage {
     @FindBy(css = ".app_signin_action_button")
     private WebElement buttonNext;
 
-    private static Dashboard dashboard;
+    private static Dashboard dashboard = new Dashboard ();;
 
     public Login() {
         dashboard = new Dashboard();
@@ -36,7 +36,8 @@ public class Login extends BasePage {
     }
 
     public static Dashboard loginAS(String userName, String password) {
-        if (!dashboard.getUserNameText().equals(userName)) {
+        Dashboard dashboard = new Dashboard();
+        if (!dashboard.getUserNameText().equalsIgnoreCase (userName)) {
             //Dashboard.logout();
             PivotalHome pivotalHome = new PivotalHome();
             Login login = pivotalHome.clickSingInLink();
@@ -45,7 +46,7 @@ public class Login extends BasePage {
             login.setPasswordTestField(password);
             return login.clickSignInButton();
         }
-        return dashboard;
+            return dashboard;
     }
 
     public void clickNextButton() {
