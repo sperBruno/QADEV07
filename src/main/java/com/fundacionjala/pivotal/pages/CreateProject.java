@@ -38,6 +38,7 @@ public class CreateProject extends BasePage{
 
     public Project clickCreateProject() {
         createNewProjectBtn.click();
+      //  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return new Project();
     }
 

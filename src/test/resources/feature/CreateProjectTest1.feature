@@ -4,10 +4,10 @@ Feature: Create Project
     Given I login with credentials valid
 
 
-
+  @project
     Scenario: Create Project
       When I click on create project
-      And I fill the project title text box with ProjectSeleniumTes
+      And I fill the project title text box with ProjectSeleniumTest
       And I choose an account by default
       And I click on create Project button
-      Then A project page with set title ProjectSeleniumTes must appear
+      Then A project page with set title ProjectSeleniumTest must appear

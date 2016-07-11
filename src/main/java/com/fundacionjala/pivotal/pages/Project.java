@@ -1,6 +1,7 @@
 package com.fundacionjala.pivotal.pages;
 
 
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,14 +15,20 @@ public class Project extends BasePage {
     @FindBy(css = "[data-aid='navTab-settings']")
     WebElement settings;
 
+    public Project(){
+        new SideBar();
+    }
 
     public Settings clickSettingTab() {
         settings.click();
         return new Settings();
     }
 
-    public String existsElement() {
-        return projectName.getText();
+    public boolean existsElement() {
+        return projectName.isDisplayed();
     }
 
+    public String getTitle() {
+        return projectName.getTagName();
+    }
 }
