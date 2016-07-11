@@ -15,10 +15,10 @@ public class Project extends BasePage {
     WebElement settings;
 
 
-    public Settings clickSettingTab() {
-        settings.click();
-        return new Settings();
-    }
+//    public Settings clickSettingTab() {
+//        settings.click();
+//        return new Settings();
+//    }
 
     public String existsElement() {
         return projectName.getText();
