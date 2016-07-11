@@ -12,15 +12,15 @@ public class FeedBackPanel {
     @FindBy(css = ".tc_form_input.tc_feedback_description")
     WebElement feedBackDescriptionTxt;
 
-    @FindBy(css= ".feedback_role.tc_form_select")
+    @FindBy(css = ".feedback_role.tc_form_select")
     WebElement roleDropDown;
 
-    public void setFeedBackDescriptionTxt(String feedBackDescription){
+    public void setFeedBackDescriptionTxt(String feedBackDescription) {
         feedBackDescriptionTxt.click();
     }
 
-    public void setRoleDropDown(String role){
-        Select selectRole= new Select(roleDropDown);
+    public void setRoleDropDown(String role) {
+        Select selectRole = new Select(roleDropDown);
         selectRole.selectByVisibleText("role");
     }
 }

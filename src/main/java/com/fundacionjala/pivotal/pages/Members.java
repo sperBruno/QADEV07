@@ -24,20 +24,20 @@ public class Members {
     @FindBy(id = "new_members_link")
     WebElement addMemberFromListLink;
 
-    public void setNameOfNewMember(String nameOfNewMember){
+    public void setNameOfNewMember(String nameOfNewMember) {
         addMemberPanel.sendKeys(nameOfNewMember);
     }
 
-    public void setRoleOfAMember(String roleOfAMember){
-        Select roleDropDown=new Select(roleOfMember);
+    public void setRoleOfAMember(String roleOfAMember) {
+        Select roleDropDown = new Select(roleOfMember);
         roleDropDown.selectByVisibleText(roleOfAMember);
     }
 
-    public void clickAddMemberBtn(){
+    public void clickAddMemberBtn() {
         addMemberPanel.click();
     }
 
-    public boolean isAddMemberPanelDiplayed(){
+    public boolean isAddMemberPanelDiplayed() {
         return addMemberPanel.isDisplayed();
     }
 

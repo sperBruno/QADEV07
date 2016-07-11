@@ -1,6 +1,5 @@
 package com.fundacionjala.pivotal.pages;
 
-import jdk.internal.org.objectweb.asm.tree.analysis.Analyzer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,19 +23,19 @@ public class SideBar {
     WebElement collapseBtn;
 
 
-    public Settings clickSettingTab(){
+    public Settings clickSettingTab() {
         settingsTab.click();
         return new Settings();
     }
 
-    public Members clickMemberTab(){
+    public Members clickMemberTab() {
         membersTab.click();
         return new Members();
     }
 
-    public Analitics clickAnaliticsTab(){
+    public Analytics clickAnaliticsTab() {
         analiticsTab.click();
-        return new Analitics();
+        return new Analytics();
     }
 
 }
