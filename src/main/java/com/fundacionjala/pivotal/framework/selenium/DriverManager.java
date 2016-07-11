@@ -17,7 +17,7 @@ public class DriverManager {
 
     public static final int IMPLICIT_FAIL_WAIT_TIME = 4;
 
-    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";//hook
+    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
 
     private static DriverManager instance;
 
@@ -49,4 +49,5 @@ public class DriverManager {
     public void quitDriver() {
         driver.quit();
     }
+
 }
