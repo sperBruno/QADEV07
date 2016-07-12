@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,5 +64,11 @@ public class Dashboard extends BasePage {
      */
     public String getMessageTextDelete() {
         return deleteMessageText.getText();
+    }
+
+    public Setting clickSettingsLink(String nameProjects) {
+        WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/"+nameProjects+"/settings\"]"));
+        taskElement.click();
+        return new Setting();
     }
 }

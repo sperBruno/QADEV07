@@ -6,9 +6,9 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by mijhailvillarroel on 7/11/2016.
  */
-public class SideBarSetting extends SideBar {
+public class SideBarSetting extends BasePage {
 
-    @FindBy(xpath = "//a[text()=\"General Settings\"]")
+    @FindBy(xpath = "//a[text()='General Settings']")
     private WebElement linkGeneralSettings;
 
     @FindBy(xpath = "//a[text()=\"Project Profile\"]")
@@ -23,8 +23,8 @@ public class SideBarSetting extends SideBar {
     @FindBy(xpath = "//a[text()=\"Export CSV\"]")
     private WebElement linkExportCSV;
 
-    public ContainerSetting clickGeneralSetting() {
+    public GeneralSettingForm clickGeneralSetting() {
         linkGeneralSettings.click();
-        return new ContainerSetting();
+        return new GeneralSettingForm();
     }
 }

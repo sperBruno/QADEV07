@@ -4,7 +4,7 @@ package com.fundacionjala.pivotal.pages;
  * Created by mijhailvillarroel on 7/12/2016.
  */
 public class Setting {
-    SideBar sideBar;
+    SideBarSetting sideBar;
     ToolBar toolBar;
 
     public Setting() {
@@ -12,7 +12,7 @@ public class Setting {
         toolBar = new ToolBar(){};
     }
 
-    public SideBar getSideBar() {
+    public SideBarSetting getSideBar() {
         return sideBar;
     }
 
