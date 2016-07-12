@@ -39,8 +39,8 @@ public class ApiResourcesSteps {
         response = getRequest(endPoint);
     }
 
-    @When("^I sen(?:d|t) a POST request$")
-    public void iSendAPOSTRequest() {
+    @When("^I send a POST request$")
+    public void iSendAPOSTRequest(Map<String,Object> parameters) {
         response = RequestManager.postRequest(endPoint, parameters);
     }
 

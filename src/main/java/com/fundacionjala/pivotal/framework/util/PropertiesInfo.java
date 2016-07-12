@@ -66,6 +66,9 @@ public class PropertiesInfo {
         return getProperty("url");
     }
 
+    public String getUrlApi() {
+        return getProperty("urlApi");
+    }
     public String getBrowser() {
         return getProperty("localBrowser");
     }

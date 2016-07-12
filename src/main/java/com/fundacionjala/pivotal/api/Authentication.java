@@ -27,7 +27,7 @@ public class Authentication {
     }
 
     private void initApi() {
-        baseURI = PropertiesInfo.getInstance().getUrl();
+        baseURI = PropertiesInfo.getInstance().getUrlApi();
         requestSpecification = new RequestSpecBuilder()
                 .setRelaxedHTTPSValidation()
                 //.setProxy(PropertiesInfo.getInstance().getProxy())
