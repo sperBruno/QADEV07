@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'pivotal-ui-test'
+version = '1.0-SNAPSHOT'
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version:'2.53.0'
+    compile group: 'com.jayway.restassured', name: 'rest-assured', version:'2.9.0'
+    compile group: 'log4j', name: 'log4j', version:'1.2.17'
+    testCompile group: 'info.cukes', name: 'cucumber-java8', version:'1.2.4'
+    testCompile group: 'info.cukes', name: 'cucumber-junit', version:'1.2.4'
+    testCompile group: 'info.cukes', name: 'cucumber-picocontainer', version:'1.2.4'
+}
