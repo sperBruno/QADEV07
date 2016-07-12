@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by mijhailvillarroel on 7/11/2016.
  */
-public static class GeneralSettingFormBuilder {
+public class GeneralSettingForm {
     @FindBy(id= "project_name")
     protected String projectTitleTestField;
 
@@ -42,17 +42,6 @@ public static class GeneralSettingFormBuilder {
     @FindBy(id= "project_automatic_planning")
     private String projectAutomaticPlanningCheckBox;
 
+    public void
 
-    public GeneralSettingFormBuilder(String projectTitleTestField) {
-        this.projectTitleTestField = projectTitleTestField;
-    }
-
-    public GeneralSettingFormBuilder projectDescriptionTestField(String description) {
-        this.projectDescriptionTestField = description;
-        return this;
-    }
-
-    public ContainerSetting build() {
-        return new ContainerSetting(this);
-    }
 }
