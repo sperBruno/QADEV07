@@ -1,6 +1,7 @@
 package com.fundacionjala.pivotal.pages;
 
 
+import com.sun.scenario.Settings;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,10 +16,11 @@ public class Project extends BasePage {
     WebElement settings;
 
 
-    public Settings clickSettingTab() {
-        settings.click();
-        return new Settings();
-    }
+//    public Settings clickSettingTab() {
+//        settings.click();
+//        return new Settings();
+//        
+//    }
 
     public String existsElement() {
         return projectName.getText();

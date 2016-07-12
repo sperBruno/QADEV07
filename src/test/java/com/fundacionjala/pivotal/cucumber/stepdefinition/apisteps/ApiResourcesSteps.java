@@ -55,7 +55,7 @@ public class ApiResourcesSteps {
     }
 
     @And("^stored as (.*)")
-    public void storedAsProject(String key) {
+    public void storedAs(String key) {
         listResponses.put(key, response);
     }
 
