@@ -3,9 +3,12 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.*;
+import com.fundacionjala.pivotal.pages.IAutomationStep;
+import com.fundacionjala.pivotal.pages.Project;
+import com.fundacionjala.pivotal.pages.SideBarStories;
+import com.fundacionjala.pivotal.pages.StoriesSteps;
+import com.fundacionjala.pivotal.pages.Story;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -17,15 +20,13 @@ import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
  */
 public class StoriesStepsDef {
 
-    private ApiResourcesSteps apiResourcesSteps;
-
     private LoginStepDef loginStepDef;
+
     private Story story;
+
     private Project project;
 
-
-    public StoriesStepsDef(ApiResourcesSteps apiResourcesSteps, LoginStepDef loginStepDef) {
-        this.apiResourcesSteps = apiResourcesSteps;
+    public StoriesStepsDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
     }
 
