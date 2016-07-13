@@ -12,9 +12,9 @@ import static org.junit.Assert.assertNotNull;
 
 public class WorkspaceAssert {
 
-    private RequestWorkspaceStepDefs requestWorkspaceStepDefs;
+    private WorkspaceStepDef requestWorkspaceStepDefs;
 
-    public WorkspaceAssert (RequestWorkspaceStepDefs requestWorkspaceStepDefs) {
+    public WorkspaceAssert (WorkspaceStepDef requestWorkspaceStepDefs) {
         this.requestWorkspaceStepDefs = requestWorkspaceStepDefs;
     }
 
