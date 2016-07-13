@@ -9,7 +9,6 @@ Feature: Create new story in project from pivotal tracker
     And stored as Project1
     And I login with credentials valid
 
-  @project
   Scenario: Create new story
     Given I enter to projectTest
     And I create a new story

@@ -54,4 +54,11 @@ public class StoriesStepsDef {
             strategyMap.get(step).executeStep();
         }
     }
+
+    @Then("^I expect a new Story$")
+    public void iExpectANewStory() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+    
 }
