@@ -11,8 +11,8 @@ public class SideBarStories extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Add Story')]")
     private WebElement addStoryButton;
 
-    public Icebox clickOnAddStoryButton(){
+    public Story clickOnAddStoryButton(){
         addStoryButton.click();
-        return new Icebox();
+        return new Story();
     }
 }

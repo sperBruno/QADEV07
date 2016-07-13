@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,5 +64,11 @@ public class Dashboard extends BasePage {
      */
     public String getMessageTextDelete() {
         return deleteMessageText.getText();
+    }
+    
+    public Project clickOnProject(String projectName) {
+        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'"+projectName+"')]"));
+        projectNameLink.click();
+        return new Project();
     }
 }
