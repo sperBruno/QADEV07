@@ -6,33 +6,29 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Charito on 7/12/2016.
  */
-public class Story {
+public class Story extends BasePage {
 
-    @FindBy(xpath = "//a[@class='addButton___3-z3g3BH']")
-    protected WebElement addStoryButton;
+    @FindBy(className = "addButton___3-z3g3BH")
+    private WebElement addStoryButton;
 
-    @FindBy(xpath = "//textarea[@name='story[name]']")
-    protected WebElement storyNameTextarea;
+    @FindBy(name = "story[name]")
+    private WebElement storyNameTextarea;
 
-    @FindBy(xpath = "//button[@class='autosaves button std save']")
-    protected WebElement saveStoryButton;
+    @FindBy(css = "autosaves.button.std.save")
+    private WebElement saveStoryButton;
 
-    public Story clickOnAddStoryButton(){
+    public Story clickOnAddStoryIcon() {
         addStoryButton.click();
         return this;
     }
 
-    public void setStoryNameTextarea(String storyName){
+    public void setStoryNameTextarea(String storyName) {
         storyNameTextarea.clear();
         storyNameTextarea.sendKeys(storyName);
     }
 
-    public Story clickOnSaveStoryButton(){
+    public Story clickOnSaveStoryButton() {
         saveStoryButton.click();
         return new Story();
     }
-    
-    @FindBy(xpath = "//textarea[@name='story[name]']")
-    private WebElement storyNameText;
-    
 }

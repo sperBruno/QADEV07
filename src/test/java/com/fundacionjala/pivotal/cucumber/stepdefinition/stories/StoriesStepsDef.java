@@ -3,17 +3,12 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 import java.util.HashMap;
 import java.util.Map;
 
-import cucumber.api.PendingException;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
+import com.fundacionjala.pivotal.pages.*;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
-import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.IAutomationStep;
-import com.fundacionjala.pivotal.pages.Project;
-import com.fundacionjala.pivotal.pages.SideBarStories;
-import com.fundacionjala.pivotal.pages.StoriesSteps;
-import com.fundacionjala.pivotal.pages.Story;
 
 import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
 
@@ -44,7 +39,7 @@ public class StoriesStepsDef {
         SideBarStories sideBarStories = new SideBarStories();
         story = sideBarStories.clickOnAddStoryButton();
         executeSteps(parameters, story);
-        story.clickOnSaveStoryButton();
+
     }
 
     private void executeSteps(final Map<StoriesSteps, Object> values, Story story) {
@@ -57,8 +52,7 @@ public class StoriesStepsDef {
     }
 
     @Then("^I expect a new Story$")
-    public void iExpectANewStory() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    public void iExpectANewStory() {
+        story.clickOnSaveStoryButton();
     }
 }
