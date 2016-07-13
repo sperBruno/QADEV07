@@ -112,5 +112,4 @@ public class PropertiesInfo {
     public String getURLAPI() {
         return getProperty("urlApi");
     }
-
 }
