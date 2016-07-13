@@ -3,8 +3,6 @@ Feature: Create Project
   Background: I login into pivotal
     Given I login with credentials valid
 
-
-
     Scenario: Create Project
       When I click on create project
       And I fill the project title text box with ProjectSeleniumTes
