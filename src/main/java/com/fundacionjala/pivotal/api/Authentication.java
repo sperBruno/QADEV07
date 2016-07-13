@@ -7,6 +7,9 @@ import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 import static com.jayway.restassured.RestAssured.baseURI;
 
+/**
+ *
+ */
 public class Authentication {
 
     private static final String TOKEN_HEADER = "X-TrackerToken";

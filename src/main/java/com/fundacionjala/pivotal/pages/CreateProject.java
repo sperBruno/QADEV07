@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by mijhailvillarroel on 7/6/2016.
  */
-public class CreateProject extends BasePage{
+public class CreateProject extends BasePage {
     @FindBy(css = "input[class='tc_form_input']")
     WebElement newProjectName;
 
@@ -38,6 +38,7 @@ public class CreateProject extends BasePage{
 
     public Project clickCreateProject() {
         createNewProjectBtn.click();
+        //  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return new Project();
     }
 

@@ -15,7 +15,7 @@ public class DriverManager {
 
     public static final int LOAD_PAGE_TIME = 40;
 
-    public static final int IMPLICIT_FAIL_WAIT_TIME = 4;
+    public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
 
     private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
 
