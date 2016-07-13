@@ -8,13 +8,14 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_FAIL_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_PROJECT_WAIT;
 
 /**
  * Created by Bruno on 7/7/2016.
  */
 public class Project extends BasePage {
-    public static final int IMPLICIT_PROJECT_WAIT = 20;
+
     private static final Logger LOGGER = Logger.getLogger(Project.class.getName());
 
     @FindBy(className = "raw_context_name")
