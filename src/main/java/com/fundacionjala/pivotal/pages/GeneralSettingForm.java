@@ -1,13 +1,17 @@
 package com.fundacionjala.pivotal.pages;
 
+import java.util.concurrent.TimeUnit;
+
+import com.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
  */
-public class GeneralSettingForm<T extends GeneralSettingForm<T>> extends BasePage {
+public class GeneralSettingForm extends BasePage {
     @FindBy(id = "project_name")
     protected WebElement projectTitleTestField;
 
@@ -77,110 +81,110 @@ public class GeneralSettingForm<T extends GeneralSettingForm<T>> extends BasePag
     @FindBy(className = "text_column")
     WebElement projectId;
 
-    public T setProjectTitleTestField(String projectTitle) {
+    public GeneralSettingForm setProjectTitleTestField(String projectTitle) {
         projectTitleTestField.clear();
         projectTitleTestField.sendKeys(projectTitle);
-        return getThis();
+        return this;
     }
 
-    public T setProjectDescriptionTestField(String projectDescription) {
+    public GeneralSettingForm setProjectDescriptionTestField(String projectDescription) {
         projectDescriptionTestField.clear();
         projectDescriptionTestField.sendKeys(projectDescription);
-        return getThis();
+        return this;
     }
 
-    public T setProjectEnableTasksCheckbox(boolean enable) {
+    public GeneralSettingForm setProjectEnableTasksCheckbox(boolean enable) {
         enableCheckBox(projectEnableTasksCheckbox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectWeekStartDayComboBox(String nameDay) {
+    public GeneralSettingForm setProjectWeekStartDayComboBox(String nameDay) {
         selectAElementComboBox(projectWeekStartDaySelect, nameDay);
-        return getThis();
+        return this;
     }
 
-    public T setDateProjectStartTestField(String dateProjectStart) {
+    public GeneralSettingForm setDateProjectStartTestField(String dateProjectStart) {
         dateProjectStartTestField.clear();
         dateProjectStartTestField.sendKeys(dateProjectStart);
-        return getThis();
+        return this;
     }
 
-    public T setProjectTimeZoneComboBox(String projectTimeZone) {
+    public GeneralSettingForm setProjectTimeZoneComboBox(String projectTimeZone) {
         selectAElementComboBox(projectTimeZoneComboBox, projectTimeZone);
-        return getThis();
+        return this;
     }
 
-    public T setProjectIterationLengthComboBox(String projectIterationLength) {
+    public GeneralSettingForm setProjectIterationLengthComboBox(String projectIterationLength) {
         selectAElementComboBox(projectIterationLengthComboBox, projectIterationLength);
-        return getThis();
+        return this;
     }
 
-    public T setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
+    public GeneralSettingForm setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
         selectAElementComboBox(projectSettingsPointScaleComboBox, projectSettingsPointScale);
-        return getThis();
+        return this;
     }
 
-    public T setProjectInitialVelocityTestField(String projectInitialVelocity) {
+    public GeneralSettingForm setProjectInitialVelocityTestField(String projectInitialVelocity) {
         projectInitialVelocityTestField.clear();
         projectInitialVelocityTestField.sendKeys(projectInitialVelocity);
-        return getThis();
+        return this;
     }
 
-    public T setProjectVelocityComboBox(String projectVelocity) {
+    public GeneralSettingForm setProjectVelocityComboBox(String projectVelocity) {
         selectAElementComboBox(projectVelocityComboBox, projectVelocity);
-        return getThis();
+        return this;
     }
 
-    public T setProjectNumberOfDoneIterationsToShowTestField(String projectNumberOfDoneIterationsToShow) {
+    public GeneralSettingForm setProjectNumberOfDoneIterationsToShowTestField(String projectNumberOfDoneIterationsToShow) {
         projectNumberOfDoneIterationsToShowTestField.clear();
         projectNumberOfDoneIterationsToShowTestField.sendKeys(projectNumberOfDoneIterationsToShow);
-        return getThis();
+        return this;
     }
 
-    public T setProjectAutomaticPlanningCheckBox(String projectAutomaticPlanning) {
+    public GeneralSettingForm setProjectAutomaticPlanningCheckBox(String projectAutomaticPlanning) {
         projectAutomaticPlanningCheckBox.clear();
         projectAutomaticPlanningCheckBox.sendKeys(projectAutomaticPlanning);
-        return getThis();
+        return this;
     }
 
-    public T clickSaveButton() {
+    public GeneralSettingForm clickSaveButton() {
         saveButton.click();
-        return getThis();
+        return this;
     }
 
-    public T setProjectAPIAccessCheckbox(boolean enable) {
+    public GeneralSettingForm setProjectAPIAccessCheckbox(boolean enable) {
         enableCheckBox(projectAPIAccessCheckbox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectUseHttpsCheckBox(boolean enable) {
+    public GeneralSettingForm setProjectUseHttpsCheckBox(boolean enable) {
         enableCheckBox(projectUseHttpsCheckBox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectAtomRssCheckBox(boolean enable) {
+    public GeneralSettingForm setProjectAtomRssCheckBox(boolean enable) {
         enableCheckBox(projectAtomRssCheckBox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectPublicAccessCheckBox(boolean enable) {
+    public GeneralSettingForm setProjectPublicAccessCheckBox(boolean enable) {
         enableCheckBox(projectPublicAccessCheckBox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectEnableIncomingEmailCheckBox(boolean enable) {
+    public GeneralSettingForm setProjectEnableIncomingEmailCheckBox(boolean enable) {
         enableCheckBox(projectEnableIncomingEmailCheckBox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectHideEmailsFromCollaboratorsCheckBox(boolean enable) {
+    public GeneralSettingForm setProjectHideEmailsFromCollaboratorsCheckBox(boolean enable) {
         enableCheckBox(projectHideEmailsFromCollaboratorsCheckBox, enable);
-        return getThis();
+        return this;
     }
 
-    public T setProjectBugsCheckBox(boolean enable) {
+    public GeneralSettingForm setProjectBugsCheckBox(boolean enable) {
         enableCheckBox(projectBugsCheckBox, enable);
-        return getThis();
+        return this;
     }
 
     public void clickLinkDeleteProject() {
@@ -191,9 +195,9 @@ public class GeneralSettingForm<T extends GeneralSettingForm<T>> extends BasePag
         return testMessage.getText();
     }
 
-    public T selectStartIterationsOn(String nameDay) {
+    public GeneralSettingForm selectStartIterationsOn(String nameDay) {
         selectAElementComboBox(projectWeekStartDaySelect, nameDay);
-        return getThis();
+        return this;
     }
 
     public void enableCheckBox(WebElement webElement, boolean enable) {
@@ -217,12 +221,11 @@ public class GeneralSettingForm<T extends GeneralSettingForm<T>> extends BasePag
         return projectDescriptionTestField.getText();
     }
 
-    public String getProjectId(){
+    public String getProjectId() {
         return projectId.getText();
     }
 
-    protected T getThis() {
-        return (T) this;
+    public String getProjectTitleTestField() {
+        return projectTitleTestField.getText();
     }
-
 }
