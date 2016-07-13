@@ -109,4 +109,6 @@ public class PropertiesInfo {
         return getProperty("apiToken");
     }
 
+    public String getUrlApi(){return getProperty("urlApi");}
+
 }

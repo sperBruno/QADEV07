@@ -24,13 +24,18 @@ public class ProjectAssert {
 
     @Then("^A project page with set title (.*) must appear$")
     public void aProjectPageWithSetTitleProjectSeleniumTestMustAppear(String expectedTitle) {
-        assertEquals(expectedTitle,projectsStepDef.getProject().getTitle());
+        String title = projectsStepDef.getProject().getTitle();
+        LOGGER.info("atual title "+title);
+        assertEquals(expectedTitle, title);
     }
 
     @After
     public void tearDown(){
             Settings setting = projectsStepDef.getProject().clickSettingTab();
-      response  = RequestManager.deleteRequest("propjects/" + setting.getProjectId());
+        String id="projects/"+setting.getProjectId();
+        LOGGER.info("project id "+id );
+        response = RequestManager.deleteRequest(id);
+        LOGGER.info("status code "+response.getStatusCode());
     }
 
 }
