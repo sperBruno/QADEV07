@@ -10,11 +10,11 @@ import static org.junit.Assert.assertNotNull;
  * Created by Daniel
  */
 
-public class ResponseWorkspaceStepDefs {
+public class WorkspaceAssert {
 
     private RequestWorkspaceStepDefs requestWorkspaceStepDefs;
 
-    public ResponseWorkspaceStepDefs (RequestWorkspaceStepDefs requestWorkspaceStepDefs) {
+    public WorkspaceAssert (RequestWorkspaceStepDefs requestWorkspaceStepDefs) {
         this.requestWorkspaceStepDefs = requestWorkspaceStepDefs;
     }
 
