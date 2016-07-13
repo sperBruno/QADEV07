@@ -1,6 +1,5 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
@@ -12,9 +11,11 @@ import static org.junit.Assert.assertEquals;
 public class ProjectAssert {
 
     private ProjectsStepDef projectsStepDef;
+    private ProjectSettingsStepDef projectSettingsStepDef;
 
-    public ProjectAssert(ProjectsStepDef projectsStepDef) {
+    public ProjectAssert(ProjectsStepDef projectsStepDef, ProjectSettingsStepDef projectSettingsStepDef) {
         this.projectsStepDef = projectsStepDef;
+        this.projectSettingsStepDef = projectSettingsStepDef;
     }
 
     @Then("^A project page with set title (.*) must appear$")
@@ -22,9 +23,10 @@ public class ProjectAssert {
         assertEquals(expectedTitle, projectsStepDef.getProject().existsElement());
     }
 
-    @And("^The description projects should be equals totally new$")
-    public void theDescriptionProjectsShouldBeEqualsTotallyNew() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @And("^The description projects should be equals (.*)$")
+    public void theDescriptionProjectsShouldBeEqualsA(String expectedValue) {
+
+        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
+
     }
 }
