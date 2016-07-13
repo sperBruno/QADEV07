@@ -1,18 +1,19 @@
-package com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps;
+package com.fundacionjala.pivotal.cucumber.stepdefinition.api;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fundacionjala.pivotal.api.RequestManager;
 import com.jayway.restassured.response.Response;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import static com.fundacionjala.pivotal.api.Mapper.mapEndpoint;
+import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static com.fundacionjala.pivotal.api.RequestManager.getRequest;
+import static com.fundacionjala.pivotal.api.RequestManager.postRequest;
+import static com.fundacionjala.pivotal.api.RequestManager.putRequest;
 import static org.junit.Assert.assertEquals;
 
 public class ApiResourcesSteps {
@@ -26,12 +27,17 @@ public class ApiResourcesSteps {
     private String endPoint;
 
     public ApiResourcesSteps() {
-        listResponses = new HashMap<String, Response>();
+        listResponses = new HashMap<>();
     }
 
-    @And("^I have the (.*) endpoint$")
+    @Given("^I have the (.*) endpoint$")
     public void iHaveTheEndpoint(String endPoint) {
         this.endPoint = mapEndpoint(endPoint, listResponses);
+    }
+
+    @Given("^I have the next parameters:$")
+    public void iHaveTheNextParameters(Map<String, Object> parameters) {
+        this.parameters = parameters;
     }
 
     @When("^I send a GET request to (.*) endpoint$")
@@ -41,18 +47,17 @@ public class ApiResourcesSteps {
 
     @When("^I sen(?:d|t) a POST request$")
     public void iSendAPOSTRequest() {
-
-        response = RequestManager.postRequest(endPoint, parameters);
-    }
-
-    @When("^I send a DELETE request$")
-    public void iSendADELETERequest() {
-        response = RequestManager.deleteRequest(endPoint);
+        response = postRequest(endPoint, parameters);
     }
 
     @When("^I send a PUT request$")
     public void iSendAPUTRequest() {
-        response = RequestManager.putRequest(endPoint, parameters);
+        response = putRequest(endPoint, parameters);
+    }
+
+    @When("^I send a DELETE request$")
+    public void iSendADELETERequest() {
+        response = deleteRequest(endPoint);
     }
 
     @And("^stored as (.*)")
@@ -63,11 +68,6 @@ public class ApiResourcesSteps {
     @Then("^I expect the status code (\\d+)$")
     public void iExpectStatusCode(int statusCodeExpected) {
         assertEquals(statusCodeExpected, response.statusCode());
-    }
-
-    @Given("^I have the next parameters:$")
-    public void iHaveTheNextParameters(Map<String, Object> parameters) {
-        this.parameters = parameters;
     }
 
     public Response getResponse() {

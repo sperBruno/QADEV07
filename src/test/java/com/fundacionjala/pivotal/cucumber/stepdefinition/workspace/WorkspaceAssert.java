@@ -12,21 +12,21 @@ import static org.junit.Assert.assertNotNull;
 
 public class WorkspaceAssert {
 
-    private RequestWorkspaceStepDefs requestWorkspaceStepDefs;
+    private WorkspaceStepDef requestWorkspaceStepDefs;
 
-    public WorkspaceAssert (RequestWorkspaceStepDefs requestWorkspaceStepDefs) {
+    public WorkspaceAssert(WorkspaceStepDef requestWorkspaceStepDefs) {
         this.requestWorkspaceStepDefs = requestWorkspaceStepDefs;
     }
 
     @Then("^I expect a Create Workspace form$")
-    public void iExpectACreateWorkspaceForm () {
-        assertNotNull (requestWorkspaceStepDefs.getCreateWorkspace ());
-        requestWorkspaceStepDefs.getCreateWorkspace ().clickCancelCreateWorkspaceLink ();
+    public void iExpectACreateWorkspaceForm() {
+        assertNotNull(requestWorkspaceStepDefs.getCreateWorkspace());
+        requestWorkspaceStepDefs.getCreateWorkspace().clickCancelCreateWorkspaceLink();
     }
 
     @And("^the display name equals to (.*)$")
-    public void theDisplayNameEqualsTo (String workspaceName) {
-        assertEquals (workspaceName, requestWorkspaceStepDefs.getWorkspace ().getWorkspaceNameText ());
-        requestWorkspaceStepDefs.getWorkspace ().clickReturnDashboardLink ();
+    public void theDisplayNameEqualsTo(String workspaceName) {
+        assertEquals(workspaceName, requestWorkspaceStepDefs.getWorkspace().getWorkspaceNameText());
+        requestWorkspaceStepDefs.getWorkspace().clickReturnDashboardLink();
     }
 }
