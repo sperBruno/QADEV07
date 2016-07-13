@@ -1,6 +1,5 @@
 package com.fundacionjala.pivotal.pages;
 
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -47,18 +46,18 @@ public class ContainerSetting {
     @FindBy(id= "delete_link")
     private String linkDeleteButton;
 
-    public ContainerSetting(GeneralSettingFormBuilder generalSettingFormBuilder) {
-        this.projectTitleTestField = generalSettingFormBuilder.projectTitleTestField;
-        this.projectDescriptionTestField = generalSettingFormBuilder.projectDescriptionTestField;
-//        this.projectEnableTasksCheckbox = generalSettingFormBuilder.projectEnableTasksCheckbox;
-//        this.projectWeekStartDayComboBox = generalSettingFormBuilder.projectWeekStartDayComboBox;
-//        this.dateProjectStartTestField = generalSettingFormBuilder.dateProjectStartTestField;
-//        this.projectTimeZoneTestField = generalSettingFormBuilder.projectTimeZoneTestField;
-//        this.projectIterationLengthComboBox = generalSettingFormBuilder.projectIterationLengthComboBox;
-//        this.projectSettingsPointScaleComboBox = generalSettingFormBuilder.projectSettingsPointScaleComboBox;
-//        this.projectInitialVelocityTestField = generalSettingFormBuilder.projectInitialVelocityTestField;
-//        this.projectVelocityComboBox = generalSettingFormBuilder.projectVelocityComboBox;
-//        this.projectNumberOfDoneIterationsToShowTestField = generalSettingFormBuilder.projectNumberOfDoneIterationsToShowTestField;
-//        this.projectAutomaticPlanningCheckBox = generalSettingFormBuilder.projectAutomaticPlanningCheckBox;
-    }
+//    public ContainerSetting(GeneralSettingFormBuilder generalSettingFormBuilder) {
+//        this.projectTitleTestField = generalSettingFormBuilder.projectTitleTestField;
+//        this.projectDescriptionTestField = generalSettingFormBuilder.projectDescriptionTestField;
+////        this.projectEnableTasksCheckbox = generalSettingFormBuilder.projectEnableTasksCheckbox;
+////        this.projectWeekStartDayComboBox = generalSettingFormBuilder.projectWeekStartDayComboBox;
+////        this.dateProjectStartTestField = generalSettingFormBuilder.dateProjectStartTestField;
+////        this.projectTimeZoneTestField = generalSettingFormBuilder.projectTimeZoneTestField;
+////        this.projectIterationLengthComboBox = generalSettingFormBuilder.projectIterationLengthComboBox;
+////        this.projectSettingsPointScaleComboBox = generalSettingFormBuilder.projectSettingsPointScaleComboBox;
+////        this.projectInitialVelocityTestField = generalSettingFormBuilder.projectInitialVelocityTestField;
+////        this.projectVelocityComboBox = generalSettingFormBuilder.projectVelocityComboBox;
+////        this.projectNumberOfDoneIterationsToShowTestField = generalSettingFormBuilder.projectNumberOfDoneIterationsToShowTestField;
+////        this.projectAutomaticPlanningCheckBox = generalSettingFormBuilder.projectAutomaticPlanningCheckBox;
+   // }
 }

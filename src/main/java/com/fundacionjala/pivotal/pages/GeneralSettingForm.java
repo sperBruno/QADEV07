@@ -1,8 +1,5 @@
 package com.fundacionjala.pivotal.pages;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
@@ -10,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 /**
  * Created by mijhailvillarroel on 7/11/2016.
  */
-public class GeneralSettingForm extends BasePage{
+public class GeneralSettingForm <T extends GeneralSettingForm<T>> extends BasePage{
     @FindBy(id= "project_name")
     protected WebElement projectTitleTestField;
 
@@ -56,67 +53,81 @@ public class GeneralSettingForm extends BasePage{
     @FindBy(css = ".message")
     private WebElement testMessage;
 
-    public void setProjectTitleTestField(String projectTitle) {
+    public T setProjectTitleTestField(String projectTitle) {
         projectTitleTestField.clear();
         projectTitleTestField.sendKeys(projectTitle);
+        return getThis();
     }
 
-    public void setProjectDescriptionTestField(String projectDescription) {
+    public T setProjectDescriptionTestField(String projectDescription) {
         projectDescriptionTestField.clear();
         projectDescriptionTestField.sendKeys(projectDescription);
+        return getThis();
     }
 
-    public void setProjectEnableTasksCheckbox(String projectEnableTasks) {
-        projectEnableTasksCheckbox.clear();
-        projectEnableTasksCheckbox.sendKeys(projectEnableTasks);
+    public T setProjectEnableTasksCheckbox(boolean enable) {
+       // if (projectEnableTasksCheckbox.isSelected()) {
+            projectEnableTasksCheckbox.click();
+    //    }
+        return getThis();
     }
 
-    private void clickProjectWeekStartDayComboBox() {
+    private T clickProjectWeekStartDayComboBox() {
        // projectWeekStartDaySelect.click();
+        return getThis();
     }
 
-    public void setDateProjectStartTestField(String dateProjectStart) {
+    public T setDateProjectStartTestField(String dateProjectStart) {
         dateProjectStartTestField.clear();
         dateProjectStartTestField.sendKeys(dateProjectStart);
+        return getThis();
     }
 
-    public void setProjectTimeZoneTestField(String projectTimeZone) {
+    public T setProjectTimeZoneTestField(String projectTimeZone) {
         projectTimeZoneTestField.clear();
         projectTimeZoneTestField.sendKeys(projectTimeZone);
+        return getThis();
     }
 
-    public void setProjectIterationLengthComboBox(String projectIterationLength) {
+    public T setProjectIterationLengthComboBox(String projectIterationLength) {
         projectIterationLengthComboBox.clear();
         projectIterationLengthComboBox.sendKeys(projectIterationLength);
+        return getThis();
     }
 
-    public void setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
+    public T setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
         projectSettingsPointScaleComboBox.clear();
         projectSettingsPointScaleComboBox.sendKeys(projectSettingsPointScale);
+        return getThis();
     }
 
-    public void setProjectInitialVelocityTestField(String projectInitialVelocity) {
+    public T setProjectInitialVelocityTestField(String projectInitialVelocity) {
         projectInitialVelocityTestField.clear();
         projectInitialVelocityTestField.sendKeys(projectInitialVelocity);
+        return getThis();
     }
 
-    public void setProjectVelocityComboBox(String projectVelocityComboBox) {
+    public T setProjectVelocityComboBox(String projectVelocityComboBox) {
        // projectVelocityComboBox.clear();
         //projectVelocityComboBox.sendKeys(projectVelocityComboBox);
+        return getThis();
     }
 
-    public void setProjectNumberOfDoneIterationsToShowTestField(String projectNumberOfDoneIterationsToShow) {
+    public T setProjectNumberOfDoneIterationsToShowTestField(String projectNumberOfDoneIterationsToShow) {
         projectNumberOfDoneIterationsToShowTestField.clear();
         projectNumberOfDoneIterationsToShowTestField.sendKeys(projectNumberOfDoneIterationsToShow);
+        return getThis();
     }
 
-    public void setProjectAutomaticPlanningCheckBox(String projectAutomaticPlanning) {
+    public T setProjectAutomaticPlanningCheckBox(String projectAutomaticPlanning) {
         projectAutomaticPlanningCheckBox.clear();
         projectAutomaticPlanningCheckBox.sendKeys(projectAutomaticPlanning);
+        return getThis();
     }
 
-    public void clickSaveButton() {
+    public T clickSaveButton() {
         saveButton.click();
+        return getThis();
     }
 
     public void clickLinkDeleteProject() {
@@ -126,14 +137,14 @@ public class GeneralSettingForm extends BasePage{
         return testMessage.getText();
     }
 
-    public void selectStartIterationsOn(String nameDay){
+    public T selectStartIterationsOn(String nameDay){
         Select oSelect = new Select(projectWeekStartDaySelect);
-        List<WebElement> oSize = oSelect.getOptions();
-        System.out.print("sadas"+ oSize.size());
-        oSelect.selectByValue("Sunday");
-       // projectWeekStartDaySelect.selectByValue(nameDay);//projectWeekStartDaySelect.findElement(By.xpath("//option[@value='"+nameDay+"']")).click();
-//        //Another implementation using xpath
-//        driver.findElement(By.xpath("//div[@class='AmiMenu priority_menu']/descendant::img[@class='cmp_priority" + priority + "']")).click();
+        oSelect.selectByValue(nameDay);
+        return getThis();
+    }
+
+    protected T getThis() {
+        return (T) this;
     }
 
 }
