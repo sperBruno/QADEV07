@@ -16,16 +16,16 @@ import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICI
 public class Project extends BasePage {
     public static final int IMPLICIT_PROJECT_WAIT = 20;
     private static final Logger LOGGER = Logger.getLogger(Project.class.getName());
+
     @FindBy(className = "raw_context_name")
     private WebElement projectName;
 
     @FindBy(css = "[data-aid='navTab-settings']")
     WebElement settings;
 
-
-    public Settings clickSettingTab() {
+    public Setting clickSettingTab() {
         settings.click();
-        return new Settings();
+        return new Setting();
     }
 
     public boolean isProjectTitleDisplayed() {

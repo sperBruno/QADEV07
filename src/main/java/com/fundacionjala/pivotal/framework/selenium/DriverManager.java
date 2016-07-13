@@ -13,7 +13,7 @@ public class DriverManager {
 
     public static final int WAIT_TIME = 30;
 
-    public static final int LOAD_PAGE_TIME = 10;
+    public static final int LOAD_PAGE_TIME = 40;
 
     public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
 
