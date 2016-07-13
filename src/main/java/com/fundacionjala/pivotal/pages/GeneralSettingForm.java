@@ -74,6 +74,9 @@ public class GeneralSettingForm<T extends GeneralSettingForm<T>> extends BasePag
     @FindBy(css = ".message")
     private WebElement testMessage;
 
+    @FindBy(className = "text_column")
+    WebElement projectId;
+
     public T setProjectTitleTestField(String projectTitle) {
         projectTitleTestField.clear();
         projectTitleTestField.sendKeys(projectTitle);
@@ -210,9 +213,12 @@ public class GeneralSettingForm<T extends GeneralSettingForm<T>> extends BasePag
         oSelect.selectByValue(element);
     }
 
-
     public String getDescriptionText() {
         return projectDescriptionTestField.getText();
+    }
+
+    public String getProjectId(){
+        return projectId.getText();
     }
 
     protected T getThis() {
