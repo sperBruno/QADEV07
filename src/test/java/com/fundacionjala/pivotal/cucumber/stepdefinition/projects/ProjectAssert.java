@@ -43,7 +43,7 @@ public class ProjectAssert {
 
     @And("^The description projects should be equals (.*)$")
     public void theDescriptionProjectsShouldBeEqualsA(String expectedValue) {
-        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getSideBar().clickGeneralSetting().getDescriptionText());
+        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
     }
 
 
