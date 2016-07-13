@@ -14,19 +14,19 @@ public class WorkspaceAssert {
 
     private WorkspaceStepDef requestWorkspaceStepDefs;
 
-    public WorkspaceAssert (WorkspaceStepDef requestWorkspaceStepDefs) {
+    public WorkspaceAssert(WorkspaceStepDef requestWorkspaceStepDefs) {
         this.requestWorkspaceStepDefs = requestWorkspaceStepDefs;
     }
 
     @Then("^I expect a Create Workspace form$")
-    public void iExpectACreateWorkspaceForm () {
-        assertNotNull (requestWorkspaceStepDefs.getCreateWorkspace ());
-        requestWorkspaceStepDefs.getCreateWorkspace ().clickCancelCreateWorkspaceLink ();
+    public void iExpectACreateWorkspaceForm() {
+        assertNotNull(requestWorkspaceStepDefs.getCreateWorkspace());
+        requestWorkspaceStepDefs.getCreateWorkspace().clickCancelCreateWorkspaceLink();
     }
 
     @And("^the display name equals to (.*)$")
-    public void theDisplayNameEqualsTo (String workspaceName) {
-        assertEquals (workspaceName, requestWorkspaceStepDefs.getWorkspace ().getWorkspaceNameText ());
-        requestWorkspaceStepDefs.getWorkspace ().clickReturnDashboardLink ();
+    public void theDisplayNameEqualsTo(String workspaceName) {
+        assertEquals(workspaceName, requestWorkspaceStepDefs.getWorkspace().getWorkspaceNameText());
+        requestWorkspaceStepDefs.getWorkspace().clickReturnDashboardLink();
     }
 }

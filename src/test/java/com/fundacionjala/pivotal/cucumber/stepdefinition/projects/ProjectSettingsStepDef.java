@@ -3,7 +3,7 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import com.fundacionjala.pivotal.pages.GeneralSettingForm;
 import com.fundacionjala.pivotal.pages.IAutomationStep;
