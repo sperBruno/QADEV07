@@ -7,8 +7,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_FAIL_WAIT_TIME;
-import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
 /**
  *
