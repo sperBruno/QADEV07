@@ -21,7 +21,7 @@ public class ProjectAssert {
 
     private Logger LOGGER = Logger.getLogger(ProjectAssert.class.getSimpleName());
 
-    public ProjectAssert(ProjectsStepDef projectsStepDef) {
+    public ProjectAssert(ProjectsStepDef projectsStepDef, ProjectSettingsStepDef projectSettingsStepDef) {
 
         this.projectsStepDef = projectsStepDef;
         this.projectSettingsStepDef = projectSettingsStepDef;

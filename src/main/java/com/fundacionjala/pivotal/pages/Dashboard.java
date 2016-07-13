@@ -65,7 +65,12 @@ public class Dashboard extends BasePage {
     public String getMessageTextDelete() {
         return deleteMessageText.getText();
     }
-
+    
+    public Project clickOnProject(String projectName) {
+        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'"+projectName+"')]"));
+        projectNameLink.click();
+        return new Project();
+    }
     public Setting clickSettingsLink(String nameProjects) {
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/"+nameProjects+"/settings\"]"));
         taskElement.click();
