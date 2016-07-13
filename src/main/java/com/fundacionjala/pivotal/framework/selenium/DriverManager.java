@@ -2,11 +2,12 @@ package com.fundacionjala.pivotal.framework.selenium;
 
 import java.util.concurrent.TimeUnit;
 
-import com.fundacionjala.pivotal.framework.util.Constants;
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 
-import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.LOAD_PAGE_TIME;
 
 public class DriverManager {
 
@@ -30,8 +31,8 @@ public class DriverManager {
 
     private void initWebDriver() {
         driver = FactoryDriver.getDriver(PropertiesInfo.getInstance().getBrowser()).initDriver();
-        driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(Constants.LOAD_PAGE_TIME, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(LOAD_PAGE_TIME, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 

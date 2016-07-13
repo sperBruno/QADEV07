@@ -2,7 +2,6 @@ package com.fundacionjala.pivotal.pages;
 
 
 
-import com.fundacionjala.pivotal.framework.util.Constants;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +10,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.fundacionjala.pivotal.framework.selenium.DriverManager.*;
+import static com.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
+import static com.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 public abstract class BasePage {
 
@@ -24,7 +24,7 @@ public abstract class BasePage {
 
     public BasePage() {
         driver = getInstance().getDriver();
-        wait = new WebDriverWait(driver, Constants.WAIT_TIME);
+        wait = new WebDriverWait(driver, WAIT_TIME);
         action = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
