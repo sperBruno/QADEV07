@@ -4,7 +4,7 @@ Feature: Create Project
     Given I login with credentials valid
 
 
-  @project
+
     Scenario: Create Project
       When I click on create project
       And I fill the project title text box with ProjectSeleniumTest

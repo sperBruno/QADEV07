@@ -37,7 +37,7 @@ public class ProjectsStepDef {
 
     @And("^I click on create Project button$")
     public void iClickOnCreateProjectButton() {
-        createProject.clickCreateProject();
+       project = createProject.clickCreateProject();
     }
 
     public Project getProject() {
