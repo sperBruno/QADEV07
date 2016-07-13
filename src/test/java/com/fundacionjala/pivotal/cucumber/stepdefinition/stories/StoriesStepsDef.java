@@ -3,18 +3,19 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.fundacionjala.pivotal.pages.Login.loginAsPrimaryUser;
-import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
-
-import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
-import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.*;
 import cucumber.api.PendingException;
-import cucumber.api.java.ObjectFactory;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.it.Ma;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
+import com.fundacionjala.pivotal.pages.IAutomationStep;
+import com.fundacionjala.pivotal.pages.Project;
+import com.fundacionjala.pivotal.pages.SideBarStories;
+import com.fundacionjala.pivotal.pages.StoriesSteps;
+import com.fundacionjala.pivotal.pages.Story;
+
+import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
 
 /**
  * Created by Charito on 7/9/2016.
@@ -49,7 +50,7 @@ public class StoriesStepsDef {
     private void executeSteps(final Map<StoriesSteps, Object> values, Story story) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<StoriesSteps, IAutomationStep>();
         strategyMap.put(STORY_TITLE, () -> story.setStoryNameTextarea(values.get(STORY_TITLE).toString()));
-        
+
         for (StoriesSteps step : values.keySet()) {
             strategyMap.get(step).executeStep();
         }
@@ -60,5 +61,4 @@ public class StoriesStepsDef {
         // Write code here that turns the phrase above into concrete actions
         throw new PendingException();
     }
-    
 }
