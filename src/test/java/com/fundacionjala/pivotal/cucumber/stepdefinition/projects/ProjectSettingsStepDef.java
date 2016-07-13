@@ -27,22 +27,22 @@ public class ProjectSettingsStepDef {
     private LoginStepDef loginStepDef;
 
     private Setting setting;
-    
+
     private GeneralSettingForm generalSettingForm;
 
     public ProjectSettingsStepDef(ApiResourcesSteps apiResourcesSteps, LoginStepDef loginStepDef) {
         this.apiResourcesSteps = apiResourcesSteps;
-        this.loginStepDef =  loginStepDef;
+        this.loginStepDef = loginStepDef;
     }
 
     @When("^I click (.*) settings$")
     public void iClickProjectIdSettings(String projectName) {
-        String project =apiResourcesSteps.getResponse().jsonPath().get("id")+"" ;
+        String project = apiResourcesSteps.getResponse().jsonPath().get("id") + "";
         setting = loginStepDef.getDashboard().clickSettingsLink(project);
     }
 
     @And("^I update general setting for (.*)$")
-    public void iUpdateGeneralSettingForProject(String projectsName,  Map<SettingSteps, Object> values) {
+    public void iUpdateGeneralSettingForProject(String projectsName, Map<SettingSteps, Object> values) {
         SideBarSetting sideBar = setting.getSideBar();
         generalSettingForm = sideBar.clickGeneralSetting();
         executeSteps(values, generalSettingForm);
@@ -51,7 +51,7 @@ public class ProjectSettingsStepDef {
 
     @Then("^I expect a message say (.*)$")
     public void iExpectAMessageChangeSaved(String messageSay) {
-        Assert.assertEquals(messageSay,generalSettingForm.getMessageTest());
+        Assert.assertEquals(messageSay, generalSettingForm.getMessageTest());
     }
 
     private void executeSteps(Map<SettingSteps, Object> values, GeneralSettingForm generalSettingForm) {
@@ -79,11 +79,9 @@ public class ProjectSettingsStepDef {
         }
     }
 
-    public  GeneralSettingForm getGeneralSettingForm() {
+    public GeneralSettingForm getGeneralSettingForm() {
         return generalSettingForm;
     }
-
-
 
 
 }
