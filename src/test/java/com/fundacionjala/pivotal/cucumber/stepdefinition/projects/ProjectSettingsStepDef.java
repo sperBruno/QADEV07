@@ -27,7 +27,7 @@ public class ProjectSettingsStepDef {
     private LoginStepDef loginStepDef;
 
     private Setting setting;
-    
+
     private GeneralSettingForm generalSettingForm;
 
     public ProjectSettingsStepDef(ApiResourcesSteps apiResourcesSteps, LoginStepDef loginStepDef) {
@@ -79,8 +79,8 @@ public class ProjectSettingsStepDef {
         }
     }
 
-    public  GeneralSettingForm getGeneralSettingForm() {
-        return generalSettingForm;
+    public  Setting getGeneralSettingForm() {
+        return setting;
     }
 
 

@@ -21,7 +21,7 @@ public class ProjectAssert {
 
     private Logger LOGGER = Logger.getLogger(ProjectAssert.class.getSimpleName());
 
-    public ProjectAssert(ProjectsStepDef projectsStepDef) {
+    public ProjectAssert(ProjectsStepDef projectsStepDef, ProjectSettingsStepDef projectSettingsStepDef) {
 
         this.projectsStepDef = projectsStepDef;
         this.projectSettingsStepDef = projectSettingsStepDef;
@@ -43,7 +43,7 @@ public class ProjectAssert {
 
     @And("^The description projects should be equals (.*)$")
     public void theDescriptionProjectsShouldBeEqualsA(String expectedValue) {
-        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
+        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getSideBar().clickGeneralSetting().getDescriptionText());
     }
 
 
