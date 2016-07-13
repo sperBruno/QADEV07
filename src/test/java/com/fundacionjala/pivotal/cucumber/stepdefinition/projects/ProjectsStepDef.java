@@ -3,7 +3,6 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import com.fundacionjala.pivotal.pages.CreateProject;
 import com.fundacionjala.pivotal.pages.Project;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 
@@ -38,7 +37,7 @@ public class ProjectsStepDef {
 
     @And("^I click on create Project button$")
     public void iClickOnCreateProjectButton() {
-       project = createProject.clickCreateProject();
+        project = createProject.clickCreateProject();
     }
 
     public Project getProject() {
