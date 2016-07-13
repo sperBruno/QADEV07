@@ -25,7 +25,9 @@ public class ProjectSettingsStepDef {
     private ApiResourcesSteps apiResourcesSteps;
 
     private LoginStepDef loginStepDef;
+
     private Setting setting;
+    
     private GeneralSettingForm generalSettingForm;
 
     public ProjectSettingsStepDef(ApiResourcesSteps apiResourcesSteps, LoginStepDef loginStepDef) {
