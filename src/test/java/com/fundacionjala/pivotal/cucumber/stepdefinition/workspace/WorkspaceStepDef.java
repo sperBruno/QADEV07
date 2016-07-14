@@ -22,8 +22,9 @@ public class WorkspaceStepDef {
 
     private Dashboard dashboard;
 
-    private LoginStepDef loginStepDef;
     private SideBarWorkspace sideBarWorkspace;
+
+    private LoginStepDef loginStepDef;
 
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
@@ -41,7 +42,7 @@ public class WorkspaceStepDef {
             createWorkspace = dashboard.clickCreateWorkspaceLink();
         } else {
             workspace = createWorkspace.clickCreateWorkspaceLink ();
-            sideBarWorkspace = workspace.getSideWorkpsace ();
+            sideBarWorkspace = workspace.getSideWorkspace();
         }
     }
 

@@ -22,7 +22,7 @@ public class Project extends BasePage {
     private WebElement projectName;
 
     @FindBy(css = "[data-aid='navTab-settings']")
-    WebElement settings;
+    private WebElement settings;
 
     public Setting clickSettingTab() {
         settings.click();
