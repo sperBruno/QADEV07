@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
                 "html:target/test-report",
                 "json:target/test-report.json",
                 "junit:target/test-report.xml"},
-        features = {"src/test/resources/cucumber/"},
-        glue = {"com.fundacionjala.apiPivotalTest.cucumber"}
-        //snippets = SnippetType.CAMELCASE
+        features = {"src/test/resources/feature/"},
+        glue = {"com.fundacionjala.pivotal.cucumber"},
+        snippets = SnippetType.CAMELCASE
 )
 public class Runner {
 

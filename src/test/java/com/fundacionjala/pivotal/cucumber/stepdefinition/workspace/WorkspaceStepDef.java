@@ -14,27 +14,31 @@ import cucumber.api.java.en.When;
  */
 public class WorkspaceStepDef {
 
+    private static final String DASHBOARD = "Dashboard";
+
     private CreateWorkspace createWorkspace;
+
     private Workspace workspace;
-    private final String DASHBOARD = "Dashboard";
+
     private Dashboard dashboard;
+
     private LoginStepDef loginStepDef;
     private SideBarWorkspace sideBarWorkspace;
 
-    public WorkspaceStepDef (LoginStepDef loginStepDef) {
+    public WorkspaceStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
     }
 
     @Given("^I am on Pivotal Dashboard page$")
-    public void iAmOnPivotalDashboardPage () {
-        dashboard = loginStepDef.getDashboard ();
+    public void iAmOnPivotalDashboardPage() {
+        dashboard = loginStepDef.getDashboard();
     }
 
     @When("^click on the Create Workspace button of the (Dashboard|Form)$")
-    public void iClickOnTheCreateWorkspaceButton (String page) {
+    public void iClickOnTheCreateWorkspaceButton(String page) {
 
-        if (DASHBOARD.equalsIgnoreCase (page)) {
-            createWorkspace = dashboard.clickCreateWorkspaceLink ();
+        if (DASHBOARD.equalsIgnoreCase(page)) {
+            createWorkspace = dashboard.clickCreateWorkspaceLink();
         } else {
             workspace = createWorkspace.clickCreateWorkspaceLink ();
             sideBarWorkspace = workspace.getSideWorkpsace ();
@@ -42,20 +46,20 @@ public class WorkspaceStepDef {
     }
 
     @Given("^I am on Pivotal Create Workspace form$")
-    public void iAmOnPivotalCreateWorkspaceForm () {
-        createWorkspace = dashboard.clickCreateWorkspaceLink ();
+    public void iAmOnPivotalCreateWorkspaceForm() {
+        createWorkspace = dashboard.clickCreateWorkspaceLink();
     }
 
     @When("^I fill with (.*) the name Workspace field$")
-    public void iSendAPOSTRequestToMyWorkspacesWithAsNameWorkspace (String nameWorkspace) {
-        createWorkspace.setUserNameTestField (nameWorkspace);
+    public void iSendAPOSTRequestToMyWorkspacesWithAsNameWorkspace(String nameWorkspace) {
+        createWorkspace.setUserNameTestField(nameWorkspace);
     }
 
-    public CreateWorkspace getCreateWorkspace () {
+    public CreateWorkspace getCreateWorkspace() {
         return createWorkspace;
     }
 
-    public Workspace getWorkspace () {
+    public Workspace getWorkspace() {
         return workspace;
     }
 
