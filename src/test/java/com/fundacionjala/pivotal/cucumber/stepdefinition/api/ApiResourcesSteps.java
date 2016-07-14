@@ -10,7 +10,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import static com.fundacionjala.pivotal.api.Mapper.mapEndpoint;
-import static com.fundacionjala.pivotal.api.Mapper.setListResponses;
+import static com.fundacionjala.pivotal.api.Mapper.addResponse;
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static com.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static com.fundacionjala.pivotal.api.RequestManager.postRequest;
@@ -57,7 +57,7 @@ public class ApiResourcesSteps {
 
     @And("^stored as (.*)")
     public void storedAs(String key) {
-        setListResponses(key, response);
+        addResponse(key, response);
     }
 
     @Then("^I expect the status code (\\d+)$")
@@ -68,7 +68,7 @@ public class ApiResourcesSteps {
     public Response getResponse() {
         return response;
     }
-    
+
     public String getEndPoint() {
         return endPoint;
     }

@@ -51,7 +51,7 @@ public final class Mapper {
         return matches.find() ? matches.group() : EMPTY_STRING;
     }
 
-    public static void setListResponses(String key, Response response) {
+    public static void addResponse(String key, Response response) {
         responseValues.put(key, response);
     }
 }
