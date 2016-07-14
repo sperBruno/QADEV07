@@ -1,17 +1,16 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.IAutomationStep;
-import com.fundacionjala.pivotal.pages.Project;
-import com.fundacionjala.pivotal.pages.SideBarStories;
-import com.fundacionjala.pivotal.pages.StoriesSteps;
-import com.fundacionjala.pivotal.pages.Story;
+import com.fundacionjala.pivotal.pages.*;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import org.apache.log4j.Logger;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
 
@@ -20,10 +19,9 @@ import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
  */
 public class StoriesStepsDef {
 
+    private Logger LOGGER = Logger.getLogger(BasePage.class.getSimpleName());
     private LoginStepDef loginStepDef;
-
     private Story story;
-
     private Project project;
 
     public StoriesStepsDef(LoginStepDef loginStepDef) {
@@ -40,7 +38,7 @@ public class StoriesStepsDef {
         SideBarStories sideBarStories = new SideBarStories();
         story = sideBarStories.clickOnAddStoryButton();
         executeSteps(parameters, story);
-
+        story.clickOnSaveStoryButton();
     }
 
     private void executeSteps(final Map<StoriesSteps, Object> values, Story story) {
@@ -52,8 +50,13 @@ public class StoriesStepsDef {
         }
     }
 
-    @Then("^I expect a new Story$")
-    public void iExpectANewStory() {
-        story.clickOnSaveStoryButton();
+    public Story getStory() {
+        return story;
+    }
+
+    @When("^I delete the (.*) created$")
+    public void iDeleteTheStoryCreated() {
+
+
     }
 }

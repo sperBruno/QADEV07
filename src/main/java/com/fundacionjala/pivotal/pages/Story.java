@@ -14,8 +14,20 @@ public class Story extends BasePage {
     @FindBy(name = "story[name]")
     private WebElement storyNameTextarea;
 
-    @FindBy(css = "autosaves.button.std.save")
+    @FindBy(xpath = "//button[contains(.,'Save')]")
     private WebElement saveStoryButton;
+
+    @FindBy(xpath = "//span[@class='story_name']")
+    private WebElement nameStory;
+
+    @FindBy(xpath = "//a[@class='selector undraggable']")
+    private WebElement selectorBox;
+
+    @FindBy(xpath = "//button[@title='Delete selected stories']")
+    private WebElement deleteStoryButton;
+
+    @FindBy(xpath = "//button[@data-aid='DeleteButton']")
+    private WebElement confirmDeleteButton;
 
     public Story clickOnAddStoryIcon() {
         addStoryButton.click();
@@ -29,6 +41,10 @@ public class Story extends BasePage {
 
     public Story clickOnSaveStoryButton() {
         saveStoryButton.click();
-        return new Story();
+        return this;
+    }
+
+    public String getNameStory() {
+        return nameStory.getText();
     }
 }

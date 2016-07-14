@@ -39,7 +39,7 @@ public class ProjectAssert {
         assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
     }
 
-    @After
+    @After("@createdproject")
     public void tearDown() {
         Setting setting = projectsStepDef.getProject().clickSettingTab();
         String id = "projects/" + setting.getSideBar().clickGeneralSetting().getProjectId();
