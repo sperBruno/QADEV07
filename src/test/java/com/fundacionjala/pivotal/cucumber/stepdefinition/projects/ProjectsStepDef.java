@@ -32,7 +32,7 @@ public class ProjectsStepDef {
     public void iCreateANewProject(Map<ProjectSteps, Object> values) {
         createProject = loginStepDef.getDashboard().clickCreateProjectLink();
         executeSteps(values, createProject);
-        createProject.clickCreateProject();
+        project = createProject.clickCreateProject();
     }
 
     private void executeSteps(Map<ProjectSteps, Object> values, CreateProject generalCreateProjectForm) {
