@@ -10,10 +10,8 @@ import com.jayway.restassured.response.Response;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 
 import static com.fundacionjala.pivotal.pages.SettingSteps.*;
-import static com.fundacionjala.pivotal.pages.SettingSteps.BUGSCHORESMAYBEGIVENPOINTS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -36,9 +34,10 @@ public class ProjectAssert {
     }
 
     @And("^Validate all setting projects$")
-    public void theDescriptionProjectsShouldBeEqualsA() {
-        executeSteps(projectSettingsStepDef.getValues(), projectSettingsStepDef.getGeneralSettingForm());
-        projectSettingsStepDef.getSettings().getToolBar().clickReturnDashboardLink();
+    public void validateAllSettingProjects() {
+        projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
+            assertEquals(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step), projectSettingsStepDef.getValuesMap().get(step));
+        });
     }
 
     @Then("^I expect a message say (.*)$")
@@ -46,16 +45,5 @@ public class ProjectAssert {
         assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
     }
 
-    private void executeSteps(Map<SettingSteps, Object> values, GeneralSettingForm generalSettingForm) {
-        Map<SettingSteps, IAutomationStep2> strategyMap = new HashMap<>();
-        strategyMap.put(TITLE_PROJECTS, () -> generalSettingForm.getProjectTitleTestField().equalsIgnoreCase(values.get(TITLE_PROJECTS).toString()));
-        strategyMap.put(DESCRIPTION, () -> generalSettingForm.getDescriptionText().equalsIgnoreCase(values.get(DESCRIPTION).toString()));
-        strategyMap.put(PROJECT_START_DATE, () -> generalSettingForm.getTextProjectWeekStartDaySelect().equalsIgnoreCase(values.get(PROJECT_START_DATE).toString()));
-        strategyMap.put(ENABLE_TASKS, () -> generalSettingForm.getEnableProjectsTasks()==Boolean.parseBoolean(values.get(ENABLE_TASKS).toString()));
-        strategyMap.put(ITERATION_LENGTH, () -> generalSettingForm.getTextProjectIterationLength().equalsIgnoreCase(values.get(ITERATION_LENGTH).toString()));
-        for (SettingSteps step : values.keySet()) {
-            assertTrue("Values that setting not is equals",strategyMap.get(step).executeStep());
-        }
-    }
 
 }
