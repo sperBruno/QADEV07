@@ -1,6 +1,6 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition;
 
-import com.fundacionjala.pivotal.cucumber.stepdefinition.apisteps.ApiResourcesSteps;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 
 import cucumber.api.java.en.And;
 
