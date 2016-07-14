@@ -18,4 +18,4 @@ Feature: Testing for setting projects for Pivotal page
       | ENABLE_TASKS       | true        |
       | ITERATION_LENGTH   | 4           |
     Then I expect a message say Changes saved.
-  And The projects1 should be equals settings
+  And Validate all setting projects
