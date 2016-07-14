@@ -29,6 +29,7 @@ public class ProjectSettingsStepDef {
     private Setting setting;
 
     private GeneralSettingForm generalSettingForm;
+    private Map<SettingSteps, Object> values;
 
     public ProjectSettingsStepDef(ApiResourcesSteps apiResourcesSteps, LoginStepDef loginStepDef) {
         this.apiResourcesSteps = apiResourcesSteps;
@@ -45,14 +46,11 @@ public class ProjectSettingsStepDef {
     public void iUpdateGeneralSettingForProject(String projectsName, Map<SettingSteps, Object> values) {
         SideBarSetting sideBar = setting.getSideBar();
         generalSettingForm = sideBar.clickGeneralSetting();
-        executeSteps(values, generalSettingForm);
+        this.values = values;
+        executeSteps(this.values, generalSettingForm);
         generalSettingForm.clickSaveButton();
     }
 
-    @Then("^I expect a message say (.*)$")
-    public void iExpectAMessageChangeSaved(String messageSay) {
-        Assert.assertEquals(messageSay, generalSettingForm.getMessageTest());
-    }
 
     private void executeSteps(Map<SettingSteps, Object> values, GeneralSettingForm generalSettingForm) {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
@@ -65,7 +63,7 @@ public class ProjectSettingsStepDef {
         strategyMap.put(INITIAL_VELOCITY, () -> generalSettingForm.setProjectInitialVelocityTestField(values.get(INITIAL_VELOCITY).toString()));
         strategyMap.put(VELOCITY_STRATEGY, () -> generalSettingForm.setProjectVelocityComboBox(values.get(VELOCITY_STRATEGY).toString()));
         strategyMap.put(NUMBER_OF_DONE_ITERATION_SHOW, () -> generalSettingForm.setProjectNumberOfDoneIterationsToShowTestField(values.get(NUMBER_OF_DONE_ITERATION_SHOW).toString()));
-        strategyMap.put(PLAN_CURRENT_ITERATION, () -> generalSettingForm.setProjectAutomaticPlanningCheckBox(values.get(PLAN_CURRENT_ITERATION).toString()));
+        strategyMap.put(PLAN_CURRENT_ITERATION, () -> generalSettingForm.setProjectAutomaticPlanningCheckBox(Boolean.parseBoolean(values.get(PLAN_CURRENT_ITERATION).toString())));
         strategyMap.put(ENABLE_TASKS, () -> generalSettingForm.setProjectEnableTasksCheckbox(Boolean.parseBoolean(values.get(ENABLE_TASKS).toString())));
         strategyMap.put(ALLOW_API_ACCESS, () -> generalSettingForm.setProjectAPIAccessCheckbox(Boolean.parseBoolean(values.get(ALLOW_API_ACCESS).toString())));
         strategyMap.put(REQUIRE_HTTPS_FOR_API_ACESS, () -> generalSettingForm.setProjectUseHttpsCheckBox(Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACESS).toString())));
@@ -80,8 +78,14 @@ public class ProjectSettingsStepDef {
     }
 
     public GeneralSettingForm getGeneralSettingForm() {
-        return generalSettingForm;
+        return new GeneralSettingForm();
     }
 
+    public Setting getSettings() {
+        return setting;
+    }
 
+    public Map<SettingSteps, Object> getValues() {
+        return values;
+    }
 }

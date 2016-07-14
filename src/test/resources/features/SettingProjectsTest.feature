@@ -18,4 +18,4 @@ Feature: Testing for setting projects for Pivotal page
       | ENABLE_TASKS       | true        |
       | ITERATION_LENGTH   | 4           |
     Then I expect a message say Changes saved.
-    And The description projects should be equals totally new
+  And The projects1 should be equals settings
