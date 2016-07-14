@@ -8,31 +8,44 @@ import org.openqa.selenium.support.FindBy;
  */
 public class Story extends BasePage {
 
-    @FindBy(className = "addButton___3-z3g3BH")
-    private WebElement addStoryButton;
-
+    /**
+     * Web elements to add story
+     */
     @FindBy(name = "story[name]")
     private WebElement storyNameTextarea;
 
     @FindBy(xpath = "//button[contains(.,'Save')]")
     private WebElement saveStoryButton;
 
-    @FindBy(xpath = "//span[@class='story_name']")
-    private WebElement nameStory;
+    @FindBy(xpath = "//button[contains(.,'Cancel')]")
+    private WebElement cancelCreateStoryButton;
 
-    @FindBy(xpath = "//a[@class='selector undraggable']")
-    private WebElement selectorBox;
+    /**
+     * Web elements to set story
+     */
+    @FindBy(className = "story_name")
+    private WebElement storyNameText;
 
-    @FindBy(xpath = "//button[@title='Delete selected stories']")
+    @FindBy(xpath = "//button[contains(.,'Close')]")
+    private WebElement closeButton;
+
+    /**
+     * Web elements to delete story
+     */
+    @FindBy(xpath = "//a[@class='expander undraggable']")
+    private WebElement storyExpander;
+
+    @FindBy(xpath = "//button[@title='Delete this story']")
     private WebElement deleteStoryButton;
 
     @FindBy(xpath = "//button[@data-aid='DeleteButton']")
     private WebElement confirmDeleteButton;
 
-    public Story clickOnAddStoryIcon() {
-        addStoryButton.click();
-        return this;
-    }
+    @FindBy(xpath = "//li[contains(.,'1 story deleted')]")
+    private WebElement storyDeletedMessage;
+
+    @FindBy(xpath = "//button[@data-aid='CancelButton']")
+    private WebElement cancelDeleteButton;
 
     public void setStoryNameTextarea(String storyName) {
         storyNameTextarea.clear();
@@ -44,7 +57,23 @@ public class Story extends BasePage {
         return this;
     }
 
+    public void clickOnExpanderStory() {
+        storyExpander.click();
+    }
+
+    public void clickOnDeleteStoryButton() {
+        deleteStoryButton.click();
+    }
+
+    public void clickOnConfirmDeleteStoryButton() {
+        confirmDeleteButton.click();
+    }
+
+    public String getStoryDeletedMessage(){
+        return storyDeletedMessage.getText();
+    }
+
     public String getNameStory() {
-        return nameStory.getText();
+        return storyNameText.getText();
     }
 }
