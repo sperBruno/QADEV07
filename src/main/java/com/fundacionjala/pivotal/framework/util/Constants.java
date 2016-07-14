@@ -5,7 +5,7 @@ package com.fundacionjala.pivotal.framework.util;
  */
 public final class Constants {
 
-    public static final int IMPLICIT_PROJECT_WAIT = 20;
+    public static final int IMPLICIT_PROJECT_WAIT = 30;
 
     public static final int IMPLICIT_WAIT_TIME = 15;
 

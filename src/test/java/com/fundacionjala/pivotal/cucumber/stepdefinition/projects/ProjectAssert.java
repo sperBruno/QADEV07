@@ -32,6 +32,8 @@ public class ProjectAssert {
 
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
+        LOGGER.info("title project " + projectsStepDef.getProject().getTitle());
         assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
     }
+
 }

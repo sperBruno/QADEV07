@@ -40,6 +40,7 @@ public class CreateProject extends BasePage {
 
     public Project clickCreateProject() {
         createNewProjectBtn.click();
+
         return new Project();
     }
 

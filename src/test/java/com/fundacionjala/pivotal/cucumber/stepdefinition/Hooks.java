@@ -53,6 +53,8 @@ public class Hooks {
         LOGGER.info("project id " + id);
         Response response = RequestManager.deleteRequest(id);
         LOGGER.info("status code " + response.getStatusCode());
+        setting.getToolBar().clickReturnDashboardLink();
+        LOGGER.info("Into toolbar");
     }
 
 
