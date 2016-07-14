@@ -1,5 +1,6 @@
 package com.fundacionjala.pivotal.api;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +13,7 @@ public final class Mapper {
 
     private static final String REGEX_INSIDE_BRACKETS = "[\\[]+[\\w.]+[^\\(]+\\]";
 
-    private static final String REGEX_HALF_BRACKET= "[";
+    private static final String REGEX_HALF_BRACKET = "[";
 
     private static final String REGEX_BRACKETS = "^\\[|\\]|\\.";
 
@@ -22,6 +23,8 @@ public final class Mapper {
 
     private static final String REGEX_SLASH = "/";
 
+    private static Map<String, Response> responseValues = new HashMap<>();
+
     private Mapper() {
     }
 
@@ -29,12 +32,12 @@ public final class Mapper {
         return from(response.asString()).get(parameter).toString();
     }
 
-    public static String mapEndpoint(String endPoint, Map<String, Response> responseValues) {
+    public static String mapEndpoint(String endPoint) {
         if (endPoint.contains(REGEX_HALF_BRACKET)) {
             for (String endPontSplit : endPoint.split(REGEX_SLASH)) {
                 if (endPontSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPontSplit.split(REGEX_BRACKETS);
-                    StringBuilder value =new StringBuilder();
+                    StringBuilder value = new StringBuilder();
                     value.append(responseValues.get(mapString[1]).jsonPath().get(mapString[2]).toString());
                     endPoint = endPoint.replace(endPontSplit, value);
                 }
@@ -46,5 +49,9 @@ public final class Mapper {
     public static String mapUrlToDeleteProject(String endPoint) {
         Matcher matches = Pattern.compile(REGEX_UNTIL_PROJECT).matcher(endPoint);
         return matches.find() ? matches.group() : EMPTY_STRING;
+    }
+
+    public static void setListResponses(String key, Response response) {
+        responseValues.put(key, response);
     }
 }
