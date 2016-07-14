@@ -2,12 +2,13 @@ package com.fundacionjala.pivotal.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_FAIL_WAIT_TIME;
-import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICIT_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
 /**
  *
@@ -63,5 +64,16 @@ public class Dashboard extends BasePage {
      */
     public String getMessageTextDelete() {
         return deleteMessageText.getText();
+    }
+    
+    public Project clickOnProject(String projectName) {
+        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'"+projectName+"')]"));
+        projectNameLink.click();
+        return new Project();
+    }
+    public Setting clickSettingsLink(String nameProjects) {
+        WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/"+nameProjects+"/settings\"]"));
+        taskElement.click();
+        return new Setting();
     }
 }
