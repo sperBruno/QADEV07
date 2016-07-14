@@ -8,11 +8,11 @@ import org.openqa.selenium.support.FindBy;
  * Created by mijhailvillarroel on 7/6/2016.
  */
 public class CreateProject extends BasePage {
-    @FindBy(css = "input[class='tc_form_input']")
+    @FindBy(className = "tc_form_input")
     WebElement newProjectName;
 
-    @FindBy(css = "div[class='tc_form_select']")
-    WebElement account;
+    @FindBy(className = "tc_form_select")
+    WebElement accountDropDown;
 
     @FindBy(css = "button[class='tc_button tc_button_submit']")
     WebElement createNewProjectBtn;
@@ -23,13 +23,15 @@ public class CreateProject extends BasePage {
     @FindBy(css = ".tc_form_label.tc_form_checkbox>input")
     WebElement projectSampleData;
 
-    public void setProjectName(String projectName) {
+    public CreateProject setProjectName(String projectName) {
         newProjectName.sendKeys(projectName);
+        return this;
     }
 
-    public void setAccount() {
-        account.click();
-        driver.findElement(By.xpath("//span[@class='tc_select_account_name']")).click();
+    public CreateProject setAccountDropDown(String accountName) {
+        accountDropDown.click();
+        driver.findElement(By.xpath("//span[text()='" + accountName + "']")).click();
+        return this;
     }
 
     public void checkProjectVisible() {
@@ -38,12 +40,10 @@ public class CreateProject extends BasePage {
 
     public Project clickCreateProject() {
         createNewProjectBtn.click();
-
         return new Project();
     }
 
     public boolean createProjectFormIsdisplayed() {
-        return newProjectName.isDisplayed() && account.isDisplayed() && createNewProjectBtn.isDisplayed();
+        return newProjectName.isDisplayed() && accountDropDown.isDisplayed() && createNewProjectBtn.isDisplayed();
     }
-
 }
