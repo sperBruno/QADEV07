@@ -16,13 +16,9 @@ public class SettingWorkspace {
     @FindBy(id = "delete_link")
     private WebElement deleteWorkspaceLink;
 
-
-
     public SettingWorkspace (){
         toolBar = new ToolBar ();
     }
-
-
 
     public ToolBar getToolBar() {
         return toolBar;
