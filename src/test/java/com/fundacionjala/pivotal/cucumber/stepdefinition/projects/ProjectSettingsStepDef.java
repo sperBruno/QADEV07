@@ -68,7 +68,7 @@ public class ProjectSettingsStepDef {
         strategyMap.put(PLAN_CURRENT_ITERATION, () -> generalSettingForm.setProjectAutomaticPlanningCheckBox(values.get(PLAN_CURRENT_ITERATION).toString()));
         strategyMap.put(ENABLE_TASKS, () -> generalSettingForm.setProjectEnableTasksCheckbox(Boolean.parseBoolean(values.get(ENABLE_TASKS).toString())));
         strategyMap.put(ALLOW_API_ACCESS, () -> generalSettingForm.setProjectAPIAccessCheckbox(Boolean.parseBoolean(values.get(ALLOW_API_ACCESS).toString())));
-        strategyMap.put(REQUIRE_HTTPS_FOR_API_ACESS, () -> generalSettingForm.setProjectUseHttpsCheckBox(Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACESS).toString())));
+        strategyMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, () -> generalSettingForm.setProjectUseHttpsCheckBox(Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACCESS).toString())));
         strategyMap.put(ENABLE_RSS, () -> generalSettingForm.setProjectAtomRssCheckBox(Boolean.parseBoolean(values.get(ENABLE_RSS).toString())));
         strategyMap.put(PUBLIC_ACCESS, () -> generalSettingForm.setProjectPublicAccessCheckBox(Boolean.parseBoolean(values.get(PUBLIC_ACCESS).toString())));
         strategyMap.put(ENABLE_INCOMING_EMAIL, () -> generalSettingForm.setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));

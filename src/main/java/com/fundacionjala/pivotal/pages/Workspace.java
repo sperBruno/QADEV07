@@ -15,13 +15,9 @@ import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_T
  */
 public class Workspace extends BasePage {
 
-    private SideBarWorkspace sideBarWorkspace;
-
-    public Workspace(){
-        sideBarWorkspace = new SideBarWorkspace ();
-    }
-
     private static Logger LOGGER = Logger.getLogger(Workspace.class.getSimpleName());
+
+    private SideBarWorkspace sideBarWorkspace;
 
     @FindBy(className = "raw_context_name")
     private WebElement workspaceNameText;
@@ -29,6 +25,9 @@ public class Workspace extends BasePage {
     @FindBy(css = ".tc_header_item.tc_header_logo")
     private WebElement returnDashboardLink;
 
+    public Workspace(){
+        sideBarWorkspace = new SideBarWorkspace ();
+    }
 
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
@@ -41,14 +40,14 @@ public class Workspace extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             workspaceName = workspaceNameText.getText();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("The element could not be found" + e);
+            LOGGER.warn("The element could not be found", e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
         return workspaceName;
     }
 
-    public SideBarWorkspace getSideWorkpsace(){
+    public SideBarWorkspace getSideWorkspace(){
         return sideBarWorkspace;
     }
 }
