@@ -1,15 +1,16 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.api;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.jayway.restassured.response.Response;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import static com.fundacionjala.pivotal.api.Mapper.mapEndpoint;
+import static com.fundacionjala.pivotal.api.Mapper.addResponse;
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static com.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static com.fundacionjala.pivotal.api.RequestManager.postRequest;
@@ -22,17 +23,11 @@ public class ApiResourcesSteps {
 
     private Map<String, Object> parameters;
 
-    private Map<String, Response> listResponses;
-
     private String endPoint;
-
-    public ApiResourcesSteps() {
-        listResponses = new HashMap<>();
-    }
 
     @Given("^I have the (.*) endpoint$")
     public void iHaveTheEndpoint(String endPoint) {
-        this.endPoint = mapEndpoint(endPoint, listResponses);
+        this.endPoint = mapEndpoint(endPoint);
     }
 
     @Given("^I have the next parameters:$")
@@ -62,7 +57,7 @@ public class ApiResourcesSteps {
 
     @And("^stored as (.*)")
     public void storedAs(String key) {
-        listResponses.put(key, response);
+        addResponse(key, response);
     }
 
     @Then("^I expect the status code (\\d+)$")
@@ -73,7 +68,6 @@ public class ApiResourcesSteps {
     public Response getResponse() {
         return response;
     }
-
 
     public String getEndPoint() {
         return endPoint;
