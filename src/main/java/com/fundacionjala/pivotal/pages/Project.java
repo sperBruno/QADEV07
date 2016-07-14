@@ -14,12 +14,6 @@ public class Project extends BasePage {
     @FindBy(css = "[data-aid='navTab-settings']")
     WebElement settings;
 
-
-    public Settings clickSettingTab() {
-        settings.click();
-        return new Settings();
-    }
-
     public String existsElement() {
         return projectName.getText();
     }

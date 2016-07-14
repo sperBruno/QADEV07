@@ -15,6 +15,12 @@ import static com.fundacionjala.pivotal.framework.selenium.DriverManager.IMPLICI
  */
 public class Workspace extends BasePage {
 
+    private SideBarWorkspace sideBarWorkspace;
+
+    public Workspace(){
+        sideBarWorkspace = new SideBarWorkspace ();
+    }
+
     private static Logger LOGGER = Logger.getLogger(Workspace.class.getSimpleName());
 
     @FindBy(className = "raw_context_name")
@@ -40,5 +46,9 @@ public class Workspace extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
         return workspaceName;
+    }
+
+    public SideBarWorkspace getSideWorkpsace(){
+        return sideBarWorkspace;
     }
 }
