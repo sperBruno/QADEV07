@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by danielgonzales on 7/13/2016.
  */
-public class SideBarWorkspace {
+public class SideBarWorkspace extends BasePage{
 
     @FindBy(xpath = "//button[contains(.,'add projects')]")
     private WebElement addProjectLink;

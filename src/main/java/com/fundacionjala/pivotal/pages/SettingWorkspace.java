@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by danielgonzales on 7/14/2016.
  */
-public class SettingWorkspace {
+public class SettingWorkspace extends BasePage {
 
    private ToolBar toolBar;
 
