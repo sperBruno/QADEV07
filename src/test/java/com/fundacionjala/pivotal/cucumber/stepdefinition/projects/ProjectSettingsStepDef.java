@@ -47,7 +47,6 @@ public class ProjectSettingsStepDef {
         generalSettingForm.clickSaveButton();
     }
 
-
     public GeneralSettingForm getGeneralSettingForm() {
         return new GeneralSettingForm();
     }
