@@ -70,6 +70,18 @@ public class PropertiesInfo {
         return getProperty("urlApi");
     }
 
+    public String getApiToken() {
+        return getProperty("apiToken");
+    }
+
+    public String getSauceUser() {
+        return getProperty("remoteUser");
+    }
+
+    public String getSauceAccessKey() {
+        return getProperty("remoteAccessKey");
+    }
+
     public String getBrowser() {
         return getProperty("localBrowser");
     }
@@ -84,14 +96,6 @@ public class PropertiesInfo {
 
     public String getPlatform() {
         return getProperty("remotePlatform");
-    }
-
-    public String getSauceUser() {
-        return getProperty("remoteUser");
-    }
-
-    public String getSauceAccessKey() {
-        return getProperty("remoteAccessKey");
     }
 
     public String getProxy() {
@@ -110,11 +114,4 @@ public class PropertiesInfo {
         return getProperty("remoteTestName");
     }
 
-    public String getApiToken() {
-        return getProperty("apiToken");
-    }
-
-    public String getURLAPI() {
-        return getProperty("urlApi");
-    }
 }
