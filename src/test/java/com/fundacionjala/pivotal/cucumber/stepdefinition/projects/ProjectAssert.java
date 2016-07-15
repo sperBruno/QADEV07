@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import org.apache.log4j.Logger;
 
 import static org.junit.Assert.assertEquals;
 

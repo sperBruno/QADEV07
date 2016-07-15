@@ -3,18 +3,14 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.api;
 import java.util.Map;
 
 import com.jayway.restassured.response.Response;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static com.fundacionjala.pivotal.api.Mapper.mapEndpoint;
 import static com.fundacionjala.pivotal.api.Mapper.addResponse;
-import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static com.fundacionjala.pivotal.api.RequestManager.getRequest;
-import static com.fundacionjala.pivotal.api.RequestManager.postRequest;
-import static com.fundacionjala.pivotal.api.RequestManager.putRequest;
+import static com.fundacionjala.pivotal.api.Mapper.mapEndpoint;
+import static com.fundacionjala.pivotal.api.RequestManager.*;
 import static org.junit.Assert.assertEquals;
 
 public class ApiResourcesSteps {
