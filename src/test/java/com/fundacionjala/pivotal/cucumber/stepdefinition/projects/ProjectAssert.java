@@ -10,22 +10,28 @@ import static org.junit.Assert.assertEquals;
  */
 public class ProjectAssert {
 
-    private ProjectsStepDef projectsStepDef;
-
     private ProjectSettingsStepDef projectSettingsStepDef;
 
-    public ProjectAssert(ProjectsStepDef projectsStepDef, ProjectSettingsStepDef projectSettingsStepDef) {
-        this.projectsStepDef = projectsStepDef;
+    public ProjectAssert(ProjectSettingsStepDef projectSettingsStepDef) {
+
         this.projectSettingsStepDef = projectSettingsStepDef;
     }
 
-    @And("^The description projects should be equals (.*)$")
-    public void theDescriptionProjectsShouldBeEqualsA(String expectedValue) {
-        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
+    @And("^Validate all setting projects$")
+    public void validateAllSettingProjects() {
+        projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)),projectSettingsStepDef.getValuesMap().get(step));
+        });
     }
 
-    @Then("^The project title should be equals (.*)$")
-    public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
-        assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
+    @Then("^I expect a message say (.*)$")
+    public void iExpectAMessageChangeSaved(String messageSay) {
+        assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
+    }
+
+    @Then("^I expect a message Delete say (.*)$")
+    public void iExpectAMessageDeleteSayProject1Name(String message) {
+        String expectMessage = message.replace("project1.name",projectSettingsStepDef.getResponse().jsonPath().get("name"));
+        assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }
 }

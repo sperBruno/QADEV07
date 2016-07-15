@@ -29,6 +29,7 @@ public class Workspace extends BasePage {
         sideBarWorkspace = new SideBarWorkspace ();
     }
 
+
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
         return new Dashboard ();

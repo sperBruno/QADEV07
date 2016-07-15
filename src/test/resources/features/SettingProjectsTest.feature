@@ -11,11 +11,11 @@ Feature: Testing for setting projects for Pivotal page
 
   @project
   Scenario: Edit Project
-    When I click Project1.name settings
+    When I click Projects1.name settings
     And I update general setting for Project1
       | description        | totally new |
       | PROJECT_START_DATE | Saturday    |
       | ENABLE_TASKS       | true        |
       | ITERATION_LENGTH   | 4           |
     Then I expect a message say Changes saved.
-    And The description projects should be equals totally new
+    And Validate all setting projects
