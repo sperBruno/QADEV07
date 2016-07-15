@@ -6,6 +6,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 
 import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverManager {
 
@@ -22,6 +23,8 @@ public class DriverManager {
     private static DriverManager instance;
 
     private WebDriver driver;
+
+    private WebDriverWait wait;
 
     private DriverManager() {
         initWebDriver();
@@ -40,6 +43,7 @@ public class DriverManager {
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(LOAD_PAGE_TIME, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, WAIT_TIME);
     }
 
     public WebDriver getDriver() {
@@ -50,4 +54,7 @@ public class DriverManager {
         driver.quit();
     }
 
+    public WebDriverWait getWait() {
+        return wait;
+    }
 }

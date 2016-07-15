@@ -1,42 +1,27 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
-
-import java.util.HashMap;
-import java.util.Map;
-
-import com.fundacionjala.pivotal.pages.*;
-
-import com.jayway.restassured.response.Response;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 
-import static com.fundacionjala.pivotal.pages.SettingSteps.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by BrunoBarrios on 7/7/2016.
  */
 public class ProjectAssert {
 
-    private static final Logger LOGGER = Logger.getLogger(ProjectAssert.class.getSimpleName());
-
-    private Response response;
-
-    private ProjectsStepDef projectsStepDef;
-
     private ProjectSettingsStepDef projectSettingsStepDef;
 
-    public ProjectAssert(ProjectsStepDef projectsStepDef, ProjectSettingsStepDef projectSettingsStepDef) {
-        this.projectsStepDef = projectsStepDef;
+    public ProjectAssert(ProjectSettingsStepDef projectSettingsStepDef) {
+
         this.projectSettingsStepDef = projectSettingsStepDef;
     }
 
     @And("^Validate all setting projects$")
     public void validateAllSettingProjects() {
         projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
-            assertEquals(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step), projectSettingsStepDef.getValuesMap().get(step));
+            assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)),projectSettingsStepDef.getValuesMap().get(step));
         });
     }
 
@@ -45,5 +30,9 @@ public class ProjectAssert {
         assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
     }
 
-
+    @Then("^I expect a message Delete say (.*)$")
+    public void iExpectAMessageDeleteSayProject1Name(String message) {
+        String expectMessage = message.replace("project1.name",projectSettingsStepDef.getResponse().jsonPath().get("name"));
+        assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
+    }
 }

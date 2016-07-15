@@ -5,10 +5,29 @@ import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
-import static com.fundacionjala.pivotal.framework.util.CommonMethods.*;
-import static com.fundacionjala.pivotal.pages.SettingSteps.*;
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.convertASelect;
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
+import static com.fundacionjala.pivotal.pages.SettingSteps.ALLOW_API_ACCESS;
+import static com.fundacionjala.pivotal.pages.SettingSteps.BUGS_GIVEN_POINTS;
+import static com.fundacionjala.pivotal.pages.SettingSteps.DESCRIPTION;
+import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_INCOMING_EMAIL;
+import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_RSS;
+import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_TASKS;
+import static com.fundacionjala.pivotal.pages.SettingSteps.HIDE_EMAIL_ADDRESSES;
+import static com.fundacionjala.pivotal.pages.SettingSteps.INITIAL_VELOCITY;
+import static com.fundacionjala.pivotal.pages.SettingSteps.PROJECT_START_DATE;
+import static com.fundacionjala.pivotal.pages.SettingSteps.PROJECT_TIME_ZONE;
+import static com.fundacionjala.pivotal.pages.SettingSteps.ITERATION_LENGTH;
+import static com.fundacionjala.pivotal.pages.SettingSteps.POINT_SCALE;
+import static com.fundacionjala.pivotal.pages.SettingSteps.VELOCITY_STRATEGY;
+import static com.fundacionjala.pivotal.pages.SettingSteps.PLAN_CURRENT_ITERATION;
+import static com.fundacionjala.pivotal.pages.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
+import static com.fundacionjala.pivotal.pages.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
+import static com.fundacionjala.pivotal.pages.SettingSteps.PUBLIC_ACCESS;
+import static com.fundacionjala.pivotal.pages.SettingSteps.TITLE_PROJECTS;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
@@ -85,7 +104,7 @@ public class GeneralSettingForm extends BasePage {
 
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
+        strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
         strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(values.get(DESCRIPTION).toString()));
         strategyMap.put(PROJECT_START_DATE, () -> setProjectWeekStartDayComboBox(values.get(PROJECT_START_DATE).toString()));
         strategyMap.put(PROJECT_TIME_ZONE, () -> setProjectTimeZoneComboBox(values.get(PROJECT_TIME_ZONE).toString()));
@@ -102,7 +121,7 @@ public class GeneralSettingForm extends BasePage {
         strategyMap.put(PUBLIC_ACCESS, () -> setProjectPublicAccessCheckBox(Boolean.parseBoolean(values.get(PUBLIC_ACCESS).toString())));
         strategyMap.put(ENABLE_INCOMING_EMAIL, () -> setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));
         strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
-        strategyMap.put(BUGSCHORESMAYBEGIVENPOINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGSCHORESMAYBEGIVENPOINTS).toString())));
+        strategyMap.put(BUGS_GIVEN_POINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString())));
         return  strategyMap;
 
     }
@@ -118,7 +137,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectEnableTasksCheckbox(boolean enable) {
-        enableCheckBox(projectEnableTasksCheckbox, enable);
+        setCheckBox(projectEnableTasksCheckbox, enable);
         return this;
     }
 
@@ -163,7 +182,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectAutomaticPlanningCheckBox(boolean projectAutomaticPlanning) {
-        enableCheckBox(projectAutomaticPlanningCheckBox, projectAutomaticPlanning);
+        setCheckBox(projectAutomaticPlanningCheckBox, projectAutomaticPlanning);
         return this;
     }
 
@@ -173,51 +192,49 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectAPIAccessCheckbox(boolean enable) {
-        enableCheckBox(projectAPIAccessCheckbox, enable);
+        setCheckBox(projectAPIAccessCheckbox, enable);
         return this;
     }
 
     public GeneralSettingForm setProjectUseHttpsCheckBox(boolean enable) {
-        enableCheckBox(projectUseHttpsCheckBox, enable);
+        setCheckBox(projectUseHttpsCheckBox, enable);
         return this;
     }
 
     public GeneralSettingForm setProjectAtomRssCheckBox(boolean enable) {
-        enableCheckBox(projectAtomRssCheckBox, enable);
+        setCheckBox(projectAtomRssCheckBox, enable);
         return this;
     }
 
     public GeneralSettingForm setProjectPublicAccessCheckBox(boolean enable) {
-        enableCheckBox(projectPublicAccessCheckBox, enable);
+        setCheckBox(projectPublicAccessCheckBox, enable);
         return this;
     }
 
     public GeneralSettingForm setProjectEnableIncomingEmailCheckBox(boolean enable) {
-        enableCheckBox(projectEnableIncomingEmailCheckBox, enable);
+        setCheckBox(projectEnableIncomingEmailCheckBox, enable);
         return this;
     }
 
     public GeneralSettingForm setProjectHideEmailsFromCollaboratorsCheckBox(boolean enable) {
-        enableCheckBox(projectHideEmailsFromCollaboratorsCheckBox, enable);
+        setCheckBox(projectHideEmailsFromCollaboratorsCheckBox, enable);
         return this;
     }
 
     public GeneralSettingForm setProjectBugsCheckBox(boolean enable) {
-        enableCheckBox(projectBugsCheckBox, enable);
+        setCheckBox(projectBugsCheckBox, enable);
         return this;
     }
 
-    public void clickLinkDeleteProject() {
+    public DeleteProjectAlert clickLinkDeleteProject() {
         deleteLink.click();
+        return new DeleteProjectAlert();
     }
 
     public String getMessageTest() {
         return testMessage.getText();
     }
 
-    public Select convertASelect(WebElement webElement) {
-        return new Select(webElement);
-    }
 
     public GeneralSettingForm selectStartIterationsOn(String nameDay) {
         selectAElementComboBox(projectWeekStartDaySelect, nameDay);

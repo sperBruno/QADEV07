@@ -1,9 +1,11 @@
 package com.fundacionjala.pivotal.framework.util;
 
-import com.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import static com.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
 
 /**
  * Created by mijhailvillarroel on 7/14/2016.
@@ -23,31 +25,43 @@ public final class CommonMethods {
     }
 
     public static void setWebElement(WebElement webElement, String text) {
-      //  DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
 
     public static void clickWebElement(WebElement webElement) {
-      //  DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
-    public static void enableCheckBox(WebElement webElement, boolean enable) {
+    public static void setCheckBox(WebElement webElement, boolean enable) {
         if (enable) {
-            if (!webElement.isSelected()) {
-                webElement.click();
-            }
+            unCheckBox(webElement);
         } else {
-            if (webElement.isSelected()) {
-                webElement.click();
-            }
+            CheckBox(webElement);
+        }
+    }
+
+    private static void unCheckBox(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            webElement.click();
+        }
+    }
+
+    private static void CheckBox(WebElement webElement) {
+        if (webElement.isSelected()) {
+            webElement.click();
         }
     }
 
     public static void selectAElementComboBox(WebElement webElementSelect, String element) {
         Select oSelect = new Select(webElementSelect);
         oSelect.selectByValue(element);
+    }
+
+    public static Select convertASelect(WebElement webElement) {
+        return new Select(webElement);
     }
 
 }
