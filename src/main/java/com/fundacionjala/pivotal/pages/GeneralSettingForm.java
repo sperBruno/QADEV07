@@ -1,11 +1,7 @@
 package com.fundacionjala.pivotal.pages;
 
-import java.util.concurrent.TimeUnit;
-
-import com.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 /**
@@ -14,7 +10,6 @@ import org.openqa.selenium.support.ui.Select;
 public class GeneralSettingForm extends BasePage {
     @FindBy(id = "project_name")
     protected WebElement projectTitleTestField;
-
     @FindBy(id = "project_description")
     protected WebElement projectDescriptionTestField;
 
@@ -59,6 +54,9 @@ public class GeneralSettingForm extends BasePage {
 
     @FindBy(id = "project_initial_velocity")
     private WebElement projectInitialVelocityTestField;
+
+    @FindBy(id = "project_account_link")
+    private WebElement accountLink;
 
     @FindBy(id = "project_velocity_scheme")
     private WebElement projectVelocityComboBox;
@@ -200,7 +198,7 @@ public class GeneralSettingForm extends BasePage {
         return this;
     }
 
-    public void enableCheckBox(WebElement webElement, boolean enable) {
+    public static void enableCheckBox(WebElement webElement, boolean enable) {
         if (enable) {
             if (!webElement.isSelected()) {
                 webElement.click();
@@ -217,6 +215,10 @@ public class GeneralSettingForm extends BasePage {
         oSelect.selectByValue(element);
     }
 
+    public Accounts clickAccountLink(){
+        accountLink.click();
+        return new Accounts();
+    }
     public String getDescriptionText() {
         return projectDescriptionTestField.getText();
     }

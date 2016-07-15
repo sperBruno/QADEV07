@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_ACCOUNT;
+import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_SAMPLE_DATA;
 import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_TITLE;
 
 /**
@@ -33,7 +34,7 @@ public class CreateProject extends BasePage {
     private WebElement projectVisibleCheckbox;
 
     @FindBy(css = ".tc_form_label.tc_form_checkbox>input")
-    private WebElement projectSampleData;
+    private WebElement projectSampleDataCheckBox;
 
     @FindBy(css = ".tc_select_option.tc_select_create_account")
     private WebElement createAccountOption;
@@ -45,7 +46,6 @@ public class CreateProject extends BasePage {
 
     public CreateProject setAccountDropDown(String accountName) {
         accountDropDown.click();
-        //driver.findElement(By.xpath("//span[text()='" + accountName + "']")).click();
         if((isAccountNamePresent(accountName)== false)){
             createAccount(accountName);
         }else {
@@ -54,6 +54,10 @@ public class CreateProject extends BasePage {
         return this;
     }
 
+    public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable){
+        GeneralSettingForm.enableCheckBox(projectSampleDataCheckBox,Boolean.parseBoolean(isCheckBoxEnable));
+        return this;
+    }
     private CreateProject createAccount(String accountNAme){
        final String accountName= "Jalasoft";
         LOGGER.info("creating account");
@@ -81,7 +85,6 @@ public class CreateProject extends BasePage {
 
     public Project clickCreateProject() {
         createNewProjectBtn.click();
-
         return new Project();
     }
 
@@ -94,6 +97,7 @@ public class CreateProject extends BasePage {
 
         strategyMap.put(PROJECT_TITLE, () -> setProjectName(values.get(PROJECT_TITLE).toString()));
         strategyMap.put(PROJECT_ACCOUNT, () -> setAccountDropDown(values.get(PROJECT_ACCOUNT).toString()));
+        strategyMap.put(PROJECT_SAMPLE_DATA, () -> clickDataSampleCheckBox(values.get(PROJECT_SAMPLE_DATA).toString()));
         return strategyMap;
     }
 }
