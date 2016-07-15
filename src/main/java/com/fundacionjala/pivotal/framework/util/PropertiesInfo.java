@@ -1,11 +1,13 @@
 package com.fundacionjala.pivotal.framework.util;
 
 import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+
 
 /**
  * This class is for get the properties defined into properties file
