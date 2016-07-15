@@ -3,7 +3,9 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import com.fundacionjala.pivotal.pages.CreateWorkspace;
 import com.fundacionjala.pivotal.pages.Dashboard;
+import com.fundacionjala.pivotal.pages.SideBarWorkspace;
 import com.fundacionjala.pivotal.pages.Workspace;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 
@@ -19,6 +21,8 @@ public class WorkspaceStepDef {
     private Workspace workspace;
 
     private Dashboard dashboard;
+
+    private SideBarWorkspace sideBarWorkspace;
 
     private LoginStepDef loginStepDef;
 
@@ -37,7 +41,8 @@ public class WorkspaceStepDef {
         if (DASHBOARD.equalsIgnoreCase(page)) {
             createWorkspace = dashboard.clickCreateWorkspaceLink();
         } else {
-            workspace = createWorkspace.clickCreateWorkspaceLink();
+            workspace = createWorkspace.clickCreateWorkspaceLink ();
+            sideBarWorkspace = workspace.getSideWorkspace();
         }
     }
 
@@ -57,5 +62,25 @@ public class WorkspaceStepDef {
 
     public Workspace getWorkspace() {
         return workspace;
+    }
+
+    @When("^I click on Add Projects button$")
+    public void iClickOnAddProjectsButton () {
+        sideBarWorkspace.clickAddProjectLink ();
+    }
+
+    @And("^I  click on list projects icon$")
+    public void iClickOnListProjectsIcon () {
+        sideBarWorkspace.clicklistProjectLink ();
+    }
+
+    @When("^I select the project created previously$")
+    public void iSelectTheProjectCreatedPreviously () {
+        sideBarWorkspace.clickidProjectLink ();
+    }
+
+    @And("^I click on Save Workspace button$")
+    public void iClickOnSaveWorkspaceButton () {
+        workspace = sideBarWorkspace.clickSaveWorkspaceLink ();
     }
 }

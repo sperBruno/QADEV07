@@ -8,20 +8,21 @@ import org.openqa.selenium.support.FindBy;
  * Created by mijhailvillarroel on 7/6/2016.
  */
 public class CreateProject extends BasePage {
+
     @FindBy(className = "tc_form_input")
-    WebElement newProjectName;
+    private WebElement newProjectName;
 
     @FindBy(className = "tc_form_select")
-    WebElement accountDropDown;
+    private WebElement accountDropDown;
 
     @FindBy(css = "button[class='tc_button tc_button_submit']")
-    WebElement createNewProjectBtn;
+    private WebElement createNewProjectBtn;
 
     @FindBy(css = "input[type='checkbox']")
-    WebElement projectVisibleCheckbox;
+    private WebElement projectVisibleCheckbox;
 
     @FindBy(css = ".tc_form_label.tc_form_checkbox>input")
-    WebElement projectSampleData;
+    private WebElement projectSampleData;
 
     public CreateProject setProjectName(String projectName) {
         newProjectName.sendKeys(projectName);
