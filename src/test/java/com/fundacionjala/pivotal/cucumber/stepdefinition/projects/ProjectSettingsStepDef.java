@@ -33,9 +33,10 @@ public class ProjectSettingsStepDef {
         this.loginStepDef = loginStepDef;
     }
 
-    @When("^I click Project1.name settings$")
-    public void iClickProjectIdSettings() {
-        String project = apiResourcesSteps.getResponse().jsonPath().get("id") + "";
+    @When("^I click (.*) settings$")
+    public void iClickProjectIdSettings(String name) {
+        String project= Mapper.mapProjects(name);
+        //String project = apiResourcesSteps.getResponse().jsonPath().get("id") + "";
         setting = loginStepDef.getDashboard().clickSettingsLink(project);
     }
 

@@ -31,6 +31,7 @@ public final class Mapper {
             for (String endPointSplit : endPoint.split(REGEX_SLASH)) {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
+                    int a = mapString.length;
                     StringBuilder value = new StringBuilder();
                     value.append(responseValues.get(mapString[1]).jsonPath().get(mapString[2]).toString());
                     endPoint = endPoint.replace(endPointSplit, value);
@@ -47,5 +48,13 @@ public final class Mapper {
 
     public static void addResponse(String key, Response response) {
         responseValues.put(key, response);
+    }
+
+    public static String mapProjects(String endPoint) {
+        String [] endPoin = endPoint.split("\\.");
+        System.out.println(endPoin.length);
+        StringBuilder value = new StringBuilder();
+        value.append(responseValues.get(endPoin[0]).jsonPath().get(endPoin[1]).toString());
+        return value.toString();
     }
 }

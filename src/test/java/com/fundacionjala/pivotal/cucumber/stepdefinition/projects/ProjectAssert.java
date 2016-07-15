@@ -1,5 +1,6 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
+import com.fundacionjala.pivotal.api.Mapper;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
@@ -31,6 +32,7 @@ public class ProjectAssert {
 
     @Then("^I expect a message Delete say (.*)$")
     public void iExpectAMessageDeleteSayProject1Name(String message) {
+        Mapper.mapEndpoint(message);
         String expectMessage = message.replace("project1.name",projectSettingsStepDef.getResponse().jsonPath().get("name"));
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }

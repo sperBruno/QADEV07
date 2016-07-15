@@ -11,7 +11,7 @@ Feature: Testing for setting projects for Pivotal page
 
   @project
   Scenario: Edit Project
-    When I click Projects1.name settings
+    When I click Projects1.id settings
     And I update general setting for Project1
       | description        | totally new |
       | PROJECT_START_DATE | Saturday    |
