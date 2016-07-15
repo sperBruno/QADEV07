@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static com.jayway.restassured.path.json.JsonPath.from;
+import static org.junit.Assert.assertEquals;
 
 public class ProjectHooks {
 
@@ -40,13 +41,16 @@ public class ProjectHooks {
 
     @After("@ProjectSelenium")
     public void tearDown() {
+
         Setting setting = projectsStepDef.getProject().clickSettingTab();
         String id = "projects/" + setting.getSideBar().clickGeneralSetting().getProjectId();
+        setting.getSideBar().clickGeneralSetting();
         LOGGER.info("project id " + id);
         Response response = RequestManager.deleteRequest(id);
         LOGGER.info("status code " + response.getStatusCode());
         setting.getToolBar().clickReturnDashboardLink();
         LOGGER.info("Into toolbar");
+        int expected =204;
+        assertEquals(expected,response.getStatusCode());
     }
-
 }

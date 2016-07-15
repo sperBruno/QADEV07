@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import org.apache.log4j.Logger;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +10,8 @@ import static org.junit.Assert.assertEquals;
  * Created by BrunoBarrios on 7/7/2016.
  */
 public class ProjectAssert {
+
+    private static final Logger LOGGER = Logger.getLogger(ProjectAssert.class.getName());
 
     private ProjectsStepDef projectsStepDef;
 

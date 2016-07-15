@@ -7,5 +7,5 @@ Feature: Create Project
   Scenario: Create Project
     Given I create a new project
       | PROJECT_TITLE   | ProjectSeleniumTest |
-
+      |  PROJECT_ACCOUNT     |    luis     |
     Then The project title should be equals ProjectSeleniumTest
