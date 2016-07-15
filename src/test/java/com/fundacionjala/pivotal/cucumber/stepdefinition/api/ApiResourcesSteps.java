@@ -40,14 +40,14 @@ public class ApiResourcesSteps {
         response = getRequest(endPoint);
     }
 
-    @When("^I sen(?:d|t) a POST request$")
-    public void iSendAPOSTRequest() {
-        response = postRequest(endPoint, parameters);
+    @When("^I sen(?:d|t) a POST request to (.*?)$")
+    public void iSendAPOSTRequestWith(String endPoint, Map<String, Object> parameters) {
+        response = postRequest(mapEndpoint(endPoint), parameters);
     }
 
-    @When("^I send a PUT request$")
-    public void iSendAPUTRequest() {
-        response = putRequest(endPoint, parameters);
+    @When("^I send a PUT request to (.*?)$")
+    public void iSendAPUTRequest(String endPoint, Map<String, Object> parameters) {
+        response = putRequest(mapEndpoint(endPoint), parameters);
     }
 
     @When("^I send a DELETE request$")
