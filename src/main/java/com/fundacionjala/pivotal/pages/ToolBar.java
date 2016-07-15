@@ -16,7 +16,7 @@ public class ToolBar extends BasePage {
 
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
-        return new Dashboard ();
+        return new Dashboard();
     }
 
     public Setting clickSettingTabLink() {
