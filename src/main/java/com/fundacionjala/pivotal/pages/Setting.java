@@ -9,8 +9,7 @@ public class Setting {
 
     public Setting() {
         sideBar = new SideBarSetting();
-        toolBar = new ToolBar() {
-        };
+        toolBar = new ToolBar();
     }
 
     public SideBarSetting getSideBar() {
