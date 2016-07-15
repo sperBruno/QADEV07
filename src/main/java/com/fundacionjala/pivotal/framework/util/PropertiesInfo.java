@@ -1,11 +1,11 @@
 package com.fundacionjala.pivotal.framework.util;
 
-import org.apache.log4j.Logger;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 
 /**
  * This class is for get the properties defined into properties file
@@ -69,6 +69,7 @@ public class PropertiesInfo {
     public String getUrlApi() {
         return getProperty("urlApi");
     }
+
     public String getBrowser() {
         return getProperty("localBrowser");
     }
@@ -94,7 +95,7 @@ public class PropertiesInfo {
     }
 
     public String getProxy() {
-        return String.format("%s:%s", getProxyHost(), getProxyPort());
+        return String.format("http://%s:%s", getProxyHost(), getProxyPort());
     }
 
     public String getProxyHost() {
