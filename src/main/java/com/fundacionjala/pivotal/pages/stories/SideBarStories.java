@@ -9,10 +9,11 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SideBarStories extends BasePage {
 
-    @FindBy(xpath = "//span[contains(.,'Add Story')]")
+    @FindBy(xpath = "html/body/div[1]/div[2]/section[1]/aside/div/section/section/ul/li[2]/a/span/span")
     private WebElement addStoryButton;
 
     public Story clickOnAddStoryButton() {
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".button.add_story")));
         addStoryButton.click();
         return new Story();
     }
