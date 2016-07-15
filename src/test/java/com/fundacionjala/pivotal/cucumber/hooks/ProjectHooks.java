@@ -3,8 +3,9 @@ package com.fundacionjala.pivotal.cucumber.hooks;
 
 import com.fundacionjala.pivotal.api.RequestManager;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
-
-import com.fundacionjala.pivotal.pages.BasePage;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
+import com.fundacionjala.pivotal.pages.Setting;
+import com.jayway.restassured.response.Response;
 import cucumber.api.java.After;
 import org.apache.log4j.Logger;
 
@@ -32,8 +33,8 @@ public class ProjectHooks {
 
     @After("@project")
     public void afterProjectScenario() {
-        LOGGER.info("status"+api.getResponse().statusCode());
-        LOGGER.info("response"+api.getResponse().prettyPrint());
+        LOGGER.info("status" + api.getResponse().statusCode());
+        LOGGER.info("response" + api.getResponse().prettyPrint());
         if (api.getResponse().statusCode() == SUCCESS_STATUS_CODE) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }

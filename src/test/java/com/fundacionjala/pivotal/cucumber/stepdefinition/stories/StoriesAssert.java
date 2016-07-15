@@ -1,10 +1,11 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
-import com.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectSettingsStepDef;
-import com.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
-import com.fundacionjala.pivotal.pages.StoriesSteps;
+import java.util.Map;
+
+import com.fundacionjala.pivotal.pages.Dashboard;
+import com.fundacionjala.pivotal.pages.ToolBar;
+import com.fundacionjala.pivotal.pages.stories.StoriesSteps;
 import com.jayway.restassured.response.Response;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 
 import static org.junit.Assert.assertEquals;
@@ -17,6 +18,10 @@ public class StoriesAssert {
     private Response response;
 
     private StoriesStepsDef storiesStepsDef;
+    
+    private Dashboard dashboard;
+    
+    private ToolBar toolBar;
 
     public StoriesAssert(StoriesStepsDef storiesStepsDef) {
         this.storiesStepsDef = storiesStepsDef;
@@ -27,6 +32,11 @@ public class StoriesAssert {
         assertEquals(value, storiesStepsDef.getStory().getNameStory());
     }
 
+    @Then("^I validate fields$")
+    public void iValidateFields(final Map<StoriesSteps, Object> values) {
+        dashboard = toolBar.clickOnDashboardLink();
+    }
+    
     @Then("^I expect the message (.*)$")
     public void iExpectTheMessageStoryDeleted(String message) {
 

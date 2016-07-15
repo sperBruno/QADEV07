@@ -1,5 +1,6 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.stories;
 
+import com.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -69,7 +70,7 @@ public class Story extends BasePage {
         confirmDeleteButton.click();
     }
 
-    public String getStoryDeletedMessage(){
+    public String getStoryDeletedMessage() {
         return storyDeletedMessage.getText();
     }
 

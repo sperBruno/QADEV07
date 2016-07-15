@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.stories;
 
 /**
  * Created by Charito on 7/12/2016.

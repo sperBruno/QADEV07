@@ -1,18 +1,22 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.*;
-import cucumber.api.PendingException;
+import com.fundacionjala.pivotal.pages.BasePage;
+import com.fundacionjala.pivotal.pages.IAutomationStep;
+import com.fundacionjala.pivotal.pages.Project;
+import com.fundacionjala.pivotal.pages.stories.SideBarStories;
+import com.fundacionjala.pivotal.pages.stories.StoriesSteps;
+import com.fundacionjala.pivotal.pages.stories.Story;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.fundacionjala.pivotal.pages.StoriesSteps.STORY_TITLE;
+import static com.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
 
 /**
  * Created by Charito on 7/9/2016.
@@ -50,13 +54,15 @@ public class StoriesStepsDef {
         }
     }
 
-    public Story getStory() {
-        return story;
-    }
+
 
     @When("^I delete the (.*) created$")
     public void iDeleteTheStoryCreated() {
 
 
+    }
+
+    public Story getStory() {
+        return story;
     }
 }
