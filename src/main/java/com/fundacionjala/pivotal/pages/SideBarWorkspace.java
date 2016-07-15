@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by danielgonzales on 7/13/2016.
  */
-public class SideBarWorkspace extends BasePage{
+public class SideBarWorkspace extends BasePage {
 
     @FindBy(xpath = "//button[contains(.,'add projects')]")
     private WebElement addProjectLink;
@@ -21,20 +21,20 @@ public class SideBarWorkspace extends BasePage{
     private WebElement saveWorkspaceLink;
 
 
-    public void clickAddProjectLink () {
-        addProjectLink.click ();
+    public void clickAddProjectLink() {
+        addProjectLink.click();
     }
 
-    public void clicklistProjectLink () {
-        listProjectLink.click ();
+    public void clicklistProjectLink() {
+        listProjectLink.click();
     }
 
-    public void clickidProjectLink () {
-        idProjectLink.click ();
+    public void clickidProjectLink() {
+        idProjectLink.click();
     }
 
-    public Workspace clickSaveWorkspaceLink () {
-        saveWorkspaceLink.click ();
-        return new Workspace ();
+    public Workspace clickSaveWorkspaceLink() {
+        saveWorkspaceLink.click();
+        return new Workspace();
     }
 }

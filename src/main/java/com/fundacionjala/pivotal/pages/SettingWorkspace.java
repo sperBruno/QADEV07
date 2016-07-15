@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SettingWorkspace extends BasePage {
 
-   private ToolBar toolBar;
+    private ToolBar toolBar;
 
     @FindBy(id = "workspace_name")
     private WebElement workspaceNameText;
@@ -16,8 +16,8 @@ public class SettingWorkspace extends BasePage {
     @FindBy(id = "delete_link")
     private WebElement deleteWorkspaceLink;
 
-    public SettingWorkspace (){
-        toolBar = new ToolBar ();
+    public SettingWorkspace() {
+        toolBar = new ToolBar();
     }
 
     public ToolBar getToolBar() {

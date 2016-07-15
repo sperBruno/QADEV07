@@ -21,7 +21,7 @@ public final class Mapper {
 
     private static final String REGEX_SLASH = "/";
 
-    private static Map<String, Response> responseValues = new HashMap<>();
+    private static Map<String, Response> responseValues = new HashMap<>();;
 
     private Mapper() {
     }
@@ -33,7 +33,8 @@ public final class Mapper {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     int a = mapString.length;
                     StringBuilder value = new StringBuilder();
-                    value.append(responseValues.get(mapString[1]).jsonPath().get(mapString[2]).toString());
+                    String toAdd = responseValues.get(mapString[1]).jsonPath().get(mapString[2]);
+                    value.append(toAdd);
                     endPoint = endPoint.replace(endPointSplit, value);
                 }
             }
@@ -47,7 +48,10 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
+        System.out.println(response.prettyPrint());
         responseValues.put(key, response);
+        System.out.println("add response: ");
+        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
     }
 
     public static String mapProjects(String endPoint) {

@@ -3,6 +3,7 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 import com.fundacionjala.pivotal.api.Mapper;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import org.apache.log4j.Logger;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,18 +12,20 @@ import static org.junit.Assert.assertEquals;
  */
 public class ProjectAssert {
 
+    private static final Logger LOGGER = Logger.getLogger(ProjectAssert.class.getName());
+
+    private ProjectsStepDef projectsStepDef;
+
     private ProjectSettingsStepDef projectSettingsStepDef;
 
-    public ProjectAssert(ProjectSettingsStepDef projectSettingsStepDef) {
-
+    public ProjectAssert(ProjectsStepDef projectsStepDef, ProjectSettingsStepDef projectSettingsStepDef) {
+        this.projectsStepDef = projectsStepDef;
         this.projectSettingsStepDef = projectSettingsStepDef;
     }
 
-    @And("^Validate all setting projects$")
-    public void validateAllSettingProjects() {
-        projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)),projectSettingsStepDef.getValuesMap().get(step));
-        });
+    @And("^The description projects should be equals (.*)$")
+    public void theDescriptionProjectsShouldBeEqualsA(String expectedValue) {
+        assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
     }
 
     @Then("^I expect a message say (.*)$")
@@ -33,7 +36,13 @@ public class ProjectAssert {
     @Then("^I expect a message Delete say (.*)$")
     public void iExpectAMessageDeleteSayProject1Name(String message) {
         Mapper.mapEndpoint(message);
-        String expectMessage = message.replace("project1.name",projectSettingsStepDef.getResponse().jsonPath().get("name"));
+        String expectMessage = message.replace("project1.name", projectSettingsStepDef.getResponse().jsonPath().get("name"));
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
+    }
+
+    @Then("^The project title should be equals (.*)$")
+    public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
+        LOGGER.info("title project " + projectsStepDef.getProject().getTitle());
+        assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
     }
 }

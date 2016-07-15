@@ -25,14 +25,14 @@ public class Workspace extends BasePage {
     @FindBy(css = ".tc_header_item.tc_header_logo")
     private WebElement returnDashboardLink;
 
-    public Workspace(){
-        sideBarWorkspace = new SideBarWorkspace ();
+    public Workspace() {
+        sideBarWorkspace = new SideBarWorkspace();
     }
 
 
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
-        return new Dashboard ();
+        return new Dashboard();
     }
 
     public String getWorkspaceNameText() {
@@ -41,14 +41,14 @@ public class Workspace extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             workspaceName = workspaceNameText.getText();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("The element could not be found", e);
+            LOGGER.warn("The element could not be found" + e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
         return workspaceName;
     }
 
-    public SideBarWorkspace getSideWorkspace(){
+    public SideBarWorkspace getSideWorkspace() {
         return sideBarWorkspace;
     }
 }

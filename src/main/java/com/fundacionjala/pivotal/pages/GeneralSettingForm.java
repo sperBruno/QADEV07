@@ -81,6 +81,9 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(id = "project_initial_velocity")
     private WebElement projectInitialVelocityTestField;
 
+    @FindBy(id = "project_account_link")
+    private WebElement accountLink;
+
     @FindBy(id = "project_velocity_scheme")
     private WebElement projectVelocityComboBox;
 
