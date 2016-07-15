@@ -1,22 +1,28 @@
 package com.fundacionjala.pivotal.pages;
 
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.fundacionjala.pivotal.framework.selenium.DriverManager;
+import com.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.*;
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
+import static com.fundacionjala.pivotal.pages.SettingSteps.*;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
  */
 public class GeneralSettingForm extends BasePage {
     @FindBy(id = "project_name")
-    protected WebElement projectTitleTestField;
+    private WebElement projectTitleTestField;
 
     @FindBy(id = "project_description")
-    protected WebElement projectDescriptionTestField;
+    private WebElement projectDescriptionTestField;
 
     @FindBy(id = "project_enable_tasks")
     private WebElement projectEnableTasksCheckbox;
@@ -81,15 +87,37 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(className = "text_column")
     WebElement projectId;
 
+    public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
+        Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
+        strategyMap.put(TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
+        strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(values.get(DESCRIPTION).toString()));
+        strategyMap.put(PROJECT_START_DATE, () -> setProjectWeekStartDayComboBox(values.get(PROJECT_START_DATE).toString()));
+        strategyMap.put(PROJECT_TIME_ZONE, () -> setProjectTimeZoneComboBox(values.get(PROJECT_TIME_ZONE).toString()));
+        strategyMap.put(ITERATION_LENGTH, () -> setProjectIterationLengthComboBox(values.get(ITERATION_LENGTH).toString()));
+        strategyMap.put(POINT_SCALE, () -> setProjectSettingsPointScaleComboBox(values.get(POINT_SCALE).toString()));
+        strategyMap.put(INITIAL_VELOCITY, () -> setProjectInitialVelocityTestField(values.get(INITIAL_VELOCITY).toString()));
+        strategyMap.put(VELOCITY_STRATEGY, () -> setProjectVelocityComboBox(values.get(VELOCITY_STRATEGY).toString()));
+        strategyMap.put(NUMBER_OF_DONE_ITERATION_SHOW, () -> setProjectNumberOfDoneIterationsToShowTestField(values.get(NUMBER_OF_DONE_ITERATION_SHOW).toString()));
+        strategyMap.put(PLAN_CURRENT_ITERATION, () -> setProjectAutomaticPlanningCheckBox(Boolean.parseBoolean(values.get(PLAN_CURRENT_ITERATION).toString())));
+        strategyMap.put(ENABLE_TASKS, () -> setProjectEnableTasksCheckbox(Boolean.parseBoolean(values.get(ENABLE_TASKS).toString())));
+        strategyMap.put(ALLOW_API_ACCESS, () -> setProjectAPIAccessCheckbox(Boolean.parseBoolean(values.get(ALLOW_API_ACCESS).toString())));
+        strategyMap.put(REQUIRE_HTTPS_FOR_API_ACESS, () -> setProjectUseHttpsCheckBox(Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACESS).toString())));
+        strategyMap.put(ENABLE_RSS, () -> setProjectAtomRssCheckBox(Boolean.parseBoolean(values.get(ENABLE_RSS).toString())));
+        strategyMap.put(PUBLIC_ACCESS, () -> setProjectPublicAccessCheckBox(Boolean.parseBoolean(values.get(PUBLIC_ACCESS).toString())));
+        strategyMap.put(ENABLE_INCOMING_EMAIL, () -> setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));
+        strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
+        strategyMap.put(BUGSCHORESMAYBEGIVENPOINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGSCHORESMAYBEGIVENPOINTS).toString())));
+        return  strategyMap;
+
+    }
+
     public GeneralSettingForm setProjectTitleTestField(String projectTitle) {
-        projectTitleTestField.clear();
-        projectTitleTestField.sendKeys(projectTitle);
+        setWebElement(projectTitleTestField, projectTitle);
         return this;
     }
 
     public GeneralSettingForm setProjectDescriptionTestField(String projectDescription) {
-        projectDescriptionTestField.clear();
-        projectDescriptionTestField.sendKeys(projectDescription);
+        setWebElement(projectDescriptionTestField, projectDescription);
         return this;
     }
 
@@ -104,8 +132,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setDateProjectStartTestField(String dateProjectStart) {
-        dateProjectStartTestField.clear();
-        dateProjectStartTestField.sendKeys(dateProjectStart);
+        setWebElement(dateProjectStartTestField, dateProjectStart);
         return this;
     }
 
@@ -125,8 +152,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectInitialVelocityTestField(String projectInitialVelocity) {
-        projectInitialVelocityTestField.clear();
-        projectInitialVelocityTestField.sendKeys(projectInitialVelocity);
+        setWebElement(projectInitialVelocityTestField, projectInitialVelocity);
         return this;
     }
 
@@ -136,14 +162,12 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectNumberOfDoneIterationsToShowTestField(String projectNumberOfDoneIterationsToShow) {
-        projectNumberOfDoneIterationsToShowTestField.clear();
-        projectNumberOfDoneIterationsToShowTestField.sendKeys(projectNumberOfDoneIterationsToShow);
+        setWebElement(projectNumberOfDoneIterationsToShowTestField, projectNumberOfDoneIterationsToShow);
         return this;
     }
 
-    public GeneralSettingForm setProjectAutomaticPlanningCheckBox(String projectAutomaticPlanning) {
-        projectAutomaticPlanningCheckBox.clear();
-        projectAutomaticPlanningCheckBox.sendKeys(projectAutomaticPlanning);
+    public GeneralSettingForm setProjectAutomaticPlanningCheckBox(boolean projectAutomaticPlanning) {
+        enableCheckBox(projectAutomaticPlanningCheckBox, projectAutomaticPlanning);
         return this;
     }
 
@@ -195,30 +219,17 @@ public class GeneralSettingForm extends BasePage {
         return testMessage.getText();
     }
 
+    public Select convertASelect(WebElement webElement) {
+        return new Select(webElement);
+    }
+
     public GeneralSettingForm selectStartIterationsOn(String nameDay) {
         selectAElementComboBox(projectWeekStartDaySelect, nameDay);
         return this;
     }
 
-    public void enableCheckBox(WebElement webElement, boolean enable) {
-        if (enable) {
-            if (!webElement.isSelected()) {
-                webElement.click();
-            }
-        } else {
-            if (webElement.isSelected()) {
-                webElement.click();
-            }
-        }
-    }
-
-    public void selectAElementComboBox(WebElement webElementSelect, String element) {
-        Select oSelect = new Select(webElementSelect);
-        oSelect.selectByValue(element);
-    }
-
     public String getDescriptionText() {
-        return projectDescriptionTestField.getText();
+        return projectDescriptionTestField.getAttribute("value");
     }
 
     public String getProjectId() {
@@ -226,6 +237,34 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getProjectTitleTestField() {
-        return projectTitleTestField.getText();
+        return projectTitleTestField.getAttribute("value");
+    }
+
+    public String getNumberIterationShow() {
+        return projectNumberOfDoneIterationsToShowTestField.getAttribute("value");
+    }
+    public String getInitialVelocity() {
+        return projectInitialVelocityTestField.getAttribute("value");
+    }
+    public String getTextProjectWeekStartDaySelect() {
+        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute("value");
+    }
+
+    public String getTextProjectIterationLength() {
+        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
+    }
+
+    public boolean getEnableProjectsTasks() {
+        return projectEnableTasksCheckbox.isSelected();
+    }
+
+    public Map<SettingSteps, Object> getAssertionMap() {
+        Map<SettingSteps, Object> assertionMap = new HashMap<>();
+        assertionMap.put(TITLE_PROJECTS, getProjectTitleTestField());
+        assertionMap.put(DESCRIPTION, getDescriptionText());
+        assertionMap.put(PROJECT_START_DATE, getTextProjectWeekStartDaySelect());
+        assertionMap.put(ENABLE_TASKS, getEnableProjectsTasks());
+        assertionMap.put(ITERATION_LENGTH, getTextProjectIterationLength());
+        return assertionMap;
     }
 }
