@@ -26,7 +26,6 @@ public class StoriesStepsDef {
 
     public StoriesStepsDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
-        //       story = new Story();
     }
 
     @Given("^I enter to (.*)$")

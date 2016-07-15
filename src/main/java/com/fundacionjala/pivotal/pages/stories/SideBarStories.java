@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Created by RosarioGarcia on 7/9/2016.
+ * @author RosarioGarcia
  */
 public class SideBarStories extends BasePage {
 
@@ -13,7 +13,6 @@ public class SideBarStories extends BasePage {
     private WebElement addStoryButton;
 
     public Story clickOnAddStoryButton() {
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".button.add_story")));
         addStoryButton.click();
         return new Story();
     }

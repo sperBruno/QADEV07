@@ -1,7 +1,7 @@
 package com.fundacionjala.pivotal.pages.stories;
 
 /**
- * Created by Charito on 7/12/2016.
+ * @author RosarioGarcia
  */
 public enum StoriesSteps {
     STORY_TITLE,

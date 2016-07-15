@@ -11,7 +11,10 @@ import org.openqa.selenium.support.FindBy;
 import static com.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
 
 /**
- * Created by Charito on 7/12/2016.
+ * This class is for test the creation, set and delete
+ * of a story in a project of pivotal tracker.
+ *
+ * @author RosarioGarcia
  */
 public class Story extends BasePage {
 
@@ -19,7 +22,7 @@ public class Story extends BasePage {
      * Web elements to add story
      */
     @FindBy(name = "story[name]")
-    private WebElement storyNameTextarea;
+    private WebElement storyTitleTextArea;
 
     @FindBy(xpath = "//button[contains(.,'Save')]")
     private WebElement saveStoryButton;
@@ -27,8 +30,7 @@ public class Story extends BasePage {
     @FindBy(xpath = "//button[contains(.,'Cancel')]")
     private WebElement cancelCreateStoryButton;
 
-
-    @FindBy(xpath = "//div[@class='rendered_description tracker_markup']")
+    @FindBy(css = ".rendered_description.tracker_markup")
     private WebElement descriptionText;
 
     @FindBy(name = "story[pending_description]")
@@ -43,7 +45,7 @@ public class Story extends BasePage {
     @FindBy(name = "task[description]")
     private WebElement taskTextField;
 
-    @FindBy(xpath = "//button[@class='autosaves std add']")
+    @FindBy(css = ".autosaves.std.add")
     private WebElement addTaskButton;
 
     @FindBy(name = "comment[text]")
@@ -61,7 +63,7 @@ public class Story extends BasePage {
     /**
      * Web elements to delete story
      */
-    @FindBy(xpath = "//a[@class='expander undraggable']")
+    @FindBy(css = ".expander.undraggable")
     private WebElement storyExpander;
 
     @FindBy(xpath = "//button[@title='Delete this story']")
@@ -76,11 +78,23 @@ public class Story extends BasePage {
     @FindBy(xpath = "//button[@data-aid='CancelButton']")
     private WebElement cancelDeleteButton;
 
-    public void setStoryNameTextarea(String storyName) {
-        storyNameTextarea.clear();
-        storyNameTextarea.sendKeys(storyName);
+    /**
+     * This method is for set the story title text field
+     * wich contains the name of a story.
+     *
+     * @param storyTitle; it is the name for a story
+     */
+    public void setStoryTitleTextArea(String storyTitle) {
+        storyTitleTextArea.clear();
+        storyTitleTextArea.sendKeys(storyTitle);
     }
 
+    /**
+     * This method is for set the description text field
+     * wich contains the description of a story.
+     *
+     * @param storyDescription; it is the description for a story
+     */
     public void setDescriptionTextarea(String storyDescription) {
         storyDescriptionTextField.clear();
         storyDescriptionTextField.sendKeys(storyDescription);
@@ -114,7 +128,7 @@ public class Story extends BasePage {
     }
 
     public String getStoryTitle() {
-        return storyNameTextarea.getText();
+        return storyTitleTextArea.getText();
     }
 
     public String getDescriptionText() {
@@ -152,7 +166,7 @@ public class Story extends BasePage {
 
     public void executeSteps(final Map<StoriesSteps, Object> values) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(STORY_TITLE, () -> setStoryNameTextarea(values.get(STORY_TITLE).toString()));
+        strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(values.get(STORY_TITLE).toString()));
         strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(values.get(DESCRIPTION).toString()));
         strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
         strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));

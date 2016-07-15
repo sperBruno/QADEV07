@@ -10,6 +10,7 @@ import com.fundacionjala.pivotal.pages.Dashboard;
 import com.fundacionjala.pivotal.pages.ToolBar;
 
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static com.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.junit.Assert.assertEquals;
 
@@ -19,11 +20,11 @@ import static org.junit.Assert.assertEquals;
 public class StoriesAssert {
 
     private static final Logger LOGGER = Logger.getLogger(ProjectHooks.class.getName());
-    private static final int SUCCESS_STATUS_CODE = 200;
 
     private static final String PROJECTS_ENDPOINT = "/projects/";
 
     private static final String PROJECT_ID = "id";
+
     private Response response;
 
     private StoriesStepsDef storiesStepsDef;
@@ -48,19 +49,19 @@ public class StoriesAssert {
         dashboard = toolBar.clickReturnDashboardLink();
     }
 
-    @After("@projectStory")
-    public void afterProjectScenario() {
-        LOGGER.info("status" + api.getResponse().statusCode());
-        LOGGER.info("response" + api.getResponse().prettyPrint());
-        if (api.getResponse().statusCode() == SUCCESS_STATUS_CODE) {
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
-        }
-    }
-
     @Then("^I expect the message (.*)$")
     public void iExpectTheMessageStoryDeleted(String message) {
         assertEquals(message, storiesStepsDef.getStory().getStoryDeletedMessage());
         dashboard = toolBar.clickReturnDashboardLink();
+    }
+
+    @After("@projectStory")
+    public void afterProjectScenario() {
+        LOGGER.info("status: " + api.getResponse().statusCode());
+        LOGGER.info("response: " + api.getResponse().prettyPrint());
+        if (api.getResponse().statusCode() == SUCCESS_STATUS_CODE) {
+            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+        }
     }
 }
 
