@@ -27,6 +27,11 @@ public class ProjectAssert {
         assertEquals(expectedValue, projectSettingsStepDef.getGeneralSettingForm().getDescriptionText());
     }
 
+    @Then("^I expect a message say (.*)$")
+    public void iExpectAMessageChangeSaved(String messageSay) {
+        assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
+    }
+
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
         LOGGER.info("title project " + projectsStepDef.getProject().getTitle());

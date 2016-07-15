@@ -29,6 +29,7 @@ public class Workspace extends BasePage {
         sideBarWorkspace = new SideBarWorkspace();
     }
 
+
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
         return new Dashboard();
@@ -40,7 +41,7 @@ public class Workspace extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             workspaceName = workspaceNameText.getText();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("The element could not be found", e);
+            LOGGER.warn("The element could not be found" + e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
