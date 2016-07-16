@@ -1,25 +1,34 @@
-package com.fundacionjala.pivotal.driver;
+package com.fundacionjala.pivotal.framework.selenium;
 
 import java.util.concurrent.TimeUnit;
 
-import com.fundacionjala.pivotal.PropertiesInfo;
-
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
+
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverManager {
 
-    public static final int WAIT_TIME = 30;
-
     public static final int IMPLICIT_WAIT_TIME = 15;
 
-    public static final int IMPLICIT_FAIL_WAIT_TIME = 4;
+    public static final int WAIT_TIME = 30;
+
+    public static final int LOAD_PAGE_TIME = 40;
+
+    public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
+
+    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
 
     private static DriverManager instance;
 
     private WebDriver driver;
 
+    private WebDriverWait wait;
+
     private DriverManager() {
         initWebDriver();
+        PropertyConfigurator.configure(SRC_MAIN_RESOURCES_LOG4J_PROPERTIES);
     }
 
     public static DriverManager getInstance() {
@@ -31,9 +40,10 @@ public class DriverManager {
 
     private void initWebDriver() {
         driver = FactoryDriver.getDriver(PropertiesInfo.getInstance().getBrowser()).initDriver();
-
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(LOAD_PAGE_TIME, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, WAIT_TIME);
     }
 
     public WebDriver getDriver() {
@@ -42,5 +52,9 @@ public class DriverManager {
 
     public void quitDriver() {
         driver.quit();
+    }
+
+    public WebDriverWait getWait() {
+        return wait;
     }
 }
