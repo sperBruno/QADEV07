@@ -31,7 +31,6 @@ public final class Mapper {
             for (String endPointSplit : endPoint.split(REGEX_SLASH)) {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
-                    int a = mapString.length;
                     StringBuilder value = new StringBuilder();
                     String toAdd = responseValues.get(mapString[1]).jsonPath().get(mapString[2]);
                     value.append(toAdd);
@@ -42,16 +41,21 @@ public final class Mapper {
         return endPoint;
     }
 
+    public static String mapDeleteProject(String endPoint) {
+        String rex = mapEndpoint(endPoint);
+        return endPoint.replace(endPoint.split("\\[(.*?)\\]")[0],rex);
+    }
+
     public static String mapUrlToDeleteProject(String endPoint) {
         Matcher matches = Pattern.compile(REGEX_UNTIL_PROJECT).matcher(endPoint);
         return matches.find() ? matches.group() : EMPTY_STRING;
     }
 
     public static void addResponse(String key, Response response) {
-        System.out.println(response.prettyPrint());
+   //     System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-        System.out.println("add response: ");
-        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
+     //   System.out.println("add response: ");
+//        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
     }
 
     public static String mapProjects(String endPoint) {

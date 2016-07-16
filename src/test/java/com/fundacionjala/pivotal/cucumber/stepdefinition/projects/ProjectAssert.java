@@ -35,7 +35,7 @@ public class ProjectAssert {
 
     @Then("^I expect a message Delete say (.*)$")
     public void iExpectAMessageDeleteSayProject1Name(String message) {
-        Mapper.mapEndpoint(message);
+        Mapper.mapDeleteProject(message);
         String expectMessage = message.replace("project1.name", projectSettingsStepDef.getResponse().jsonPath().get("name"));
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }
@@ -44,5 +44,12 @@ public class ProjectAssert {
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
         LOGGER.info("title project " + projectsStepDef.getProject().getTitle());
         assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
+    }
+
+    @And("^Validate all setting projects$")
+    public void validateAllSettingProjects() {
+        projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)), projectSettingsStepDef.getValuesMap().get(step));
+        });
     }
 }

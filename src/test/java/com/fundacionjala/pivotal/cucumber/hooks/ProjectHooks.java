@@ -43,7 +43,7 @@ public class ProjectHooks {
         Setting setting = projectsStepDef.getProject().clickSettingTab();
         String id = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId();
 
-        deleteAccountUser(setting);
+        //deleteAccountUser(setting);
 
         LOGGER.info("project id " + id);
         Response response = RequestManager.deleteRequest(id);
@@ -53,8 +53,8 @@ public class ProjectHooks {
         assertEquals(DELETE_STATUS_CODE,response.getStatusCode());
     }
 
-    private void deleteAccountUser(Setting setting) {
-        Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
-        account.getToolBarAccount().clickSettingTab().deleteAccount();
-    }
+//    private void deleteAccountUser(Setting setting) {
+//        Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
+//        account.getToolBarAccount().clickSettingTab().deleteAccount();
+//    }
 }
