@@ -1,6 +1,5 @@
 package com.fundacionjala.pivotal.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,7 +16,7 @@ public class ToolBar extends BasePage {
 
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
-        return new Dashboard ();
+        return new Dashboard();
     }
 
     public Setting clickSettingTabLink() {

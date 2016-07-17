@@ -5,5 +5,6 @@ package com.fundacionjala.pivotal.pages;
  */
 public enum ProjectSteps {
     PROJECT_TITLE,
-    PROJECT_ACCOUNT
+    PROJECT_ACCOUNT,
+    PROJECT_SAMPLE_DATA
 }

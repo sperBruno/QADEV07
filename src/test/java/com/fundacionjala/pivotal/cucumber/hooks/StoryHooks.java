@@ -1,17 +1,15 @@
 package com.fundacionjala.pivotal.cucumber.hooks;
 
 
-import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import cucumber.api.java.After;
+import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 
 import static com.fundacionjala.pivotal.api.Mapper.mapUrlToDeleteProject;
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static com.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
+import static com.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 
 public class StoryHooks {
-
-    private static final int SUCCESS_STATUS_CODE = 200;
-
-    private static final int DELETE_STATUS_CODE = 204;
 
     private ApiResourcesSteps api;
 
@@ -21,7 +19,7 @@ public class StoryHooks {
 
     @After("@story")
     public void afterStoryScenario() {
-        if (api.getResponse().statusCode() == SUCCESS_STATUS_CODE || api.getResponse().statusCode() == DELETE_STATUS_CODE) {
+        if (SUCCESS_STATUS_CODE == api.getResponse().statusCode() || DELETE_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(mapUrlToDeleteProject(api.getEndPoint()));
         }
     }
