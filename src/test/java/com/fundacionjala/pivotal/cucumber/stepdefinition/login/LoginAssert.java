@@ -11,7 +11,7 @@ public class LoginAssert {
 
     private LoginStepDef projectsStepdefs;
 
-    public LoginAssert (LoginStepDef projectsStepdefs) {
+    public LoginAssert(LoginStepDef projectsStepdefs) {
         this.projectsStepdefs = projectsStepdefs;
     }
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_ACCOUNT;
 import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_SAMPLE_DATA;
 import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_TITLE;
@@ -55,7 +56,7 @@ public class CreateProject extends BasePage {
     }
 
     public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable) {
-        GeneralSettingForm.enableCheckBox(projectSampleDataCheckBox, Boolean.parseBoolean(isCheckBoxEnable));
+        setCheckBox(projectSampleDataCheckBox, Boolean.parseBoolean(isCheckBoxEnable));
         return this;
     }
 

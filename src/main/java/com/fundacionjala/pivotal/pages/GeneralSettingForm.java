@@ -81,9 +81,6 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(id = "project_initial_velocity")
     private WebElement projectInitialVelocityTestField;
 
-    @FindBy(id = "project_account_link")
-    private WebElement accountLink;
-
     @FindBy(id = "project_velocity_scheme")
     private WebElement projectVelocityComboBox;
 
@@ -98,6 +95,9 @@ public class GeneralSettingForm extends BasePage {
 
     @FindBy(id = "delete_link")
     private WebElement deleteLink;
+
+    @FindBy(id = "project_account_link")
+    private WebElement accountLink;
 
     @FindBy(css = ".message")
     private WebElement testMessage;
@@ -270,6 +270,10 @@ public class GeneralSettingForm extends BasePage {
         return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
     }
 
+    public Accounts clickAccountLink(){
+                accountLink.click();
+                return new Accounts();
+            }
     public boolean getEnableProjectsTasks() {
         return projectEnableTasksCheckbox.isSelected();
     }

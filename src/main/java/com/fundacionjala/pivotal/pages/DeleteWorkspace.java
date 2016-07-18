@@ -15,11 +15,11 @@ public class DeleteWorkspace extends BasePage {
     private WebElement cancelDeleteLink;
 
     public void clickCancelDeleteLink() {
-        cancelDeleteLink.click ();
+        cancelDeleteLink.click();
     }
 
     public Dashboard clickConfirmDeleteLink() {
         confirmDeleteLink.click();
-        return new Dashboard ();
+        return new Dashboard();
     }
 }

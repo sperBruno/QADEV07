@@ -1,6 +1,5 @@
 package com.fundacionjala.pivotal.pages;
 
-import com.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,15 +11,15 @@ import static com.fundacionjala.pivotal.framework.util.CommonMethods.clickWebEle
  */
 public class DeleteProjectAlert extends BasePage {
 
-        @FindBy(css = ".delete.inline_dialog")
-        private WebElement deleteAlertContainer;
+    @FindBy(css = ".delete.inline_dialog")
+    private WebElement deleteAlertContainer;
 
-        @FindBy(id = "confirm_delete")
-        private WebElement deleteProjectBtn;
+    @FindBy(id = "confirm_delete")
+    private WebElement deleteProjectBtn;
 
-        public Dashboard clickDeleteBtn() {
-            wait.until(ExpectedConditions.visibilityOf(deleteAlertContainer));
-            clickWebElement(deleteProjectBtn);
-            return new Dashboard();
-        }
+    public Dashboard clickDeleteBtn() {
+        wait.until(ExpectedConditions.visibilityOf(deleteAlertContainer));
+        clickWebElement(deleteProjectBtn);
+        return new Dashboard();
+    }
 }

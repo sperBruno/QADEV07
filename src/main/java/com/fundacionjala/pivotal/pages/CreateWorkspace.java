@@ -18,7 +18,6 @@ public class CreateWorkspace extends BasePage {
     private WebElement cancelCreateWorkspaceLink;
 
     /**
-     *
      * @param workspaceName
      */
     public void setUserNameTestField(String workspaceName) {
@@ -27,7 +26,6 @@ public class CreateWorkspace extends BasePage {
     }
 
     /**
-     *
      * @return Workspace
      */
     public Workspace clickCreateWorkspaceLink() {

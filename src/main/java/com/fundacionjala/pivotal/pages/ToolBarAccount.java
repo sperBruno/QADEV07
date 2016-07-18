@@ -18,5 +18,4 @@ public class ToolBarAccount extends BasePage {
         settingTab.click();
         return new AccountSetting();
     }
-
 }
