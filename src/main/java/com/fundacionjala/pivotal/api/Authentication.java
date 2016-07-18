@@ -5,14 +5,13 @@ import com.jayway.restassured.specification.RequestSpecification;
 
 import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
+import static com.fundacionjala.pivotal.framework.util.Constants.TOKEN_HEADER;
 import static com.jayway.restassured.RestAssured.baseURI;
 
 /**
  *
  */
 public class Authentication {
-
-    private static final String TOKEN_HEADER = "X-TrackerToken";
 
     private static Authentication instance;
 

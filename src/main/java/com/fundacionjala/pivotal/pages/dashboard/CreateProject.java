@@ -1,8 +1,12 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.framework.util.IAutomationStep;
+import com.fundacionjala.pivotal.pages.project.Project;
+import com.fundacionjala.pivotal.pages.project.ProjectSteps;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -10,9 +14,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
-import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_ACCOUNT;
-import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_SAMPLE_DATA;
-import static com.fundacionjala.pivotal.pages.ProjectSteps.PROJECT_TITLE;
+import static com.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_ACCOUNT;
+import static com.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_SAMPLE_DATA;
+import static com.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_TITLE;
 
 /**
  * Created by mijhailvillarroel on 7/6/2016.

@@ -4,12 +4,9 @@ import java.util.Map;
 
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
-import com.fundacionjala.pivotal.pages.AccountSetting;
-import com.fundacionjala.pivotal.pages.Accounts;
-import com.fundacionjala.pivotal.pages.CreateProject;
-import com.fundacionjala.pivotal.pages.Project;
-import com.fundacionjala.pivotal.pages.ProjectSteps;
-import com.fundacionjala.pivotal.pages.Setting;
+import com.fundacionjala.pivotal.pages.accounts.Accounts;
+import com.fundacionjala.pivotal.pages.project.ProjectSteps;
+import com.fundacionjala.pivotal.pages.setting.Setting;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.apache.log4j.Logger;

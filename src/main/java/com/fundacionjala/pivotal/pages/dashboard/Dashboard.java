@@ -1,7 +1,11 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.accounts.Accounts;
+import com.fundacionjala.pivotal.pages.project.Project;
+import com.fundacionjala.pivotal.pages.setting.Setting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;

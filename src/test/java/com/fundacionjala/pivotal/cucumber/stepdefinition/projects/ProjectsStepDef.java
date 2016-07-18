@@ -3,15 +3,16 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 import java.util.Map;
 
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.CreateProject;
-import com.fundacionjala.pivotal.pages.Project;
-import com.fundacionjala.pivotal.pages.ProjectSteps;
+import com.fundacionjala.pivotal.pages.dashboard.CreateProject;
+import com.fundacionjala.pivotal.pages.project.Project;
+import com.fundacionjala.pivotal.pages.project.ProjectSteps;
 import cucumber.api.java.en.Given;
 
 /**
  * Created by BrunoBarrios on 7/7/2016.
  */
 public class ProjectsStepDef {
+
     private LoginStepDef loginStepDef;
 
     private CreateProject createProject;
@@ -32,10 +33,8 @@ public class ProjectsStepDef {
         project = createProject.clickCreateProject();
     }
 
-
     public Project getProject() {
         return project;
     }
-
 
 }

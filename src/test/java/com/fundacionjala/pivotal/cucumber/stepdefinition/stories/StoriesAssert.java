@@ -6,8 +6,8 @@ import org.apache.log4j.Logger;
 import com.jayway.restassured.response.Response;
 import com.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
-import com.fundacionjala.pivotal.pages.Dashboard;
-import com.fundacionjala.pivotal.pages.ToolBar;
+import com.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import com.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static com.jayway.restassured.path.json.JsonPath.from;
@@ -63,4 +63,3 @@ public class StoriesAssert {
         dashboard = toolBar.clickReturnDashboardLink();
     }
 }
-

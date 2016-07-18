@@ -1,8 +1,12 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.setting;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
+import com.fundacionjala.pivotal.framework.util.IAutomationStep;
+import com.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,24 +14,24 @@ import static com.fundacionjala.pivotal.framework.util.CommonMethods.convertASel
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ALLOW_API_ACCESS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.BUGS_GIVEN_POINTS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.DESCRIPTION;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_INCOMING_EMAIL;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_RSS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_TASKS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.HIDE_EMAIL_ADDRESSES;
-import static com.fundacionjala.pivotal.pages.SettingSteps.INITIAL_VELOCITY;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PROJECT_START_DATE;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PROJECT_TIME_ZONE;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ITERATION_LENGTH;
-import static com.fundacionjala.pivotal.pages.SettingSteps.POINT_SCALE;
-import static com.fundacionjala.pivotal.pages.SettingSteps.VELOCITY_STRATEGY;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PLAN_CURRENT_ITERATION;
-import static com.fundacionjala.pivotal.pages.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
-import static com.fundacionjala.pivotal.pages.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PUBLIC_ACCESS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.TITLE_PROJECTS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ALLOW_API_ACCESS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.BUGS_GIVEN_POINTS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.DESCRIPTION;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_INCOMING_EMAIL;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_RSS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_TASKS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.HIDE_EMAIL_ADDRESSES;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.INITIAL_VELOCITY;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_TIME_ZONE;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRATEGY;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PUBLIC_ACCESS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.TITLE_PROJECTS;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
