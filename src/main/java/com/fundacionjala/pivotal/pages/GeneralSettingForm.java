@@ -3,6 +3,7 @@ package com.fundacionjala.pivotal.pages;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fundacionjala.pivotal.framework.util.Constants;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,6 +12,7 @@ import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+import static com.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
 import static com.fundacionjala.pivotal.pages.SettingSteps.ALLOW_API_ACCESS;
 import static com.fundacionjala.pivotal.pages.SettingSteps.BUGS_GIVEN_POINTS;
 import static com.fundacionjala.pivotal.pages.SettingSteps.DESCRIPTION;
@@ -243,7 +245,7 @@ public class GeneralSettingForm extends BasePage {
 
 
     public String getDescriptionText() {
-        return projectDescriptionTestField.getAttribute("value");
+        return projectDescriptionTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getProjectId() {
@@ -251,37 +253,37 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getProjectTitleTestField() {
-        return projectTitleTestField.getAttribute("value");
+        return projectTitleTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextNumberIterationShow() {
-        return projectNumberOfDoneIterationsToShowTestField.getAttribute("value");
+        return projectNumberOfDoneIterationsToShowTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
     public String getTextInitialVelocity() {
-        return projectInitialVelocityTestField.getAttribute("value");
+        return projectInitialVelocityTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
     public String getTextProjectWeekStartDaySelect() {
-        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextDateProjectStart() {
-        return dateProjectStartTestField.getAttribute("value");
+        return dateProjectStartTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextProjectTimeZone() {
-        return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextProjectIterationLength() {
-        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextProjectSettingPointScale() {
-        return convertASelect(projectSettingsPointScaleComboBox).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectSettingsPointScaleComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextProjectVelocity() {
-        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public boolean getTextProjectAutomaticPlanning() {
