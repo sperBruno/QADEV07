@@ -2,6 +2,7 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.login;
 
 import cucumber.api.java.en.Then;
 
+import static com.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,8 +16,12 @@ public class LoginAssert {
         this.projectsStepdefs = projectsStepdefs;
     }
 
-    @Then("^It is expected that the display name equals (.*)$")
-    public void itIsExpectedThatTheDisplayNameEqualsWALTER_MERCADO_JALA(String nameUser) {
-        assertEquals(nameUser, projectsStepdefs.getDashboard().getUserNameText());
+
+    @Then("^It is expected that the display userName$")
+    public void itIsExpectedThatTheDisplayUserName() {
+        final String endPointProfile = "/me";
+        final String fieldUsername = "username";
+        final String expectUserName = getRequest(endPointProfile).jsonPath().get(fieldUsername);
+        assertEquals(expectUserName.toUpperCase(), projectsStepdefs.getDashboard().getUserNameText());
     }
 }

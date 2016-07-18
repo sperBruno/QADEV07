@@ -129,6 +129,7 @@ public class GeneralSettingForm extends BasePage {
         strategyMap.put(ENABLE_INCOMING_EMAIL, () -> setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));
         strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
         strategyMap.put(BUGS_GIVEN_POINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString())));
+        strategyMap.put(PROJECT_START_DATE, () -> setDateProjectStartTestField(String.valueOf(values.get(PROJECT_START_DATE).toString())));
         return  strategyMap;
 
     }
@@ -243,11 +244,6 @@ public class GeneralSettingForm extends BasePage {
     }
 
 
-    public GeneralSettingForm selectStartIterationsOn(String nameDay) {
-        selectAElementComboBox(projectWeekStartDaySelect, nameDay);
-        return this;
-    }
-
     public String getDescriptionText() {
         return projectDescriptionTestField.getAttribute("value");
     }
@@ -267,11 +263,59 @@ public class GeneralSettingForm extends BasePage {
         return projectInitialVelocityTestField.getAttribute("value");
     }
     public String getTextProjectWeekStartDaySelect() {
+        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+    }
+
+    public String getTextDateProjectStart() {
+        return dateProjectStartTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
+    }
+
+    public String getTextProjectTimeZone() {
         return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute("value");
     }
 
     public String getTextProjectIterationLength() {
+        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+    }
+
+    public String getTextProjectSettingPointScale() {
+        return convertASelect(projectSettingsPointScaleComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+    }
+
+    public String getTextProjectVelocity() {
         return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
+    }
+
+    public boolean getTextProjectAutomaticPlanning() {
+        return projectAutomaticPlanningCheckBox.isSelected();
+    }
+
+    public boolean getAllowAPIACCES() {
+        return projectAPIAccessCheckbox.isSelected();
+    }
+
+    public boolean getUseHttps() {
+        return projectUseHttpsCheckBox.isSelected();
+    }
+
+    public boolean getAtomRss() {
+        return projectAtomRssCheckBox.isSelected();
+    }
+
+    public boolean getPublicAccess() {
+        return projectPublicAccessCheckBox.isSelected();
+    }
+
+    public boolean getEnableIncomingEmailCheckBox() {
+        return projectEnableIncomingEmailCheckBox.isSelected();
+    }
+
+    public boolean getHideEmailsFromCollaboratorsCheckBox() {
+        return projectHideEmailsFromCollaboratorsCheckBox.isSelected();
+    }
+
+    public boolean getBugGivenPointsCheckBox() {
+        return projectBugsCheckBox.isSelected();
     }
 
     public Accounts clickAccountLink(){
@@ -286,9 +330,23 @@ public class GeneralSettingForm extends BasePage {
         Map<SettingSteps, Object> assertionMap = new HashMap<>();
         assertionMap.put(TITLE_PROJECTS, getProjectTitleTestField());
         assertionMap.put(DESCRIPTION, getDescriptionText());
-        assertionMap.put(PROJECT_START_DATE, getTextProjectWeekStartDaySelect());
         assertionMap.put(ENABLE_TASKS, getEnableProjectsTasks());
+        assertionMap.put(START_ITERATIONS_ON, getTextProjectWeekStartDaySelect());
+        assertionMap.put(PROJECT_START_DATE, getTextDateProjectStart());
+        assertionMap.put(PROJECT_TIME_ZONE, getTextProjectTimeZone());
         assertionMap.put(ITERATION_LENGTH, getTextProjectIterationLength());
+        assertionMap.put(POINT_SCALE, getTextProjectSettingPointScale());
+        assertionMap.put(INITIAL_VELOCITY, getTextInitialVelocity());
+        assertionMap.put(VELOCITY_STRATEGY, getTextProjectVelocity());
+        assertionMap.put(NUMBER_OF_DONE_ITERATION_SHOW, getTextNumberIterationShow());
+        assertionMap.put(PLAN_CURRENT_ITERATION, getTextProjectAutomaticPlanning());
+        assertionMap.put(ALLOW_API_ACCESS, getAllowAPIACCES());
+        assertionMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, getUseHttps());
+        assertionMap.put(ENABLE_RSS, getAtomRss());
+        assertionMap.put(PUBLIC_ACCESS, getPublicAccess());
+        assertionMap.put(ENABLE_INCOMING_EMAIL, getEnableIncomingEmailCheckBox());
+        assertionMap.put(HIDE_EMAIL_ADDRESSES, getHideEmailsFromCollaboratorsCheckBox());
+        assertionMap.put(BUGS_GIVEN_POINTS, getBugGivenPointsCheckBox());
         return assertionMap;
     }
 }

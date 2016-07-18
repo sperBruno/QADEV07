@@ -22,7 +22,10 @@ public final class Mapper {
 
     private static final int INDEX_2 = 2;
 
+    public static final String REGEX_BLACK_SPACE = " ";
+
     private static Map<String, Response> responseValues = new HashMap<>();;
+    ;
 
     private Mapper() {
     }

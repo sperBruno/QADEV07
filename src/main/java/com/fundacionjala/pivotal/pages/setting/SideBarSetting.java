@@ -4,6 +4,8 @@ import com.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+
 /**
  * Created by mijhailvillarroel on 7/11/2016.
  */
@@ -25,7 +27,7 @@ public class SideBarSetting extends BasePage {
     private WebElement linkExportCSV;
 
     public GeneralSettingForm clickGeneralSetting() {
-        linkGeneralSettings.click();
+        clickWebElement(linkGeneralSettings);
         return new GeneralSettingForm();
     }
 }
