@@ -1,6 +1,7 @@
 package com.fundacionjala.pivotal.cucumber.hooks;
 
 import com.fundacionjala.pivotal.exceptions.PropertiesInfoReadException;
+import com.fundacionjala.pivotal.framework.selenium.DriverManager;
 
 import cucumber.api.java.Before;
 
@@ -15,6 +16,11 @@ public class GlobalHooks {
 
     @Before
     public void beforeAll() {
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            public void run(){
+                DriverManager.getInstance().quitDriver();
+            }
+        });
         if (!BEFORE_ALL_FLAG) {
             if (EMPTY_STRING.equals(getInstance().getEmail()) || EMPTY_STRING.equals(getInstance().getApiToken()) || EMPTY_STRING.equals(getInstance().getPassword())) {
                 try {
