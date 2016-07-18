@@ -1,5 +1,6 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
+import com.fundacionjala.pivotal.api.Mapper;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
@@ -32,10 +33,23 @@ public class ProjectAssert {
         assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
     }
 
+    @Then("^I expect a message Delete say (.*)$")
+    public void iExpectAMessageDeleteSayProject1Name(String message) {
+        String expectMessage = Mapper.getPropertiesProject(message);
+        assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
+    }
+
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
         LOGGER.info("title project " + projectsStepDef.getProject().getTitle());
         assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
     }
 
+    @And("^Validate all setting projects$")
+    public void validateAllSettingProjects() {
+        projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)), projectSettingsStepDef.getValuesMap().get(step));
+        });
+        projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
+    }
 }

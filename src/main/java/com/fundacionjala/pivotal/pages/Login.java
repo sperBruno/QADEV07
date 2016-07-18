@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 
 import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+import static com.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
+
 public class Login extends BasePage {
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
@@ -22,13 +25,11 @@ public class Login extends BasePage {
     private WebElement buttonNext;
 
     public void setUserNameTestField(String username) {
-        userNameTestField.clear();
-        userNameTestField.sendKeys(username);
+        setWebElement(userNameTestField, username);
     }
 
     public void setPasswordTestField(String password) {
-        passwordTestField.clear();
-        passwordTestField.sendKeys(password);
+        setWebElement(passwordTestField, password);
     }
 
     public static Dashboard loginAs(String userName, String password) {
@@ -49,7 +50,7 @@ public class Login extends BasePage {
     }
 
     public Dashboard clickSignInButton() {
-        buttonNext.click();
+        clickWebElement(buttonNext);
         return new Dashboard();
     }
 

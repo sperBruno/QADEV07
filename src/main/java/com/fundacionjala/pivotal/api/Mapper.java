@@ -21,7 +21,10 @@ public final class Mapper {
 
     private static final String REGEX_SLASH = "/";
 
-    private static Map<String, Response> responseValues = new HashMap<>();;
+    public static final String REGEX_BLACK_SPACE = " ";
+
+    private static Map<String, Response> responseValues = new HashMap<>();
+    ;
 
     private Mapper() {
     }
@@ -47,9 +50,20 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
-        System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-        System.out.println("add response: ");
-        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
+    }
+
+    public static String getPropertiesProject(String endPoint) {
+        if (endPoint.contains(REGEX_HALF_BRACKET)) {
+            for (String endPontSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+                if (endPontSplit.matches(REGEX_INSIDE_BRACKETS)) {
+                    String[] mapString = endPontSplit.split(REGEX_BRACKETS);
+                    StringBuilder value = new StringBuilder();
+                    value.append(responseValues.get(mapString[1]).jsonPath().get(mapString[2]).toString());
+                    endPoint = endPoint.replace(endPontSplit, value);
+                }
+            }
+        }
+        return endPoint;
     }
 }
