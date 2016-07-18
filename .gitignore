@@ -2,3 +2,4 @@
 /target/
 *.fundacionjala.pivotal.iml
 *.log
+*.iml
