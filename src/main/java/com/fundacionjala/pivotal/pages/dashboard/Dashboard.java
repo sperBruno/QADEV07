@@ -1,5 +1,11 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.dashboard;
 
+import java.util.concurrent.TimeUnit;
+
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.accounts.Accounts;
+import com.fundacionjala.pivotal.pages.project.Project;
+import com.fundacionjala.pivotal.pages.setting.Setting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -17,6 +23,9 @@ public class Dashboard extends BasePage {
 
     @FindBy(className = "tc_dropdown_name")
     private WebElement userNameText;
+
+    @FindBy(xpath = ".//*[@id='shared_header']/div/div/header/ul/li[3]/div/div/div/ul/li[2]/a")
+    private WebElement accountOption;
 
     @FindBy(id = "create_new_project_button")
     private WebElement createProjectLink;
@@ -84,5 +93,11 @@ public class Dashboard extends BasePage {
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
         taskElement.click();
         return new Setting();
+    }
+
+    public Accounts selectAccountOption() {
+        userNameText.click();
+        accountOption.click();
+        return new Accounts();
     }
 }

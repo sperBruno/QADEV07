@@ -32,6 +32,5 @@ public class WorkspaceAssert {
 
     @Then("^I expect a workspace with the project selected$")
     public void iExpectAWorkspaceWithTheProjectSelected () {
-        //assertcontains
     }
 }

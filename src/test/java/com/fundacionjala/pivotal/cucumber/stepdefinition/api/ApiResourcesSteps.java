@@ -36,9 +36,9 @@ public class ApiResourcesSteps {
         response = getRequest(endPoint);
     }
 
-    @Given("^I send a POST request to (.*)$")
-    public void iSendAPOSTRequestToEndpoint(String endPoint, Map<String, Object> values) {
-        response = postRequest(mapEndpoint(endPoint), values);
+    @When("^I sen(?:d|t) a POST request to (.*)$")
+    public void iSendAPOSTRequestWith(String endPoint, Map<String, Object> parameters) {
+        response = postRequest(mapEndpoint(endPoint), parameters);
     }
 
     @When("^I send a PUT request to (.*?)$")

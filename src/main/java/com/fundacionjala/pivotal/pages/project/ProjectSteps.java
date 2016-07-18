@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.project;
 
 /**
  * Created by brunobarrios on 7/14/2016.
