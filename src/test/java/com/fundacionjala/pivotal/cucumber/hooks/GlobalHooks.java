@@ -12,6 +12,9 @@ import cucumber.api.java.Before;
  * Created by HENRRY on 18/07/2016.
  */
 public class GlobalHooks {
+
+    private static final String PROPERTIES_FILE_UNFILLED = "Error reading the properties file one of the next properties is missing: email, api token or password";
+
     private static  boolean BEFORE_ALL_FLAG = false;
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
@@ -24,8 +27,8 @@ public class GlobalHooks {
                     DriverManager.getInstance().quitDriver();
                 }
             });
-            if (StringUtils.isBlank(PROPERTIES_INFO.getEmail()) || StringUtils.isBlank(PROPERTIES_INFO.getApiToken()) || StringUtils.isBlank(PROPERTIES_INFO.getPassword())) {
-                throw new PropertiesInfoReadException("Error reading the properties file");
+            if (StringUtils.isEmpty(PROPERTIES_INFO.getEmail()) || StringUtils.isEmpty(PROPERTIES_INFO.getApiToken()) || StringUtils.isEmpty(PROPERTIES_INFO.getPassword())) {
+                throw new PropertiesInfoReadException(PROPERTIES_FILE_UNFILLED);
             }
             BEFORE_ALL_FLAG = true;
         }
