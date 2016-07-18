@@ -1,4 +1,6 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.setting;
+
+import com.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
 /**
  * Created by mijhailvillarroel on 7/12/2016.

@@ -2,7 +2,6 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
-import com.fundacionjala.pivotal.api.Mapper;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import com.fundacionjala.pivotal.pages.Setting;
@@ -11,6 +10,7 @@ import com.fundacionjala.pivotal.pages.DeleteProjectAlert;
 import com.fundacionjala.pivotal.pages.GeneralSettingForm;
 import com.fundacionjala.pivotal.pages.SettingSteps;
 import com.fundacionjala.pivotal.pages.SideBarSetting;
+import com.jayway.restassured.response.Response;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
