@@ -3,6 +3,7 @@ package com.fundacionjala.pivotal.pages.setting;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fundacionjala.pivotal.framework.util.Constants;
 import com.fundacionjala.pivotal.pages.login.BasePage;
 import com.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
 import com.fundacionjala.pivotal.framework.util.IAutomationStep;
@@ -14,6 +15,7 @@ import static com.fundacionjala.pivotal.framework.util.CommonMethods.convertASel
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
+import static com.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
 import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ALLOW_API_ACCESS;
 import static com.fundacionjala.pivotal.pages.setting.SettingSteps.BUGS_GIVEN_POINTS;
 import static com.fundacionjala.pivotal.pages.setting.SettingSteps.DESCRIPTION;
@@ -32,6 +34,7 @@ import static com.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DON
 import static com.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
 import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PUBLIC_ACCESS;
 import static com.fundacionjala.pivotal.pages.setting.SettingSteps.TITLE_PROJECTS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
@@ -113,7 +116,7 @@ public class GeneralSettingForm extends BasePage {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
         strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
         strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(values.get(DESCRIPTION).toString()));
-        strategyMap.put(PROJECT_START_DATE, () -> setProjectWeekStartDayComboBox(values.get(PROJECT_START_DATE).toString()));
+        strategyMap.put(START_ITERATIONS_ON, () -> setProjectWeekStartDayComboBox(String.valueOf(values.get(START_ITERATIONS_ON).toString())));
         strategyMap.put(PROJECT_TIME_ZONE, () -> setProjectTimeZoneComboBox(values.get(PROJECT_TIME_ZONE).toString()));
         strategyMap.put(ITERATION_LENGTH, () -> setProjectIterationLengthComboBox(values.get(ITERATION_LENGTH).toString()));
         strategyMap.put(POINT_SCALE, () -> setProjectSettingsPointScaleComboBox(values.get(POINT_SCALE).toString()));
@@ -271,7 +274,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectTimeZone() {
-        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public String getTextProjectIterationLength() {
@@ -336,9 +339,9 @@ public class GeneralSettingForm extends BasePage {
         assertionMap.put(PROJECT_TIME_ZONE, getTextProjectTimeZone());
         assertionMap.put(ITERATION_LENGTH, getTextProjectIterationLength());
         assertionMap.put(POINT_SCALE, getTextProjectSettingPointScale());
-        assertionMap.put(INITIAL_VELOCITY, getTextInitialVelocity());
+        assertionMap.put(INITIAL_VELOCITY, getInitialVelocity());
         assertionMap.put(VELOCITY_STRATEGY, getTextProjectVelocity());
-        assertionMap.put(NUMBER_OF_DONE_ITERATION_SHOW, getTextNumberIterationShow());
+        assertionMap.put(NUMBER_OF_DONE_ITERATION_SHOW, getNumberIterationShow());
         assertionMap.put(PLAN_CURRENT_ITERATION, getTextProjectAutomaticPlanning());
         assertionMap.put(ALLOW_API_ACCESS, getAllowAPIACCES());
         assertionMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, getUseHttps());

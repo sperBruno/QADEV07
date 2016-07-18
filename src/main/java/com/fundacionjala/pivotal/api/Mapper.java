@@ -53,6 +53,20 @@ public final class Mapper {
     public static void addResponse(String key, Response response) {
         System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-        System.out.println(String.valueOf(responseValues.get(PROJECT_1).jsonPath().get(PROJECT_ID)));
+//        System.out.println(String.valueOf(responseValues.get(PROJECT_1).jsonPath().get(PROJECT_ID)));
+    }
+
+    public static String getPropertiesProject(String endPoint) {
+        if (endPoint.contains(REGEX_HALF_BRACKET)) {
+            for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+                if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
+                    String[] mapString = endPointSplit.split(REGEX_BRACKETS);
+                    StringBuilder value = new StringBuilder();
+                    value.append(responseValues.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
+                    endPoint = endPoint.replace(endPointSplit, value);
+                }
+            }
+        }
+        return endPoint;
     }
 }

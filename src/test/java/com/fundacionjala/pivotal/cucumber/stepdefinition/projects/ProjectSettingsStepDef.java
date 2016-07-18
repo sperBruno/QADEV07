@@ -2,14 +2,15 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
+import com.fundacionjala.pivotal.api.Mapper;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.Setting;
-import com.fundacionjala.pivotal.pages.Dashboard;
-import com.fundacionjala.pivotal.pages.DeleteProjectAlert;
-import com.fundacionjala.pivotal.pages.GeneralSettingForm;
-import com.fundacionjala.pivotal.pages.SettingSteps;
-import com.fundacionjala.pivotal.pages.SideBarSetting;
+import com.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import com.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
+import com.fundacionjala.pivotal.pages.setting.GeneralSettingForm;
+import com.fundacionjala.pivotal.pages.setting.Setting;
+import com.fundacionjala.pivotal.pages.setting.SettingSteps;
+import com.fundacionjala.pivotal.pages.setting.SideBarSetting;
 import com.jayway.restassured.response.Response;
 
 import cucumber.api.java.en.And;
