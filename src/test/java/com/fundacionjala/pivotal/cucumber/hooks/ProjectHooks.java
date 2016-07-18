@@ -4,17 +4,13 @@ package com.fundacionjala.pivotal.cucumber.hooks;
 import com.fundacionjala.pivotal.api.RequestManager;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
-import com.fundacionjala.pivotal.pages.Accounts;
 import com.fundacionjala.pivotal.pages.Setting;
 import com.jayway.restassured.response.Response;
 import cucumber.api.java.After;
 import org.apache.log4j.Logger;
 
 import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static com.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
-import static com.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
-import static com.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
-import static com.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
+import static com.fundacionjala.pivotal.framework.util.Constants.*;
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.junit.Assert.assertEquals;
 
@@ -54,7 +50,7 @@ public class ProjectHooks {
     }
 
     private void deleteAccountUser(Setting setting) {
-        Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
-        account.getToolBarAccount().clickSettingTab().deleteAccount();
+       // Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
+       // account.getToolBarAccount().clickSettingTab().deleteAccount();
     }
 }

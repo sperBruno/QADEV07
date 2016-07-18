@@ -1,17 +1,13 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
-import cucumber.api.java.After;
-import cucumber.api.java.en.Then;
-import org.apache.log4j.Logger;
-import com.jayway.restassured.response.Response;
 import com.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import com.fundacionjala.pivotal.pages.Dashboard;
 import com.fundacionjala.pivotal.pages.ToolBar;
+import com.jayway.restassured.response.Response;
+import cucumber.api.java.en.Then;
+import org.apache.log4j.Logger;
 
-import static com.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static com.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
-import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -55,13 +51,13 @@ public class StoriesAssert {
         dashboard = toolBar.clickReturnDashboardLink();
     }
 
-    @After("@projectStory")
-    public void afterProjectScenario() {
-        LOGGER.info("status: " + api.getResponse().statusCode());
-        LOGGER.info("response: " + api.getResponse().prettyPrint());
-        if (api.getResponse().statusCode() == SUCCESS_STATUS_CODE) {
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
-        }
-    }
+//    @After("@projectStory")
+//    public void afterProjectScenario() {
+//        LOGGER.info("status: " + api.getResponse().statusCode());
+//        LOGGER.info("response: " + api.getResponse().prettyPrint());
+//        if (api.getResponse().statusCode() == SUCCESS_STATUS_CODE) {
+//            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+//        }
+//    }
 }
 

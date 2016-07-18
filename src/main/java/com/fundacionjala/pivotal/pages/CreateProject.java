@@ -55,7 +55,7 @@ public class CreateProject extends BasePage {
     }
 
     public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable) {
-        GeneralSettingForm.enableCheckBox(projectSampleDataCheckBox, Boolean.parseBoolean(isCheckBoxEnable));
+        //GeneralSettingForm.enableCheckBox(projectSampleDataCheckBox, Boolean.parseBoolean(isCheckBoxEnable));
         return this;
     }
 

@@ -36,9 +36,12 @@ public class ApiResourcesSteps {
         response = getRequest(endPoint);
     }
 
-    @When("^I sen(?:d|t) a POST request to (.*?)$")
-    public void iSendAPOSTRequestWith(String endPoint, Map<String, Object> parameters) {
-        response = postRequest(mapEndpoint(endPoint), parameters);
+    @Given("^I send a POST request to (.*)$")
+    public void iSendAPOSTRequestToEndpoint(String endPoint, Map<String, Object> values) {
+        System.out.println("End point post request: " + endPoint);
+        System.out.println("endpoint post mapped: " + mapEndpoint(endPoint));
+        response = postRequest(mapEndpoint(endPoint), values);
+        System.out.println("post response: " + response.prettyPrint());
     }
 
     @When("^I send a PUT request to (.*?)$")
@@ -68,5 +71,4 @@ public class ApiResourcesSteps {
     public String getEndPoint() {
         return endPoint;
     }
-
 }
