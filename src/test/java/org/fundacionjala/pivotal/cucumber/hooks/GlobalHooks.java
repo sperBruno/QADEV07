@@ -1,10 +1,10 @@
-package com.fundacionjala.pivotal.cucumber.hooks;
+package org.fundacionjala.pivotal.cucumber.hooks;
 
-import com.fundacionjala.pivotal.exceptions.PropertiesInfoReadException;
-import com.fundacionjala.pivotal.framework.selenium.DriverManager;
-import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
+import org.fundacionjala.pivotal.exceptions.PropertiesInfoReadException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
+import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 import cucumber.api.java.Before;
 
