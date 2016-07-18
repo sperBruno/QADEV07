@@ -9,6 +9,6 @@ Feature: Testing for setting projects for Pivotal page
 
   @project
   Scenario: Delete Project
-    When I click Project1.id settings
+    When I click [Project1.id] settings
     And I Delete a project1
-    Then I expect a message Delete say [Project1.name] was successfully deleted.]
+    Then I expect a message Delete say [Project1.name] was successfully deleted.

@@ -35,8 +35,7 @@ public class ProjectAssert {
 
     @Then("^I expect a message Delete say (.*)$")
     public void iExpectAMessageDeleteSayProject1Name(String message) {
-        Mapper.mapDeleteProject(message);
-        String expectMessage = message.replace("project1.name", projectSettingsStepDef.getResponse().jsonPath().get("name"));
+        String expectMessage = Mapper.getPropertiesProject(message);
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }
 
@@ -51,5 +50,6 @@ public class ProjectAssert {
         projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)), projectSettingsStepDef.getValuesMap().get(step));
         });
+        projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
     }
 }

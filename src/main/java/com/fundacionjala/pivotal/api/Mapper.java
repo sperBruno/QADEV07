@@ -21,7 +21,10 @@ public final class Mapper {
 
     private static final String REGEX_SLASH = "/";
 
-    private static Map<String, Response> responseValues = new HashMap<>();;
+    public static final String REGEX_BLACK_SPACE = " ";
+
+    private static Map<String, Response> responseValues = new HashMap<>();
+    ;
 
     private Mapper() {
     }
@@ -41,28 +44,26 @@ public final class Mapper {
         return endPoint;
     }
 
-    public static String mapDeleteProject(String endPoint) {
-        String rex = mapEndpoint(endPoint);
-        return endPoint.replace(endPoint.split("\\[(.*?)\\]")[0],rex);
-    }
-
     public static String mapUrlToDeleteProject(String endPoint) {
         Matcher matches = Pattern.compile(REGEX_UNTIL_PROJECT).matcher(endPoint);
         return matches.find() ? matches.group() : EMPTY_STRING;
     }
 
     public static void addResponse(String key, Response response) {
-   //     System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-     //   System.out.println("add response: ");
-//        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
     }
 
-    public static String mapProjects(String endPoint) {
-        String [] endPoin = endPoint.split("\\.");
-        System.out.println(endPoin.length);
-        StringBuilder value = new StringBuilder();
-        value.append(responseValues.get(endPoin[0]).jsonPath().get(endPoin[1]).toString());
-        return value.toString();
+    public static String getPropertiesProject(String endPoint) {
+        if (endPoint.contains(REGEX_HALF_BRACKET)) {
+            for (String endPontSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+                if (endPontSplit.matches(REGEX_INSIDE_BRACKETS)) {
+                    String[] mapString = endPontSplit.split(REGEX_BRACKETS);
+                    StringBuilder value = new StringBuilder();
+                    value.append(responseValues.get(mapString[1]).jsonPath().get(mapString[2]).toString());
+                    endPoint = endPoint.replace(endPontSplit, value);
+                }
+            }
+        }
+        return endPoint;
     }
 }
