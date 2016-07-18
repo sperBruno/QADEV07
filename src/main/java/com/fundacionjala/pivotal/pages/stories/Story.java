@@ -1,14 +1,17 @@
 package com.fundacionjala.pivotal.pages.stories;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.fundacionjala.pivotal.pages.BasePage;
 import com.fundacionjala.pivotal.pages.IAutomationStep;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static com.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
 
 /**
  * This class is for test the creation, set and delete
@@ -30,6 +33,9 @@ public class Story extends BasePage {
     @FindBy(xpath = "//button[contains(.,'Cancel')]")
     private WebElement cancelCreateStoryButton;
 
+    @FindBy(xpath = "//button[contains(.,'(edit)')]")
+    private WebElement editDescriptionButton;
+
     @FindBy(css = ".rendered_description.tracker_markup")
     private WebElement descriptionText;
 
@@ -42,8 +48,14 @@ public class Story extends BasePage {
     @FindBy(name = "label[name]")
     private WebElement label;
 
+    @FindBy(css = ".autosaves.label.name")
+    private WebElement labelName;
+
     @FindBy(name = "task[description]")
     private WebElement taskTextField;
+
+    @FindBy(xpath = "//div[@class='description tracker_markup']")
+    private WebElement taskName;
 
     @FindBy(css = ".autosaves.std.add")
     private WebElement addTaskButton;
@@ -53,6 +65,9 @@ public class Story extends BasePage {
 
     @FindBy(xpath = "//button[@data-aid='comment-submit']")
     private WebElement addCommentButton;
+
+    @FindBy(xpath = "//div[data-aid='message']")
+    private WebElement comentMessage;
 
     /**
      * Web elements to set story
@@ -77,6 +92,7 @@ public class Story extends BasePage {
 
     @FindBy(xpath = "//button[@data-aid='CancelButton']")
     private WebElement cancelDeleteButton;
+    private String commentMesage;
 
     /**
      * This method is for set the story title text field
@@ -96,6 +112,7 @@ public class Story extends BasePage {
      * @param storyDescription; it is the description for a story
      */
     public void setDescriptionTextarea(String storyDescription) {
+        editDescriptionButton.click();
         storyDescriptionTextField.clear();
         storyDescriptionTextField.sendKeys(storyDescription);
         doneDescriptionButton.click();
@@ -136,16 +153,18 @@ public class Story extends BasePage {
     }
 
     public String getLabel() {
-        return label.getText();
+        return labelName.getText();
     }
 
     public void setLabel(String storyLabel) {
         label.clear();
-        label.sendKeys(storyLabel);
+        label.sendKeys(storyLabel, Keys.ENTER);
     }
 
     public String getTask() {
-        return taskTextField.getText();
+        System.out.println("task name: ");
+        System.out.println(taskName.getText());
+        return taskName.getText();
     }
 
     public void setTask(String storyTask) {
@@ -155,34 +174,45 @@ public class Story extends BasePage {
     }
 
     public String getComment() {
-        return comment.getText();
+        return driver.findElement(By.xpath("//p[contains(.,'" + commentMesage + "')]")).getText();
     }
 
     public void setComment(String storyComment) {
+        commentMesage = storyComment;
         comment.clear();
         comment.sendKeys(storyComment);
         addCommentButton.click();
     }
 
+    /**
+     * General method to set the values of properties of a story
+     *
+     * @param values: Map of properties to set of a story
+     */
     public void executeSteps(final Map<StoriesSteps, Object> values) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
         strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(values.get(STORY_TITLE).toString()));
         strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(values.get(DESCRIPTION).toString()));
-        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
-        strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));
-        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
+//        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
+//        strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));
+//        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
         for (StoriesSteps step : values.keySet()) {
             strategyMap.get(step).executeStep();
         }
     }
 
+    /**
+     * General method to compare the values of properties of a story
+     *
+     * @return a map with the current values
+     */
     public Map<StoriesSteps, Object> getAssertionMap() {
         Map<StoriesSteps, Object> assertionMap = new HashMap<>();
         assertionMap.put(STORY_TITLE, getStoryTitle());
         assertionMap.put(DESCRIPTION, getDescriptionText());
-        assertionMap.put(LABELS, getLabel());
-        assertionMap.put(TASKS, getTask());
-        assertionMap.put(COMMENT, getComment());
+//        assertionMap.put(LABELS, getLabel());
+//        assertionMap.put(TASKS, getTask());
+//        assertionMap.put(COMMENT, getComment());
         return assertionMap;
     }
 }

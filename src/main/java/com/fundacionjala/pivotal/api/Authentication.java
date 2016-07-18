@@ -37,11 +37,12 @@ public class Authentication {
                     .setProxy(PropertiesInfo.getInstance().getProxy())
                     .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
                     .build();
-        }
+        }else
+        {
         requestSpecification = new RequestSpecBuilder()
                 .setRelaxedHTTPSValidation()
                 .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
-                .build();
+                .build();}
     }
 
     public RequestSpecification getRequestSpecification() {

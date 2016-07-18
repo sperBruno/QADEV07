@@ -26,6 +26,7 @@ public class StoriesStepsDef {
 
     public StoriesStepsDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
+        story = new Story();
     }
 
     @Given("^I enter to (.*)$")
@@ -43,7 +44,7 @@ public class StoriesStepsDef {
     }
 
     @When("^I delete the (.*) created$")
-    public void iDeleteTheStoryCreated() {
+    public void iDeleteTheStoryCreated(String storyName) {
         story.clickOnExpanderStory();
         story.clickOnDeleteStoryButton();
         story.clickOnConfirmDeleteStoryButton();

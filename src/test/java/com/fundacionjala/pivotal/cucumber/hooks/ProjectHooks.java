@@ -30,6 +30,7 @@ public class ProjectHooks {
     @After("@project")
     public void afterProjectScenario() {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
+            LOGGER.info("response project hook:" + api.getResponse().prettyPrint());
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
     }
