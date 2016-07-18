@@ -42,9 +42,6 @@ public class ProjectHooks {
     public void tearDown() {
         Setting setting = projectsStepDef.getProject().clickSettingTab();
         String id = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId();
-
-        //deleteAccountUser(setting);
-
         LOGGER.info("project id " + id);
         Response response = RequestManager.deleteRequest(id);
         LOGGER.info("status code " + response.getStatusCode());
@@ -52,9 +49,4 @@ public class ProjectHooks {
         LOGGER.info("Into toolbar");
         assertEquals(DELETE_STATUS_CODE,response.getStatusCode());
     }
-
-//    private void deleteAccountUser(Setting setting) {
-//        Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
-//        account.getToolBarAccount().clickSettingTab().deleteAccount();
-//    }
 }

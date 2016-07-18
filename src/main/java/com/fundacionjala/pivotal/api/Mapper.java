@@ -21,10 +21,9 @@ public final class Mapper {
 
     private static final String REGEX_SLASH = "/";
 
-    public static final String REGEX_BLACK_SPACE = " ";
+    private static final String REGEX_BLACK_SPACE = " ";
 
     private static Map<String, Response> responseValues = new HashMap<>();
-    ;
 
     private Mapper() {
     }

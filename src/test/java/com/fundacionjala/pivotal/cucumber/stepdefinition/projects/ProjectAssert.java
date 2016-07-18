@@ -35,7 +35,7 @@ public class ProjectAssert {
 
     @Then("^I expect a message Delete say (.*)$")
     public void iExpectAMessageDeleteSayProject1Name(String message) {
-        String expectMessage = Mapper.getPropertiesProject(message);
+        final String expectMessage = Mapper.getPropertiesProject(message);
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }
 
