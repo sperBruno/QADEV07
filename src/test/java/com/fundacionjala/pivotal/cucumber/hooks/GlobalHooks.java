@@ -4,6 +4,7 @@ import com.fundacionjala.pivotal.exceptions.PropertiesInfoReadException;
 
 import cucumber.api.java.Before;
 
+import static com.fundacionjala.pivotal.framework.util.Constants.EMPTY_STRING;
 import static com.fundacionjala.pivotal.framework.util.PropertiesInfo.getInstance;
 
 /**
@@ -15,7 +16,7 @@ public class GlobalHooks {
     @Before
     public void beforeAll() {
         if (!BEFORE_ALL_FLAG) {
-            if ("".equals(getInstance().getEmail()) || "".equals(getInstance().getApiToken()) || "".equals(getInstance().getPassword())) {
+            if (EMPTY_STRING.equals(getInstance().getEmail()) || EMPTY_STRING.equals(getInstance().getApiToken()) || EMPTY_STRING.equals(getInstance().getPassword())) {
                 try {
                     throw new PropertiesInfoReadException("Error reading the properties file");
                 } catch (PropertiesInfoReadException e) {

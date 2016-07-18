@@ -23,6 +23,8 @@ public final class Constants {
 
     public static final String PROJECT_ID = "id";
 
+    public static final String EMPTY_STRING = "";
+
     private Constants() {
     }
 }
