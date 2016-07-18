@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.exception;
+package com.fundacionjala.pivotal.exceptions;
 
 /**
  * Created by HenrrySalinas.
