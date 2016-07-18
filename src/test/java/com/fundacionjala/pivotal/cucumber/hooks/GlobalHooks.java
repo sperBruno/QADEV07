@@ -13,7 +13,7 @@ import cucumber.api.java.Before;
  */
 public class GlobalHooks {
 
-    private static final String PROPERTIES_FILE_UNFILLED = "Error reading the properties file one of the next properties is missing: email, api token or password";
+    private static final String PROPERTIES_FILE_UNFILLED = "Error reading the properties file, one of the next properties is missing: email, api token or password";
 
     private static  boolean BEFORE_ALL_FLAG = false;
 
