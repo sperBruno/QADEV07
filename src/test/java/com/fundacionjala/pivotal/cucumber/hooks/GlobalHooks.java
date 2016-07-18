@@ -12,7 +12,7 @@ import cucumber.api.java.Before;
  * Created by HENRRY on 18/07/2016.
  */
 public class GlobalHooks {
-    private boolean BEFORE_ALL_FLAG = false;
+    private static  boolean BEFORE_ALL_FLAG = false;
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
