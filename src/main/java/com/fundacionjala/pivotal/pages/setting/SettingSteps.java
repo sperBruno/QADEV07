@@ -1,4 +1,4 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.setting;
 
 public enum SettingSteps {
     DESCRIPTION,

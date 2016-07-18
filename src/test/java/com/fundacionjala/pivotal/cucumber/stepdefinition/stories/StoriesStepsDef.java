@@ -7,8 +7,8 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.BasePage;
-import com.fundacionjala.pivotal.pages.Project;
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.project.Project;
 import com.fundacionjala.pivotal.pages.stories.SideBarStories;
 import com.fundacionjala.pivotal.pages.stories.StoriesSteps;
 import com.fundacionjala.pivotal.pages.stories.Story;
@@ -21,16 +21,15 @@ public class StoriesStepsDef {
     private Logger LOGGER = Logger.getLogger(BasePage.class.getSimpleName());
     private LoginStepDef loginStepDef;
     private Story story;
-    private Project project;
+    private static Project project;
     private Map<StoriesSteps, Object> storiesValues;
 
     public StoriesStepsDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
-        //       story = new Story();
     }
 
     @Given("^I enter to (.*)$")
-    public void iEnterTo(String projectName) throws Throwable {
+    public void iEnterTo(String projectName) {
         project = loginStepDef.getDashboard().clickOnProject(projectName);
     }
 
@@ -66,5 +65,9 @@ public class StoriesStepsDef {
             story.executeSteps(storiesValues);
         });
         story.clickOnCloseStoryButton();
+    }
+
+    public static Project getProject() {
+        return project;
     }
 }

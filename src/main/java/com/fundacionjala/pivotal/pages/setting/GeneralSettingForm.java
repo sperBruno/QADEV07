@@ -1,9 +1,12 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.setting;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fundacionjala.pivotal.framework.util.Constants;
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
+import com.fundacionjala.pivotal.framework.util.IAutomationStep;
+import com.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -11,27 +14,24 @@ import static com.fundacionjala.pivotal.framework.util.CommonMethods.convertASel
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
 import static com.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
-import static com.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
-import static com.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ALLOW_API_ACCESS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.BUGS_GIVEN_POINTS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.DESCRIPTION;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_INCOMING_EMAIL;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_RSS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ENABLE_TASKS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.HIDE_EMAIL_ADDRESSES;
-import static com.fundacionjala.pivotal.pages.SettingSteps.INITIAL_VELOCITY;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PROJECT_START_DATE;
-import static com.fundacionjala.pivotal.pages.SettingSteps.START_ITERATIONS_ON;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PROJECT_TIME_ZONE;
-import static com.fundacionjala.pivotal.pages.SettingSteps.ITERATION_LENGTH;
-import static com.fundacionjala.pivotal.pages.SettingSteps.POINT_SCALE;
-import static com.fundacionjala.pivotal.pages.SettingSteps.VELOCITY_STRATEGY;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PLAN_CURRENT_ITERATION;
-import static com.fundacionjala.pivotal.pages.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
-import static com.fundacionjala.pivotal.pages.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.PUBLIC_ACCESS;
-import static com.fundacionjala.pivotal.pages.SettingSteps.TITLE_PROJECTS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ALLOW_API_ACCESS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.BUGS_GIVEN_POINTS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.DESCRIPTION;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_INCOMING_EMAIL;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_RSS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_TASKS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.HIDE_EMAIL_ADDRESSES;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.INITIAL_VELOCITY;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_TIME_ZONE;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRATEGY;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.PUBLIC_ACCESS;
+import static com.fundacionjala.pivotal.pages.setting.SettingSteps.TITLE_PROJECTS;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
@@ -85,9 +85,6 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(id = "project_initial_velocity")
     private WebElement projectInitialVelocityTestField;
 
-    @FindBy(id = "project_account_link")
-    private WebElement accountLink;
-
     @FindBy(id = "project_velocity_scheme")
     private WebElement projectVelocityComboBox;
 
@@ -103,6 +100,9 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(id = "delete_link")
     private WebElement deleteLink;
 
+    @FindBy(id = "project_account_link")
+    private WebElement accountLink;
+
     @FindBy(css = ".message")
     private WebElement testMessage;
 
@@ -111,20 +111,20 @@ public class GeneralSettingForm extends BasePage {
 
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(String.valueOf(values.get(TITLE_PROJECTS).toString())));
-        strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(String.valueOf(values.get(DESCRIPTION).toString())));
-        strategyMap.put(START_ITERATIONS_ON, () -> setProjectWeekStartDayComboBox(String.valueOf(values.get(START_ITERATIONS_ON).toString())));
-        strategyMap.put(PROJECT_TIME_ZONE, () -> setProjectTimeZoneComboBox(String.valueOf(values.get(PROJECT_TIME_ZONE).toString())));
-        strategyMap.put(ITERATION_LENGTH, () -> setProjectIterationLengthComboBox(String.valueOf(values.get(ITERATION_LENGTH).toString())));
-        strategyMap.put(POINT_SCALE, () -> setProjectSettingsPointScaleComboBox(String.valueOf(values.get(POINT_SCALE).toString())));
-        strategyMap.put(INITIAL_VELOCITY, () -> setProjectInitialVelocityTestField(String.valueOf(values.get(INITIAL_VELOCITY).toString())));
-        strategyMap.put(VELOCITY_STRATEGY, () -> setProjectVelocityComboBox(String.valueOf(values.get(VELOCITY_STRATEGY).toString())));
-        strategyMap.put(NUMBER_OF_DONE_ITERATION_SHOW, () -> setProjectNumberOfDoneIterationsToShowTestField(String.valueOf(values.get(NUMBER_OF_DONE_ITERATION_SHOW).toString())));
+        strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
+        strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(values.get(DESCRIPTION).toString()));
+        strategyMap.put(PROJECT_START_DATE, () -> setProjectWeekStartDayComboBox(values.get(PROJECT_START_DATE).toString()));
+        strategyMap.put(PROJECT_TIME_ZONE, () -> setProjectTimeZoneComboBox(values.get(PROJECT_TIME_ZONE).toString()));
+        strategyMap.put(ITERATION_LENGTH, () -> setProjectIterationLengthComboBox(values.get(ITERATION_LENGTH).toString()));
+        strategyMap.put(POINT_SCALE, () -> setProjectSettingsPointScaleComboBox(values.get(POINT_SCALE).toString()));
+        strategyMap.put(INITIAL_VELOCITY, () -> setProjectInitialVelocityTestField(values.get(INITIAL_VELOCITY).toString()));
+        strategyMap.put(VELOCITY_STRATEGY, () -> setProjectVelocityComboBox(values.get(VELOCITY_STRATEGY).toString()));
+        strategyMap.put(NUMBER_OF_DONE_ITERATION_SHOW, () -> setProjectNumberOfDoneIterationsToShowTestField(values.get(NUMBER_OF_DONE_ITERATION_SHOW).toString()));
         strategyMap.put(PLAN_CURRENT_ITERATION, () -> setProjectAutomaticPlanningCheckBox(Boolean.parseBoolean(values.get(PLAN_CURRENT_ITERATION).toString())));
         strategyMap.put(ENABLE_TASKS, () -> setProjectEnableTasksCheckbox(Boolean.parseBoolean(values.get(ENABLE_TASKS).toString())));
         strategyMap.put(ALLOW_API_ACCESS, () -> setProjectAPIAccessCheckbox(Boolean.parseBoolean(values.get(ALLOW_API_ACCESS).toString())));
         strategyMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, () -> setProjectUseHttpsCheckBox(Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACCESS).toString())));
-        strategyMap.put(ENABLE_RSS, () -> setProjectAtomRssCheckBox(Boolean.parseBoolean(String.valueOf(values.get(ENABLE_RSS).toString()))));
+        strategyMap.put(ENABLE_RSS, () -> setProjectAtomRssCheckBox(Boolean.parseBoolean(values.get(ENABLE_RSS).toString())));
         strategyMap.put(PUBLIC_ACCESS, () -> setProjectPublicAccessCheckBox(Boolean.parseBoolean(values.get(PUBLIC_ACCESS).toString())));
         strategyMap.put(ENABLE_INCOMING_EMAIL, () -> setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));
         strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
@@ -195,7 +195,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm clickSaveButton() {
-        clickWebElement(saveButton);
+        saveButton.click();
         return this;
     }
 
@@ -235,7 +235,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public DeleteProjectAlert clickLinkDeleteProject() {
-        clickWebElement(deleteLink);
+        deleteLink.click();
         return new DeleteProjectAlert();
     }
 
@@ -245,7 +245,7 @@ public class GeneralSettingForm extends BasePage {
 
 
     public String getDescriptionText() {
-        return projectDescriptionTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return projectDescriptionTestField.getAttribute("value");
     }
 
     public String getProjectId() {
@@ -253,14 +253,14 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getProjectTitleTestField() {
-        return projectTitleTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return projectTitleTestField.getAttribute("value");
     }
 
-    public String getTextNumberIterationShow() {
-        return projectNumberOfDoneIterationsToShowTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
+    public String getNumberIterationShow() {
+        return projectNumberOfDoneIterationsToShowTestField.getAttribute("value");
     }
-    public String getTextInitialVelocity() {
-        return projectInitialVelocityTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
+    public String getInitialVelocity() {
+        return projectInitialVelocityTestField.getAttribute("value");
     }
     public String getTextProjectWeekStartDaySelect() {
         return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
@@ -271,7 +271,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectTimeZone() {
-        return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute("value");
     }
 
     public String getTextProjectIterationLength() {
@@ -283,7 +283,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectVelocity() {
-        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
     }
 
     public boolean getTextProjectAutomaticPlanning() {
@@ -318,6 +318,10 @@ public class GeneralSettingForm extends BasePage {
         return projectBugsCheckBox.isSelected();
     }
 
+    public Accounts clickAccountLink(){
+                accountLink.click();
+                return new Accounts();
+            }
     public boolean getEnableProjectsTasks() {
         return projectEnableTasksCheckbox.isSelected();
     }
