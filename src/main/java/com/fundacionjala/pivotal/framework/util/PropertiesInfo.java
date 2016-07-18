@@ -7,6 +7,22 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
+import static com.fundacionjala.pivotal.framework.util.Constants.API_TOKEN;
+import static com.fundacionjala.pivotal.framework.util.Constants.CONFIG_PROPERTIES;
+import static com.fundacionjala.pivotal.framework.util.Constants.EMAIL;
+import static com.fundacionjala.pivotal.framework.util.Constants.LOCAL_BROWSER;
+import static com.fundacionjala.pivotal.framework.util.Constants.PASSWORD;
+import static com.fundacionjala.pivotal.framework.util.Constants.PROXY_HOST;
+import static com.fundacionjala.pivotal.framework.util.Constants.PROXY_PORT;
+import static com.fundacionjala.pivotal.framework.util.Constants.REMOTE_ACCESS_KEY;
+import static com.fundacionjala.pivotal.framework.util.Constants.REMOTE_BROWSER;
+import static com.fundacionjala.pivotal.framework.util.Constants.REMOTE_BROWSER_VERSION;
+import static com.fundacionjala.pivotal.framework.util.Constants.REMOTE_PLATFORM;
+import static com.fundacionjala.pivotal.framework.util.Constants.REMOTE_TEST_NAME;
+import static com.fundacionjala.pivotal.framework.util.Constants.REMOTE_USER;
+import static com.fundacionjala.pivotal.framework.util.Constants.URL;
+import static com.fundacionjala.pivotal.framework.util.Constants.URL_API;
+
 /**
  * This class is for get the properties defined into properties file
  *
@@ -15,8 +31,6 @@ import org.apache.log4j.Logger;
 public class PropertiesInfo {
 
     private static final Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
-
-    private static final String CONFIG_PROPERTIES = "pivotal.properties";
 
     private static PropertiesInfo instance;
 
@@ -55,47 +69,47 @@ public class PropertiesInfo {
     }
 
     public String getEmail() {
-        return getProperty("email");
+        return getProperty(EMAIL);
     }
 
     public String getPassword() {
-        return getProperty("password");
+        return getProperty(PASSWORD);
     }
 
     public String getUrl() {
-        return getProperty("url");
+        return getProperty(URL);
     }
 
     public String getUrlApi() {
-        return getProperty("urlApi");
+        return getProperty(URL_API);
     }
 
     public String getApiToken() {
-        return getProperty("apiToken");
+        return getProperty(API_TOKEN);
     }
 
     public String getSauceUser() {
-        return getProperty("remoteUser");
+        return getProperty(REMOTE_USER);
     }
 
     public String getSauceAccessKey() {
-        return getProperty("remoteAccessKey");
+        return getProperty(REMOTE_ACCESS_KEY);
     }
 
     public String getBrowser() {
-        return getProperty("localBrowser");
+        return getProperty(LOCAL_BROWSER);
     }
 
     public String getRemoteBrowser() {
-        return getProperty("remoteBrowser");
+        return getProperty(REMOTE_BROWSER);
     }
 
     public String getBrowserVersion() {
-        return getProperty("remoteBrowserVersion");
+        return getProperty(REMOTE_BROWSER_VERSION);
     }
 
     public String getPlatform() {
-        return getProperty("remotePlatform");
+        return getProperty(REMOTE_PLATFORM);
     }
 
     public String getProxy() {
@@ -103,15 +117,14 @@ public class PropertiesInfo {
     }
 
     public String getProxyHost() {
-        return getProperty("proxyHost");
+        return getProperty(PROXY_HOST);
     }
 
     public String getProxyPort() {
-        return getProperty("proxyPort");
+        return getProperty(PROXY_PORT);
     }
 
     public String getRemoteTestName() {
-        return getProperty("remoteTestName");
+        return getProperty(REMOTE_TEST_NAME);
     }
-
 }

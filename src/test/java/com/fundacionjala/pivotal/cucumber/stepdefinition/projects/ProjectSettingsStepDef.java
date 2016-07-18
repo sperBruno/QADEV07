@@ -2,10 +2,14 @@ package com.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
-import com.fundacionjala.pivotal.api.Mapper;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.*;
+import com.fundacionjala.pivotal.pages.Setting;
+import com.fundacionjala.pivotal.pages.Dashboard;
+import com.fundacionjala.pivotal.pages.DeleteProjectAlert;
+import com.fundacionjala.pivotal.pages.GeneralSettingForm;
+import com.fundacionjala.pivotal.pages.SettingSteps;
+import com.fundacionjala.pivotal.pages.SideBarSetting;
 import com.jayway.restassured.response.Response;
 
 import cucumber.api.java.en.And;
@@ -33,9 +37,9 @@ public class ProjectSettingsStepDef {
         this.loginStepDef = loginStepDef;
     }
 
-    @When("^I click Project1.name settings$")
-    public void iClickProjectIdSettings() {
-        String project = apiResourcesSteps.getResponse().jsonPath().get("id") + "";
+    @When("^I click (.*) settings$")
+    public void iClickProjectIdSettings(String name) {
+        String project = Mapper.getPropertiesProject(name);
         setting = loginStepDef.getDashboard().clickSettingsLink(project);
     }
 
@@ -70,7 +74,7 @@ public class ProjectSettingsStepDef {
         return valuesMap;
     }
 
-    public Response getResponse() {
-        return apiResourcesSteps.getResponse();
+    public Setting getSetting() {
+        return setting;
     }
 }

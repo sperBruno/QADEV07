@@ -3,8 +3,8 @@ package com.fundacionjala.pivotal.pages.stories;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fundacionjala.pivotal.pages.BasePage;
-import com.fundacionjala.pivotal.pages.IAutomationStep;
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

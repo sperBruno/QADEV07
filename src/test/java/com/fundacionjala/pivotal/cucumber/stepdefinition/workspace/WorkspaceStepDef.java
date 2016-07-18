@@ -1,20 +1,20 @@
 package com.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 
 import com.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.CreateWorkspace;
-import com.fundacionjala.pivotal.pages.Dashboard;
-import com.fundacionjala.pivotal.pages.SideBarWorkspace;
-import com.fundacionjala.pivotal.pages.Workspace;
+import com.fundacionjala.pivotal.pages.dashboard.CreateWorkspace;
+import com.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import com.fundacionjala.pivotal.pages.workspace.SideBarWorkspace;
+import com.fundacionjala.pivotal.pages.workspace.Workspace;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+
+import static com.fundacionjala.pivotal.framework.util.Constants.DASHBOARD;
 
 /**
  * Created by Daniel on 07/07/2016.
  */
 public class WorkspaceStepDef {
-
-    private static final String DASHBOARD = "Dashboard";
 
     private CreateWorkspace createWorkspace;
 

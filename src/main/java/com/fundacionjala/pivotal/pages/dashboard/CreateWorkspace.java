@@ -1,5 +1,7 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.dashboard;
 
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.workspace.Workspace;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,7 +20,6 @@ public class CreateWorkspace extends BasePage {
     private WebElement cancelCreateWorkspaceLink;
 
     /**
-     *
      * @param workspaceName
      */
     public void setUserNameTestField(String workspaceName) {
@@ -27,7 +28,6 @@ public class CreateWorkspace extends BasePage {
     }
 
     /**
-     *
      * @return Workspace
      */
     public Workspace clickCreateWorkspaceLink() {

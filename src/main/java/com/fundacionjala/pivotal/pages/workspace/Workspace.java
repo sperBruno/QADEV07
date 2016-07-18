@@ -1,7 +1,9 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.workspace;
 
 import java.util.concurrent.TimeUnit;
 
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;

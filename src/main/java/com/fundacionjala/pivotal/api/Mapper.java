@@ -7,21 +7,25 @@ import java.util.regex.Pattern;
 
 import com.jayway.restassured.response.Response;
 
+import static com.fundacionjala.pivotal.framework.util.Constants.EMPTY_STRING;
+import static com.fundacionjala.pivotal.framework.util.Constants.PROJECT_1;
+import static com.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
+import static com.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
+import static com.fundacionjala.pivotal.framework.util.Constants.REGEX_HALF_BRACKET;
+import static com.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
+import static com.fundacionjala.pivotal.framework.util.Constants.REGEX_SLASH;
+import static com.fundacionjala.pivotal.framework.util.Constants.REGEX_UNTIL_PROJECT;
+
 public final class Mapper {
 
-    private static final String REGEX_INSIDE_BRACKETS = "[\\[]+[\\w.]+[^\\(]+\\]";
+    private static final int INDEX_1 = 1;
 
-    private static final String REGEX_HALF_BRACKET = "[";
+    private static final int INDEX_2 = 2;
 
-    private static final String REGEX_BRACKETS = "^\\[|\\]|\\.";
-
-    private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
-
-    private static final String EMPTY_STRING = "";
-
-    private static final String REGEX_SLASH = "/";
+    public static final String REGEX_BLACK_SPACE = " ";
 
     private static Map<String, Response> responseValues = new HashMap<>();;
+    ;
 
     private Mapper() {
     }
@@ -32,7 +36,7 @@ public final class Mapper {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     StringBuilder value = new StringBuilder();
-                    String toAdd = responseValues.get(mapString[1]).jsonPath().get(mapString[2]);
+                    String toAdd = responseValues.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]);
                     value.append(toAdd);
                     endPoint = endPoint.replace(endPointSplit, value);
                 }
@@ -49,7 +53,6 @@ public final class Mapper {
     public static void addResponse(String key, Response response) {
         System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-        System.out.println("add response: ");
-        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
+        System.out.println(String.valueOf(responseValues.get(PROJECT_1).jsonPath().get(PROJECT_ID)));
     }
 }

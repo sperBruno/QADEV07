@@ -1,5 +1,7 @@
-package com.fundacionjala.pivotal.pages;
+package com.fundacionjala.pivotal.pages.workspace;
 
+import com.fundacionjala.pivotal.pages.login.BasePage;
+import com.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,11 +17,11 @@ public class DeleteWorkspace extends BasePage {
     private WebElement cancelDeleteLink;
 
     public void clickCancelDeleteLink() {
-        cancelDeleteLink.click ();
+        cancelDeleteLink.click();
     }
 
     public Dashboard clickConfirmDeleteLink() {
         confirmDeleteLink.click();
-        return new Dashboard ();
+        return new Dashboard();
     }
 }
