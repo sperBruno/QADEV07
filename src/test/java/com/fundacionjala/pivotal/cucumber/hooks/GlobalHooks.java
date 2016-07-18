@@ -18,12 +18,12 @@ public class GlobalHooks {
 
     @Before
     public void beforeAll() throws PropertiesInfoReadException {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                DriverManager.getInstance().quitDriver();
-            }
-        });
         if (!BEFORE_ALL_FLAG) {
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                public void run() {
+                    DriverManager.getInstance().quitDriver();
+                }
+            });
             if (StringUtils.isBlank(PROPERTIES_INFO.getEmail()) || StringUtils.isBlank(PROPERTIES_INFO.getApiToken()) || StringUtils.isBlank(PROPERTIES_INFO.getPassword())) {
                 throw new PropertiesInfoReadException("Error reading the properties file");
             }
