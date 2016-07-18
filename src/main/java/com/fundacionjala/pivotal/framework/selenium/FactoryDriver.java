@@ -2,6 +2,11 @@ package com.fundacionjala.pivotal.framework.selenium;
 
 import org.openqa.selenium.WebDriverException;
 
+/**
+ * @author Henrry Salinas.
+ *
+ * This class handle the logic related to what kind of browser will be used in the test
+ */
 public final class FactoryDriver {
 
     private FactoryDriver() {

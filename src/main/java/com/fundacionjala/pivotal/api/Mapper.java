@@ -7,6 +7,11 @@ import java.util.regex.Pattern;
 
 import com.jayway.restassured.response.Response;
 
+/**
+ * @author Henrry Salinas && Mijhail Villarroel
+ *
+ * The purpose of this class is to provide methods that handle a string as end point
+ */
 public final class Mapper {
 
     private static final String REGEX_INSIDE_BRACKETS = "[\\[]+[\\w.]+[^\\(]+\\]";
@@ -26,6 +31,11 @@ public final class Mapper {
     private Mapper() {
     }
 
+    /**
+     * Given a string with a pattern like /endpoint/[key.value] this method should return that string as a valid endpoint
+     * @param endPoint
+     * @return a string as endpoint
+     */
     public static String mapEndpoint(String endPoint) {
         if (endPoint.contains(REGEX_HALF_BRACKET)) {
             for (String endPointSplit : endPoint.split(REGEX_SLASH)) {
@@ -47,9 +57,6 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
-        System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-        System.out.println("add response: ");
-        System.out.println(String.valueOf(responseValues.get("Project1").jsonPath().get("id")));
     }
 }

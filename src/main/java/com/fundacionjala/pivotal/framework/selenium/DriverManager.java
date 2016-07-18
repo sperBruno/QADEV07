@@ -2,21 +2,24 @@ package com.fundacionjala.pivotal.framework.selenium;
 
 import java.util.concurrent.TimeUnit;
 
+import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
+
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
-
-import com.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.LOAD_PAGE_TIME;
+import static com.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
+
+/**
+ * @author HenrrySalinas && Bruno Barrios.
+ *
+ * The purpose of this class is to provide basic methods for manage the Selenium driver
+ * and initialize the logger main resources path
+ *
+ */
 public class DriverManager {
-
-    public static final int IMPLICIT_WAIT_TIME = 15;
-
-    public static final int WAIT_TIME = 30;
-
-    public static final int LOAD_PAGE_TIME = 40;
-
-    public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
 
     private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
 

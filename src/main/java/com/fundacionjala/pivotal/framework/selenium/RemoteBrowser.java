@@ -9,7 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
+/**
+ * @author Henrry Salinas.
+ *
+ * This class initialize the Remote Selenium Web Driver given the required values in properties file
+ */
 public class RemoteBrowser implements IDriver {
 
     private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
@@ -21,7 +25,9 @@ public class RemoteBrowser implements IDriver {
     private static final String HTTP_PROXY_HOST = "http.proxyHost";
 
     private static final String HTTP_PROXY_PORT = "http.proxyPort";
-
+    /**
+     *{@inheritDoc}
+     */
     public WebDriver initDriver() {
         System.getProperties().put(HTTP_PROXY_HOST, PROPERTIES_INFO.getProxyHost());
         System.getProperties().put(HTTP_PROXY_PORT, PROPERTIES_INFO.getProxyPort());
