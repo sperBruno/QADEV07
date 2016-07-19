@@ -8,7 +8,7 @@ Feature: Account
       | PROJECT_ACCOUNT     | luis                |
       | PROJECT_SAMPLE_DATA | true                |
 
- 
+
   Scenario: Delete Account of a Project
     Given I delete the account of the project
     Then I should receive a message of account deleted
