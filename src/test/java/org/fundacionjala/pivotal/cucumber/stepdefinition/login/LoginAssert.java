@@ -1,10 +1,9 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.login;
 
-import cucumber.api.java.en.Then;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.junit.Assert;
 
-import static org.junit.Assert.assertEquals;
+import cucumber.api.java.en.Then;
 
 /**
  * Created by mijhailvillarroel on 6/30/2016.
@@ -18,7 +17,7 @@ public class LoginAssert {
     }
 
 
-    @Then("^It is expected that the display userName$")
+    @Then("^I expect the userName is displayed$")
     public void itIsExpectedThatTheDisplayUserName() {
         final String endPointProfile = "/me";
         final String fieldUsername = "username";
