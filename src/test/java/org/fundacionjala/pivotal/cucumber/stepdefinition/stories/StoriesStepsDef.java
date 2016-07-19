@@ -6,12 +6,15 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.stories.SideBarStories;
 import org.fundacionjala.pivotal.pages.stories.StoriesSteps;
 import org.fundacionjala.pivotal.pages.stories.Story;
+
+import static org.fundacionjala.pivotal.api.Mapper.mapProject;
 
 /**
  * @author RosarioGarcia
@@ -31,7 +34,8 @@ public class StoriesStepsDef {
 
     @Given("^I enter to (.*)$")
     public void iEnterTo(String projectName) {
-        project = loginStepDef.getDashboard().clickOnProject(projectName);
+        String name = mapProject(projectName);
+        project = loginStepDef.getDashboard().clickOnProject(name);
     }
 
     @And("^I create a new story$")
