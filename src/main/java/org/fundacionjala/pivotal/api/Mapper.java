@@ -1,20 +1,14 @@
 package org.fundacionjala.pivotal.api;
 
+import com.jayway.restassured.response.Response;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jayway.restassured.response.Response;
-
-import static org.fundacionjala.pivotal.framework.util.Constants.EMPTY_STRING;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_1;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
-import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_HALF_BRACKET;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
-import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_SLASH;
-import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_UNTIL_PROJECT;
 
 public final class Mapper {
 
@@ -30,13 +24,15 @@ public final class Mapper {
 
     private static final String REGEX_BLACK_SPACE = " ";
 
-    private static Map<String, Response> responseValues = new HashMap<>();;
+    private static Map<String, Response> responseValues = new HashMap<>();
+    ;
 
     private Mapper() {
     }
 
     /**
      * Method to format the enpoint with the ids specified
+     *
      * @param endPoint: endpoint with Key and Value to replace
      * @return: the new endpoint with ids
      */

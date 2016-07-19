@@ -1,18 +1,17 @@
 package org.fundacionjala.pivotal.pages.stories;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
+import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.TASKS;
 
 /**
  * This class is for test the creation, set and delete
