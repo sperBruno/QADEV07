@@ -2,11 +2,10 @@ package org.fundacionjala.pivotal.api;
 
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.specification.RequestSpecification;
-
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
-import static org.fundacionjala.pivotal.framework.util.Constants.TOKEN_HEADER;
 import static com.jayway.restassured.RestAssured.baseURI;
+import static org.fundacionjala.pivotal.framework.util.Constants.TOKEN_HEADER;
 
 /**
  *
@@ -30,11 +29,18 @@ public class Authentication {
 
     private void initApi() {
         baseURI = PropertiesInfo.getInstance().getUrlApi();
-        requestSpecification = new RequestSpecBuilder()
-                .setRelaxedHTTPSValidation()
-                .setProxy(PropertiesInfo.getInstance().getProxy())
-                .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
-                .build();
+        if (PropertiesInfo.getInstance().getProxy() != null) {
+            requestSpecification = new RequestSpecBuilder()
+                    .setRelaxedHTTPSValidation()
+                    .setProxy(PropertiesInfo.getInstance().getProxy())
+                    .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
+                    .build();
+        } else {
+            requestSpecification = new RequestSpecBuilder()
+                    .setRelaxedHTTPSValidation()
+                    .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
+                    .build();
+        }
     }
 
     public RequestSpecification getRequestSpecification() {

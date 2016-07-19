@@ -9,6 +9,7 @@ import org.fundacionjala.pivotal.pages.project.ProjectSteps;
 import cucumber.api.java.en.Given;
 
 /**
+ * This class is used to execute the step of project scenarios.
  * Created by BrunoBarrios on 7/7/2016.
  */
 public class ProjectsStepDef {
@@ -21,10 +22,20 @@ public class ProjectsStepDef {
 
     private Map<ProjectSteps, Object> valuesMap;
 
+    /**
+     * This class receives LoginStepDef as a parameter.
+     *
+     * @param loginStepDef
+     */
     public ProjectsStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
     }
 
+    /**
+     * This method is used to create a project.
+     *
+     * @param values are the required parameters to create a Project.
+     */
     @Given("^I create a new project$")
     public void iCreateANewProject(Map<ProjectSteps, Object> values) {
         this.valuesMap = values;
