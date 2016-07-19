@@ -1,12 +1,13 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
-import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
+
 /**
- * Created by danielgonzales on 7/14/2016.
+ * Created by danielgonzales
  */
 public class DeleteWorkspace extends BasePage {
 

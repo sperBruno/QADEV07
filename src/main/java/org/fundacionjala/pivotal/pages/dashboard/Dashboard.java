@@ -2,10 +2,11 @@ package org.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+import org.fundacionjala.pivotal.pages.workspace.Workspace;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,9 @@ public class Dashboard extends BasePage {
 
     @FindBy(id = "notice")
     private WebElement deleteMessageText;
+
+    @FindBy(id = "notice")
+    private WebElement messageDeleteWorkspace;
 
     /**
      * @return
@@ -109,7 +113,20 @@ public class Dashboard extends BasePage {
         return new Accounts();
     }
 
+
+    public Workspace clickNameWorkspaceLink(String nameWorkspace) {
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
+        System.out.println (nameWorkspaceLink.getText ());
+        nameWorkspaceLink.click();
+        return new Workspace();
+    }
+
+    public String getMessageDeleteWorkspace() {
+        return messageDeleteWorkspace.getText();
+    }
+
     public void refreshPage() {
         driver.navigate().refresh();
+
     }
 }

@@ -1,9 +1,10 @@
 package org.fundacionjala.pivotal.pages.accounts;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import org.fundacionjala.pivotal.pages.login.BasePage;
 
 /**
  * Created by brunobarrios on 7/15/2016.
@@ -14,10 +15,9 @@ public class AccountSetting extends BasePage {
     private WebElement deleteAccountLink;
 
     private String message;
-    @FindBy(id = "notice")
-    private WebElement deleteAccountMessage;
 
-    @FindBy(xpath = "//input[@id='account_name']")
+
+    @FindBy(css = ".account_name>span")
     private WebElement accountName;
 
     public Accounts deleteAccount() {
