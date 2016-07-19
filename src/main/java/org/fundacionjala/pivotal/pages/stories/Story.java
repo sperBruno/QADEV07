@@ -183,10 +183,10 @@ public class Story extends BasePage {
      */
     public void executeSteps(final Map<StoriesSteps, Object> values) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(values.get(STORY_TITLE).toString()));
-        strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(values.get(DESCRIPTION).toString()));
-        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
-        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
+        strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(String.valueOf(values.get(STORY_TITLE))));
+        strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(String.valueOf(values.get(DESCRIPTION))));
+        strategyMap.put(LABELS, () -> setLabel(String.valueOf(values.get(LABELS))));
+        strategyMap.put(COMMENT, () -> setComment(String.valueOf(values.get(COMMENT))));
         for (StoriesSteps step : values.keySet()) {
             strategyMap.get(step).executeStep();
         }
