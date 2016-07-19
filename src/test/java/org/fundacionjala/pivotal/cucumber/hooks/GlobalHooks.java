@@ -9,7 +9,9 @@ import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import cucumber.api.java.Before;
 
 /**
- * Created by HENRRY on 18/07/2016.
+ * @author  Henrry Salinas.
+ *
+ * This class stores the global hooks methods required to run the test
  */
 public class GlobalHooks {
 

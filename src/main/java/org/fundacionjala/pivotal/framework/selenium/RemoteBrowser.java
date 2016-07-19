@@ -14,12 +14,20 @@ import static org.fundacionjala.pivotal.framework.util.Constants.CAPABILITY_NAME
 import static org.fundacionjala.pivotal.framework.util.Constants.HTTP_PROXY_HOST;
 import static org.fundacionjala.pivotal.framework.util.Constants.HTTP_PROXY_PORT;
 
+/**
+ * @author Henrry Salinas.
+ *
+ * This class initialize the Remote Selenium Web Driver given the required values in properties file
+ */
 public class RemoteBrowser implements IDriver {
 
     private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
+    /**
+     *{@inheritDoc}
+     */
     public WebDriver initDriver() {
         System.getProperties().put(HTTP_PROXY_HOST, PROPERTIES_INFO.getProxyHost());
         System.getProperties().put(HTTP_PROXY_PORT, PROPERTIES_INFO.getProxyPort());
