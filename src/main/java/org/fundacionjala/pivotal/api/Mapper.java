@@ -32,8 +32,6 @@ public final class Mapper {
 
     private static final Map<String, Response> RESPONSE_VALUES = new HashMap<>();
 
-    ;
-
     private Mapper() {
     }
 

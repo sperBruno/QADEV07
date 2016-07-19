@@ -14,7 +14,7 @@ import org.fundacionjala.pivotal.pages.stories.StoriesSteps;
 import org.fundacionjala.pivotal.pages.stories.Story;
 
 /**
- * Created by Charito on 7/9/2016.
+ * @author RosarioGarcia
  */
 public class StoriesStepsDef {
 
