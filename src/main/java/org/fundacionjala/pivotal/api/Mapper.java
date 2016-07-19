@@ -12,9 +12,9 @@ import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BR
 
 public final class Mapper {
 
-    public static final String REGEX_KEY = "\\[(.*?)\\.";
-    public static final String REGEX_VALUE = "\\.(.*?)\\]";
-    public static final String REGEX_REPLACE = "\\[(.*?)\\]";
+    private static final String REGEX_KEY = "\\[(.*?)\\.";
+    private static final String REGEX_VALUE = "\\.(.*?)\\]";
+    private static final String REGEX_REPLACE = "\\[(.*?)\\]";
     private static final String REGEX_HALF_BRACKET = "[";
     private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
     private static final String EMPTY_STRING = "";
@@ -24,8 +24,7 @@ public final class Mapper {
 
     private static final String REGEX_BLACK_SPACE = " ";
 
-    private static Map<String, Response> responseValues = new HashMap<>();
-    ;
+    private static final Map<String, Response> responseValues = new HashMap<>();
 
     private Mapper() {
     }
