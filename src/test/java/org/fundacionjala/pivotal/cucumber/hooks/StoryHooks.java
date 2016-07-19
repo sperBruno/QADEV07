@@ -27,6 +27,7 @@ public class StoryHooks {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode() || DELETE_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID_STORY).toString());
         }
+        toolBar.refreshPage();
     }
 
     @After("@stories")
@@ -35,5 +36,6 @@ public class StoryHooks {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
+        toolBar.refreshPage();
     }
 }

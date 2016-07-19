@@ -1,8 +1,14 @@
 package org.fundacionjala.pivotal.pages.stories;
 
+import java.util.concurrent.TimeUnit;
+
 import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
 /**
  * This class contains the web elements from side bar
@@ -14,11 +20,17 @@ public class SideBarStories extends BasePage {
     private WebElement addStoryButton;
 
     /**
-     * Method to do click on the booton "Add Story"
+     * Method to do click on the botton "Add Story"
      * @return a Story object
      */
     public Story clickOnAddStoryButton() {
-        addStoryButton.click();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            addStoryButton.click();
+        } catch (NoSuchElementException e) {
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new Story();
     }
 }
