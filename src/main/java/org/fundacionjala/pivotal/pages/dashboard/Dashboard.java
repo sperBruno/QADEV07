@@ -77,10 +77,28 @@ public class Dashboard extends BasePage {
         return deleteMessageText.getText();
     }
 
+    /**
+     * This method is used to enter to main page of
+     * project created using its name.
+     *
+     * @param projectName: This parameter is the project name of project created
+     * @return: return the project main page
+     * @autor Rosario Garcia
+     */
     public Project clickOnProject(String projectName) {
-        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
-        projectNameLink.click();
+        refreshPage();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
+            projectNameLink.click();
+
+        } catch (NoSuchElementException e) {
+
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new Project();
+
     }
 
     public Setting clickSettingsLink(String nameProjects) {
@@ -95,6 +113,7 @@ public class Dashboard extends BasePage {
         return new Accounts();
     }
 
+
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
         WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
         System.out.println (nameWorkspaceLink.getText ());
@@ -104,5 +123,9 @@ public class Dashboard extends BasePage {
 
     public String getMessageDeleteWorkspace() {
         return messageDeleteWorkspace.getText();
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+
     }
 }
