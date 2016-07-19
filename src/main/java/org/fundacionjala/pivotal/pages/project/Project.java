@@ -27,7 +27,6 @@ public class Project extends BasePage {
     private WebElement settings;
 
     public Setting clickSettingTab() {
-        driver.manage().timeouts().implicitlyWait(IMPLICIT_PROJECT_WAIT, TimeUnit.SECONDS);
         settings.click();
         return new Setting();
     }
