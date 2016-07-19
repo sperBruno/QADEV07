@@ -21,6 +21,9 @@ public class StoryHooks {
         toolBar = new ToolBar();
     }
 
+    /**
+     * Method to delete a project after do edit and delete test of a story
+     */
     @After("@story")
     public void afterStoryScenario() {
         toolBar.clickReturnDashboardLink();
@@ -29,11 +32,5 @@ public class StoryHooks {
         }
     }
 
-    @After("@stories")
-    public void afterProjectScenario() {
-        toolBar.clickReturnDashboardLink();
-        if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
-        }
-    }
+
 }
