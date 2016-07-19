@@ -1,14 +1,15 @@
 package org.fundacionjala.pivotal.cucumber.hooks;
 
 
+import com.jayway.restassured.response.Response;
+import cucumber.api.java.After;
+import org.apache.log4j.Logger;
+
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
-import com.jayway.restassured.response.Response;
-import cucumber.api.java.After;
-import org.apache.log4j.Logger;
 
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
@@ -20,6 +21,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * This hook will clean the enviroment after Project feature is axecute.
+ *
  * @author Bruno Barrios
  */
 public class ProjectHooks {
@@ -41,7 +43,7 @@ public class ProjectHooks {
     @After("@project")
     public void afterProjectScenario() {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
-            System.out.println("project idggggggggggg"+from(api.getResponse().asString()).get(PROJECT_ID).toString());
+            LOGGER.info("response project hook:" + api.getResponse().prettyPrint());
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
     }
@@ -58,11 +60,12 @@ public class ProjectHooks {
         LOGGER.info("status code " + response.getStatusCode());
         setting.getToolBar().clickReturnDashboardLink();
         LOGGER.info("Into toolbar");
-        assertEquals(DELETE_STATUS_CODE,response.getStatusCode());
+        assertEquals(DELETE_STATUS_CODE, response.getStatusCode());
     }
 
     /**
      * This method is used to delete an account of a project
+     *
      * @param setting
      */
     private void deleteAccountUser(Setting setting) {

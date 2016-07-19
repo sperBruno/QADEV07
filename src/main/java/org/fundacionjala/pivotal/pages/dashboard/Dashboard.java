@@ -2,16 +2,17 @@ package org.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
+
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+import org.fundacionjala.pivotal.pages.workspace.Workspace;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
@@ -36,6 +37,9 @@ public class Dashboard extends BasePage {
 
     @FindBy(id = "notice")
     private WebElement deleteMessageText;
+
+    @FindBy(id = "notice")
+    private WebElement messageDeleteWorkspace;
 
     /**
      * @return
@@ -76,10 +80,28 @@ public class Dashboard extends BasePage {
         return deleteMessageText.getText();
     }
 
+    /**
+     * This method is used to enter to main page of
+     * project created using its name.
+     *
+     * @param projectName: This parameter is the project name of project created
+     * @return: return the project main page
+     * @autor Rosario Garcia
+     */
     public Project clickOnProject(String projectName) {
-        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
-        projectNameLink.click();
+        refreshPage();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
+            projectNameLink.click();
+
+        } catch (NoSuchElementException e) {
+
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new Project();
+
     }
 
     public Setting clickSettingsLink(String nameProjects) {
@@ -94,5 +116,22 @@ public class Dashboard extends BasePage {
         userNameText.click();
         accountOption.click();
         return new Accounts();
+    }
+
+
+    public Workspace clickNameWorkspaceLink(String nameWorkspace) {
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
+        System.out.println (nameWorkspaceLink.getText ());
+        nameWorkspaceLink.click();
+        return new Workspace();
+    }
+
+    public String getMessageDeleteWorkspace() {
+        return messageDeleteWorkspace.getText();
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+
     }
 }

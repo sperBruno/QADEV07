@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Created by danielgonzales on 7/13/2016.
+ * Created by danielgonzales
  */
 public class SideBarWorkspace extends BasePage {
 
@@ -22,20 +22,20 @@ public class SideBarWorkspace extends BasePage {
     private WebElement saveWorkspaceLink;
 
 
-    public void clickAddProjectLink() {
-        addProjectLink.click();
+    public void clickAddProjectLink () {
+        addProjectLink.click ();
     }
 
-    public void clicklistProjectLink() {
-        listProjectLink.click();
+    public void clickListProjectLink () {
+        listProjectLink.click ();
     }
 
-    public void clickidProjectLink() {
-        idProjectLink.click();
+    public void clickIdProjectLink () {
+        idProjectLink.click ();
     }
 
-    public Workspace clickSaveWorkspaceLink() {
-        saveWorkspaceLink.click();
-        return new Workspace();
+    public Workspace clickSaveWorkspaceLink () {
+        saveWorkspaceLink.click ();
+        return new Workspace ();
     }
 }

@@ -1,7 +1,7 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.login;
 
-import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import cucumber.api.java.en.When;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 
 import static org.fundacionjala.pivotal.pages.login.Login.loginAsPrimaryUser;
 
@@ -15,6 +15,7 @@ public class LoginStepDef {
     @When("^I login with credentials valid$")
     public void iLoginWithCredentialsValid() {
         dashboard = loginAsPrimaryUser();
+        dashboard.refreshPage ();
     }
 
     public Dashboard getDashboard() {
