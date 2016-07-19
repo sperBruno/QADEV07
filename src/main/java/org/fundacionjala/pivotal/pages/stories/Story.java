@@ -4,14 +4,21 @@ import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.TASKS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
 
 /**
  * This class is for test the creation, set and delete
@@ -129,7 +136,15 @@ public class Story extends BasePage {
     }
 
     public void clickOnExpanderStory() {
-        storyExpander.click();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            storyExpander.click();
+        } catch (NoSuchElementException e) {
+
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
+
     }
 
     public void clickOnDeleteStoryButton() {
@@ -168,7 +183,6 @@ public class Story extends BasePage {
     }
 
     public void setTask(String storyTask) {
-        taskTextField.clear();
         taskTextField.sendKeys(storyTask);
         addTaskButton.click();
     }
@@ -193,9 +207,9 @@ public class Story extends BasePage {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
         strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(values.get(STORY_TITLE).toString()));
         strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(values.get(DESCRIPTION).toString()));
-//        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
-//        strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));
-//        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
+        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
+        //strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));
+        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
         for (StoriesSteps step : values.keySet()) {
             strategyMap.get(step).executeStep();
         }
@@ -210,9 +224,9 @@ public class Story extends BasePage {
         Map<StoriesSteps, Object> assertionMap = new HashMap<>();
         assertionMap.put(STORY_TITLE, getStoryTitle());
         assertionMap.put(DESCRIPTION, getDescriptionText());
-//        assertionMap.put(LABELS, getLabel());
-//        assertionMap.put(TASKS, getTask());
-//        assertionMap.put(COMMENT, getComment());
+        assertionMap.put(LABELS, getLabel());
+        //assertionMap.put(TASKS, getTask());
+        assertionMap.put(COMMENT, getComment());
         return assertionMap;
     }
 }

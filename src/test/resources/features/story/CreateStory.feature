@@ -13,4 +13,6 @@ Feature: Create new story in project from pivotal tracker
     And I create a new story
       | STORY_TITLE | storyTest       |
       | DESCRIPTION | descriptionTest |
+      | LABELS      | labeltest       |
+      | COMMENT     | commentTest     |
     Then I validate fields

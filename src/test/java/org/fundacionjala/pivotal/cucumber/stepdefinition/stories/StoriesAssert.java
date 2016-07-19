@@ -48,20 +48,16 @@ public class StoriesAssert {
             assertEquals(storiesStepsDef.getStory().getAssertionMap().get(step), storiesStepsDef.getStoriesValues().get(step));
         });
         dashboard = toolBar.clickReturnDashboardLink();
+        dashboard.refreshPage();
     }
 
     @Then("^I expect the message (.*)$")
     public void iExpectTheMessageStoryDeleted(String message) {
         assertEquals(message, storiesStepsDef.getStory().getStoryDeletedMessage());
-        dashboard = toolBar.clickReturnDashboardLink();
+
     }
 
-    @After("@stories")
-    public void afterProjectScenario() {
-        if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
-        }
-    }
+
 
 
 }

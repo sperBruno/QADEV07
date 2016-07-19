@@ -82,9 +82,19 @@ public class Dashboard extends BasePage {
      * @autor Rosario Garcia
      */
     public Project clickOnProject(String projectName) {
-        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
-        projectNameLink.click();
+        refreshPage();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
+            projectNameLink.click();
+
+        } catch (NoSuchElementException e) {
+
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new Project();
+
     }
 
     public Setting clickSettingsLink(String nameProjects) {
@@ -97,5 +107,9 @@ public class Dashboard extends BasePage {
         userNameText.click();
         accountOption.click();
         return new Accounts();
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
     }
 }
