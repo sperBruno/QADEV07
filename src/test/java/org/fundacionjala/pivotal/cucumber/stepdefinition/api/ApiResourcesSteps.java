@@ -76,5 +76,4 @@ public class ApiResourcesSteps {
     public String getEndPoint() {
         return endPoint;
     }
-
 }

@@ -1,45 +1,52 @@
 package org.fundacionjala.pivotal.api;
 
+import com.jayway.restassured.response.Response;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jayway.restassured.response.Response;
-
-import static org.fundacionjala.pivotal.framework.util.Constants.EMPTY_STRING;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_1;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
-import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_HALF_BRACKET;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
-import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_SLASH;
-import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_UNTIL_PROJECT;
 
 public final class Mapper {
 
+    public static final String REGEX_KEY = "\\[(.*?)\\.";
+    public static final String REGEX_VALUE = "\\.(.*?)\\]";
+    public static final String REGEX_REPLACE = "\\[(.*?)\\]";
+    private static final String REGEX_HALF_BRACKET = "[";
+    private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
+    private static final String EMPTY_STRING = "";
     private static final int INDEX_1 = 1;
 
     private static final int INDEX_2 = 2;
 
     private static final String REGEX_BLACK_SPACE = " ";
 
-    private static Map<String, Response> responseValues = new HashMap<>();;
-
+    private static Map<String, Response> responseValues = new HashMap<>();
+    ;
 
     private Mapper() {
     }
 
+    /**
+     * Method to format the enpoint with the ids specified
+     *
+     * @param endPoint: endpoint with Key and Value to replace
+     * @return: the new endpoint with ids
+     */
     public static String mapEndpoint(String endPoint) {
         if (endPoint.contains(REGEX_HALF_BRACKET)) {
-            for (String endPointSplit : endPoint.split(REGEX_SLASH)) {
-                if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
-                    String[] mapString = endPointSplit.split(REGEX_BRACKETS);
-                    StringBuilder value = new StringBuilder();
-                    String toAdd = responseValues.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]);
-                    value.append(toAdd);
-                    endPoint = endPoint.replace(endPointSplit, value);
-                }
+            Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
+            Matcher mKey = keyEndpoint.matcher(endPoint);
+            Pattern valueEndpoint = Pattern.compile(REGEX_VALUE);
+            Matcher mValue = valueEndpoint.matcher(endPoint);
+            while (mKey.find() && mValue.find()) {
+                final int groupRegex = 1;
+                String key = mKey.group(groupRegex);
+                String value = mValue.group(groupRegex);
+                endPoint = endPoint.replaceFirst(REGEX_REPLACE, responseValues.get(key).jsonPath().get(value).toString());
             }
         }
         return endPoint;
@@ -51,9 +58,7 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
-        System.out.println(response.prettyPrint());
         responseValues.put(key, response);
-//        System.out.println(String.valueOf(responseValues.get(PROJECT_1).jsonPath().get(PROJECT_ID)));
     }
 
     public static String getPropertiesProject(String endPoint) {

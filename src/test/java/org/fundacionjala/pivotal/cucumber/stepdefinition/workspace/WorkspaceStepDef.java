@@ -1,20 +1,22 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 
-import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import org.fundacionjala.pivotal.pages.dashboard.CreateWorkspace;
-import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pages.workspace.SideBarWorkspace;
-import org.fundacionjala.pivotal.pages.workspace.Workspace;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-
-import static org.fundacionjala.pivotal.framework.util.Constants.DASHBOARD;
+import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
+import org.fundacionjala.pivotal.pages.dashboard.CreateWorkspace;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import org.fundacionjala.pivotal.pages.workspace.DeleteWorkspace;
+import org.fundacionjala.pivotal.pages.workspace.SettingWorkspace;
+import org.fundacionjala.pivotal.pages.workspace.SideBarWorkspace;
+import org.fundacionjala.pivotal.pages.workspace.Workspace;
 
 /**
  * Created by Daniel on 07/07/2016.
  */
 public class WorkspaceStepDef {
+
+    private static final String DASHBOARD = "Dashboard";
 
     private CreateWorkspace createWorkspace;
 
@@ -25,6 +27,10 @@ public class WorkspaceStepDef {
     private SideBarWorkspace sideBarWorkspace;
 
     private LoginStepDef loginStepDef;
+
+    private SettingWorkspace settingWorkspace;
+
+    private DeleteWorkspace deleteWorkspace;
 
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
@@ -41,7 +47,7 @@ public class WorkspaceStepDef {
         if (DASHBOARD.equalsIgnoreCase(page)) {
             createWorkspace = dashboard.clickCreateWorkspaceLink();
         } else {
-            workspace = createWorkspace.clickCreateWorkspaceLink ();
+            workspace = createWorkspace.clickCreateWorkspaceLink();
             sideBarWorkspace = workspace.getSideWorkspace();
         }
     }
@@ -56,6 +62,52 @@ public class WorkspaceStepDef {
         createWorkspace.setUserNameTestField(nameWorkspace);
     }
 
+    @When("^I click on Add Projects button$")
+    public void iClickOnAddProjectsButton() {
+        sideBarWorkspace.clickAddProjectLink();
+    }
+
+    @And("^I  click on list projects icon$")
+    public void iClickOnListProjectsIcon() {
+        sideBarWorkspace.clickListProjectLink ();
+    }
+
+    @When("^I select the project created previously$")
+    public void iSelectTheProjectCreatedPreviously() {
+        sideBarWorkspace.clickIdProjectLink ();
+    }
+
+    @And("^I click on Save Workspace button$")
+    public void iClickOnSaveWorkspaceButton() {
+        workspace = sideBarWorkspace.clickSaveWorkspaceLink();
+    }
+
+    @Given("^I click on (.*) created$")
+    public void iClickOnWorkspace(String nameWorkspace) {
+        workspace = loginStepDef.getDashboard().clickNameWorkspaceLink (nameWorkspace);
+    }
+
+    @When("^I click on Settings of SideBar$")
+    public void iClickOnSettingsOfSideBar() {
+        settingWorkspace = workspace.getToolBarWorkspace().clickSettingsWorkspaceLink();
+    }
+
+    @And("^I click on Delete link and confirm$")
+    public void iClickOnDeleteLink() {
+        deleteWorkspace = settingWorkspace.clickDeleteWorkspaceLink();
+        dashboard = deleteWorkspace.clickConfirmDeleteLink();
+    }
+
+    @When("^I edit the name with: (.*)$")
+    public void iEditTheNameWithWorkspace(String newName) {
+        settingWorkspace.setNameWorkspaceTestField(newName);
+    }
+
+    @And("^I click on Save button$")
+    public void iClickOnSaveButton() {
+        settingWorkspace.clickSaveChangesWorkspaceLink();
+    }
+
     public CreateWorkspace getCreateWorkspace() {
         return createWorkspace;
     }
@@ -64,23 +116,11 @@ public class WorkspaceStepDef {
         return workspace;
     }
 
-    @When("^I click on Add Projects button$")
-    public void iClickOnAddProjectsButton () {
-        sideBarWorkspace.clickAddProjectLink ();
+    public Dashboard getDashboard() {
+        return dashboard;
     }
 
-    @And("^I  click on list projects icon$")
-    public void iClickOnListProjectsIcon () {
-        sideBarWorkspace.clicklistProjectLink ();
-    }
-
-    @When("^I select the project created previously$")
-    public void iSelectTheProjectCreatedPreviously () {
-        sideBarWorkspace.clickidProjectLink ();
-    }
-
-    @And("^I click on Save Workspace button$")
-    public void iClickOnSaveWorkspaceButton () {
-        workspace = sideBarWorkspace.clickSaveWorkspaceLink ();
+    public SettingWorkspace getSettingWorkspace() {
+        return settingWorkspace;
     }
 }
