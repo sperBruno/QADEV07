@@ -1,7 +1,6 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
@@ -9,9 +8,6 @@ import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
-import static com.jayway.restassured.path.json.JsonPath.from;
-import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -47,8 +43,8 @@ public class StoriesAssert {
         storiesStepsDef.getStoriesValues().keySet().stream().forEach((step) -> {
             assertEquals(storiesStepsDef.getStory().getAssertionMap().get(step), storiesStepsDef.getStoriesValues().get(step));
         });
-        dashboard = toolBar.clickReturnDashboardLink();
-        dashboard.refreshPage();
+//        toolBar.clickReturnDashboardLink();
+        //dashboard.refreshPage();
     }
 
     @Then("^I expect the message (.*)$")

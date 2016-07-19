@@ -35,7 +35,7 @@ public class StoryHooks {
             //RequestManager.deleteRequest(Mapper.mapUrlToDeleteProject(api.getEndPoint()));
 
         }
-        dashboard.refreshPage();
+        //dashboard.refreshPage();
     }
 
     @After("@stories")
@@ -44,6 +44,6 @@ public class StoryHooks {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
-        dashboard.refreshPage();
+        //dashboard.refreshPage();
     }
 }
