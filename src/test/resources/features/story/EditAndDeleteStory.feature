@@ -7,17 +7,17 @@ Feature: Delete a new story in a project from pivotal tracker
     And stored as Project1
     And I send a POST request to /projects/[Project1.id]/stories
       | name | storyTest |
-    Then I login with credentials valid
+    Then I login with valid credentials
 
   @story
   Scenario: Delete story
-    Given I enter to projectTest
-    When I delete the storyTest created
+    Given I enter to [Project1.name]
+    When I delete the story created
     Then I expect the message 1 story deleted
 
   @story
   Scenario: Edit story
-    Given I enter to projectTest
+    Given I enter to [Project1.name]
     When I edit the next parameter
       | STORY_TITLE | storyTestSet       |
       | DESCRIPTION | descriptionTestSet |

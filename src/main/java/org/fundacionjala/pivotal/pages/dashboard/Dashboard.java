@@ -1,7 +1,6 @@
 package org.fundacionjala.pivotal.pages.dashboard;
 
-import java.util.concurrent.TimeUnit;
-
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
@@ -12,13 +11,19 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
 /**
+ * This class represent the Dashboard page
  *
+ * @autor Mijhail Villarroel, Bruno Barrios, Daniel Gonzales, Rosario Garcia.
  */
 public class Dashboard extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(Dashboard.class.getName());
 
     @FindBy(className = "tc_dropdown_name")
     private WebElement userNameText;
@@ -83,16 +88,14 @@ public class Dashboard extends BasePage {
      *
      * @param projectName: This parameter is the project name of project created
      * @return: return the project main page
-     * @autor Rosario Garcia
      */
     public Project clickOnProject(String projectName) {
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
             projectNameLink.click();
-
         } catch (NoSuchElementException e) {
-
+            LOGGER.warn("The Web element not was find ", e.getCause());
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
@@ -113,8 +116,8 @@ public class Dashboard extends BasePage {
 
 
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
-        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
-        System.out.println (nameWorkspaceLink.getText ());
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));
+        System.out.println(nameWorkspaceLink.getText());
         nameWorkspaceLink.click();
         return new Workspace();
     }

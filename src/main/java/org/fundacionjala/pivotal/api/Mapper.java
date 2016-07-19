@@ -24,7 +24,7 @@ public final class Mapper {
 
     private static final String REGEX_BLACK_SPACE = " ";
 
-    private static final Map<String, Response> responseValues = new HashMap<>();
+    private static final Map<String, Response> RESPONSE_VALUES = new HashMap<>();
 
     private Mapper() {
     }
@@ -45,7 +45,7 @@ public final class Mapper {
                 final int groupRegex = 1;
                 String key = mKey.group(groupRegex);
                 String value = mValue.group(groupRegex);
-                endPoint = endPoint.replaceFirst(REGEX_REPLACE, responseValues.get(key).jsonPath().get(value).toString());
+                endPoint = endPoint.replaceFirst(REGEX_REPLACE, RESPONSE_VALUES.get(key).jsonPath().get(value).toString());
             }
         }
         return endPoint;
@@ -57,7 +57,7 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
-        responseValues.put(key, response);
+        RESPONSE_VALUES.put(key, response);
     }
 
     public static String getPropertiesProject(String endPoint) {
@@ -66,7 +66,7 @@ public final class Mapper {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     StringBuilder value = new StringBuilder();
-                    value.append(responseValues.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
+                    value.append(RESPONSE_VALUES.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
                     endPoint = endPoint.replace(endPointSplit, value);
                 }
             }

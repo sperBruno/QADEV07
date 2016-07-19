@@ -43,8 +43,8 @@ public class StoriesStepsDef {
         story.clickOnSaveStoryButton();
     }
 
-    @When("^I delete the (.*) created$")
-    public void iDeleteTheStoryCreated(String storyName) {
+    @When("^I delete the story created$")
+    public void iDeleteTheStoryCreated() {
         story.clickOnExpanderStory();
         story.clickOnDeleteStoryButton();
         story.clickOnConfirmDeleteStoryButton();

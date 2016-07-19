@@ -1,12 +1,18 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
 import com.jayway.restassured.response.Response;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
+import static com.jayway.restassured.path.json.JsonPath.from;
+import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
+import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class StoriesAssert {
 
-    private static final Logger LOGGER = Logger.getLogger(ProjectHooks.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(StoriesAssert.class.getName());
 
     private Response response;
 
@@ -26,8 +32,8 @@ public class StoriesAssert {
     /**
      * Constructor class
      *
-     * @param storiesStepsDef: steps before do assertion
-     * @param api: Object with elements from Api
+     * @param storiesStepsDef steps before do assertion
+     * @param api Object with elements from Api
      */
     public StoriesAssert(StoriesStepsDef storiesStepsDef, ApiResourcesSteps api) {
         this.storiesStepsDef = storiesStepsDef;
