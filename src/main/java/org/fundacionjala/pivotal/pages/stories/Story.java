@@ -8,6 +8,12 @@ import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.TASKS;
+
 /**
  * Created by Charito on 7/12/2016.
  */
