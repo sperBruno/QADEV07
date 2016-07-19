@@ -9,9 +9,10 @@ Feature: Workspace
     Given click on the Create Workspace button of the Dashboard
     Then I expect a Create Workspace form
 
-  Scenario: Create a project with a name valid
+  @DeleteWorkspace
+  Scenario: Create a Workspace with a name valid
 
     Given I am on Pivotal Create Workspace form
-    When I fill with My Workspace7 the name Workspace field
+    When I fill with My Workspace253 the name Workspace field
     And click on the Create Workspace button of the Form
-    Then the display name equals to My Workspace7
+    Then the display name equals to My Workspace253
