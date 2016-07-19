@@ -17,7 +17,6 @@ import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_T
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.TASKS;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
 
 /**
@@ -57,15 +56,6 @@ public class Story extends BasePage {
 
     @FindBy(css = ".autosaves.label.name")
     private WebElement labelName;
-
-    @FindBy(name = "task[description]")
-    private WebElement taskTextField;
-
-    @FindBy(xpath = "//div[@class='description tracker_markup']")
-    private WebElement taskName;
-
-    @FindBy(css = ".autosaves.std.add")
-    private WebElement addTaskButton;
 
     @FindBy(name = "comment[text]")
     private WebElement comment;
@@ -144,7 +134,6 @@ public class Story extends BasePage {
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
-
     }
 
     public void clickOnDeleteStoryButton() {
@@ -176,17 +165,6 @@ public class Story extends BasePage {
         label.sendKeys(storyLabel, Keys.ENTER);
     }
 
-    public String getTask() {
-        System.out.println("task name: ");
-        System.out.println(taskName.getText());
-        return taskName.getText();
-    }
-
-    public void setTask(String storyTask) {
-        taskTextField.sendKeys(storyTask);
-        addTaskButton.click();
-    }
-
     public String getComment() {
         return driver.findElement(By.xpath("//p[contains(.,'" + commentMesage + "')]")).getText();
     }
@@ -205,11 +183,10 @@ public class Story extends BasePage {
      */
     public void executeSteps(final Map<StoriesSteps, Object> values) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(values.get(STORY_TITLE).toString()));
-        strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(values.get(DESCRIPTION).toString()));
-        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
-        //strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));
-        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
+        strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(String.valueOf(values.get(STORY_TITLE))));
+        strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(String.valueOf(values.get(DESCRIPTION))));
+        strategyMap.put(LABELS, () -> setLabel(String.valueOf(values.get(LABELS))));
+        strategyMap.put(COMMENT, () -> setComment(String.valueOf(values.get(COMMENT))));
         for (StoriesSteps step : values.keySet()) {
             strategyMap.get(step).executeStep();
         }
@@ -225,7 +202,6 @@ public class Story extends BasePage {
         assertionMap.put(STORY_TITLE, getStoryTitle());
         assertionMap.put(DESCRIPTION, getDescriptionText());
         assertionMap.put(LABELS, getLabel());
-        //assertionMap.put(TASKS, getTask());
         assertionMap.put(COMMENT, getComment());
         return assertionMap;
     }
