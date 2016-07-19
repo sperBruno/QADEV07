@@ -84,7 +84,7 @@ public final class Constants {
 
     public static final String HTTP_PROXY_PORT = "http.proxyPort";
 
-
+    public static final String ATTRIBUTE_WEB_ELEMENT = "value";
     private Constants() {
     }
 }

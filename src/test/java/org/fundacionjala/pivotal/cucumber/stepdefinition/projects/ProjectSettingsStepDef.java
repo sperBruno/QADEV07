@@ -2,17 +2,17 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
-import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
-import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import com.fundacionjala.pivotal.pages.Setting;
-import com.fundacionjala.pivotal.pages.Dashboard;
-import com.fundacionjala.pivotal.pages.DeleteProjectAlert;
-import com.fundacionjala.pivotal.pages.GeneralSettingForm;
-import com.fundacionjala.pivotal.pages.SettingSteps;
-import com.fundacionjala.pivotal.pages.SideBarSetting;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
+import org.fundacionjala.pivotal.api.Mapper;
+import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
+import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
+import org.fundacionjala.pivotal.pages.setting.GeneralSettingForm;
+import org.fundacionjala.pivotal.pages.setting.Setting;
+import org.fundacionjala.pivotal.pages.setting.SettingSteps;
+import org.fundacionjala.pivotal.pages.setting.SideBarSetting;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.

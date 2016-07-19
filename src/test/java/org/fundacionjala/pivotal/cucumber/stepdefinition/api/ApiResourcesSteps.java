@@ -10,6 +10,10 @@ import cucumber.api.java.en.When;
 
 import static org.fundacionjala.pivotal.api.Mapper.addResponse;
 import static org.fundacionjala.pivotal.api.Mapper.mapEndpoint;
+import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
+import static org.fundacionjala.pivotal.api.RequestManager.postRequest;
+import static org.fundacionjala.pivotal.api.RequestManager.putRequest;
 import static org.junit.Assert.assertEquals;
 
 public class ApiResourcesSteps {

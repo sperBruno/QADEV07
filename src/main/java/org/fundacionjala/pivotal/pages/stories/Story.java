@@ -8,6 +8,12 @@ import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.TASKS;
+
 /**
  * This class is for test the creation, set and delete
  * of a story in a project of pivotal tracker.

@@ -1,7 +1,5 @@
 package org.fundacionjala.pivotal.api;
 
-import com.jayway.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -26,7 +24,13 @@ public final class Mapper {
     private static final String REGEX_HALF_BRACKET = "[";
     private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
     private static final String EMPTY_STRING = "";
-    private static Map<String, Response> responseValues;
+    private static final int INDEX_1 = 1;
+
+    private static final int INDEX_2 = 2;
+
+    private static final String REGEX_BLACK_SPACE = " ";
+
+    private static Map<String, Response> responseValues = new HashMap<>();;
 
     private Mapper() {
     }
@@ -58,7 +62,20 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
-        responseValues = new HashMap<>();
         responseValues.put(key, response);
+    }
+
+    public static String getPropertiesProject(String endPoint) {
+        if (endPoint.contains(REGEX_HALF_BRACKET)) {
+            for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+                if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
+                    String[] mapString = endPointSplit.split(REGEX_BRACKETS);
+                    StringBuilder value = new StringBuilder();
+                    value.append(responseValues.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
+                    endPoint = endPoint.replace(endPointSplit, value);
+                }
+            }
+        }
+        return endPoint;
     }
 }
