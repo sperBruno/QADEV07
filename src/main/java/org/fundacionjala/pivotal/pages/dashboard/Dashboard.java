@@ -86,7 +86,6 @@ public class Dashboard extends BasePage {
      * @autor Rosario Garcia
      */
     public Project clickOnProject(String projectName) {
-        refreshPage();
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
@@ -98,7 +97,6 @@ public class Dashboard extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
         return new Project();
-
     }
 
     public Setting clickSettingsLink(String nameProjects) {
@@ -123,10 +121,5 @@ public class Dashboard extends BasePage {
 
     public String getMessageDeleteWorkspace() {
         return messageDeleteWorkspace.getText();
-    }
-
-    public void refreshPage() {
-        driver.navigate().refresh();
-
     }
 }
