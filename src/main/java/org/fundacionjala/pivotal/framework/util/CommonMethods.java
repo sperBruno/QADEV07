@@ -1,10 +1,19 @@
 package org.fundacionjala.pivotal.framework.util;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import static com.jayway.restassured.path.json.JsonPath.from;
+import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
 
 /**
  * Created by mijhailvillarroel on 7/14/2016.
@@ -63,4 +72,12 @@ public final class CommonMethods {
         return new Select(webElement);
     }
 
+    public static void deleteAllProjects() {
+        ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(PROJECTS_ENDPOINT).asString()).get("");
+        if (jsonAsArrayList.size() > 0) {
+            for (Map<String, ?> object : jsonAsArrayList) {
+                deleteRequest(PROJECTS_ENDPOINT + object.get(PROJECT_ID).toString());
+            }
+        }
+    }
 }
