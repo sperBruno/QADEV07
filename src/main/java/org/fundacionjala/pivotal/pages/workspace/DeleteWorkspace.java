@@ -7,7 +7,9 @@ import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 
 /**
- * Created by danielgonzales
+ * Created by Daniel Gonzales
+
+ * This class create a form to create a new Workspace
  */
 public class DeleteWorkspace extends BasePage {
 

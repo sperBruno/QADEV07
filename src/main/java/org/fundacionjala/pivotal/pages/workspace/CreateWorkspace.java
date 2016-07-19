@@ -6,7 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 
 /**
- * Created by Daniel
+ * Created by Daniel Gonzales
+ *
+ * CreateWorkspace is the class to create a new Workspace
  */
 public class CreateWorkspace extends BasePage {
 
