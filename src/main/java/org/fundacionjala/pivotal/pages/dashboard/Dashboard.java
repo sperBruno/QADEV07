@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.project.Project;
@@ -10,7 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
@@ -80,7 +83,9 @@ public class Dashboard extends BasePage {
     }
 
     public Setting clickSettingsLink(String nameProjects) {
+        refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
+        clickWebElement(taskElement);
         taskElement.click();
         return new Setting();
     }

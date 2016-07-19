@@ -41,6 +41,7 @@ public class ProjectHooks {
     @After("@project")
     public void afterProjectScenario() {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
+            System.out.println("project idggggggggggg"+from(api.getResponse().asString()).get(PROJECT_ID).toString());
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
     }

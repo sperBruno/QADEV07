@@ -21,7 +21,7 @@ public class StoriesAssert {
     private static final Logger LOGGER = Logger.getLogger(ProjectHooks.class.getName());
     private static final int SUCCESS_STATUS_CODE = 200;
 
-    private static final String PROJECTS_ENDPOINT = "/projects/";
+    private static final String PROJECTS_ENDPOINT = "/project/";
 
     private static final String PROJECT_ID = "id";
     private Response response;

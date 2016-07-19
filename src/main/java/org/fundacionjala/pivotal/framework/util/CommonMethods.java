@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
+
 /**
  * Created by mijhailvillarroel on 7/14/2016.
  */
@@ -24,13 +26,13 @@ public final class CommonMethods {
     }
 
     public static void setWebElement(WebElement webElement, String text) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
 
     public static void clickWebElement(WebElement webElement) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 

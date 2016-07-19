@@ -22,4 +22,8 @@ public abstract class BasePage {
         action = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
+
+    public void refreshPage(){
+        driver.navigate().refresh();
+    }
 }
