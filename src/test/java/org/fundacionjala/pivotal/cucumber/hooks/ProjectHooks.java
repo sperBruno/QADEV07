@@ -52,9 +52,6 @@ public class ProjectHooks {
     public void tearDown() {
         Setting setting = projectsStepDef.getProject().clickSettingTab();
         String id = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId();
-
-        //deleteAccountUser(setting);
-
         LOGGER.info("project id " + id);
         Response response = RequestManager.deleteRequest(id);
         LOGGER.info("status code " + response.getStatusCode());
