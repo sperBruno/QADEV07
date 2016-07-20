@@ -3,7 +3,7 @@ Feature: Delete and Put a Workspace
   Background: I have workspace created
     Given I send a POST request to /my/workspaces
       | name   | workspace3449 |
-    Given I login with credentials valid
+    Given I login with valid credentials
 
   Scenario: Delete Workspace
     Given I click on workspace3449 created

@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.pages.stories;
 
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.By;
@@ -14,10 +15,10 @@ import java.util.concurrent.TimeUnit;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
 import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
 
 /**
  * This class is for test the creation, set and delete
@@ -26,6 +27,8 @@ import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
  * @author RosarioGarcia
  */
 public class Story extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(Story.class.getName());
 
     /**
      * Web elements to add story
@@ -89,13 +92,14 @@ public class Story extends BasePage {
 
     @FindBy(xpath = "//button[@data-aid='CancelButton']")
     private WebElement cancelDeleteButton;
+
     private String commentMesage;
 
     /**
      * This method is for set the story title text field
      * wich contains the name of a story.
      *
-     * @param storyTitle; it is the name for a story
+     * @param storyTitle it is the name for a story
      */
     public void setStoryTitleTextArea(String storyTitle) {
         storyTitleTextArea.clear();
@@ -106,7 +110,7 @@ public class Story extends BasePage {
      * This method is for set the description text field
      * wich contains the description of a story.
      *
-     * @param storyDescription; it is the description for a story
+     * @param storyDescription it is the description for a story
      */
     public void setDescriptionTextarea(String storyDescription) {
         editDescriptionButton.click();
@@ -130,7 +134,7 @@ public class Story extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             storyExpander.click();
         } catch (NoSuchElementException e) {
-
+            LOGGER.warn("The Web element not was find ", e.getCause());
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
@@ -179,7 +183,7 @@ public class Story extends BasePage {
     /**
      * General method to set the values of properties of a story
      *
-     * @param values: Map of properties to set of a story
+     * @param values Map of properties to set of a story
      */
     public void executeSteps(final Map<StoriesSteps, Object> values) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
@@ -195,7 +199,7 @@ public class Story extends BasePage {
     /**
      * General method to compare the values of properties of a story
      *
-     * @return a map with the current values
+     * @return map with the current values
      */
     public Map<StoriesSteps, Object> getAssertionMap() {
         Map<StoriesSteps, Object> assertionMap = new HashMap<>();
