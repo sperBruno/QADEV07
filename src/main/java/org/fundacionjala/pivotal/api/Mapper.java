@@ -125,4 +125,25 @@ public final class Mapper {
         return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
     }
 
+    /**
+     * Method to get the property specified from response saved
+     *
+     * @param property property to get
+     * @return property
+     */
+    public static String mapResponse(String property) {
+        if (property.contains(REGEX_HALF_BRACKET)) {
+            Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
+            Matcher mKey = keyEndpoint.matcher(property);
+            Pattern valueEndpoint = Pattern.compile(REGEX_VALUE);
+            Matcher mValue = valueEndpoint.matcher(property);
+            while (mKey.find() && mValue.find()) {
+                final int groupRegex = 1;
+                String key = mKey.group(groupRegex);
+                String value = mValue.group(groupRegex);
+                property = RESPONSE_VALUES.get(key).jsonPath().get(value).toString();
+            }
+        }
+        return property;
+    }
 }
