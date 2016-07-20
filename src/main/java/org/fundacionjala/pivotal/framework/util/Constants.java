@@ -85,6 +85,9 @@ public final class Constants {
     public static final String HTTP_PROXY_PORT = "http.proxyPort";
 
     public static final String ATTRIBUTE_WEB_ELEMENT = "value";
+
+    public static final String ERROR_ACCOUNT_MESSAGE_TEXT = "please select or create an account for the new project";
+    public static final String ERROR_PROJECT_TITLE_TEXT = "project name can't be blank";
     private Constants() {
     }
 }

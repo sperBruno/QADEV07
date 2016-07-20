@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.pages.dashboard;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
@@ -14,6 +15,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
@@ -105,8 +107,9 @@ public class Dashboard extends BasePage {
     }
 
     public Setting clickSettingsLink(String nameProjects) {
+        refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
-        taskElement.click();
+        clickWebElement(taskElement);
         return new Setting();
     }
 
@@ -118,12 +121,28 @@ public class Dashboard extends BasePage {
 
 
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
-        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));
         nameWorkspaceLink.click();
         return new Workspace();
     }
 
     public String getMessageDeleteWorkspace() {
         return messageDeleteWorkspace.getText();
+    }
+
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+    public String getUserName(String value) {
+
+        final String endPointProfile = "/me";
+        final String fieldEmail = "email";
+        final String fieldUserName = "username";
+        final String email = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldEmail);
+        if (value.equalsIgnoreCase(email)) {
+            return RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
+        }
+        return value;
     }
 }

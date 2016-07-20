@@ -31,5 +31,5 @@ Feature: Delete a new story in a project from pivotal tracker
   Scenario: Cancel delete story
     Given I enter to [Project1.name]
     When I cancel delete the story created
-    Then I expect the [Story1.name] is displayed
+    Then I expect the [Story1.name] is show
 

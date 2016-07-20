@@ -6,5 +6,6 @@ package org.fundacionjala.pivotal.pages.project;
 public enum ProjectSteps {
     PROJECT_TITLE,
     PROJECT_ACCOUNT,
+    PROJECT_VISIBLE,
     PROJECT_SAMPLE_DATA
 }

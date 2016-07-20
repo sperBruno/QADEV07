@@ -67,4 +67,9 @@ public class AccountStepDef {
     public Accounts getAccountPage() {
         return new Accounts();
     }
+
+    @And("^I create an account with name (.*)$")
+    public void iCreateAnAccountWithNameFelipe(String accountName) {
+
+    }
 }
