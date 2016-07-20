@@ -15,7 +15,7 @@ public class SideBarWorkspace extends BasePage {
     @FindBy(id = "_dropdown__arrow")
     private WebElement listProjectLink;
 
-    @FindBy(xpath = "//span[contains(.,'test')]")
+    @FindBy(xpath = "//span[contains(.,'ProjectTest3')]")
     private WebElement idProjectLink;
 
     @FindBy(id = "save_workspace_button")
