@@ -15,6 +15,7 @@ Feature: Workspace
     And click on the Create Workspace button
     Then the display name equals to workspace created
 
+  @project
   Scenario: Create a Workspace with empty name
 
     Given I create a new Workspace
