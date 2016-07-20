@@ -2,28 +2,36 @@ package org.fundacionjala.pivotal.pages.stories;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
+import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.TASKS;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
 
 /**
- * Created by Charito on 7/12/2016.
+ * This class is for test the creation, set and delete
+ * of a story in a project of pivotal tracker.
+ *
+ * @author RosarioGarcia
  */
 public class Story extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(Story.class.getName());
 
     /**
      * Web elements to add story
      */
     @FindBy(name = "story[name]")
-    private WebElement storyNameTextarea;
+    private WebElement storyTitleTextArea;
 
     @FindBy(xpath = "//button[contains(.,'Save')]")
     private WebElement saveStoryButton;
@@ -31,8 +39,10 @@ public class Story extends BasePage {
     @FindBy(xpath = "//button[contains(.,'Cancel')]")
     private WebElement cancelCreateStoryButton;
 
+    @FindBy(xpath = "//button[contains(.,'(edit)')]")
+    private WebElement editDescriptionButton;
 
-    @FindBy(xpath = "//div[@class='rendered_description tracker_markup']")
+    @FindBy(css = ".rendered_description.tracker_markup")
     private WebElement descriptionText;
 
     @FindBy(name = "story[pending_description]")
@@ -44,17 +54,17 @@ public class Story extends BasePage {
     @FindBy(name = "label[name]")
     private WebElement label;
 
-    @FindBy(name = "task[description]")
-    private WebElement taskTextField;
-
-    @FindBy(xpath = "//button[@class='autosaves std add']")
-    private WebElement addTaskButton;
+    @FindBy(css = ".autosaves.label.name")
+    private WebElement labelName;
 
     @FindBy(name = "comment[text]")
     private WebElement comment;
 
     @FindBy(xpath = "//button[@data-aid='comment-submit']")
     private WebElement addCommentButton;
+
+    @FindBy(xpath = "//div[data-aid='message']")
+    private WebElement comentMessage;
 
     /**
      * Web elements to set story
@@ -65,7 +75,7 @@ public class Story extends BasePage {
     /**
      * Web elements to delete story
      */
-    @FindBy(xpath = "//a[@class='expander undraggable']")
+    @FindBy(css = ".expander.undraggable")
     private WebElement storyExpander;
 
     @FindBy(xpath = "//button[@title='Delete this story']")
@@ -80,12 +90,27 @@ public class Story extends BasePage {
     @FindBy(xpath = "//button[@data-aid='CancelButton']")
     private WebElement cancelDeleteButton;
 
-    public void setStoryNameTextarea(String storyName) {
-        storyNameTextarea.clear();
-        storyNameTextarea.sendKeys(storyName);
+    private String commentMesage;
+
+    /**
+     * This method is for set the story title text field
+     * wich contains the name of a story.
+     *
+     * @param storyTitle it is the name for a story
+     */
+    public void setStoryTitleTextArea(String storyTitle) {
+        storyTitleTextArea.clear();
+        storyTitleTextArea.sendKeys(storyTitle);
     }
 
+    /**
+     * This method is for set the description text field
+     * wich contains the description of a story.
+     *
+     * @param storyDescription it is the description for a story
+     */
     public void setDescriptionTextarea(String storyDescription) {
+        editDescriptionButton.click();
         storyDescriptionTextField.clear();
         storyDescriptionTextField.sendKeys(storyDescription);
         doneDescriptionButton.click();
@@ -102,7 +127,14 @@ public class Story extends BasePage {
     }
 
     public void clickOnExpanderStory() {
-        storyExpander.click();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            storyExpander.click();
+        } catch (NoSuchElementException e) {
+            LOGGER.warn("The Web element not was find ", e.getCause());
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
     }
 
     public void clickOnDeleteStoryButton() {
@@ -118,7 +150,7 @@ public class Story extends BasePage {
     }
 
     public String getStoryTitle() {
-        return storyNameTextarea.getText();
+        return storyTitleTextArea.getText();
     }
 
     public String getDescriptionText() {
@@ -126,52 +158,51 @@ public class Story extends BasePage {
     }
 
     public String getLabel() {
-        return label.getText();
+        return labelName.getText();
     }
 
     public void setLabel(String storyLabel) {
         label.clear();
-        label.sendKeys(storyLabel);
-    }
-
-    public String getTask() {
-        return taskTextField.getText();
-    }
-
-    public void setTask(String storyTask) {
-        taskTextField.clear();
-        taskTextField.sendKeys(storyTask);
-        addTaskButton.click();
+        label.sendKeys(storyLabel, Keys.ENTER);
     }
 
     public String getComment() {
-        return comment.getText();
+        return driver.findElement(By.xpath("//p[contains(.,'" + commentMesage + "')]")).getText();
     }
 
     public void setComment(String storyComment) {
+        commentMesage = storyComment;
         comment.clear();
         comment.sendKeys(storyComment);
         addCommentButton.click();
     }
 
+    /**
+     * General method to set the values of properties of a story
+     *
+     * @param values Map of properties to set of a story
+     */
     public void executeSteps(final Map<StoriesSteps, Object> values) {
         Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
-        strategyMap.put(STORY_TITLE, () -> setStoryNameTextarea(values.get(STORY_TITLE).toString()));
-        strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(values.get(DESCRIPTION).toString()));
-        strategyMap.put(LABELS, () -> setLabel(values.get(LABELS).toString()));
-        strategyMap.put(TASKS, () -> setTask(values.get(TASKS).toString()));
-        strategyMap.put(COMMENT, () -> setComment(values.get(COMMENT).toString()));
+        strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(String.valueOf(values.get(STORY_TITLE))));
+        strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(String.valueOf(values.get(DESCRIPTION))));
+        strategyMap.put(LABELS, () -> setLabel(String.valueOf(values.get(LABELS))));
+        strategyMap.put(COMMENT, () -> setComment(String.valueOf(values.get(COMMENT))));
         for (StoriesSteps step : values.keySet()) {
             strategyMap.get(step).executeStep();
         }
     }
 
+    /**
+     * General method to compare the values of properties of a story
+     *
+     * @return map with the current values
+     */
     public Map<StoriesSteps, Object> getAssertionMap() {
         Map<StoriesSteps, Object> assertionMap = new HashMap<>();
         assertionMap.put(STORY_TITLE, getStoryTitle());
         assertionMap.put(DESCRIPTION, getDescriptionText());
         assertionMap.put(LABELS, getLabel());
-        assertionMap.put(TASKS, getTask());
         assertionMap.put(COMMENT, getComment());
         return assertionMap;
     }

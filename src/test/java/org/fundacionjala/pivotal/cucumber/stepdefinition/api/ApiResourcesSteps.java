@@ -16,6 +16,11 @@ import static org.fundacionjala.pivotal.api.RequestManager.postRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.putRequest;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Henrry Salinas.
+ *
+ * This class provide the basic step definitions to work with api rest requests
+ */
 public class ApiResourcesSteps {
 
     private Response response;
@@ -71,5 +76,4 @@ public class ApiResourcesSteps {
     public String getEndPoint() {
         return endPoint;
     }
-
 }

@@ -6,6 +6,11 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 
+/**
+ * @author Henrry Salinas.
+ *
+ * This class store settings for the test execution
+ */
 @RunWith(Cucumber.class)
 @CucumberOptions(
         monochrome = true,

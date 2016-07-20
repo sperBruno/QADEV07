@@ -1,14 +1,13 @@
 package org.fundacionjala.pivotal.pages.stories;
 
 /**
- * Created by Charito on 7/12/2016.
+ * This enum contains the parameters of a story in pivotal tracker
+ *
+ * @author RosarioGarcia
  */
 public enum StoriesSteps {
     STORY_TITLE,
-    STORY_TYPE,
-    POINTS,
     DESCRIPTION,
     LABELS,
-    TASKS,
     COMMENT
 }

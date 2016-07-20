@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
@@ -17,9 +18,13 @@ import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_W
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
 
 /**
+ * This class represent the Dashboard page
  *
+ * @autor Mijhail Villarroel, Bruno Barrios, Daniel Gonzales, Rosario Garcia.
  */
 public class Dashboard extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(Dashboard.class.getName());
 
     @FindBy(className = "tc_dropdown_name")
     private WebElement userNameText;
@@ -78,9 +83,23 @@ public class Dashboard extends BasePage {
         return deleteMessageText.getText();
     }
 
+    /**
+     * This method is used to enter to main page of
+     * project created using its name.
+     *
+     * @param projectName: This parameter is the project name of project created
+     * @return: return the project main page
+     */
     public Project clickOnProject(String projectName) {
-        WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
-        projectNameLink.click();
+        try {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
+            projectNameLink.click();
+        } catch (NoSuchElementException e) {
+            LOGGER.warn("The Web element not was find ", e.getCause());
+        } finally {
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new Project();
     }
 
@@ -95,6 +114,7 @@ public class Dashboard extends BasePage {
         accountOption.click();
         return new Accounts();
     }
+
 
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
         WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));

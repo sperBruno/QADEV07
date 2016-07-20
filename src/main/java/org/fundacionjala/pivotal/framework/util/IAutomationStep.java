@@ -1,9 +1,11 @@
 package org.fundacionjala.pivotal.framework.util;
 
 /**
- * Created by Charito on 7/13/2016.
+ * @author RosarioGarcia
  */
 public interface IAutomationStep {
-
+    /**
+     * Method to execute steps
+     */
     void executeStep();
 }
