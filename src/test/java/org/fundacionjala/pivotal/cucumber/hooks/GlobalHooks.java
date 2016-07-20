@@ -21,8 +21,11 @@ public class GlobalHooks {
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
-    @Before
-    public void beforeAll() {
+
+
+
+    public void beforeAll() throws PropertiesInfoReadException {
+
         if (!BEFORE_ALL_FLAG) {
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public void run() {

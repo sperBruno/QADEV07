@@ -2,7 +2,7 @@ Feature: Testing for setting projects for Pivotal page
 
   Background: create project
     Given I send a POST request to /projects
-      | name   | projectTest |
+      | name   | project Test |
       | public | true        |
     And stored as Project1
     And I login with credentials valid

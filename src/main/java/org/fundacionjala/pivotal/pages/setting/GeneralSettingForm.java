@@ -11,6 +11,7 @@ import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.convertASelect;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
@@ -198,7 +199,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm clickSaveButton() {
-        saveButton.click();
+        clickWebElement(saveButton);
         return this;
     }
 
@@ -238,7 +239,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public DeleteProjectAlert clickLinkDeleteProject() {
-        deleteLink.click();
+        clickWebElement(deleteLink);
         return new DeleteProjectAlert();
     }
 
@@ -322,9 +323,10 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public Accounts clickAccountLink(){
-                accountLink.click();
-                return new Accounts();
-            }
+        clickWebElement(accountLink);
+        return new Accounts();
+    }
+
     public boolean getEnableProjectsTasks() {
         return projectEnableTasksCheckbox.isSelected();
     }
