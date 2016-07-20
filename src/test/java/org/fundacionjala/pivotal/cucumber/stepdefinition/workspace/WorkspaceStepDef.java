@@ -79,6 +79,7 @@ public class WorkspaceStepDef {
 
     @Given("^I click on (.*) created$")
     public void iClickOnWorkspace(String nameWorkspace) {
+        dashboard = loginStepDef.getDashboard();
         String finalNameWorkspace = Mapper.getPropertiesProject(nameWorkspace);
         workspace = loginStepDef.getDashboard().clickNameWorkspaceLink (finalNameWorkspace);
     }
