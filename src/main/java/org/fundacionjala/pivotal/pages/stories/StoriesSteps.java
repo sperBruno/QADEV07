@@ -5,10 +5,7 @@ package org.fundacionjala.pivotal.pages.stories;
  */
 public enum StoriesSteps {
     STORY_TITLE,
-    STORY_TYPE,
-    POINTS,
     DESCRIPTION,
     LABELS,
-    TASKS,
     COMMENT
 }

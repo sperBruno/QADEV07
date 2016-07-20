@@ -1,11 +1,11 @@
 package org.fundacionjala.pivotal.api;
 
-import com.jayway.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.jayway.restassured.response.Response;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
@@ -13,19 +13,24 @@ import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BR
 public final class Mapper {
 
     public static final String REGEX_KEY = "\\[(.*?)\\.";
+
     public static final String REGEX_VALUE = "\\.(.*?)\\]";
+
     public static final String REGEX_REPLACE = "\\[(.*?)\\]";
+
     private static final String REGEX_HALF_BRACKET = "[";
+
     private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
+
     private static final String EMPTY_STRING = "";
+
     private static final int INDEX_1 = 1;
 
     private static final int INDEX_2 = 2;
 
     private static final String REGEX_BLACK_SPACE = " ";
 
-    private static Map<String, Response> responseValues = new HashMap<>();
-    ;
+    private static final Map<String, Response> RESPONSE_VALUES = new HashMap<>();
 
     private Mapper() {
     }
@@ -46,7 +51,7 @@ public final class Mapper {
                 final int groupRegex = 1;
                 String key = mKey.group(groupRegex);
                 String value = mValue.group(groupRegex);
-                endPoint = endPoint.replaceFirst(REGEX_REPLACE, responseValues.get(key).jsonPath().get(value).toString());
+                endPoint = endPoint.replaceFirst(REGEX_REPLACE, RESPONSE_VALUES.get(key).jsonPath().get(value).toString());
             }
         }
         return endPoint;
@@ -58,7 +63,7 @@ public final class Mapper {
     }
 
     public static void addResponse(String key, Response response) {
-        responseValues.put(key, response);
+        RESPONSE_VALUES.put(key, response);
     }
 
     public static String getPropertiesProject(String endPoint) {
@@ -67,7 +72,7 @@ public final class Mapper {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     StringBuilder value = new StringBuilder();
-                    value.append(responseValues.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
+                    value.append(RESPONSE_VALUES.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
                     endPoint = endPoint.replace(endPointSplit, value);
                 }
             }

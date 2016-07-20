@@ -33,9 +33,7 @@ public class Login extends BasePage {
 
     public static Dashboard loginAs(String userName, String password) {
         Dashboard dashboard = new Dashboard();
-        String u = dashboard.getEmailActual(userName);
-        String b = dashboard.getUserNameText();
-        if (!u.equalsIgnoreCase(b)) {
+        if (!dashboard.getUserNameText().equalsIgnoreCase(dashboard.getUserName(userName))) {
             PivotalHome pivotalHome = new PivotalHome();
             Login login = pivotalHome.clickSingInLink();
             login.setUserNameTestField(userName);

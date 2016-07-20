@@ -3,9 +3,8 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-
 import org.fundacionjala.pivotal.api.Mapper;
+import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 
@@ -48,8 +47,8 @@ public class ProjectAssert {
         assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
     }
 
-    @Then("^I expect a message Delete say (.*)$")
-    public void iExpectAMessageDeleteSayProject1Name(String message) {
+    @Then("^I expect the delete message: (.*)$")
+    public void iExpectTheDeleteMessageProjectNameWasSuccessfullyDeleted(String message) {
         final String expectMessage = Mapper.getPropertiesProject(message);
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }

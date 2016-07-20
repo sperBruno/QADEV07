@@ -7,7 +7,7 @@ Feature: Delete a new story in a project from pivotal tracker
     And stored as Project1
     And I send a POST request to /projects/[Project1.id]/stories
       | name | storyTest |
-    Then I login with credentials valid
+    Then I login with valid credentials
 
   @story
   Scenario: Delete story

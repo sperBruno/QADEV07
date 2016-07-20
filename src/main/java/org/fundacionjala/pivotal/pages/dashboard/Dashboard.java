@@ -90,7 +90,6 @@ public class Dashboard extends BasePage {
      * @autor Rosario Garcia
      */
     public Project clickOnProject(String projectName) {
-        refreshPage();
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
             WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
@@ -102,14 +101,12 @@ public class Dashboard extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
         return new Project();
-
     }
 
     public Setting clickSettingsLink(String nameProjects) {
         refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
         clickWebElement(taskElement);
-        taskElement.click();
         return new Setting();
     }
 
@@ -135,12 +132,15 @@ public class Dashboard extends BasePage {
         driver.navigate().refresh();
     }
 
-    public String getEmailActual(String value){
+    public String getUserName(String value){
+
         final String endPointProfile = "/me";
         final String fieldEmail = "email";
         final String fieldUserName = "username";
-        final String username = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
         final String email = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldEmail);
-        return value.equalsIgnoreCase(username) || value.equalsIgnoreCase(email) ? username: value;
+        if (value.equalsIgnoreCase(email)){
+            return RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
+        }
+        return value;
     }
 }

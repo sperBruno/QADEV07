@@ -4,7 +4,7 @@ Feature: Workspace with Projects
     Given I send a POST request to /projects
       | name   | test |
       | public | true |
-    Given I login with credentials valid
+    Given I login with valid credentials
     When I am on Pivotal Dashboard page
 
   @project

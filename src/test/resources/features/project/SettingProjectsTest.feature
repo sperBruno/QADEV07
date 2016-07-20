@@ -5,7 +5,7 @@ Feature: Testing for setting projects for Pivotal page
       | name   | projectSettingProjects |
       | public | true        |
     And stored as Project1
-    And I login with credentials valid
+    And I login with valid credentials
 
   @project
   Scenario: Edit Project
@@ -17,5 +17,6 @@ Feature: Testing for setting projects for Pivotal page
       | ITERATION_LENGTH    | 4           |
       | PROJECT_START_DATE  | 7/23/2016   |
       | PROJECT_TIME_ZONE   | Arizona     |
+#      | POINT_SCALE         | 0,1,2,3,5,8 |
     Then I expect a message say Changes saved.
     And Validate all setting projects
