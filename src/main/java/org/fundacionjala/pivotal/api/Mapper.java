@@ -12,12 +12,18 @@ import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BR
 
 public final class Mapper {
 
-    private static final String REGEX_KEY = "\\[(.*?)\\.";
-    private static final String REGEX_VALUE = "\\.(.*?)\\]";
-    private static final String REGEX_REPLACE = "\\[(.*?)\\]";
+    public static final String REGEX_KEY = "\\[(.*?)\\.";
+
+    public static final String REGEX_VALUE = "\\.(.*?)\\]";
+
+    public static final String REGEX_REPLACE = "\\[(.*?)\\]";
+
     private static final String REGEX_HALF_BRACKET = "[";
+
     private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
+
     private static final String EMPTY_STRING = "";
+
     private static final int INDEX_1 = 1;
 
     private static final int INDEX_2 = 2;
