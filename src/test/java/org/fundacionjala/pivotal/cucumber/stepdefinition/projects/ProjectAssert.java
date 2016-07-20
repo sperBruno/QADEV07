@@ -90,10 +90,12 @@ public class ProjectAssert {
     public void iVerifyThatTheAccountOfTheCreatedProjectIsLuis(String expectedAccount) {
 
 
-        String accountId = responseProject.jsonPath().get("account_id").toString();
+        final String account_id = "account_id";
+        String accountId = responseProject.jsonPath().get(account_id).toString();
         String endpointAccount = "/accounts/" + accountId;
         Response responseAccount = getRequest(endpointAccount);
-        String actualResult = responseAccount.jsonPath().get("name");
+        final String nameAccount = "name";
+        String actualResult = responseAccount.jsonPath().get(nameAccount);
         LOGGER.info("Account is :" + actualResult);
         assertEquals(expectedAccount, actualResult);
     }
@@ -110,7 +112,8 @@ public class ProjectAssert {
 
     @And("^I validate that the created Project is (.*)$")
     public void iValidateThatTheCreatedProjectIsPublic(String expectedProjectType) {
-        String actualProjectType = responseProject.jsonPath().get("project_type");
+        final String project_type = "project_type";
+        String actualProjectType = responseProject.jsonPath().get(project_type);
         LOGGER.info("Project Type: " + actualProjectType);
         assertEquals(expectedProjectType, actualProjectType);
     }
