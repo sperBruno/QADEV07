@@ -2,17 +2,20 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
+import cucumber.api.java.en.Given;
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.pages.dashboard.CreateProject;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.project.ProjectSteps;
-import cucumber.api.java.en.Given;
 
 /**
  * This class is used to execute the step of project scenarios.
  * Created by BrunoBarrios on 7/7/2016.
  */
 public class ProjectsStepDef {
+
+    private static final Logger LOGGER = Logger.getLogger(ProjectsStepDef.class.getName());
 
     private LoginStepDef loginStepDef;
 
@@ -47,5 +50,10 @@ public class ProjectsStepDef {
     public Project getProject() {
         return project;
     }
+
+    public CreateProject getCreateProject() {
+        return createProject;
+    }
+
 
 }

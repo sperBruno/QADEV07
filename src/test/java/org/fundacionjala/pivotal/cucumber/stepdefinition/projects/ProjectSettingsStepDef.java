@@ -57,7 +57,7 @@ public class ProjectSettingsStepDef {
         return new GeneralSettingForm();
     }
 
-    @And("^I Delete a .*$")
+    @And("^I click on delete project button$")
     public void iDeleteAProject() {
         SideBarSetting sideBar = setting.getSideBar();
         generalSettingForm = sideBar.clickGeneralSetting();

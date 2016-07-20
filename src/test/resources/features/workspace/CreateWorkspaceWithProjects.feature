@@ -7,6 +7,7 @@ Feature: Workspace with Projects
     And stored as ProjectW
     Given I login with valid credentials
 
+
   @project
   Scenario: Add project to Workspace created
 
