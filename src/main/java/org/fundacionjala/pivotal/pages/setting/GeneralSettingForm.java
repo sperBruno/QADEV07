@@ -3,17 +3,16 @@ package org.fundacionjala.pivotal.pages.setting;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.fundacionjala.pivotal.framework.util.Constants;
-import org.fundacionjala.pivotal.pages.login.BasePage;
-import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.convertASelect;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ALLOW_API_ACCESS;
@@ -24,17 +23,17 @@ import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_RSS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_TASKS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.HIDE_EMAIL_ADDRESSES;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.INITIAL_VELOCITY;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_TIME_ZONE;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRATEGY;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PUBLIC_ACCESS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.TITLE_PROJECTS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRATEGY;
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
@@ -328,10 +327,7 @@ public class GeneralSettingForm extends BasePage {
         return projectBugsCheckBox.isSelected();
     }
 
-    public Accounts clickAccountLink(){
-                accountLink.click();
-                return new Accounts();
-            }
+
     public boolean getEnableProjectsTasks() {
         return projectEnableTasksCheckbox.isSelected();
     }
