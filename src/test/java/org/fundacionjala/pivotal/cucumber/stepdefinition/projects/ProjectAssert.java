@@ -71,4 +71,11 @@ public class ProjectAssert {
         });
         projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
     }
+
+    @Then("^I click save button should be show a message say: (.*)$")
+    public void iClickSaveButtonShouldBeShowAMessageSay(String message) {
+        final String expectResult = Mapper.getMassage(message, projectSettingsStepDef.getValuesMap());
+        assertEquals(projectSettingsStepDef.getGeneralSettingForm().getMessageErrorNameDayText(),expectResult);
+        projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
+    }
 }

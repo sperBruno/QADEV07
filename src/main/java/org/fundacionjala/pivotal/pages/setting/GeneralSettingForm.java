@@ -95,6 +95,9 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(className = "text_column")
     WebElement projectId;
 
+    @FindBy(className = "error_above_or_below")
+    WebElement massageErrorNameDayText;
+
     private boolean flat;
 
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
@@ -240,6 +243,9 @@ public class GeneralSettingForm extends BasePage {
         return testMessage.getText();
     }
 
+    public String getMessageErrorNameDayText() {
+        return massageErrorNameDayText.getText();
+    }
 
     public String getDescriptionText() {
         return projectDescriptionTestField.getAttribute("value");
