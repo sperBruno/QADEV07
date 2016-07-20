@@ -9,7 +9,7 @@ import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInst
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAllProjects;
 
 /**
- * @author  Henrry Salinas.
+ * @author Henrry Salinas.
  *
  * This class stores the global hooks methods required to run the test
  */
@@ -20,6 +20,7 @@ public class GlobalHooks {
     private static boolean BEFORE_ALL_FLAG = false;
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
+
     @Before
     public void beforeAll() {
 
@@ -31,8 +32,8 @@ public class GlobalHooks {
                 }
             });
             if (StringUtils.isEmpty(PROPERTIES_INFO.getEmail()) || StringUtils.isEmpty(PROPERTIES_INFO.getApiToken()) || StringUtils.isEmpty(PROPERTIES_INFO.getPassword())) {
-                    System.err.println(PROPERTIES_FILE_UNFILLED);
-                    Runtime.getRuntime().exit(1);
+                System.err.println(PROPERTIES_FILE_UNFILLED);
+                Runtime.getRuntime().exit(1);
             }
             BEFORE_ALL_FLAG = true;
         }
