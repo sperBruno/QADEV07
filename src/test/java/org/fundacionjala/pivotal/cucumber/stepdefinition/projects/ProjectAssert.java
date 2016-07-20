@@ -1,11 +1,13 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
+
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
@@ -56,8 +58,8 @@ public class ProjectAssert {
         assertEquals(messageSay, projectSettingsStepDef.getGeneralSettingForm().getMessageTest());
     }
 
-    @Then("^I expect a message Delete say (.*)$")
-    public void iExpectAMessageDeleteSayProject1Name(String message) {
+    @Then("^I expect the delete message: (.*)$")
+    public void iExpectTheDeleteMessageProjectNameWasSuccessfullyDeleted(String message) {
         final String expectMessage = Mapper.getPropertiesProject(message);
         assertEquals(expectMessage, projectSettingsStepDef.getDashboard().getMessageTextDelete());
     }

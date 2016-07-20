@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SideBarWorkspace extends BasePage {
 
-    @FindBy(xpath = "//button[contains(.,'add projects')]")
+    @FindBy(xpath = "//button[contains(.,'add project')]")
     private WebElement addProjectLink;
 
     @FindBy(id = "_dropdown__arrow")
