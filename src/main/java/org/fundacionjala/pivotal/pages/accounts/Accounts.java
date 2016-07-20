@@ -1,11 +1,10 @@
 package org.fundacionjala.pivotal.pages.accounts;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * This class represents Account page and its characteristics.
@@ -23,6 +22,14 @@ public class Accounts extends BasePage {
     @FindBy(xpath = "//a[contains(.,'Manage Account')]")
     private WebElement manageAccountBtn;
 
+    @FindBy(xpath = ".//*[@id='new_account_link']")
+    private WebElement createNewAccountLink;
+
+    @FindBy(xpath = ".//*[@id='account_name']")
+    private  WebElement accountTextBox;
+
+    @FindBy(xpath = ".//*[@id='add_account_button']")
+    private WebElement createNewAccountBtn;
     /**
      * This class instances a ToolBarAccount.
      */
@@ -51,6 +58,9 @@ public class Accounts extends BasePage {
         return deleteAccountMessage.getText();
     }
 
+    public void clickNewAccountBtn(){
+        //CommonMethods.clickWebElement();
+    }
     public ToolBarAccount getToolBarAccount() {
         return toolBarAccount;
     }
