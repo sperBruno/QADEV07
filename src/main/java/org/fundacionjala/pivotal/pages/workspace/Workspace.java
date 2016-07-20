@@ -1,5 +1,7 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,6 +69,12 @@ public class Workspace extends BasePage {
             idWorkspace = m.replaceAll ("");
         }
         return idWorkspace;
+    }
+
+    public Map<WorkspaceSteps, Object> getAssertionMap() {
+        Map<WorkspaceSteps, Object> assertionMap = new HashMap<> ();
+        assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText ());
+        return assertionMap;
     }
 
     public SideBarWorkspace getSideWorkspace () {
