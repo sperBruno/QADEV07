@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 import com.jayway.restassured.response.Response;
 
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
@@ -11,6 +12,7 @@ import org.fundacionjala.pivotal.pages.stories.IceBox;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 
+import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
 import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static org.junit.Assert.assertEquals;
@@ -69,7 +71,7 @@ public class StoriesAssert {
         ToolBar toolBar = new ToolBar();
         toolBar.clickReturnDashboardLink();
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
-            //  RequestManager.deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+              RequestManager.deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
     }
 
