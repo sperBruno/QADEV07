@@ -1,7 +1,7 @@
 Feature: Workspace
 
   Background: I login into pivotal
-    Given I login with credentials valid
+    Given I login with valid credentials
     When I am on Pivotal Dashboard page
 
   Scenario: The "Create Workspace" button, returns a Create Workspace form
