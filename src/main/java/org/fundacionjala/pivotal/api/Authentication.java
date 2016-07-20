@@ -29,17 +29,17 @@ public class Authentication {
 
     private void initApi() {
         baseURI = PropertiesInfo.getInstance().getUrlApi();
-        if (PropertiesInfo.getInstance().getProxy()!= null) {
-             requestSpecification = new RequestSpecBuilder()
-                     .setRelaxedHTTPSValidation()
-                     .setProxy(PropertiesInfo.getInstance().getProxy())
-                     .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
-                     .build();
+        if (PropertiesInfo.getInstance().getProxy() != null) {
+            requestSpecification = new RequestSpecBuilder()
+                    .setRelaxedHTTPSValidation()
+                    .setProxy(PropertiesInfo.getInstance().getProxy())
+                    .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
+                    .build();
         } else {
-             requestSpecification = new RequestSpecBuilder()
-                     .setRelaxedHTTPSValidation()
-                     .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
-                     .build();
+            requestSpecification = new RequestSpecBuilder()
+                    .setRelaxedHTTPSValidation()
+                    .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
+                    .build();
         }
     }
 

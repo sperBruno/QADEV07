@@ -5,7 +5,7 @@ Feature: Testing for setting projects for Pivotal page
       | name   | projectTest |
       | public | true        |
     And stored as Project1
-    And I login with valid credentials
+    And I login with credentials valid
 
   @project
   Scenario: Delete Project

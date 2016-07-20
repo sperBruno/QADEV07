@@ -1,7 +1,7 @@
 Feature: Create Project
 
   Background: I login into pivotal
-    Given I login with valid credentials
+    Given I login with credentials valid
 
   @ProjectSelenium
   Scenario: Create Project

@@ -11,13 +11,13 @@ Feature: Delete a new story in a project from pivotal tracker
 
   @story
   Scenario: Delete story
-    Given I enter to [Project1.name]
-    When I delete the story created
+    Given I enter to projectTest
+    When I delete the storyTest created
     Then I expect the message 1 story deleted
 
   @story
   Scenario: Edit story
-    Given I enter to [Project1.name]
+    Given I enter to projectTest
     When I edit the next parameter
       | STORY_TITLE | storyTestSet       |
       | DESCRIPTION | descriptionTestSet |
