@@ -1,6 +1,10 @@
 Feature: Workspace
 
   Background: I login into pivotal
+    Given I send a POST request to /projects
+      | name   | test |
+      | public | true |
+    And stored as ProjectW2
     Given I login with valid credentials
 
   @DeleteWorkspace
