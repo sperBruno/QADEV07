@@ -5,7 +5,7 @@ Feature: Workspace with Projects
       | name   | test |
       | public | true |
     And stored as ProjectW
-    Given I login with credentials valid
+    Given I login with valid credentials
 
   @project
   Scenario: Add project to Workspace created

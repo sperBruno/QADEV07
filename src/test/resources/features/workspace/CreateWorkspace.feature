@@ -1,7 +1,7 @@
 Feature: Workspace
 
   Background: I login into pivotal
-    Given I login with credentials valid
+    Given I login with valid credentials
 
   @DeleteWorkspace
   Scenario: Create a Workspace with a name valid
