@@ -13,6 +13,7 @@ public class Firefox implements IDriver {
     /**
      *{@inheritDoc}
      */
+    @Override
     public WebDriver initDriver() {
         return new FirefoxDriver();
     }

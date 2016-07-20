@@ -4,6 +4,7 @@ Feature: Create new story in project from pivotal tracker
     Given I send a POST request to /projects
       | name   | projectTest |
       | public | true        |
+    And I expect the status code 200
     And stored as Project1
     And I login with valid credentials
 

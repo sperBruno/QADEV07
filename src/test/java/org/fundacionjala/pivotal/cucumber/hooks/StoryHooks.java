@@ -4,6 +4,7 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 import cucumber.api.java.After;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
@@ -40,12 +41,11 @@ public class StoryHooks {
      */
     @After("@stories")
     public void afterProjectScenario() {
-        ToolBar toolBar = new ToolBar();
-        toolBar.clickReturnDashboardLink();
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
             LOGGER.info("Response from stories Hook: " + api.getResponse().prettyPrint());
         }
+        DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
     }
 
 }
