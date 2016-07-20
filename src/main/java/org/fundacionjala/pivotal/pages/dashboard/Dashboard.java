@@ -99,6 +99,7 @@ public class Dashboard extends BasePage {
             projectNameLink.click();
         } catch (NoSuchElementException e) {
             LOGGER.warn("The Web element not was find ", e.getCause());
+            throw new NoSuchElementException("The Web element not was find ", e.getCause());
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
