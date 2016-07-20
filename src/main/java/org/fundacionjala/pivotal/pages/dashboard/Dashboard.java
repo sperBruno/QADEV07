@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
+import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 
@@ -106,7 +107,6 @@ public class Dashboard extends BasePage {
         refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
         clickWebElement(taskElement);
-        taskElement.click();
         return new Setting();
     }
 
@@ -126,5 +126,17 @@ public class Dashboard extends BasePage {
 
     public String getMessageDeleteWorkspace() {
         return messageDeleteWorkspace.getText();
+    }
+
+    public String getUserName(String value){
+
+        final String endPointProfile = "/me";
+        final String fieldEmail = "email";
+        final String fieldUserName = "username";
+        final String email = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldEmail);
+        if (value.equalsIgnoreCase(email)){
+            return RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
+        }
+        return value;
     }
 }
