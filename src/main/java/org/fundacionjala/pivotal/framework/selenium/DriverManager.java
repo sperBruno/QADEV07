@@ -43,8 +43,8 @@ public class DriverManager {
 
     private void initWebDriver() {
         driver = FactoryDriver.getDriver(PropertiesInfo.getInstance().getBrowser()).initDriver();
-        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(LOAD_PAGE_TIME, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(80, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, WAIT_TIME);
     }

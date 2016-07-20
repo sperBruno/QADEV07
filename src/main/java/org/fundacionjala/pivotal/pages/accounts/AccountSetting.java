@@ -1,5 +1,6 @@
 package org.fundacionjala.pivotal.pages.accounts;
 
+import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
