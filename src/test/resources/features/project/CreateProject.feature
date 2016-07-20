@@ -34,4 +34,4 @@ Feature: Create Project
       | PROJECT_SAMPLE_DATA | true |
     Then The project title should be equals My Sample Project
     And I verify that the account of the created project is luis
-    And I validate that the created Project is public
+    And I validate that the created Project is demo
