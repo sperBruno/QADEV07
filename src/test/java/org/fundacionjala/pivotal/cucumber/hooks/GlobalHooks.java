@@ -3,6 +3,8 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 import org.apache.commons.lang3.StringUtils;
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
+import cucumber.api.java.Before;
+
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAllProjects;
 
@@ -18,7 +20,7 @@ public class GlobalHooks {
     private static boolean BEFORE_ALL_FLAG = false;
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
-
+    @Before
     public void beforeAll() {
 
         if (!BEFORE_ALL_FLAG) {
