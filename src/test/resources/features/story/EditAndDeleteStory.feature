@@ -26,7 +26,7 @@ Feature: Delete a new story in a project from pivotal tracker
     Given I enter to [Project1.name]
     When I delete the story created
     Then I expect the message 1 story deleted
-    
+
   @story
   Scenario: Cancel delete story
     Given I enter to [Project1.name]

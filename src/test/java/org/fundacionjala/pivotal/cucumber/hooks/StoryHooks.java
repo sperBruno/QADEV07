@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 
 
 import cucumber.api.java.After;
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
@@ -11,6 +12,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.*;
 
 public class StoryHooks {
 
+    public static final Logger LOGGER = Logger.getLogger(StoryHooks.class.getName());
     public static final String PROJECT_ID_STORY = "project_id";
     private ApiResourcesSteps api;
 
@@ -29,8 +31,21 @@ public class StoryHooks {
         toolBar.clickReturnDashboardLink();
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode() || DELETE_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID_STORY).toString());
+            LOGGER.info("Response from story Hook: " + api.getResponse().prettyPrint());
         }
     }
 
+    /**
+     * Method to validate the message from delete test story
+     */
+    @After("@stories")
+    public void afterProjectScenario() {
+        ToolBar toolBar = new ToolBar();
+        toolBar.clickReturnDashboardLink();
+        if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
+            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+            LOGGER.info("Response from stories Hook: " + api.getResponse().prettyPrint());
+        }
+    }
 
 }

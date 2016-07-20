@@ -15,7 +15,11 @@ import org.openqa.selenium.support.FindBy;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TYPE;
 
 /**
  * This class is for test the creation, set and delete
@@ -184,7 +188,7 @@ public class Story extends BasePage {
     }
 
     public String getStoryType() {
-        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).getText();
+        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).getText().toLowerCase();
     }
 
     public void setStoryType(String storyType) {
