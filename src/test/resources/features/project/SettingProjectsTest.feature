@@ -3,7 +3,7 @@ Feature: Testing for setting projects for Pivotal page
   Background: create project
     Given I send a POST request to /projects
       | name   | projectSettingProjects |
-      | public | true        |
+      | public | true                   |
     And stored as Project1
     And I login with valid credentials
 
@@ -11,12 +11,16 @@ Feature: Testing for setting projects for Pivotal page
   Scenario: Edit Project
     When I click [Project1.id] settings
     And I update general setting for Project1
-      | description         | totally new |
-      | START_ITERATIONS_ON | Saturday    |
-      | ENABLE_TASKS        | true        |
-      | ITERATION_LENGTH    | 4           |
-      | PROJECT_START_DATE  | 7/23/2016   |
-      | PROJECT_TIME_ZONE   | Arizona     |
-#      | POINT_SCALE         | 0,1,2,3,5,8 |
+      | description                  | totally new |
+      | START_ITERATIONS_ON          | Saturday    |
+      | ENABLE_TASKS                 | true        |
+      | ITERATION_LENGTH             | 4           |
+      | PROJECT_START_DATE           | 7/23/2016   |
+      | PROJECT_TIME_ZONE            | Arizona     |
+      | POINT_SCALE                  | 0,1,2,3,5,8 |
+      | VELOCITY_STRATEGY            | PastIters 4 |
+      | ENABLE_RSS                   | true        |
+      | HIDE_EMAIL_ADDRESSES         | true        |
+      | BUGS_GIVEN_POINTS            | true        |
     Then I expect a message say Changes saved.
     And Validate all setting projects

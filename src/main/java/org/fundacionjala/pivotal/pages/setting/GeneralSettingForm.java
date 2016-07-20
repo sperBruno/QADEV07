@@ -3,10 +3,13 @@ package org.fundacionjala.pivotal.pages.setting;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -92,6 +95,8 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(className = "text_column")
     WebElement projectId;
 
+    private boolean flat;
+
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
         strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
@@ -154,6 +159,7 @@ public class GeneralSettingForm extends BasePage {
 
     public GeneralSettingForm setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
         selectAElementComboBox(projectSettingsPointScaleComboBox, projectSettingsPointScale);
+        flat=true;
         return this;
     }
 
@@ -179,10 +185,9 @@ public class GeneralSettingForm extends BasePage {
 
     public GeneralSettingForm clickSaveButton() {
         clickWebElement(saveButton);
-        try {
+        if(flat) {
             wait.until(ExpectedConditions.alertIsPresent()).accept();
-        }catch (TimeoutException e){
-            System.out.println("Unhandled alert Exception"+ e);
+            flat = false;
         }
 
         return this;
@@ -194,6 +199,9 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectUseHttpsCheckBox(boolean enable) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("javascript:window.scrollBy(0,500)");
+        action.keyDown(Keys.DOWN).perform();
         setCheckBox(projectUseHttpsCheckBox, enable);
         return this;
     }
@@ -272,7 +280,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectVelocity() {
-        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public boolean getTextProjectAutomaticPlanning() {
