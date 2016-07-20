@@ -46,7 +46,7 @@ public final class CommonMethods {
         if (enable) {
             unCheckBox(webElement);
         } else {
-            CheckBox(webElement);
+            checkBox(webElement);
         }
     }
 
@@ -56,7 +56,7 @@ public final class CommonMethods {
         }
     }
 
-    private static void CheckBox(WebElement webElement) {
+    private static void checkBox(WebElement webElement) {
         if (webElement.isSelected()) {
             webElement.click();
         }
