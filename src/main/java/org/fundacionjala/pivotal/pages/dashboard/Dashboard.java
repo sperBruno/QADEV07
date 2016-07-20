@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.pages.dashboard;
 
 import java.util.concurrent.TimeUnit;
 
+import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 
@@ -132,6 +133,14 @@ public class Dashboard extends BasePage {
 
     public void refreshPage() {
         driver.navigate().refresh();
+    }
 
+    public String getEmailActual(String value){
+        final String endPointProfile = "/me";
+        final String fieldEmail = "email";
+        final String fieldUserName = "username";
+        final String username = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
+        final String email = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldEmail);
+        return value.equalsIgnoreCase(username) || value.equalsIgnoreCase(email) ? username: value;
     }
 }
