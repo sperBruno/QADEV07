@@ -13,7 +13,7 @@ Feature: Workspace
     Given I create a new Workspace
       | WORKSPACE_NAME | My Workspace253 |
     And click on the Create Workspace button
-    Then the display name equals to My Workspace253
+    Then the display name equals to workspace created
 
   Scenario: Create a Workspace with empty name
 

@@ -120,4 +120,6 @@ public class WorkspaceStepDef {
     public SettingWorkspace getSettingWorkspace() {
         return settingWorkspace;
     }
+
+    public Map<WorkspaceSteps, Object> getValuesMap(){return valuesMap;}
     }
