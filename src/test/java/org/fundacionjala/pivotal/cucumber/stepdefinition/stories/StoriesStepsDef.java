@@ -96,5 +96,5 @@ public class StoriesStepsDef {
         story.strategyStepMap(values);
         story.cancelAddStory();
     }
-    
+
 }
