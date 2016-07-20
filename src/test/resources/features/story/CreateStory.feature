@@ -5,11 +5,11 @@ Feature: Create new story in project from pivotal tracker
       | name   | projectTest |
       | public | true        |
     And stored as Project1
-    And I login with credentials valid
+    And I login with valid credentials
 
   @stories
   Scenario: Create new story
-    Given I enter to projectTest
+    Given I enter to [Project1.name]
     And I create a new story
       | STORY_TITLE | storyTest       |
       | DESCRIPTION | descriptionTest |

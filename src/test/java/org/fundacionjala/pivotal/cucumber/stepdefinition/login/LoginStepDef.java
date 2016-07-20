@@ -12,8 +12,8 @@ public class LoginStepDef {
 
     private Dashboard dashboard;
 
-    @When("^I login with credentials valid$")
-    public void iLoginWithCredentialsValid() {
+    @When("^I login with valid credentials$")
+    public void iLoginWithValidCredentials() {
         dashboard = loginAsPrimaryUser();
         dashboard.refreshPage ();
     }
