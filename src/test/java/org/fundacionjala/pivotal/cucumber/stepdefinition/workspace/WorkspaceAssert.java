@@ -27,12 +27,14 @@ public class WorkspaceAssert {
     @And("^the display name equals to (.*)$")
     public void theDisplayNameEqualsTo (String workspaceName) {
         assertEquals (workspaceName, workspaceStepDef.getWorkspace ().getToolBarWorkspace ().getWorkspaceNameText ());
+        workspaceHooks.DeleteWorkspace();
     }
 
     @Then("^A message displayed: (.*)$")
     public void aMessageDisplayedWorkspaceNameCanTBeBlank (String message) {
         assertEquals (message, workspaceStepDef.getCreateWorkspace ().getMessageWorkspaceNameEmpty ());
         workspaceStepDef.getCreateWorkspace ().clickCancelCreateWorkspaceLink ();
+        workspaceHooks.DeleteWorkspace();
     }
 
     @Then("^I expect a workspace with the (.*) project name$")

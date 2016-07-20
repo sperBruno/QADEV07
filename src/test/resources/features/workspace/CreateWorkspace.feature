@@ -7,7 +7,7 @@ Feature: Workspace
     And stored as ProjectW2
     Given I login with valid credentials
 
-  @DeleteWorkspace
+  @project
   Scenario: Create a Workspace with a name valid
 
     Given I create a new Workspace
