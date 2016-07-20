@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.*;
@@ -18,6 +19,8 @@ import static org.fundacionjala.pivotal.framework.util.Constants.*;
  * Created by mijhailvillarroel on 7/14/2016.
  */
 public final class CommonMethods {
+
+private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
     private CommonMethods() {
     }
@@ -32,13 +35,13 @@ public final class CommonMethods {
     }
 
     public static void setWebElement(WebElement webElement, String text) {
-        getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
 
     public static void clickWebElement(WebElement webElement) {
-        getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
