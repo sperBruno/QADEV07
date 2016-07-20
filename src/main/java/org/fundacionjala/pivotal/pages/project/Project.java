@@ -29,7 +29,7 @@ public class Project extends BasePage {
 
     public Setting clickSettingTab() {
         //settings.click();
-        clickWebElement(settings);
+       clickWebElement(settings);
         return new Setting();
     }
 
