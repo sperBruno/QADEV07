@@ -77,7 +77,7 @@ public class ProjectAssert {
         responseProject = getRequest(endpointProject);
         LOGGER.info("title project end point" + responseProject.jsonPath().get("name"));
         LOGGER.info("title project locator" + projectsStepDef.getProject().getTitle());
-        assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
+        assertEquals(expectedValue, projectsStepDef.getProject().getTitle().replace("\n", " "));
     }
 
     @And("^Validate all setting projects$")
