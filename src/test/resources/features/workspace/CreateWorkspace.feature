@@ -2,7 +2,7 @@ Feature: Workspace
 
   Background: I login into pivotal
     Given I send a POST request to /projects
-      | name   | test |
+      | name   | ProjectTest2 |
       | public | true |
     And stored as ProjectW2
     Given I login with valid credentials
@@ -11,7 +11,7 @@ Feature: Workspace
   Scenario: Create a Workspace with a name valid
 
     Given I create a new Workspace
-      | WORKSPACE_NAME | My Workspace253 |
+      | WORKSPACE_NAME | WorkspaceTest2 |
     And click on the Create Workspace button
     Then the display name equals to workspace created
 
