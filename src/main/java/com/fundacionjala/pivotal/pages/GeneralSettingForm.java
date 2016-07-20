@@ -125,7 +125,7 @@ public class GeneralSettingForm extends BasePage {
         strategyMap.put(ENABLE_INCOMING_EMAIL, () -> setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));
         strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
         strategyMap.put(BUGS_GIVEN_POINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString())));
-        return  strategyMap;
+        return strategyMap;
 
     }
 
@@ -259,11 +259,18 @@ public class GeneralSettingForm extends BasePage {
     public String getNumberIterationShow() {
         return projectNumberOfDoneIterationsToShowTestField.getAttribute("value");
     }
+
     public String getInitialVelocity() {
         return projectInitialVelocityTestField.getAttribute("value");
     }
+
     public String getTextProjectWeekStartDaySelect() {
         return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute("value");
+    }
+
+    public Accounts clickAccountLink() {
+        accountLink.click();
+        return new Accounts();
     }
 
     public String getTextProjectIterationLength() {
