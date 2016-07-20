@@ -77,15 +77,13 @@ public class StoriesAssert {
 
     @Then("^I expect the alert (.*)$")
     public void iExpectTheAlertMessage(String message) {
-
         assertEquals(message, storiesStepsDef.getStory().getAddStoryTitleAlert());
     }
 
-    @Then("^I expect the (.*) is displayed$")
+    @Then("^I expect the (.*) is show$")
     public void iExpectTheStoryNameIsDisplayed(String property) {
         String storyName = mapResponse(property);
         assertEquals(storyName, storiesStepsDef.getStory().getStoryTitle());
-
     }
 
     @Then("^I expect none story added$")
