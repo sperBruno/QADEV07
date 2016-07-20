@@ -6,7 +6,6 @@ import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.pages.setting.Setting;
-import org.junit.Assert;
 
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
@@ -27,6 +26,8 @@ public class ProjectAssert {
     private ProjectSettingsStepDef projectSettingsStepDef;
 
     private Response responseProject;
+
+    private String endpointProject;
 
     /**
      * This class receives ProjectStepDef and ProjectSettingsStepDef as parameters.
@@ -68,8 +69,13 @@ public class ProjectAssert {
      */
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
-        LOGGER.info("title project " + projectsStepDef.getProject().getTitle());
-        Assert.assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
+        Setting setting = projectsStepDef.getProject().clickSettingTab();
+        endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
+        LOGGER.info("project id " + endpointProject.toString());
+        responseProject = getRequest(endpointProject);
+        LOGGER.info("title project end point" + responseProject.jsonPath().get("name"));
+        LOGGER.info("title project locator" + projectsStepDef.getProject().getTitle());
+        assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
     }
 
     @And("^Validate all setting projects$")
@@ -82,10 +88,8 @@ public class ProjectAssert {
 
     @And("^I verify that the account of the created project is (.*)$")
     public void iVerifyThatTheAccountOfTheCreatedProjectIsLuis(String expectedAccount) {
-        Setting setting = projectsStepDef.getProject().clickSettingTab();
-        String endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
-        LOGGER.info("project id " + endpointProject.toString());
-        responseProject = getRequest(endpointProject);
+
+
         String accountId = responseProject.jsonPath().get("account_id").toString();
         String endpointAccount = "/accounts/" + accountId;
         Response responseAccount = getRequest(endpointAccount);
