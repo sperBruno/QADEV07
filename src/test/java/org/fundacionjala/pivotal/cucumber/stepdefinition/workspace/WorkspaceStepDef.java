@@ -1,18 +1,22 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 
+import java.util.Map;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import org.fundacionjala.pivotal.pages.dashboard.CreateWorkspace;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import org.fundacionjala.pivotal.pages.workspace.CreateWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.DeleteWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.SettingWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.SideBarWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.Workspace;
+import org.fundacionjala.pivotal.pages.workspace.WorkspaceSteps;
 
 /**
- * Created by Daniel on 07/07/2016.
+ * Created by Daniel Gonzales
  */
 public class WorkspaceStepDef {
 
@@ -32,6 +36,8 @@ public class WorkspaceStepDef {
 
     private DeleteWorkspace deleteWorkspace;
 
+    private Map<WorkspaceSteps, Object> valuesMap;
+
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
     }
@@ -41,25 +47,18 @@ public class WorkspaceStepDef {
         dashboard = loginStepDef.getDashboard();
     }
 
-    @When("^click on the Create Workspace button of the (Dashboard|Form)$")
-    public void iClickOnTheCreateWorkspaceButton(String page) {
-
-        if (DASHBOARD.equalsIgnoreCase(page)) {
-            createWorkspace = dashboard.clickCreateWorkspaceLink();
-        } else {
+    @When("^click on the Create Workspace button$")
+    public void iClickOnTheCreateWorkspaceButton() {
             workspace = createWorkspace.clickCreateWorkspaceLink();
             sideBarWorkspace = workspace.getSideWorkspace();
         }
-    }
 
-    @Given("^I am on Pivotal Create Workspace form$")
-    public void iAmOnPivotalCreateWorkspaceForm() {
+    @Given("^I create a new Workspace$")
+    public void iAmOnPivotalCreateWorkspaceForm(Map<WorkspaceSteps, Object> values) {
+        dashboard = loginStepDef.getDashboard();
+        this.valuesMap = values;
         createWorkspace = dashboard.clickCreateWorkspaceLink();
-    }
-
-    @When("^I fill with (.*) the name Workspace field$")
-    public void iSendAPOSTRequestToMyWorkspacesWithAsNameWorkspace(String nameWorkspace) {
-        createWorkspace.setUserNameTestField(nameWorkspace);
+        valuesMap.keySet().stream().forEach((step) -> createWorkspace.getStrategyStepMap (valuesMap).get(step).executeStep());
     }
 
     @When("^I click on Add Projects button$")
@@ -67,13 +66,9 @@ public class WorkspaceStepDef {
         sideBarWorkspace.clickAddProjectLink();
     }
 
-    @And("^I  click on list projects icon$")
-    public void iClickOnListProjectsIcon() {
-        sideBarWorkspace.clickListProjectLink ();
-    }
-
-    @When("^I select the project created previously$")
+    @And("^I select the project created previously$")
     public void iSelectTheProjectCreatedPreviously() {
+        sideBarWorkspace.clickListProjectLink ();
         sideBarWorkspace.clickIdProjectLink ();
     }
 
@@ -84,7 +79,8 @@ public class WorkspaceStepDef {
 
     @Given("^I click on (.*) created$")
     public void iClickOnWorkspace(String nameWorkspace) {
-        workspace = loginStepDef.getDashboard().clickNameWorkspaceLink (nameWorkspace);
+        String finalNameWorkspace = Mapper.getPropertiesProject(nameWorkspace);
+        workspace = loginStepDef.getDashboard().clickNameWorkspaceLink (finalNameWorkspace);
     }
 
     @When("^I click on Settings of SideBar$")
@@ -123,4 +119,4 @@ public class WorkspaceStepDef {
     public SettingWorkspace getSettingWorkspace() {
         return settingWorkspace;
     }
-}
+    }
