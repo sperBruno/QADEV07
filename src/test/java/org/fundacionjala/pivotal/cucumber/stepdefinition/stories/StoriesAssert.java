@@ -4,7 +4,6 @@ import com.jayway.restassured.response.Response;
 import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
-import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
