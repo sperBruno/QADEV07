@@ -7,12 +7,12 @@ import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
+import org.fundacionjala.pivotal.pages.stories.IceBox;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
+import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
-import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
+import static org.fundacionjala.pivotal.framework.util.Constants.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -66,5 +66,24 @@ public class StoriesAssert {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
+    }
+
+    @Then("^I expect the alert (.*)$")
+    public void iExpectTheAlertMessage(String message){
+        
+        assertEquals(message, storiesStepsDef.getStory().getAddStoryTitleAlert());
+    }
+
+    @Then("^I expect the (.*) is displayed$")
+    public void iExpectTheStoryNameIsDisplayed(String property) {
+        String storyName = mapResponse(property);
+        assertEquals(storyName, storiesStepsDef.getStory().getStoryTitle());
+
+    }
+
+    @Then("^I expect none story added$")
+    public void iExpectNoneStoryAdded() {
+        IceBox iceBox = new IceBox();
+        assertEquals("(0, 0)", iceBox.getIceboxSection());
     }
 }

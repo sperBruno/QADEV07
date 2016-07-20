@@ -86,7 +86,7 @@ public final class Mapper {
      * @param property property to get
      * @return property
      */
-    public static String mapProject(String property) {
+    public static String mapResponse(String property) {
         if (property.contains(REGEX_HALF_BRACKET)) {
             Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
             Matcher mKey = keyEndpoint.matcher(property);

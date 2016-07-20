@@ -9,5 +9,6 @@ public enum StoriesSteps {
     STORY_TITLE,
     DESCRIPTION,
     LABELS,
-    COMMENT
+    COMMENT,
+    STORY_TYPE
 }
