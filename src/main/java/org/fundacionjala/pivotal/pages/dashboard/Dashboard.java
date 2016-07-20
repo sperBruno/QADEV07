@@ -7,6 +7,7 @@ import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+import org.fundacionjala.pivotal.pages.workspace.CreateWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.Workspace;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -117,8 +118,7 @@ public class Dashboard extends BasePage {
 
 
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
-        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));
-        System.out.println(nameWorkspaceLink.getText());
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
         nameWorkspaceLink.click();
         return new Workspace();
     }
