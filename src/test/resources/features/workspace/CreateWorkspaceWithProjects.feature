@@ -1,3 +1,4 @@
+@CleanEnviroment
 Feature: Workspace with Projects
 
   Background: I have projects created

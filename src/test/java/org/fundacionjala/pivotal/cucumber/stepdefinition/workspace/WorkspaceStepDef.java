@@ -20,8 +20,6 @@ import org.fundacionjala.pivotal.pages.workspace.WorkspaceSteps;
  */
 public class WorkspaceStepDef {
 
-    private static final String DASHBOARD = "Dashboard";
-
     private CreateWorkspace createWorkspace;
 
     private Workspace workspace;
@@ -40,11 +38,6 @@ public class WorkspaceStepDef {
 
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
-    }
-
-    @Given("^I am on Pivotal Dashboard page$")
-    public void iAmOnPivotalDashboardPage() {
-        dashboard = loginStepDef.getDashboard();
     }
 
     @When("^click on the Create Workspace button$")

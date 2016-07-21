@@ -1,3 +1,4 @@
+@CleanEnviroment
 Feature: Delete and Put a Workspace
 
   Background: I have workspace created
@@ -7,6 +8,7 @@ Feature: Delete and Put a Workspace
     Given I login with valid credentials
 
   Scenario: Delete Workspace
+
     Given I click on [Workspace11.name] created
     When I click on Settings of SideBar
     And I click on Delete link and confirm
