@@ -16,6 +16,7 @@ public class Chrome implements IDriver {
     /**
      * {@inheritDoc}
      */
+    @Override
     public WebDriver initDriver () {
         System.setProperty (WEBDRIVER_CHROME_DRIVER, DRIVER_PATH);
         return new ChromeDriver ();

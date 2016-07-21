@@ -13,7 +13,6 @@ Feature: Create Project
     And I verify that the account of the created project is luis
     And I validate that the created Project is public
 
-
   Scenario: Validate Project Title error message
     Given I create a new project
       | PROJECT_ACCOUNT | luis |

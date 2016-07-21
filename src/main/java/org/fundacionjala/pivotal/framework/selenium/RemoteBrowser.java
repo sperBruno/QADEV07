@@ -28,6 +28,7 @@ public class RemoteBrowser implements IDriver {
     /**
      *{@inheritDoc}
      */
+    @Override
     public WebDriver initDriver() {
         System.getProperties().put(HTTP_PROXY_HOST, PROPERTIES_INFO.getProxyHost());
         System.getProperties().put(HTTP_PROXY_PORT, PROPERTIES_INFO.getProxyPort());
