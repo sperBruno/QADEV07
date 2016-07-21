@@ -3,19 +3,21 @@ package org.fundacionjala.pivotal.framework.util;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
+
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
+import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACE_ID;
+
 
 /**
  * Created by mijhailvillarroel on 7/14/2016.
@@ -35,13 +37,13 @@ public final class CommonMethods {
     }
 
     public static void setWebElement(WebElement webElement, String text) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
 
     public static void clickWebElement(WebElement webElement) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
@@ -49,7 +51,7 @@ public final class CommonMethods {
         if (enable) {
             unCheckBox(webElement);
         } else {
-            CheckBox(webElement);
+            checkBox(webElement);
         }
     }
 
@@ -59,7 +61,7 @@ public final class CommonMethods {
         }
     }
 
-    private static void CheckBox(WebElement webElement) {
+    private static void checkBox(WebElement webElement) {
         if (webElement.isSelected()) {
             webElement.click();
         }

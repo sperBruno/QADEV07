@@ -4,3 +4,4 @@
 *.log
 *.fundacionjala.PivotalFinalTest.iml
 *.iml
+/build/
