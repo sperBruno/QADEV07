@@ -4,6 +4,8 @@ import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+
 /**
  * Created by brunobarrios on 7/15/2016.
  */
@@ -16,7 +18,7 @@ public class ToolBarAccount extends BasePage {
     private WebElement settingTab;
 
     public AccountSetting clickSettingTab() {
-        settingTab.click();
+        clickWebElement(settingTab);
         return new AccountSetting();
     }
 }

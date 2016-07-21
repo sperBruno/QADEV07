@@ -29,4 +29,10 @@ public class AccountAssert {
         assertEquals(expectedMessage, accountStepDef.getAccount().getDeleteAccountMessage());
         accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
     }
+
+    @Then("^I should get into (.*) Account setting$")
+    public void iShouldGetIntoJorgeAccountSetting(String expectedAccount)  {
+       assertEquals(expectedAccount,accountStepDef.getAccountSetting().getAccountName());
+        accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
+    }
 }

@@ -88,6 +88,7 @@ public final class Constants {
 
     public static final String ERROR_ACCOUNT_MESSAGE_TEXT = "please select or create an account for the new project";
     public static final String ERROR_PROJECT_TITLE_TEXT = "project name can't be blank";
+
     private Constants() {
     }
 }

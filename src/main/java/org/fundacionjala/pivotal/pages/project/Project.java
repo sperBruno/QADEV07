@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.setting.Setting;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,7 +35,9 @@ public class Project extends BasePage {
             clickWebElement(settings);
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Setting was not found");
-        } finally {
+        }catch (NullPointerException e){
+
+        }finally {
             wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
         }
