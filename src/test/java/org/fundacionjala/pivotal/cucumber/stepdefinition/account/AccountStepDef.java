@@ -13,16 +13,14 @@ import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 
-import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
-
 /**
  * This class is used to execute the steps of Account scenarios.
  * Created by brunobarrios on 7/18/2016.
  */
 public class AccountStepDef {
 
-    private static final Logger LOGGER=Logger.getLogger(AccountStepDef.class.getName());
     public static final String PIVOTAL_URL = "https://www.pivotaltracker.com";
+    private static final Logger LOGGER = Logger.getLogger(AccountStepDef.class.getName());
     private static final String SETTINGS = "/settings";
     private static final String ACCOUNTS = "/accounts";
     private Accounts account;
@@ -31,7 +29,7 @@ public class AccountStepDef {
     private String accountName;
     private AccountSetting accountSetting;
     private Setting setting;
-    private Map<String, String> accountData=new HashMap<String,String>();
+    private Map<String, String> accountData = new HashMap<String, String>();
 
     /**
      * This class receives LoginStepDef and ProjectStepDef as a parameters.
@@ -68,12 +66,12 @@ public class AccountStepDef {
     public void iCreateANewAccountWithName(String newAccountName) {
         CreateAccountForm createAccountForm = account.clickNewAccountBtn();
         createAccountForm.setAccountNameTextField(newAccountName);
-        Accounts accounts=createAccountForm.clickCreateAccountBtn();
-        accountSetting =accounts.getToolBarAccount().clickSettingTab();
+        Accounts accounts = createAccountForm.clickCreateAccountBtn();
+        accountSetting = accounts.getToolBarAccount().clickSettingTab();
         accountName = accountSetting.getAccountName();
         String id = accountSetting.getAccountID();
         LOGGER.info("id account" + id);
-        accountData.put(newAccountName,id );
+        accountData.put(newAccountName, id);
 
     }
 
