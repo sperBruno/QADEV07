@@ -54,7 +54,7 @@ public class Dashboard extends BasePage {
         try {
             wait.withTimeout(45, TimeUnit.SECONDS);
             clickWebElement(createProjectLink);
-            createProjectLink.click();
+            //createProjectLink.click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Create Project link was not found");
         } finally {

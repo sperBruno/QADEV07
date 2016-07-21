@@ -4,9 +4,9 @@ Feature: Account
 
     Given I login with valid credentials
     And I create a new project
-      | PROJECT_TITLE       | ProjectSeleniumTest |
-      | PROJECT_ACCOUNT     | luis                |
-      | PROJECT_SAMPLE_DATA | true                |
+      | PROJECT_TITLE   | ProjectSeleniumTest |
+      | PROJECT_ACCOUNT | luis                |
+      | PROJECT_VISIBLE | true                |
 
   @ProjectSelenium
   Scenario: Delete Account of a Project
