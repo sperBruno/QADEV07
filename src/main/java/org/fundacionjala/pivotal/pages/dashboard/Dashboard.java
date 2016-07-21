@@ -19,6 +19,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
  * This class represent the Dashboard page
@@ -51,7 +52,15 @@ public class Dashboard extends BasePage {
      * @return
      */
     public CreateProject clickCreateProjectLink() {
-        createProjectLink.click();
+        try {
+            wait.withTimeout(45, TimeUnit.SECONDS);
+            clickWebElement(createProjectLink);
+            createProjectLink.click();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Create Project link was not found");
+        } finally {
+            wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new CreateProject();
     }
 

@@ -5,9 +5,14 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
+import org.fundacionjala.pivotal.framework.util.Constants;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.junit.Assert;
 
+import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
+import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
+import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_PROJECT_TITLE_TEXT;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -72,6 +77,7 @@ public class ProjectAssert {
         responseProject = getRequest(endpointProject);
         LOGGER.info("title project end point" + responseProject.jsonPath().get("name"));
         LOGGER.info("title project locator" + projectsStepDef.getProject().getTitle());
+        assertEquals(expectedValue, projectsStepDef.getProject().getTitle().replace("\n", " "));
     }
 
     @And("^Validate all setting projects$")
