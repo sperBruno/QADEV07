@@ -14,6 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_PROJECT_WAIT;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
  * Created by Bruno on 7/7/2016.
@@ -29,7 +30,16 @@ public class Project extends BasePage {
     private WebElement settings;
 
     public Setting clickSettingTab() {
-        clickWebElement(settings);
+        try {
+            //driver.manage().timeouts().implicitlyWait(IMPLICIT_PROJECT_WAIT, TimeUnit.SECONDS);
+            wait.withTimeout(45, TimeUnit.SECONDS);
+            clickWebElement(settings);
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Setting was not found");
+        } finally {
+            wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+        }
         return new Setting();
     }
 
@@ -37,11 +47,13 @@ public class Project extends BasePage {
         boolean projectTitleDisplayed = false;
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_PROJECT_WAIT, TimeUnit.SECONDS);
+
             projectTitleDisplayed = projectName.isDisplayed();
         } catch (NoSuchElementException e) {
             LOGGER.warn("The Element could not be found", e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+
         }
         return projectTitleDisplayed;
     }
