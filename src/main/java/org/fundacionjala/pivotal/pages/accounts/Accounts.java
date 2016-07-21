@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.pages.accounts;
 
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.WebElement;
@@ -26,10 +27,11 @@ public class Accounts extends BasePage {
     private WebElement createNewAccountLink;
 
     @FindBy(xpath = ".//*[@id='account_name']")
-    private  WebElement accountTextBox;
+    private WebElement accountTextBox;
 
     @FindBy(xpath = ".//*[@id='add_account_button']")
     private WebElement createNewAccountBtn;
+
     /**
      * This class instances a ToolBarAccount.
      */
@@ -58,9 +60,11 @@ public class Accounts extends BasePage {
         return deleteAccountMessage.getText();
     }
 
-    public void clickNewAccountBtn(){
-        //CommonMethods.clickWebElement();
+    public CreateAccountForm clickNewAccountBtn() {
+        CommonMethods.clickWebElement(createNewAccountLink);
+        return new CreateAccountForm();
     }
+
     public ToolBarAccount getToolBarAccount() {
         return toolBarAccount;
     }

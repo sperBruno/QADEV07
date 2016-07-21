@@ -59,7 +59,7 @@ public class Dashboard extends BasePage {
         try {
             wait.withTimeout(45, SECONDS);
             clickWebElement(createProjectLink);
-            createProjectLink.click();
+            //createProjectLink.click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Create Project link was not found");
         } finally {
@@ -141,7 +141,6 @@ public class Dashboard extends BasePage {
         accountOption.click();
         return new Accounts();
     }
-
 
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
         WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));

@@ -32,6 +32,9 @@ public class ProjectAssert {
 
     private Response responseProject;
 
+    private Setting setting;
+
+
     /**
      * This class receives ProjectStepDef and ProjectSettingsStepDef as parameters.
      *
@@ -72,7 +75,7 @@ public class ProjectAssert {
      */
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
-        Setting setting = projectsStepDef.getProject().clickSettingTab();
+        setting = projectsStepDef.getProject().clickSettingTab();
         endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
         LOGGER.info("project id " + endpointProject.toString());
         responseProject = getRequest(endpointProject);
@@ -91,8 +94,6 @@ public class ProjectAssert {
 
     @And("^I verify that the account of the created project is (.*)$")
     public void iVerifyThatTheAccountOfTheCreatedProjectIsLuis(String expectedAccount) {
-
-
         final String account_id = "account_id";
         String accountId = responseProject.jsonPath().get(account_id).toString();
         String endpointAccount = "/accounts/" + accountId;
