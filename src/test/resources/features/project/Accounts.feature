@@ -19,5 +19,5 @@ Feature: Account
     And I create a new account with name Jorge
     Then I should get into Jorge Account setting
     And I delete Jorge account
-    Then I should receive a message of account deleted
+    And I should receive a message of account deleted
 

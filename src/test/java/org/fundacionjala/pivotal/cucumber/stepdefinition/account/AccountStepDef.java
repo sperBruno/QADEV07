@@ -23,8 +23,7 @@ public class AccountStepDef {
 
     private static final Logger LOGGER=Logger.getLogger(AccountStepDef.class.getName());
     public static final String PIVOTAL_URL = "https://www.pivotaltracker.com";
-    private static final String SETTINGS = "/settings";
-    private static final String ACCOUNTS = "/accounts";
+
     private Accounts account;
     private LoginStepDef loginStepDef;
     private ProjectsStepDef projectsStepDef;
@@ -73,15 +72,13 @@ public class AccountStepDef {
         accountName = accountSetting.getAccountName();
         String id = accountSetting.getAccountID();
         LOGGER.info("id account" + id);
+        LOGGER.info("account name" + accountName);
         accountData.put(newAccountName,id );
 
     }
 
-    @Given("^I delete (.*) account$")
-    public void iDeleteAccount(String accountName) {
-        String endpoint = PIVOTAL_URL + ACCOUNTS + accountData.get(accountName) + SETTINGS;
-        account = accountSetting.deleteAccount();
-    }
+
+
 
     public AccountSetting getAccountSetting() {
         return accountSetting;

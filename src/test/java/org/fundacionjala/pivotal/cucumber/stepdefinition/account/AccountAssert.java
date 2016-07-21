@@ -1,6 +1,8 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.account;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.fundacionjala.pivotal.pages.accounts.Accounts;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,8 +12,11 @@ import static org.junit.Assert.assertEquals;
  */
 public class AccountAssert {
 
-    AccountStepDef accountStepDef;
+    private AccountStepDef accountStepDef;
+    private Accounts account;
 
+    private static final String SETTINGS = "/settings";
+    private static final String ACCOUNTS = "/accounts";
     /**
      * This class receives the AccountStepDef as a parameter.
      * @param accountStepDef
@@ -34,5 +39,10 @@ public class AccountAssert {
     public void iShouldGetIntoJorgeAccountSetting(String expectedAccount)  {
        assertEquals(expectedAccount,accountStepDef.getAccountSetting().getAccountName());
         accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
+    }
+
+    @Given("^I delete (.*) account$")
+    public void iDeleteAccount(String accountName) {
+        account = accountStepDef.getAccountSetting().deleteAccount();
     }
 }
