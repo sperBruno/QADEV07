@@ -14,6 +14,7 @@ public class AccountAssert {
 
     /**
      * This class receives the AccountStepDef as a parameter.
+     *
      * @param accountStepDef
      */
     public AccountAssert(AccountStepDef accountStepDef) {
@@ -31,8 +32,8 @@ public class AccountAssert {
     }
 
     @Then("^I should get into (.*) Account setting$")
-    public void iShouldGetIntoJorgeAccountSetting(String expectedAccount)  {
-       assertEquals(expectedAccount,accountStepDef.getAccountSetting().getAccountName());
+    public void iShouldGetIntoJorgeAccountSetting(String expectedAccount) {
+        assertEquals(expectedAccount, accountStepDef.getAccountSetting().getAccountName());
         accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
     }
 }

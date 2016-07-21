@@ -1,13 +1,11 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import com.jayway.restassured.response.Response;
-
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.pages.setting.Setting;
-
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
 
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
