@@ -23,6 +23,9 @@ public class WorkspaceHooks {
         this.workspaceStepDef = workspaceStepDef;
     }
 
+    /**
+     * This method hook is used after a workspace is created using selenium.
+     */
     @After("@DeleteWorkspace")
     public void DeleteWorkspace() {
         Workspace workspace = workspaceStepDef.getWorkspace();
@@ -31,12 +34,18 @@ public class WorkspaceHooks {
         workspaceStepDef.getWorkspace ().clickReturnDashboardLink ();
     }
 
+    /**
+     * This method hook to perform a cleanup enviroment.
+     */
     @Before("@CleanEnviroment")
     public void DeleteAllWorkspaces() {
         deleteAllProjects ();
         deleteAllWorkspaces();
     }
 
+    /**
+     * This method hook to return to Dashboard page.
+     */
     @After("@ReturnDashboard")
     public void ReturnDashboard() {
         workspaceStepDef.getWorkspace ().clickReturnDashboardLink ();

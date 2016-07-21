@@ -94,6 +94,8 @@ public final class Constants {
 
     public static final String ERROR_PROJECT_TITLE_TEXT = "project name can't be blank";
 
+    public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
+
     private Constants() {
     }
 }
