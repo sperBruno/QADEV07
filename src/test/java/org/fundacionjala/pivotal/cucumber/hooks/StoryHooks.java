@@ -33,6 +33,6 @@ public class StoryHooks {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID_STORY).toString());
             LOGGER.info("Response from story Hook: " + api.getResponse().prettyPrint());
         }
-        DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
+        DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
     }
 }

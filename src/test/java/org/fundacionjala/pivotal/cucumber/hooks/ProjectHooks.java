@@ -13,11 +13,8 @@ import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
-import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static com.jayway.restassured.path.json.JsonPath.from;
+import static org.fundacionjala.pivotal.framework.util.Constants.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -45,9 +42,9 @@ public class ProjectHooks {
     public void afterProjectScenario() {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
-            LOGGER.info("Response from stories Hook: " + api.getResponse().prettyPrint());
+            LOGGER.info("Response from project Hook: " + api.getResponse().prettyPrint());
         }
-        DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
+        DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
     }
 
     /**

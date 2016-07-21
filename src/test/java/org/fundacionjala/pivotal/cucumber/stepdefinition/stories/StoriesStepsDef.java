@@ -39,8 +39,6 @@ public class StoriesStepsDef {
     @Given("^I enter to (.*)$")
     public void iEnterTo(String projectProperty) {
         String name = mapResponse(projectProperty);
-        //ToolBar toolBar = new ToolBar();
-        //Dashboard dashboard = toolBar.clickReturnDashboardLink();
         project = loginStepDef.getDashboard().clickOnProject(name);
     }
 

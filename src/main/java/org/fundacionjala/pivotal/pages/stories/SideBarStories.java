@@ -27,19 +27,12 @@ public class SideBarStories extends BasePage {
      */
     public Story clickOnAddStoryButton() {
         try {
-            //driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
-            // wait.withTimeout(60, SECONDS);
-            // wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".button.add_story")));
             Thread.sleep(10000);
             driver.findElement(By.cssSelector(".button.add_story")).click();
-            //sidebarContainer.findElement(addStoryButton).click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
-            //wait.withTimeout(WAIT_TIME, SECONDS);
-            //driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return new Story();
     }
