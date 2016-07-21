@@ -30,7 +30,6 @@ public class Project extends BasePage {
 
     public Setting clickSettingTab() {
         try {
-            //driver.manage().timeouts().implicitlyWait(IMPLICIT_PROJECT_WAIT, TimeUnit.SECONDS);
             wait.withTimeout(45, TimeUnit.SECONDS);
             clickWebElement(settings);
         } catch (NoSuchElementException e) {

@@ -28,9 +28,10 @@ public class CreateAccountForm extends BasePage {
         setWebElement(accountNameTextField, accountName);
     }
 
-    public AccountSetting clickCreateAccountBtn() {
-        clickWebElement(createNewAccountBtn);
-        return new AccountSetting();
+    public Accounts clickCreateAccountBtn() {
+        //clickWebElement(createNewAccountBtn);
+        createNewAccountBtn.click();
+        return new Accounts();
     }
 
     public void validateErrorMessageAtCreateAccount() {
