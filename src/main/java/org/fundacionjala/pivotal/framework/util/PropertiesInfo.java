@@ -100,7 +100,7 @@ public class PropertiesInfo {
         return String.format("http://%s:%s", getProxyHost(), getProxyPort());
     }
 
-    public String getProxyHost() {
+   public String getProxyHost() {
         return getProperty(Constants.PROXY_HOST);
     }
 

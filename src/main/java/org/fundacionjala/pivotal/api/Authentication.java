@@ -32,7 +32,7 @@ public class Authentication {
         if (PropertiesInfo.getInstance().getProxy() != null) {
             requestSpecification = new RequestSpecBuilder()
                     .setRelaxedHTTPSValidation()
-                    .setProxy(PropertiesInfo.getInstance().getProxy())
+                    //  .setProxy(PropertiesInfo.getInstance().getProxy())
                     .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
                     .build();
         } else {

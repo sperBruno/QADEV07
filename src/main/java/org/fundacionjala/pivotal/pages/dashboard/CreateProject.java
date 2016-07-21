@@ -16,7 +16,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 
 /**
- * Created by mijhailvillarroel on 7/6/2016.
+ * Created by bruno barrios
  */
 public class CreateProject extends BasePage {
     private static Logger LOGGER = Logger.getLogger(CreateProject.class.getName());
@@ -32,10 +32,10 @@ public class CreateProject extends BasePage {
     @FindBy(css = "button[class='tc_button tc_button_submit']")
     private WebElement createNewProjectBtn;
 
-    @FindBy(css = "input[type='checkbox']")
+    @FindBy(css = "#tc_public_project>input")
     private WebElement projectVisibleCheckbox;
 
-    @FindBy(css = ".tc_form_label.tc_form_checkbox>input")
+    @FindBy(xpath = "//*[text()='Add sample project data']")
     private WebElement projectSampleDataCheckBox;
 
     @FindBy(css = ".tc_select_option.tc_select_create_account")

@@ -328,10 +328,6 @@ public class GeneralSettingForm extends BasePage {
         return projectBugsCheckBox.isSelected();
     }
 
-    public Accounts clickAccountLink(){
-                accountLink.click();
-                return new Accounts();
-            }
     public boolean getEnableProjectsTasks() {
         return projectEnableTasksCheckbox.isSelected();
     }

@@ -2,7 +2,7 @@ Feature: Account
 
   Background: login
 
-    Given I login with credentials valid
+    Given I login with valid credentials
     And I create a new project
       | PROJECT_TITLE       | ProjectSeleniumTest |
       | PROJECT_ACCOUNT     | luis                |
