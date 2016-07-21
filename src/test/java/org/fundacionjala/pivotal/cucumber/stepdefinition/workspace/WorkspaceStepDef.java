@@ -62,7 +62,7 @@ public class WorkspaceStepDef {
     @And("^I select the project created previously$")
     public void iSelectTheProjectCreatedPreviously() {
         sideBarWorkspace.clickListProjectLink ();
-        sideBarWorkspace.clickIdProjectLink ();
+        sideBarWorkspace.clickProjectNameLink("ProjectTest3");
     }
 
     @And("^I click on Save Workspace button$")

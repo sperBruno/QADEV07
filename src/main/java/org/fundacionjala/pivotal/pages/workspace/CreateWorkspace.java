@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -66,7 +66,7 @@ public class CreateWorkspace extends BasePage {
      * @return a Map with the values of the workspace created
      */
     public Map<WorkspaceSteps, IAutomationStep> getStrategyStepMap(Map<WorkspaceSteps, Object> values) {
-        final Map<WorkspaceSteps, IAutomationStep> strategyMap = new HashMap<WorkspaceSteps, IAutomationStep> ();
+        final Map<WorkspaceSteps, IAutomationStep> strategyMap = new HashMap<> ();
         strategyMap.put(WorkspaceSteps.WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WorkspaceSteps.WORKSPACE_NAME))));
         return strategyMap;
     }
