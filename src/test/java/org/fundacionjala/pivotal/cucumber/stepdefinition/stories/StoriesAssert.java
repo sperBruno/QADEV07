@@ -1,22 +1,30 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.java.After;
-import cucumber.api.java.en.Then;
+
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.hooks.ProjectHooks;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 import org.fundacionjala.pivotal.pages.stories.IceBox;
 
+
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.*;
+import cucumber.api.java.After;
+import cucumber.api.java.en.Then;
+
+import static com.jayway.restassured.path.json.JsonPath.from;
+import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
+import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static org.junit.Assert.assertEquals;
 
 /**
  * This class contains the assertions of Story test
+ *
  * @author RosarioGarcia
  */
 public class StoriesAssert {
@@ -37,7 +45,7 @@ public class StoriesAssert {
      * Constructor class
      *
      * @param storiesStepsDef: steps before do assertion
-     * @param api: Object with elements from Api
+     * @param api:             Object with elements from Api
      */
     public StoriesAssert(StoriesStepsDef storiesStepsDef, ApiResourcesSteps api) {
         this.storiesStepsDef = storiesStepsDef;
@@ -68,21 +76,19 @@ public class StoriesAssert {
         ToolBar toolBar = new ToolBar();
         toolBar.clickReturnDashboardLink();
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
-          //  RequestManager.deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+              RequestManager.deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
         }
     }
 
     @Then("^I expect the alert (.*)$")
-    public void iExpectTheAlertMessage(String message){
-        
+    public void iExpectTheAlertMessage(String message) {
         assertEquals(message, storiesStepsDef.getStory().getAddStoryTitleAlert());
     }
 
-    @Then("^I expect the (.*) is displayed$")
+    @Then("^I expect the (.*) is show$")
     public void iExpectTheStoryNameIsDisplayed(String property) {
         String storyName = mapResponse(property);
         assertEquals(storyName, storiesStepsDef.getStory().getStoryTitle());
-
     }
 
     @Then("^I expect none story added$")

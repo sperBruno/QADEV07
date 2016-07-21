@@ -60,8 +60,12 @@ public class ProjectAssert {
      */
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
-        LOGGER.info("title project " + projectsStepDef.getProject().getTitle());
-        Assert.assertEquals(expectedValue, projectsStepDef.getProject().getTitle());
+        Setting setting = projectsStepDef.getProject().clickSettingTab();
+        endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
+        LOGGER.info("project id " + endpointProject.toString());
+        responseProject = getRequest(endpointProject);
+        LOGGER.info("title project end point" + responseProject.jsonPath().get("name"));
+        LOGGER.info("title project locator" + projectsStepDef.getProject().getTitle());
     }
 
     @And("^Validate all setting projects$")
@@ -72,10 +76,35 @@ public class ProjectAssert {
         projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
     }
 
-    @Then("^I click save button should be show a message say: (.*)$")
-    public void iClickSaveButtonShouldBeShowAMessageSay(String message) {
-        final String expectResult = Mapper.getMassage(message, projectSettingsStepDef.getValuesMap());
-        assertEquals(projectSettingsStepDef.getGeneralSettingForm().getMessageErrorNameDayText(),expectResult);
-        projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
+    @And("^I verify that the account of the created project is (.*)$")
+    public void iVerifyThatTheAccountOfTheCreatedProjectIsLuis(String expectedAccount) {
+
+
+        final String account_id = "account_id";
+        String accountId = responseProject.jsonPath().get(account_id).toString();
+        String endpointAccount = "/accounts/" + accountId;
+        Response responseAccount = getRequest(endpointAccount);
+        final String nameAccount = "name";
+        String actualResult = responseAccount.jsonPath().get(nameAccount);
+        LOGGER.info("Account is :" + actualResult);
+        assertEquals(expectedAccount, actualResult);
+    }
+
+    @Then("^A message That says (.*) should appears$")
+    public void aMessageThatSaysProjectNameCanTBeBlankShouldAppears(String expectedMessage) {
+        if (ERROR_PROJECT_TITLE_TEXT.equals(expectedMessage)) {
+            assertEquals(expectedMessage, projectsStepDef.getCreateProject().getProjectTitleMessage());
+        } else if (ERROR_ACCOUNT_MESSAGE_TEXT.equals(expectedMessage)) {
+            assertEquals(expectedMessage, projectsStepDef.getCreateProject().getAccountMessage());
+        }
+        projectsStepDef.getCreateProject().clickCancelCreateProjectBtn();
+    }
+
+    @And("^I validate that the created Project is (.*)$")
+    public void iValidateThatTheCreatedProjectIsPublic(String expectedProjectType) {
+        final String project_type = "project_type";
+        String actualProjectType = responseProject.jsonPath().get(project_type);
+        LOGGER.info("Project Type: " + actualProjectType);
+        assertEquals(expectedProjectType, actualProjectType);
     }
 }

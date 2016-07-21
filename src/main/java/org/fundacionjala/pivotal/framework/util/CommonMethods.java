@@ -10,9 +10,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
-import static org.fundacionjala.pivotal.api.RequestManager.*;
+
+import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
-import static org.fundacionjala.pivotal.framework.util.Constants.*;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
 
 
 /**
@@ -49,7 +52,7 @@ private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
         if (enable) {
             unCheckBox(webElement);
         } else {
-            CheckBox(webElement);
+            checkBox(webElement);
         }
     }
 
@@ -59,7 +62,7 @@ private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
         }
     }
 
-    private static void CheckBox(WebElement webElement) {
+    private static void checkBox(WebElement webElement) {
         if (webElement.isSelected()) {
             webElement.click();
         }

@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
@@ -14,7 +15,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
@@ -122,7 +122,7 @@ public class Dashboard extends BasePage {
 
 
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
-        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'"+nameWorkspace+"')]"));
+        WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));
         nameWorkspaceLink.click();
         return new Workspace();
     }
@@ -135,13 +135,13 @@ public class Dashboard extends BasePage {
         driver.navigate().refresh();
     }
 
-    public String getUserName(String value){
+    public String getUserName(String value) {
 
         final String endPointProfile = "/me";
         final String fieldEmail = "email";
         final String fieldUserName = "username";
         final String email = RequestManager.getRequest(endPointProfile).jsonPath().get(fieldEmail);
-        if (value.equalsIgnoreCase(email)){
+        if (value.equalsIgnoreCase(email)) {
             return RequestManager.getRequest(endPointProfile).jsonPath().get(fieldUserName);
         }
         return value;
