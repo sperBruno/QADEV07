@@ -410,11 +410,12 @@ public class GeneralSettingForm extends BasePage {
     private String dayName(String inputDate){
         Date date = null;
         final String format = "YYYY/MM/DD";
+        final String standard = "EEEE";
         try {
             date = new SimpleDateFormat(format).parse(inputDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
+        return new SimpleDateFormat(standard, Locale.ENGLISH).format(date);
     }
 }
