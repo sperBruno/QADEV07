@@ -85,6 +85,11 @@ public final class Constants {
     public static final String HTTP_PROXY_PORT = "http.proxyPort";
 
     public static final String ATTRIBUTE_WEB_ELEMENT = "value";
+
+    public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
+
+    public static final String WORKSPACE_ID = "id";
+
     private Constants() {
     }
 }

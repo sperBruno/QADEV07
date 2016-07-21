@@ -14,6 +14,8 @@ import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
+import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACE_ID;
 
 /**
  * Created by mijhailvillarroel on 7/14/2016.
@@ -77,6 +79,15 @@ public final class CommonMethods {
         if (jsonAsArrayList.size() > 0) {
             for (Map<String, ?> object : jsonAsArrayList) {
                 deleteRequest(PROJECTS_ENDPOINT + object.get(PROJECT_ID).toString());
+            }
+        }
+    }
+
+    public static void deleteAllWorkspaces() {
+        ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
+        if (jsonAsArrayList.size() > 0) {
+            for (Map<String, ?> object : jsonAsArrayList) {
+                deleteRequest(WORKSPACES_ENDPOINT + object.get(WORKSPACE_ID).toString());
             }
         }
     }
