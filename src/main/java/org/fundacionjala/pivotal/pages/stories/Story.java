@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -68,16 +68,10 @@ public class Story extends BasePage {
     @FindBy(name = "comment[text]")
     private WebElement comment;
 
-    @FindBy(xpath = "//button[@data-aid='comment-submit']")
+    @FindBy(css = "button[data-aid='comment-submit']")
     private WebElement addCommentButton;
 
-    @FindBy(xpath = "//div[data-aid='message']")
-    private WebElement commentMessage;
-
-    @FindBy(xpath = "//div[data-aid='ConfirmationDialog__message']")
-    private WebElement confirmCancelMessage;
-
-    @FindBy(xpath = "//button[@data-aid='ConfirmationDialog__confirm']")
+    @FindBy(css = "button[data-aid='ConfirmationDialog__confirm']")
     private WebElement confirmCancelButton;
     /**
      * Web elements to add an empty story
@@ -85,7 +79,7 @@ public class Story extends BasePage {
     @FindBy(className = "AlertDialog__message___873RxAXD")
     private WebElement addStoryTitleAlert;
 
-    @FindBy(xpath = "//button[@data-aid='AlertDialog__confirm']")
+    @FindBy(css = "button[data-aid='AlertDialog__confirm']")
     private WebElement okAlertButton;
     /**
      * Web elements to set story

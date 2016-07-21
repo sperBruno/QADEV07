@@ -7,10 +7,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;

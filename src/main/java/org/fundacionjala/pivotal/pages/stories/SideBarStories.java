@@ -1,7 +1,7 @@
 package org.fundacionjala.pivotal.pages.stories;
 
 import org.fundacionjala.pivotal.framework.util.CommonMethods;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
