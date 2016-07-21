@@ -103,18 +103,9 @@ public class CreateProject extends BasePage {
     }
 
     public Project clickCreateProject() {
-        //createNewProjectBtn.click();
         try {
             clickWebElement(createNewProjectBtn);
-            if (blankProjectNameMessage.isDisplayed()) {
-                LOGGER.info("title message: " + blankProjectNameMessage.getText());
-                projectTitleMessage = blankProjectNameMessage.getText();
-                return null;
-            } else if (accountErrorMessage.isDisplayed()) {
-                LOGGER.info("account message: " + accountErrorMessage.getText());
-                accountMessage = accountErrorMessage.getText();
-                return null;
-            }
+            verifyErrorMessagesOfCreateProject();
 
         } catch (NullPointerException e) {
             LOGGER.info("null pointer");
@@ -126,6 +117,17 @@ public class CreateProject extends BasePage {
         }
         return new Project();
 
+    }
+
+    private void verifyErrorMessagesOfCreateProject() {
+        if (blankProjectNameMessage.isDisplayed()) {
+            LOGGER.info("title message: " + blankProjectNameMessage.getText());
+            projectTitleMessage = blankProjectNameMessage.getText();
+
+        } else if (accountErrorMessage.isDisplayed()) {
+            LOGGER.info("account message: " + accountErrorMessage.getText());
+            accountMessage = accountErrorMessage.getText();
+        }
     }
 
     public boolean createProjectFormIsdisplayed() {
