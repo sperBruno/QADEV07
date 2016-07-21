@@ -1,8 +1,9 @@
+@CleanEnviroment
 Feature: Workspace with Projects
 
   Background: I have projects created
     Given I send a POST request to /projects
-      | name   | test |
+      | name   | ProjectTest3 |
       | public | true |
     And stored as ProjectW
     Given I login with valid credentials
@@ -12,7 +13,7 @@ Feature: Workspace with Projects
   Scenario: Add project to Workspace created
 
     Given I create a new Workspace
-      | WORKSPACE_NAME | My Workspace8 |
+      | WORKSPACE_NAME | WorkspaceTest3 |
     And click on the Create Workspace button
     When I click on Add Projects button
     And I select the project created previously

@@ -1,7 +1,5 @@
 package org.fundacionjala.pivotal.pages.dashboard;
 
-import java.util.concurrent.TimeUnit;
-
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
@@ -14,7 +12,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
@@ -28,6 +28,8 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 public class Dashboard extends BasePage {
 
     private static final Logger LOGGER = Logger.getLogger(Dashboard.class.getName());
+
+    private static final String CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG = "Create Workspace Button was not found";
 
     @FindBy(className = "tc_dropdown_name")
     private WebElement userNameText;
@@ -47,18 +49,21 @@ public class Dashboard extends BasePage {
     @FindBy(id = "notice")
     private WebElement messageDeleteWorkspace;
 
+    @FindBy(id = "my_workspaces")
+    private WebElement workspaceContainer;
+
     /**
      * @return
      */
     public CreateProject clickCreateProjectLink() {
         try {
-            wait.withTimeout(45, TimeUnit.SECONDS);
+            wait.withTimeout(45, SECONDS);
             clickWebElement(createProjectLink);
             createProjectLink.click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Create Project link was not found");
         } finally {
-            wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
+            wait.withTimeout(WAIT_TIME, SECONDS);
         }
         return new CreateProject();
     }
@@ -67,7 +72,16 @@ public class Dashboard extends BasePage {
      * @return CreateWorkspace()
      */
     public CreateWorkspace clickCreateWorkspaceLink() {
-        createWorkspaceLink.click();
+
+        try {
+            wait.withTimeout(45, SECONDS);
+            wait.until(ExpectedConditions.visibilityOf(workspaceContainer));
+            clickWebElement(createWorkspaceLink);
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG);
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
+        }
         return new CreateWorkspace();
     }
 
@@ -77,12 +91,12 @@ public class Dashboard extends BasePage {
     public String getUserNameText() {
         String userName = "";
         try {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             userName = userNameText.getText();
         } catch (NoSuchElementException e) {
 
         } finally {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return userName;
     }
@@ -103,14 +117,14 @@ public class Dashboard extends BasePage {
      */
     public Project clickOnProject(String projectName) {
         try {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
             projectNameLink.click();
         } catch (NoSuchElementException e) {
             LOGGER.warn("The Web element not was find ", e.getCause());
             throw new NoSuchElementException("The Web element not was find ", e.getCause());
         } finally {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return new Project();
     }
