@@ -2,6 +2,7 @@ package org.fundacionjala.pivotal.api;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -90,14 +91,15 @@ public final class Mapper {
 
     public static String getMassage(String endPoint, Map<SettingSteps, Object> values) {
         String nameDay = dayName(String.valueOf(values.get(PROJECT_START_DATE)));
-        values.put(DATE_NAME, nameDay);
-        final String point=".";
+        Map<SettingSteps, Object> copy = new HashMap<SettingSteps, Object>(values);
+        copy.put(DATE_NAME, nameDay);
+        final String point="s.";
         if (endPoint.contains(REGEX_HALF_BRACKET)) {
             for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     StringBuilder value = new StringBuilder();
-                    value.append(values.get(SettingSteps.valueOf(mapString[INDEX_1])));
+                    value.append(copy.get(SettingSteps.valueOf(mapString[INDEX_1])));
                     endPoint = endPoint.replace(endPointSplit, value);
                 }
             }

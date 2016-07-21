@@ -1,9 +1,11 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
+import com.jayway.restassured.response.Response;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
+import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
@@ -19,6 +21,10 @@ public class ProjectAssert {
     private ProjectsStepDef projectsStepDef;
 
     private ProjectSettingsStepDef projectSettingsStepDef;
+
+    private String endpointProject;
+
+    private Response responseProject;
 
     /**
      * This class receives ProjectStepDef and ProjectSettingsStepDef as parameters.
