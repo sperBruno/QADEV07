@@ -21,11 +21,11 @@ import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATI
 
 public final class Mapper {
 
-    public static final String REGEX_KEY = "\\[(.*?)\\.";
+    private static final String REGEX_KEY = "\\[(.*?)\\.";
 
-    public static final String REGEX_VALUE = "\\.(.*?)\\]";
+    private static final String REGEX_VALUE = "\\.(.*?)\\]";
 
-    public static final String REGEX_REPLACE = "\\[(.*?)\\]";
+    private static final String REGEX_REPLACE = "\\[(.*?)\\]";
 
     private static final String REGEX_HALF_BRACKET = "[";
 
@@ -87,44 +87,6 @@ public final class Mapper {
             }
         }
         return endPoint;
-    }
-
-    public static String getMassage(String endPoint, Map<SettingSteps, Object> values) {
-        String nameDay = dayName(String.valueOf(values.get(PROJECT_START_DATE)));
-        Map<SettingSteps, Object> copy = new HashMap<SettingSteps, Object>(values);
-        copy.put(DATE_NAME, nameDay);
-        final String point="s.";
-        if (endPoint.contains(REGEX_HALF_BRACKET)) {
-            for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
-                if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
-                    String[] mapString = endPointSplit.split(REGEX_BRACKETS);
-                    StringBuilder value = new StringBuilder();
-                    value.append(copy.get(SettingSteps.valueOf(mapString[INDEX_1])));
-                    endPoint = endPoint.replace(endPointSplit, value);
-                }
-            }
-        }
-        return endPoint.concat(point);
-    }
-
-    public static void main(String args[]){
-        Map<SettingSteps, Object> v= new HashMap<>();
-        v.put(START_ITERATIONS_ON,"Saturday");
-        v.put(PROJECT_START_DATE,"7/24/2016 ");
-        System.out.println( getMassage("[PROJECT_START_DATE.Value] is a [DATE_NAME.nameDay] and Iterations in this project start on [START_ITERATIONS_ON.value]",v));
-
-    }
-
-    public static String dayName(String inputDate){
-        String a=inputDate;
-        Date date = null;
-        final String format = "YYYY/MM/DD";
-        try {
-            date = new SimpleDateFormat(format).parse(inputDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
     }
 
     /**

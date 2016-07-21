@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import com.jayway.restassured.response.Response;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
@@ -118,5 +119,11 @@ public class ProjectAssert {
         String actualProjectType = responseProject.jsonPath().get(project_type);
         LOGGER.info("Project Type: " + actualProjectType);
         assertEquals(expectedProjectType, actualProjectType);
+    }
+
+    @Then("^I click save button should be show a message say: (.*)$")
+    public void iClickSaveButtonShouldBeShowAMessageSay(String message) {
+        final String expectResult = projectSettingsStepDef.getGeneralSettingForm().getMassage(message, projectSettingsStepDef.getValuesMap());
+        assertEquals(expectResult, projectSettingsStepDef.getGeneralSettingForm().getMessageErrorNameDayText());
     }
 }

@@ -1,8 +1,13 @@
 package org.fundacionjala.pivotal.pages.setting;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
+import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.login.BasePage;
@@ -19,8 +24,12 @@ import static org.fundacionjala.pivotal.framework.util.CommonMethods.selectAElem
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
+import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
+import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_HALF_BRACKET;
+import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ALLOW_API_ACCESS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.BUGS_GIVEN_POINTS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.DATE_NAME;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.DESCRIPTION;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_INCOMING_EMAIL;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_RSS;
@@ -120,6 +129,8 @@ public class GeneralSettingForm extends BasePage {
     WebElement massageErrorNameDayText;
 
     private boolean flat;
+
+    private static final String REGEX_BLACK_SPACE = " ";
 
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
@@ -375,5 +386,35 @@ public class GeneralSettingForm extends BasePage {
         assertionMap.put(HIDE_EMAIL_ADDRESSES, getHideEmailsFromCollaboratorsCheckBox());
         assertionMap.put(BUGS_GIVEN_POINTS, getBugGivenPointsCheckBox());
         return assertionMap;
+    }
+
+    public String getMassage(String endPoint, Map<SettingSteps, Object> values) {
+        String nameDay = dayName(String.valueOf(values.get(PROJECT_START_DATE)));
+        Map<SettingSteps, Object> copy = new HashMap<>(values);
+        copy.put(DATE_NAME, nameDay);
+        final String point="s.";
+        final int index= 1;
+        if (endPoint.contains(REGEX_HALF_BRACKET)) {
+            for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+                if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
+                    String[] mapString = endPointSplit.split(REGEX_BRACKETS);
+                    StringBuilder value = new StringBuilder();
+                    value.append(copy.get(SettingSteps.valueOf(mapString[index])));
+                    endPoint = endPoint.replace(endPointSplit, value);
+                }
+            }
+        }
+        return endPoint.concat(point);
+    }
+
+    private String dayName(String inputDate){
+        Date date = null;
+        final String format = "YYYY/MM/DD";
+        try {
+            date = new SimpleDateFormat(format).parse(inputDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date);
     }
 }
