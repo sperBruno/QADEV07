@@ -2,7 +2,9 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;

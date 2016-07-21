@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.openqa.selenium.By;
@@ -204,8 +205,9 @@ public class Story extends BasePage {
      * @param storyTitle it is the name for a story
      */
     public void setStoryTitleTextArea(String storyTitle) {
-        storyTitleTextArea.clear();
-        storyTitleTextArea.sendKeys(storyTitle);
+//        storyTitleTextArea.clear();
+//        storyTitleTextArea.sendKeys(storyTitle);
+        CommonMethods.setWebElement(storyTitleTextArea,storyTitle);
     }
 
     /**
