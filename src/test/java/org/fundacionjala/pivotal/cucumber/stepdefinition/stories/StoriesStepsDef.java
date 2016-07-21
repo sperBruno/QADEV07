@@ -7,8 +7,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
-import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.stories.SideBarStories;
 import org.fundacionjala.pivotal.pages.stories.StoriesSteps;
@@ -26,10 +24,12 @@ public class StoriesStepsDef {
     private LoginStepDef loginStepDef;
     private Story story;
     private Map<StoriesSteps, Object> storiesValues;
+    private SideBarStories sideBarStories;
 
     public StoriesStepsDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
         story = new Story();
+        sideBarStories = new SideBarStories();
     }
 
     public static Project getProject() {
@@ -39,15 +39,12 @@ public class StoriesStepsDef {
     @Given("^I enter to (.*)$")
     public void iEnterTo(String projectProperty) {
         String name = mapResponse(projectProperty);
-        ToolBar toolBar = new ToolBar();
-        Dashboard dashboard = toolBar.clickReturnDashboardLink();
-        project = dashboard.clickOnProject(name);
+        project = loginStepDef.getDashboard().clickOnProject(name);
     }
 
     @And("^I create a new story$")
     public void iCreateANewStory(Map<StoriesSteps, Object> values) {
         this.storiesValues = values;
-        SideBarStories sideBarStories = new SideBarStories();
         story = sideBarStories.clickOnAddStoryButton();
         story.strategyStepMap(values);
         story.clickOnSaveStoryButton();
@@ -72,7 +69,6 @@ public class StoriesStepsDef {
 
     @When("^I create a new story without title")
     public void iCreateANewStoryWithoutTitle() {
-        SideBarStories sideBarStories = new SideBarStories();
         story = sideBarStories.clickOnAddStoryButton();
         story.clickOnSaveStoryButton();
     }
@@ -95,7 +91,6 @@ public class StoriesStepsDef {
     @When("^I fill parameters to new story$")
     public void iFillParametersToNewStory(Map<StoriesSteps, Object> values) {
         this.storiesValues = values;
-        SideBarStories sideBarStories = new SideBarStories();
         story = sideBarStories.clickOnAddStoryButton();
         story.strategyStepMap(values);
         story.cancelAddStory();

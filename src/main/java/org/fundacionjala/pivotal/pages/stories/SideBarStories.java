@@ -5,10 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
  * This class contains the web elements from side bar
@@ -31,13 +27,12 @@ public class SideBarStories extends BasePage {
      */
     public Story clickOnAddStoryButton() {
         try {
-            wait.withTimeout(45, SECONDS);
-            wait.until(ExpectedConditions.visibilityOf(sidebarContainer));
-            sidebarContainer.findElement(addStoryButton).click();
+            Thread.sleep(10000);
+            driver.findElement(By.cssSelector(".button.add_story")).click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG);
-        } finally {
-            wait.withTimeout(WAIT_TIME, SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return new Story();
     }

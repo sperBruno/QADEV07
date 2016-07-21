@@ -1,7 +1,9 @@
 package org.fundacionjala.pivotal.cucumber.hooks;
 
+import cucumber.api.java.Before;
 import org.apache.commons.lang3.StringUtils;
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
+
 
 import cucumber.api.java.Before;
 
@@ -10,6 +12,8 @@ import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInst
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAllProjects;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
+
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAllWorkspaces;
 
 /**
  * @author Henrry Salinas.
@@ -34,6 +38,7 @@ public class GlobalHooks {
                 public void run() {
                     getInstance().quitDriver();
                     deleteAllProjects();
+                    deleteAllWorkspaces();
                 }
             });
             if (StringUtils.isEmpty(PROPERTIES_INFO.getEmail()) || StringUtils.isEmpty(PROPERTIES_INFO.getApiToken()) || StringUtils.isEmpty(PROPERTIES_INFO.getPassword())) {
