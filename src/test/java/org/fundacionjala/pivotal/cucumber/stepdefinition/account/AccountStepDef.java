@@ -56,15 +56,7 @@ public class AccountStepDef {
         return account;
     }
 
-    public ProjectsStepDef getProjectsStepDef() {
-        return projectsStepDef;
-    }
-
     public String getAccountName() {
         return accountName.toString();
-    }
-
-    public Accounts getAccountPage() {
-        return new Accounts();
     }
 }

@@ -3,17 +3,20 @@ package org.fundacionjala.pivotal.pages.setting;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.fundacionjala.pivotal.framework.util.Constants;
-import org.fundacionjala.pivotal.pages.login.BasePage;
-import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.convertASelect;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ALLOW_API_ACCESS;
@@ -24,17 +27,18 @@ import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_RSS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_TASKS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.HIDE_EMAIL_ADDRESSES;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.INITIAL_VELOCITY;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_TIME_ZONE;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRATEGY;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PUBLIC_ACCESS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.REQUIRE_HTTPS_FOR_API_ACCESS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.TITLE_PROJECTS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRATEGY;
+
 
 /**
  * Created by mijhailvillarroel on 7/11/2016.
@@ -112,6 +116,8 @@ public class GeneralSettingForm extends BasePage {
     @FindBy(className = "text_column")
     WebElement projectId;
 
+    private boolean flat;
+
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
         Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
         strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
@@ -133,7 +139,7 @@ public class GeneralSettingForm extends BasePage {
         strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
         strategyMap.put(BUGS_GIVEN_POINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString())));
         strategyMap.put(PROJECT_START_DATE, () -> setDateProjectStartTestField(String.valueOf(values.get(PROJECT_START_DATE).toString())));
-        return  strategyMap;
+        return strategyMap;
 
     }
 
@@ -174,6 +180,7 @@ public class GeneralSettingForm extends BasePage {
 
     public GeneralSettingForm setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
         selectAElementComboBox(projectSettingsPointScaleComboBox, projectSettingsPointScale);
+        flat = true;
         return this;
     }
 
@@ -198,7 +205,12 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm clickSaveButton() {
-        saveButton.click();
+        clickWebElement(saveButton);
+        if (flat) {
+            wait.until(ExpectedConditions.alertIsPresent()).accept();
+            flat = false;
+        }
+
         return this;
     }
 
@@ -208,6 +220,9 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public GeneralSettingForm setProjectUseHttpsCheckBox(boolean enable) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("javascript:window.scrollBy(0,500)");
+        action.keyDown(Keys.DOWN).perform();
         setCheckBox(projectUseHttpsCheckBox, enable);
         return this;
     }
@@ -238,7 +253,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public DeleteProjectAlert clickLinkDeleteProject() {
-        deleteLink.click();
+        clickWebElement(deleteLink);
         return new DeleteProjectAlert();
     }
 
@@ -293,7 +308,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectVelocity() {
-        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute("value");
+        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
     }
 
     public boolean getTextProjectAutomaticPlanning() {

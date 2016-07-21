@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.pages.project;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.apache.log4j.Logger;
@@ -10,6 +11,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_PROJECT_WAIT;
 
@@ -20,14 +22,16 @@ public class Project extends BasePage {
 
     private static final Logger LOGGER = Logger.getLogger(Project.class.getName());
 
-    @FindBy(className = "raw_context_name")
+    @FindBy(className = "tc_context_name")
     private WebElement projectName;
 
     @FindBy(css = "[data-aid='navTab-settings']")
     private WebElement settings;
 
     public Setting clickSettingTab() {
-        settings.click();
+        driver.manage ().timeouts ().implicitlyWait (IMPLICIT_PROJECT_WAIT, TimeUnit.SECONDS);
+        //settings.click();
+       clickWebElement(settings);
         return new Setting();
     }
 

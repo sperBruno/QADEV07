@@ -1,28 +1,44 @@
 package org.fundacionjala.pivotal.pages.stories;
 
 import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
  * This class contains the web elements from side bar
- * @author RosarioGarcia
+ *
+ * @author Rosario Garcia
  */
 public class SideBarStories extends BasePage {
 
-    @FindBy(css = ".button.add_story")
-    private WebElement addStoryButton;
+    private static final String ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG = "Add Story Button was not found";
+
+    private final By addStoryButton = By.cssSelector(".button.add_story");
+
+    @FindBy(css = ".sidebar_content.scrollable")
+    private WebElement sidebarContainer;
 
     /**
-     * Method to do click on the booton "Add Story"
+     * Method to do click on the button "Add Story"
+     *
      * @return a Story object
      */
     public Story clickOnAddStoryButton() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(addStoryButton));
-        addStoryButton.click();
+        try {
+            wait.withTimeout(45, SECONDS);
+            wait.until(ExpectedConditions.visibilityOf(sidebarContainer));
+            sidebarContainer.findElement(addStoryButton).click();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException(ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG);
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
+        }
         return new Story();
     }
 }

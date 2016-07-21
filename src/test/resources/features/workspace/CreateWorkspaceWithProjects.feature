@@ -4,17 +4,17 @@ Feature: Workspace with Projects
     Given I send a POST request to /projects
       | name   | test |
       | public | true |
-    Given I login with credentials valid
-    When I am on Pivotal Dashboard page
+    And stored as ProjectW
+    Given I login with valid credentials
+
 
   @project
   Scenario: Add project to Workspace created
 
-    Given I am on Pivotal Create Workspace form
-    When I fill with My Workspace8 the name Workspace field
-    And click on the Create Workspace button of the Form
+    Given I create a new Workspace
+      | WORKSPACE_NAME | My Workspace8 |
+    And click on the Create Workspace button
     When I click on Add Projects button
-    And I  click on list projects icon
-    When I select the project created previously
+    And I select the project created previously
     And I click on Save Workspace button
-    Then I expect a workspace with the test project name
+    Then I expect a workspace with the [ProjectW.name] project name

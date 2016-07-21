@@ -3,9 +3,8 @@ package org.fundacionjala.pivotal.framework.selenium;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.WebDriver;
-
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
