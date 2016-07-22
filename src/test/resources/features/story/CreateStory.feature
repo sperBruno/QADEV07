@@ -30,7 +30,7 @@ Feature: Create new story in project from pivotal tracker
     Given I enter to [Project1.name]
     When I fill parameters to new story
       | STORY_TITLE | storyTest       |
-      | STORY_TYPE  | Bug             |
+      | STORY_TYPE  | bug             |
       | DESCRIPTION | descriptionTest |
       | LABELS      | labeltest       |
       | COMMENT     | commentTest     |
