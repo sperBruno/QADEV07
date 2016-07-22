@@ -11,8 +11,11 @@ import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 
+import cucumber.api.java.After;
+
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static org.fundacionjala.pivotal.framework.util.Constants.DASHBOARD_URL;
 import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
