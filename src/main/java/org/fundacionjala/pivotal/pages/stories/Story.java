@@ -201,8 +201,6 @@ public class Story extends BasePage {
      * @param storyTitle it is the name for a story
      */
     public void setStoryTitleTextArea(String storyTitle) {
-//        storyTitleTextArea.clear();
-//        storyTitleTextArea.sendKeys(storyTitle);
         CommonMethods.setWebElement(storyTitleTextArea,storyTitle);
     }
 
