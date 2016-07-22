@@ -7,9 +7,7 @@ import cucumber.api.java.Before;
 
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAllProjects;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAllWorkspaces;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.quitProgram;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.*;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 
@@ -40,6 +38,7 @@ public class GlobalHooks {
                     deleteAllWorkspaces();
                 }
             });
+
             if (StringUtils.isEmpty(PROPERTIES_INFO.getEmail()) || StringUtils.isEmpty(PROPERTIES_INFO.getApiToken()) || StringUtils.isEmpty(PROPERTIES_INFO.getPassword())) {
                 quitProgram(PROPERTIES_FILE_UNFILLED);
             }else if(getRequest(PROJECTS_ENDPOINT).statusCode()!= SUCCESS_STATUS_CODE){
