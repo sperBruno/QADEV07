@@ -22,7 +22,7 @@ public class Accounts extends BasePage {
     @FindBy(id = "notice")
     private WebElement deleteAccountMessage;
 
-    @FindBy(xpath = ".//*[text()=\"Manage Account\"]")
+    @FindBy(xpath = "//a[contains(.,'Manage Account')]")
     private WebElement manageAccountBtn;
 
     @FindBy(id = "new_account_link")
