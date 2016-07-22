@@ -36,11 +36,7 @@ public class ProjectHooks {
     }
 
 
-    @After("@dashboard")
-    public void goToDashboard(){
-        DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
-        DriverManager.getInstance().getDriver().navigate().refresh();
-    }
+    
     /**
      * This method hook is used after a project is created using api.
      */
