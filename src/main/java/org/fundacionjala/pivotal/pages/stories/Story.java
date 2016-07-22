@@ -2,7 +2,6 @@ package org.fundacionjala.pivotal.pages.stories;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.CommonMethods;
@@ -14,13 +13,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TYPE;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.fundacionjala.pivotal.framework.util.Constants.*;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
 
 /**
  * This class is for test the creation, set and delete
@@ -119,13 +114,13 @@ public class Story extends BasePage {
 
     public void clickOnExpanderStory() {
         try {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             storyExpander.click();
         } catch (NoSuchElementException e) {
             LOGGER.warn("The Web element not was find ", e.getCause());
             throw new NoSuchElementException("The Web element not was find ", e.getCause());
         } finally {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
     }
 
@@ -188,8 +183,15 @@ public class Story extends BasePage {
 
     public void setStoryType(String storyType) {
         storyTypeName = storyType.toLowerCase();
-        storyTypeArrow.click();
-        driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).click();
+        try {
+            wait.withTimeout(45, SECONDS);
+            storyTypeArrow.click();
+            driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).click();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Story tipe nnot found");
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
+        }
     }
 
     /**
