@@ -28,34 +28,34 @@ public class CreateProject extends BasePage {
 
     private String projectTitleMessage;
 
-    @FindBy(className = "tc_form_input")
+    @FindBy(className = "tc-project-name__input")
     private WebElement newProjectName;
 
-    @FindBy(css = "input[placeholder='New account name']")
+    @FindBy(className = "tc-account-creator__name")
     private WebElement createNewAccountTxt;
 
-    @FindBy(className = "tc_form_select")
+    @FindBy(className = "tc-account-selector__header")
     private WebElement accountDropDown;
 
-    @FindBy(css = "button[class='tc_button tc_button_submit']")
+    @FindBy(css = ".tc-create-project-footer__button.tc-create-project-footer__button--submit")
     private WebElement createNewProjectBtn;
 
-    @FindBy(css = "#tc_public_project > input")
-    private WebElement projectVisibleCheckbox;
+    @FindBy(css = "input[type='radio'][value='public']")
+    private WebElement projectPublicRadioBtn;
 
-    @FindBy(css = ".tc-project-name__info > span")
+    @FindBy(css = "span[contains(.,'Please select or create an account for the new project')]")
     private WebElement accountErrorMessage;
 
-    @FindBy(xpath = ".tc-account-selector__helper-text > span")
+    @FindBy(css = ".tc-project-name__info > span")
     private WebElement blankProjectNameMessage;
 
-    @FindBy(css = ".tc_button.tc_button_cancel")
+    @FindBy(css = ".tc-create-project-footer__button.tc-create-project-footer__button--cancel")
     private WebElement cancelCreateProjectBtn;
 
-    @FindBy(xpath = "//*[text()='Add sample project data']")
-    private WebElement projectSampleDataCheckBox;
+    @FindBy(css = "input[type='radio'][value='private']")
+    private WebElement projectPrivateRadioBtn;
 
-    @FindBy(css = ".tc_select_option.tc_select_create_account")
+    @FindBy(className = "tc-account-selector__create-account-icon")
     private WebElement createAccountOption;
 
     public CreateProject setProjectName(String projectName) {
@@ -74,7 +74,7 @@ public class CreateProject extends BasePage {
     }
 
     public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable) {
-        setCheckBox(projectSampleDataCheckBox, Boolean.parseBoolean(isCheckBoxEnable));
+        setCheckBox(projectPrivateRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
         return this;
     }
 
@@ -90,7 +90,8 @@ public class CreateProject extends BasePage {
         try {
             answer = driver.findElement(By.xpath("//span[text()='" + accountName + "']")).isDisplayed();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("Element could not be found", e);
+            e=  new NoSuchElementException(accountName+"account was not found");
+            LOGGER.warn("Element could not be found",e);
             answer = false;
         }
         LOGGER.info("AccountName is" + answer);
@@ -98,7 +99,7 @@ public class CreateProject extends BasePage {
     }
 
     public void checkProjectVisible() {
-        projectVisibleCheckbox.click();
+        projectPublicRadioBtn.click();
     }
 
     public Project clickCreateProject() {
@@ -139,7 +140,7 @@ public class CreateProject extends BasePage {
     }
 
     public void clickMakeProjectVisibleCheckBox(String isCheckBoxEnable) {
-        setCheckBox(projectVisibleCheckbox, Boolean.parseBoolean(isCheckBoxEnable));
+        setCheckBox(projectPublicRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
     }
 
     public Map<ProjectSteps, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
