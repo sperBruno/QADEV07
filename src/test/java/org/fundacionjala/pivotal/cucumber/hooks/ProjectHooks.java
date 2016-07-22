@@ -2,23 +2,19 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.java.After;
+
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
-import org.fundacionjala.pivotal.framework.util.CommonMethods;
-import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
-import org.openqa.selenium.NoSuchElementException;
 
 import cucumber.api.java.After;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static org.fundacionjala.pivotal.framework.util.CommonMethods.*;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAccounts;
 import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;

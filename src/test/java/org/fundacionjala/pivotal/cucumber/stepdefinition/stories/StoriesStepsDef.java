@@ -2,16 +2,18 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
 import java.util.Map;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.stories.SideBarStories;
 import org.fundacionjala.pivotal.pages.stories.StoriesSteps;
 import org.fundacionjala.pivotal.pages.stories.Story;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
 
@@ -41,7 +43,8 @@ public class StoriesStepsDef {
     public void iEnterTo(String projectProperty) {
         DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
         String name = mapResponse(projectProperty);
-        project = loginStepDef.getDashboard().clickOnProject(name);
+
+        project = new Dashboard().clickOnProject(name);
     }
 
     @And("^I create a new story$")
