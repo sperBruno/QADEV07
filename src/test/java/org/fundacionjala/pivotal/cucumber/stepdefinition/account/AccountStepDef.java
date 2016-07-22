@@ -75,11 +75,14 @@ public class AccountStepDef {
 
     }
 
-    @Given("^I delete (.*) account$")
-    public void iDeleteAccount(String accountName) {
-        String endpoint = PIVOTAL_URL + ACCOUNTS + accountData.get(accountName) + SETTINGS;
-        account = accountSetting.deleteAccount();
-    }
+//    @Given("^I delete (.*) account$")
+//    public void iDeleteAccount(String accountName) {
+//        String endpoint = PIVOTAL_URL + ACCOUNTS + accountData.get(accountName) + SETTINGS;
+//        account = accountSetting.deleteAccount();
+//    }
+
+
+
 
     public AccountSetting getAccountSetting() {
         return accountSetting;
