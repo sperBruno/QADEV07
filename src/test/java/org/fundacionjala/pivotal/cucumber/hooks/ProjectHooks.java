@@ -2,23 +2,19 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 
 
 import com.jayway.restassured.response.Response;
-
+import cucumber.api.java.After;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
-
-import cucumber.api.java.After;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAccounts;
-import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
-import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
+import static org.fundacionjala.pivotal.framework.util.Constants.*;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -39,6 +35,12 @@ public class ProjectHooks {
         this.projectsStepDef = projectsStepDef;
     }
 
+
+    @After("@dashboard")
+    public void goToDashboard(){
+        DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
+        DriverManager.getInstance().getDriver().navigate().refresh();
+    }
     /**
      * This method hook is used after a project is created using api.
      */
