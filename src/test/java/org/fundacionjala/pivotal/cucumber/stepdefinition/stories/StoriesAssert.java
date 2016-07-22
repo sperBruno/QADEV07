@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
 import com.jayway.restassured.response.Response;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;

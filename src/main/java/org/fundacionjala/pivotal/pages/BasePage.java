@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pages.login;
+package org.fundacionjala.pivotal.pages;
 
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.openqa.selenium.WebDriver;

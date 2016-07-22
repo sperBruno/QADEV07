@@ -14,6 +14,7 @@ public class AccountAssert {
 
     /**
      * This class receives the AccountStepDef as a parameter.
+     *
      * @param accountStepDef
      */
     public AccountAssert(AccountStepDef accountStepDef) {
@@ -27,6 +28,12 @@ public class AccountAssert {
     public void iShouldReceiveAMessageOfAccountDeleted() {
         String expectedMessage = accountStepDef.getAccountName() + " was successfully deleted.";
         assertEquals(expectedMessage, accountStepDef.getAccount().getDeleteAccountMessage());
+        accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
+    }
+
+    @Then("^I should get into (.*) Account setting$")
+    public void iShouldGetIntoJorgeAccountSetting(String expectedAccount) {
+        assertEquals(expectedAccount, accountStepDef.getAccountSetting().getAccountName());
         accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
     }
 }

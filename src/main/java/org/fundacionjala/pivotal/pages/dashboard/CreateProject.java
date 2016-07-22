@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.project.ProjectSteps;
 import org.openqa.selenium.By;
@@ -21,10 +21,9 @@ import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox
  * @BrunoBarrios
  */
 public class CreateProject extends BasePage {
+
     private static final Logger LOGGER = Logger.getLogger(CreateProject.class.getName());
 
-    private boolean errorAccountMessage;
-    private boolean errorProjectTitleMessage;
     private String accountMessage;
 
     private String projectTitleMessage;
@@ -32,7 +31,7 @@ public class CreateProject extends BasePage {
     @FindBy(className = "tc_form_input")
     private WebElement newProjectName;
 
-    @FindBy(xpath = "//input[@placeholder='New account name']")
+    @FindBy(css = "input[placeholder='New account name']")
     private WebElement createNewAccountTxt;
 
     @FindBy(className = "tc_form_select")
@@ -41,16 +40,16 @@ public class CreateProject extends BasePage {
     @FindBy(css = "button[class='tc_button tc_button_submit']")
     private WebElement createNewProjectBtn;
 
-    @FindBy(css = "#tc_public_project>input")
+    @FindBy(css = "#tc_public_project > input")
     private WebElement projectVisibleCheckbox;
 
-    @FindBy(xpath = ".//*/descendant::section/div[2]/div[@class=\"tc_form_error_message\"]")
+    @FindBy(css = ".tc-project-name__info > span")
     private WebElement accountErrorMessage;
 
-    @FindBy(xpath = ".//*/descendant::section/div[1]/div[@class=\"tc_form_error_message\"]")
+    @FindBy(xpath = ".tc-account-selector__helper-text > span")
     private WebElement blankProjectNameMessage;
 
-    @FindBy(css = "button[class='tc_button tc_button_cancel']")
+    @FindBy(css = ".tc_button.tc_button_cancel")
     private WebElement cancelCreateProjectBtn;
 
     @FindBy(xpath = "//*[text()='Add sample project data']")
@@ -103,18 +102,9 @@ public class CreateProject extends BasePage {
     }
 
     public Project clickCreateProject() {
-        //createNewProjectBtn.click();
         try {
             clickWebElement(createNewProjectBtn);
-            if (blankProjectNameMessage.isDisplayed()) {
-                LOGGER.info("title message: " + blankProjectNameMessage.getText());
-                projectTitleMessage = blankProjectNameMessage.getText();
-                return null;
-            } else if (accountErrorMessage.isDisplayed()) {
-                LOGGER.info("account message: " + accountErrorMessage.getText());
-                accountMessage = accountErrorMessage.getText();
-                return null;
-            }
+            verifyErrorMessagesOfCreateProject();
 
         } catch (NullPointerException e) {
             LOGGER.info("null pointer");
@@ -126,6 +116,17 @@ public class CreateProject extends BasePage {
         }
         return new Project();
 
+    }
+
+    private void verifyErrorMessagesOfCreateProject() {
+        if (blankProjectNameMessage.isDisplayed()) {
+            LOGGER.info("title message: " + blankProjectNameMessage.getText());
+            projectTitleMessage = blankProjectNameMessage.getText();
+
+        } else if (accountErrorMessage.isDisplayed()) {
+            LOGGER.info("account message: " + accountErrorMessage.getText());
+            accountMessage = accountErrorMessage.getText();
+        }
     }
 
     public boolean createProjectFormIsdisplayed() {
@@ -142,7 +143,7 @@ public class CreateProject extends BasePage {
     }
 
     public Map<ProjectSteps, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
-        final Map<ProjectSteps, IAutomationStep> strategyMap = new HashMap<ProjectSteps, IAutomationStep>();
+        final Map<ProjectSteps, IAutomationStep> strategyMap = new HashMap<>();
 
         strategyMap.put(ProjectSteps.PROJECT_TITLE, () -> setProjectName(String.valueOf(values.get(ProjectSteps.PROJECT_TITLE))));
         strategyMap.put(ProjectSteps.PROJECT_ACCOUNT, () -> setAccountDropDown(String.valueOf(values.get(ProjectSteps.PROJECT_ACCOUNT))));

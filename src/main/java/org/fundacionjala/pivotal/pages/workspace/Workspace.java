@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +23,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_T
  */
 public class Workspace extends BasePage {
 
-    private static Logger LOGGER = Logger.getLogger (Workspace.class.getSimpleName ());
+    private static final Logger LOGGER = Logger.getLogger (Workspace.class.getSimpleName ());
 
     private SideBarWorkspace sideBarWorkspace;
 
@@ -35,7 +35,7 @@ public class Workspace extends BasePage {
     @FindBy(css = ".tc_header_item.tc_header_logo")
     private WebElement returnDashboardLink;
 
-    @FindBy(className = "tn-PanelHeader__heading___3FPBiGiZ")
+    @FindBy(xpath = "//div[contains(@class, 'tn-PanelHeader__heading')]")
     private WebElement projectIntoWorkspaceNameText;
 
     @FindBy(className = "table")
