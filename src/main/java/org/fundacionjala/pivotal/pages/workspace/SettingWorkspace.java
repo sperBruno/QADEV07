@@ -1,17 +1,13 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.pivotal.pages.login.BasePage;
-import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
 /**
  * Created by danielgonzales
  */
 public class SettingWorkspace extends BasePage {
-
-    private ToolBar toolBar;
 
     @FindBy(id = "workspace_name")
     private WebElement workspaceNameText;
@@ -27,11 +23,6 @@ public class SettingWorkspace extends BasePage {
 
     @FindBy(className = "message")
     private WebElement messageChangesWorkspace;
-
-
-    public SettingWorkspace () {
-        toolBar = new ToolBar ();
-    }
 
     public void setNameWorkspaceTestField (String workspaceName) {
         workspaceNameText.clear ();
@@ -55,7 +46,4 @@ public class SettingWorkspace extends BasePage {
         return messageChangesWorkspace.getText ();
     }
 
-    public ToolBar getToolBar () {
-        return toolBar;
-    }
 }

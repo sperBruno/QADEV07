@@ -3,7 +3,7 @@ package org.fundacionjala.pivotal.pages.dashboard;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.fundacionjala.pivotal.pages.workspace.CreateWorkspace;
@@ -12,7 +12,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
@@ -34,7 +33,7 @@ public class Dashboard extends BasePage {
     @FindBy(className = "tc_dropdown_name")
     private WebElement userNameText;
 
-    @FindBy(xpath = ".//*[@id='shared_header']/div/div/header/ul/li[3]/div/div/div/ul/li[2]/a")
+    @FindBy(css = "a[href='/accounts']")
     private WebElement accountOption;
 
     @FindBy(id = "create_new_project_button")
@@ -59,7 +58,6 @@ public class Dashboard extends BasePage {
         try {
             wait.withTimeout(45, SECONDS);
             clickWebElement(createProjectLink);
-            //createProjectLink.click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Create Project link was not found");
         } finally {
@@ -75,7 +73,6 @@ public class Dashboard extends BasePage {
 
         try {
             wait.withTimeout(45, SECONDS);
-            wait.until(ExpectedConditions.visibilityOf(workspaceContainer));
             clickWebElement(createWorkspaceLink);
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG);
@@ -116,6 +113,7 @@ public class Dashboard extends BasePage {
      * @return: return the project main page
      */
     public Project clickOnProject(String projectName) {
+        driver.navigate().refresh();
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));

@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pages.login;
+package org.fundacionjala.pivotal.pages;
 
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.fundacionjala.pivotal.framework.util.CommonMethods;

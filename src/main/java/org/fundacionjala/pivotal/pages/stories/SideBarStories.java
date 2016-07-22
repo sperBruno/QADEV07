@@ -1,10 +1,13 @@
 package org.fundacionjala.pivotal.pages.stories;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
  * This class contains the web elements from side bar
@@ -15,10 +18,13 @@ public class SideBarStories extends BasePage {
 
     private static final String ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG = "Add Story Button was not found";
 
-    private final By addStoryButton = By.cssSelector(".button.add_story");
+    //private final By addStoryButton = By.cssSelector(".button.add_story");
 
     @FindBy(css = ".sidebar_content.scrollable")
     private WebElement sidebarContainer;
+    
+    @FindBy(css = ".button.add_story")
+    private WebElement addStoryButton;
 
     /**
      * Method to do click on the button "Add Story"
@@ -27,13 +33,30 @@ public class SideBarStories extends BasePage {
      */
     public Story clickOnAddStoryButton() {
         try {
-            Thread.sleep(10000);
-            driver.findElement(By.cssSelector(".button.add_story")).click();
+//            wait.withTimeout(45, SECONDS);
+//            clickWebElement(addStoryButton);
+            Thread.sleep(50000);
+            driver.findElement(By.cssSelector(".button.add_story"));
+            addStoryButton.click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
         }
+        
+//        try {
+//            wait.withTimeout(45, SECONDS);
+//            wait.until(ExpectedConditions.presenceOfElementLocated( By.cssSelector(".sidebar_content.scrollable")));
+//            wait.until(ExpectedConditions.presenceOfElementLocated( addStoryButton));
+//        //    sidebarContainer.findElement(addStoryButton).click();
+//            CommonMethods.clickWebElement(sidebarContainer.findElement(addStoryButton));
+//        } catch (NoSuchElementException e) {
+//            throw new NoSuchElementException(ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG);
+//        } finally {
+//            wait.withTimeout(WAIT_TIME, SECONDS);
+//        }
         return new Story();
     }
 }

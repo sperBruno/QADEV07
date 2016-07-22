@@ -59,10 +59,11 @@ public class WorkspaceStepDef {
         sideBarWorkspace.clickAddProjectLink();
     }
 
-    @And("^I select the project created previously$")
-    public void iSelectTheProjectCreatedPreviously() {
+    @And("^I select the (.*) project created previously$")
+    public void iSelectTheProjectCreatedPreviously(String nameProject) {
+        String finalNameProject = Mapper.getPropertiesProject(nameProject);
         sideBarWorkspace.clickListProjectLink ();
-        sideBarWorkspace.clickIdProjectLink ();
+        sideBarWorkspace.clickProjectNameLink(finalNameProject);
     }
 
     @And("^I click on Save Workspace button$")

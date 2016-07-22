@@ -1,6 +1,11 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.account;
 
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.runtime.formatter.StrictAware;
+import org.fundacionjala.pivotal.pages.accounts.Accounts;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,8 +15,11 @@ import static org.junit.Assert.assertEquals;
  */
 public class AccountAssert {
 
-    AccountStepDef accountStepDef;
-
+    private AccountStepDef accountStepDef;
+    private Accounts account;
+    private String accountNameToBeDeleted;
+    private static final String SETTINGS = "/settings";
+    private static final String ACCOUNTS = "/accounts";
     /**
      * This class receives the AccountStepDef as a parameter.
      *
@@ -24,8 +32,8 @@ public class AccountAssert {
     /**
      * This verifies if an account used to create a project is deleted.
      */
-    @Then("^I should receive a message of account deleted$")
-    public void iShouldReceiveAMessageOfAccountDeleted() {
+    @Then("^I should receive a message of account deleted from a project$")
+    public void iShouldReceiveAMessageOfAccountDeletedFromAProject() {
         String expectedMessage = accountStepDef.getAccountName() + " was successfully deleted.";
         assertEquals(expectedMessage, accountStepDef.getAccount().getDeleteAccountMessage());
         accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
@@ -34,6 +42,20 @@ public class AccountAssert {
     @Then("^I should get into (.*) Account setting$")
     public void iShouldGetIntoJorgeAccountSetting(String expectedAccount) {
         assertEquals(expectedAccount, accountStepDef.getAccountSetting().getAccountName());
-        accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
+//        accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();
+    }
+
+    @Then("^I delete (.*) account$")
+    public void iDeleteAccount(String accountName) {
+        accountNameToBeDeleted=accountName;
+        account = accountStepDef.getAccountSetting().deleteAccount();
+    }
+
+
+    @Then("^I should receive a message of account deleted$")
+    public void iShouldReceiveAMessageOfAccountDeleted() throws Throwable {
+        String expectedMessage = accountNameToBeDeleted + " was successfully deleted.";
+        assertEquals(expectedMessage, account.getDeleteAccountMessage());
+        accountStepDef.getAccount().getToolBar().clickReturnDashboardLink();;
     }
 }
