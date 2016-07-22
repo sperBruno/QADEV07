@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.pages.stories;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.framework.util.CommonMethods;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -32,8 +33,10 @@ public class SideBarStories extends BasePage {
     public Story clickOnAddStoryButton() {
         try {
             wait.withTimeout(45, SECONDS);
-            wait.until(ExpectedConditions.visibilityOf(sidebarContainer));
-            sidebarContainer.findElement(addStoryButton).click();
+            wait.until(ExpectedConditions.presenceOfElementLocated( By.cssSelector(".sidebar_content.scrollable")));
+            wait.until(ExpectedConditions.presenceOfElementLocated( addStoryButton));
+        //    sidebarContainer.findElement(addStoryButton).click();
+            CommonMethods.clickWebElement(sidebarContainer.findElement(addStoryButton));
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(ADD_STORY_BUTTON_WAS_NOT_FOUND_MSG);
         } finally {

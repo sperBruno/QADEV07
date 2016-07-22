@@ -2,19 +2,22 @@ package org.fundacionjala.pivotal.pages.accounts;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+
 /**
  * This class represents Account page and its characteristics.
- * Created by brunobarrios on 7/15/2016.
+ *
+ * @author Bruno Barrios
  */
 public class Accounts extends BasePage {
 
-    private Logger LOGGER = Logger.getLogger(Accounts.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Accounts.class.getName());
 
-    private ToolBarAccount toolBarAccount;
+    private final ToolBarAccount toolBarAccount;
 
     @FindBy(id = "notice")
     private WebElement deleteAccountMessage;
@@ -22,14 +25,15 @@ public class Accounts extends BasePage {
     @FindBy(xpath = "//a[contains(.,'Manage Account')]")
     private WebElement manageAccountBtn;
 
-    @FindBy(xpath = ".//*[@id='new_account_link']")
+    @FindBy(id = "new_account_link")
     private WebElement createNewAccountLink;
 
-    @FindBy(xpath = ".//*[@id='account_name']")
-    private  WebElement accountTextBox;
+    @FindBy(id = "account_name")
+    private WebElement accountTextBox;
 
-    @FindBy(xpath = ".//*[@id='add_account_button']")
+    @FindBy(id = "add_account_button")
     private WebElement createNewAccountBtn;
+
     /**
      * This class instances a ToolBarAccount.
      */
@@ -40,15 +44,15 @@ public class Accounts extends BasePage {
     /**
      * This method is used to get into an Account properties and settings.
      *
-     * @return ToolBarAccount
+     * @return {@link ToolBarAccount}
      */
     public ToolBarAccount manageAccount() {
-        manageAccountBtn.click();
+        clickWebElement(manageAccountBtn);
         return new ToolBarAccount();
     }
 
     /**
-     * This method is used to catch the message that is diplayed after deleting an
+     * This method is used to catch the message that is displayed after deleting an
      * account.
      *
      * @return the message of deleting an account.
@@ -58,9 +62,15 @@ public class Accounts extends BasePage {
         return deleteAccountMessage.getText();
     }
 
-    public void clickNewAccountBtn(){
-        //CommonMethods.clickWebElement();
+    /**
+     *
+     * @return {@link CreateAccountForm}
+     */
+    public CreateAccountForm clickNewAccountBtn() {
+        clickWebElement(createNewAccountLink);
+        return new CreateAccountForm();
     }
+
     public ToolBarAccount getToolBarAccount() {
         return toolBarAccount;
     }

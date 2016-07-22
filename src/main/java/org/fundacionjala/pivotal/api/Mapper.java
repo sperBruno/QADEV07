@@ -1,22 +1,31 @@
 package org.fundacionjala.pivotal.api;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.jayway.restassured.response.Response;
+import org.fundacionjala.pivotal.pages.setting.SettingSteps;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.DATE_NAME;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
 
 public final class Mapper {
 
-    public static final String REGEX_KEY = "\\[(.*?)\\.";
+    private static final String REGEX_KEY = "\\[(.*?)\\.";
 
-    public static final String REGEX_VALUE = "\\.(.*?)\\]";
+    private static final String REGEX_VALUE = "\\.(.*?)\\]";
 
-    public static final String REGEX_REPLACE = "\\[(.*?)\\]";
+    private static final String REGEX_REPLACE = "\\[(.*?)\\]";
 
     private static final String REGEX_HALF_BRACKET = "[";
 

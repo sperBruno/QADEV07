@@ -4,7 +4,7 @@ import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 
 import cucumber.api.java.en.When;
 
-import static org.fundacionjala.pivotal.pages.login.Login.loginAsPrimaryUser;
+import static org.fundacionjala.pivotal.pages.Login.loginAsPrimaryUser;
 
 /**
  * Created by mijhailvillarroel on 7/6/2016.
