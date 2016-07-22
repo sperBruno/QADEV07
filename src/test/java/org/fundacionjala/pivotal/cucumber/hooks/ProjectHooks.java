@@ -2,7 +2,7 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.java.After;
+
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
