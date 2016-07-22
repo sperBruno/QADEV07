@@ -1,25 +1,29 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
-import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.ELEMENT_COULD_NOT_BE_FOUND;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+
 
 /**
  * Created by Daniel
  */
 public class Workspace extends BasePage {
 
-    private static Logger LOGGER = Logger.getLogger (Workspace.class.getSimpleName ());
+    private static final Logger LOGGER = Logger.getLogger (Workspace.class.getSimpleName ());
 
     private SideBarWorkspace sideBarWorkspace;
 
@@ -31,8 +35,11 @@ public class Workspace extends BasePage {
     @FindBy(css = ".tc_header_item.tc_header_logo")
     private WebElement returnDashboardLink;
 
-    @FindBy(className = "tn-PanelHeader__heading___3FPBiGiZ")
+    @FindBy(xpath = "//div[contains(@class, 'tn-PanelHeader__heading')]")
     private WebElement projectIntoWorkspaceNameText;
+
+    @FindBy(className = "table")
+    private WebElement panelContainerProjects;
 
     public Workspace () {
 
@@ -48,10 +55,10 @@ public class Workspace extends BasePage {
     public String getProjectIntoWorkspaceNameText () {
         String projectIntoWorkspaceName = "";
         try {
-            driver.manage ().timeouts ().implicitlyWait (IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            wait.until(ExpectedConditions.visibilityOf(panelContainerProjects));
             projectIntoWorkspaceName = projectIntoWorkspaceNameText.getText ();
         } catch (NoSuchElementException e) {
-            LOGGER.warn ("The element could not be found" + e);
+            LOGGER.warn (ELEMENT_COULD_NOT_BE_FOUND + e);
         } finally {
             driver.manage ().timeouts ().implicitlyWait (IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
@@ -67,6 +74,12 @@ public class Workspace extends BasePage {
             idWorkspace = m.replaceAll ("");
         }
         return idWorkspace;
+    }
+
+    public Map<WorkspaceSteps, Object> getAssertionMap() {
+        Map<WorkspaceSteps, Object> assertionMap = new HashMap<> ();
+        assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText ());
+        return assertionMap;
     }
 
     public SideBarWorkspace getSideWorkspace () {

@@ -1,12 +1,13 @@
 package org.fundacionjala.pivotal.framework.util;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
@@ -14,12 +15,16 @@ import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
+import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACE_ID;
 
 
 /**
  * Created by mijhailvillarroel on 7/14/2016.
  */
 public final class CommonMethods {
+
+private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
     private CommonMethods() {
     }
@@ -34,13 +39,13 @@ public final class CommonMethods {
     }
 
     public static void setWebElement(WebElement webElement, String text) {
-        getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
 
     public static void clickWebElement(WebElement webElement) {
-        getInstance().getWait().until(ExpectedConditions.elementToBeClickable(webElement));
+        WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
@@ -80,5 +85,18 @@ public final class CommonMethods {
                 deleteRequest(PROJECTS_ENDPOINT + object.get(PROJECT_ID).toString());
             }
         }
+    }
+
+    public static void deleteAllWorkspaces() {
+        ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
+        if (jsonAsArrayList.size() > 0) {
+            for (Map<String, ?> object : jsonAsArrayList) {
+                deleteRequest(WORKSPACES_ENDPOINT + object.get(WORKSPACE_ID).toString());
+            }
+        }
+    }
+    public static void quitProgram(String message){
+        System.err.println(message);
+        Runtime.getRuntime().exit(1);
     }
 }

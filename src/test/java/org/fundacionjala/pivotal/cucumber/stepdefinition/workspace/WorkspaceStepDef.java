@@ -20,8 +20,6 @@ import org.fundacionjala.pivotal.pages.workspace.WorkspaceSteps;
  */
 public class WorkspaceStepDef {
 
-    private static final String DASHBOARD = "Dashboard";
-
     private CreateWorkspace createWorkspace;
 
     private Workspace workspace;
@@ -40,11 +38,6 @@ public class WorkspaceStepDef {
 
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
-    }
-
-    @Given("^I am on Pivotal Dashboard page$")
-    public void iAmOnPivotalDashboardPage() {
-        dashboard = loginStepDef.getDashboard();
     }
 
     @When("^click on the Create Workspace button$")
@@ -69,7 +62,7 @@ public class WorkspaceStepDef {
     @And("^I select the project created previously$")
     public void iSelectTheProjectCreatedPreviously() {
         sideBarWorkspace.clickListProjectLink ();
-        sideBarWorkspace.clickIdProjectLink ();
+        sideBarWorkspace.clickProjectNameLink("ProjectTest3");
     }
 
     @And("^I click on Save Workspace button$")
@@ -120,4 +113,6 @@ public class WorkspaceStepDef {
     public SettingWorkspace getSettingWorkspace() {
         return settingWorkspace;
     }
+
+    public Map<WorkspaceSteps, Object> getValuesMap(){return valuesMap;}
     }

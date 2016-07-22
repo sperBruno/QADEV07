@@ -12,7 +12,7 @@ public final class Constants {
 
     public static final int WAIT_TIME = 30;
 
-    public static final int LOAD_PAGE_TIME = 40;
+    public static final int LOAD_PAGE_TIME = 80;
 
     public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
 
@@ -86,8 +86,15 @@ public final class Constants {
 
     public static final String ATTRIBUTE_WEB_ELEMENT = "value";
 
+    public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
+
+    public static final String WORKSPACE_ID = "id";
+
     public static final String ERROR_ACCOUNT_MESSAGE_TEXT = "please select or create an account for the new project";
+
     public static final String ERROR_PROJECT_TITLE_TEXT = "project name can't be blank";
+
+    public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
 
     private Constants() {
     }

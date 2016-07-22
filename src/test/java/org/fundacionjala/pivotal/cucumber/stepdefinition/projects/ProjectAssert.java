@@ -2,13 +2,12 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import com.jayway.restassured.response.Response;
 
-import org.apache.log4j.Logger;
-import org.fundacionjala.pivotal.api.Mapper;
-import org.fundacionjala.pivotal.pages.setting.Setting;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 
+import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.Mapper;
+import org.fundacionjala.pivotal.pages.setting.Setting;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_PROJECT_TITLE_TEXT;
@@ -27,11 +26,12 @@ public class ProjectAssert {
 
     private ProjectSettingsStepDef projectSettingsStepDef;
 
-    private Response responseProject;
-
     private String endpointProject;
 
+    private Response responseProject;
+
     private Setting setting;
+
 
     /**
      * This class receives ProjectStepDef and ProjectSettingsStepDef as parameters.
@@ -118,5 +118,11 @@ public class ProjectAssert {
         String actualProjectType = responseProject.jsonPath().get(project_type);
         LOGGER.info("Project Type: " + actualProjectType);
         assertEquals(expectedProjectType, actualProjectType);
+    }
+
+    @Then("^I click save button should be show a message say: (.*)$")
+    public void iClickSaveButtonShouldBeShowAMessageSay(String message) {
+        final String expectResult = projectSettingsStepDef.getGeneralSettingForm().getMassage(message, projectSettingsStepDef.getValuesMap());
+        assertEquals(expectResult, projectSettingsStepDef.getGeneralSettingForm().getMessageErrorNameDayText());
     }
 }
