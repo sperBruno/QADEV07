@@ -1,17 +1,18 @@
 package org.fundacionjala.pivotal.framework.util;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
@@ -108,6 +109,9 @@ private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
                 AccountSetting accountSetting = accounts.manageAccount().clickSettingTab();
                 accounts= accountSetting.deleteAccount();
             }
+            CreateAccountForm createAccountForm=accounts.clickNewAccountBtn();
+            createAccountForm.setAccountNameTextField("SYSTEM");
+            createAccountForm.clickCreateAccountBtn();
             DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
         }catch (NullPointerException e){
             throw new NoSuchElementException("Element not found");
