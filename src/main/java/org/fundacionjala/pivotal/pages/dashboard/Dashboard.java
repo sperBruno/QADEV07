@@ -113,6 +113,7 @@ public class Dashboard extends BasePage {
      * @return: return the project main page
      */
     public Project clickOnProject(String projectName) {
+        driver.navigate().refresh();
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
