@@ -19,13 +19,13 @@ Feature: Create new story in project from pivotal tracker
       | COMMENT     | commentTest     |
     Then I validate fields
 
-  @project @dashboard
+  @project @dashboard 
   Scenario: Create story without title
     Given I enter to [Project1.name]
     When I create a new story without title
     Then I expect the alert Please enter a story title.
     
-  @project @dashboard
+  @project @dashboard 
   Scenario: Cancel create story with parameters
     Given I enter to [Project1.name]
     When I fill parameters to new story
