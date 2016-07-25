@@ -1,23 +1,14 @@
 package org.fundacionjala.pivotal.api;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.jayway.restassured.response.Response;
-import org.fundacionjala.pivotal.pages.setting.SettingSteps;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.DATE_NAME;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.START_ITERATIONS_ON;
 
 public final class Mapper {
 
@@ -28,10 +19,6 @@ public final class Mapper {
     private static final String REGEX_REPLACE = "\\[(.*?)\\]";
 
     private static final String REGEX_HALF_BRACKET = "[";
-
-    private static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
-
-    private static final String EMPTY_STRING = "";
 
     private static final int INDEX_1 = 1;
 
@@ -45,7 +32,7 @@ public final class Mapper {
     }
 
     /**
-     * Method to format the enpoint with the ids specified
+     * Method to format the endpoint with the ids specified
      *
      * @param endPoint: endpoint with Key and Value to replace
      * @return: the new endpoint with ids
@@ -64,11 +51,6 @@ public final class Mapper {
             }
         }
         return endPoint;
-    }
-
-    public static String mapUrlToDeleteProject(String endPoint) {
-        Matcher matches = Pattern.compile(REGEX_UNTIL_PROJECT).matcher(endPoint);
-        return matches.find() ? matches.group() : EMPTY_STRING;
     }
 
     public static void addResponse(String key, Response response) {

@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 
@@ -44,7 +43,7 @@ public class ProjectHooks {
     public void afterProjectScenario() {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             LOGGER.info("response project hook:" + api.getResponse().prettyPrint());
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(ATTRIBUTE_ID).toString());
         }
     }
 
