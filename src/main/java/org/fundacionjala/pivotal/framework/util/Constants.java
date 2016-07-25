@@ -22,9 +22,9 @@ public final class Constants {
 
     public static final String PROJECTS_ENDPOINT = "/projects/";
 
-    public static final String PROJECT_ID = "id";
+    public static final String ATTRIBUTE_ID = "id";
 
-    public static final String DASHBOARD = "Dashboard";
+    public static final String ATTRIBUTE_VALUE = "value";
 
     public static final String TOKEN_HEADER = "X-TrackerToken";
 
@@ -33,14 +33,6 @@ public final class Constants {
     public static final String REGEX_HALF_BRACKET = "[";
 
     public static final String REGEX_BRACKETS = "^\\[|\\]|\\.";
-
-    public static final String REGEX_UNTIL_PROJECT = "^(\\/.*?\\/.*?\\/)";
-
-    public static final String EMPTY_STRING = "";
-
-    public static final String REGEX_SLASH = "/";
-
-    public static final String PROJECT_1 = "Project1";
 
     public static final String CONFIG_PROPERTIES = "pivotal.properties";
 
@@ -74,9 +66,7 @@ public final class Constants {
 
     public static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
 
-    public static final String DRIVER_PATH = "lib/chromedriver.exe";
-
-    public static final String WEBDRIVER_CHROME_PROPERTY = "webdriver.chrome.driver";
+    public static final String DRIVER_PATH = "lib/chromedriver";
 
     public static final String CAPABILITY_NAME = "name";
 
@@ -84,11 +74,7 @@ public final class Constants {
 
     public static final String HTTP_PROXY_PORT = "http.proxyPort";
 
-    public static final String ATTRIBUTE_WEB_ELEMENT = "value";
-
     public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
-
-    public static final String WORKSPACE_ID = "id";
 
     public static final String ERROR_ACCOUNT_MESSAGE_TEXT = "please select or create an account for the new project";
 

@@ -17,11 +17,8 @@ public class Login extends BasePage {
     @FindBy(id = "credentials_password")
     private WebElement passwordTestField;
 
-    @FindBy(className = "app_signup_submit_button_button")
-    private WebElement singInButton;
-
     @FindBy(css = ".app_signin_action_button")
-    private WebElement buttonNext;
+    private WebElement signInBtn;
 
     public void setUserNameTestField(String username) {
         CommonMethods.setWebElement(userNameTestField, username);
@@ -44,12 +41,8 @@ public class Login extends BasePage {
         return dashboard;
     }
 
-    public void clickNextButton() {
-        buttonNext.click();
-    }
-
     public Dashboard clickSignInButton() {
-        CommonMethods.clickWebElement(buttonNext);
+        CommonMethods.clickWebElement(signInBtn);
         return new Dashboard();
     }
 
