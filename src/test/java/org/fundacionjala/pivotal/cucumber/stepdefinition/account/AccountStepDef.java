@@ -19,16 +19,20 @@ import org.fundacionjala.pivotal.pages.setting.Setting;
  */
 public class AccountStepDef {
 
-    public static final String PIVOTAL_URL = "https://www.pivotaltracker.com";
     private static final Logger LOGGER = Logger.getLogger(AccountStepDef.class.getName());
-    private static final String SETTINGS = "/settings";
-    private static final String ACCOUNTS = "/accounts";
+
     private Accounts account;
+
     private LoginStepDef loginStepDef;
+
     private ProjectsStepDef projectsStepDef;
+
     private String accountName;
+
     private AccountSetting accountSetting;
+
     private Setting setting;
+
     private Map<String, String> accountData = new HashMap<String, String>();
 
     /**
@@ -74,15 +78,6 @@ public class AccountStepDef {
         accountData.put(newAccountName, id);
 
     }
-
-//    @Given("^I delete (.*) account$")
-//    public void iDeleteAccount(String accountName) {
-//        String endpoint = PIVOTAL_URL + ACCOUNTS + accountData.get(accountName) + SETTINGS;
-//        account = accountSetting.deleteAccount();
-//    }
-
-
-
 
     public AccountSetting getAccountSetting() {
         return accountSetting;
