@@ -34,45 +34,7 @@ public final class Constants {
 
     public static final String REGEX_BRACKETS = "^\\[|\\]|\\.";
 
-    public static final String CONFIG_PROPERTIES = "pivotal.properties";
-
-    public static final String PROXY_PORT = "proxyPort";
-
-    public static final String PROXY_HOST = "proxyHost";
-
-    public static final String REMOTE_TEST_NAME = "remoteTestName";
-
-    public static final String EMAIL = "email";
-
-    public static final String PASSWORD = "password";
-
-    public static final String URL = "url";
-
-    public static final String URL_API = "urlApi";
-
-    public static final String API_TOKEN = "apiToken";
-
-    public static final String REMOTE_ACCESS_KEY = "remoteAccessKey";
-
-    public static final String REMOTE_USER = "remoteUser";
-
-    public static final String LOCAL_BROWSER = "localBrowser";
-
-    public static final String REMOTE_BROWSER = "remoteBrowser";
-
-    public static final String REMOTE_BROWSER_VERSION = "remoteBrowserVersion";
-
-    public static final String REMOTE_PLATFORM = "remotePlatform";
-
-    public static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
-
-    public static final String DRIVER_PATH = "lib/chromedriver";
-
-    public static final String CAPABILITY_NAME = "name";
-
-    public static final String HTTP_PROXY_HOST = "http.proxyHost";
-
-    public static final String HTTP_PROXY_PORT = "http.proxyPort";
+    public static final String ATTRIBUTE_WEB_ELEMENT = "value";
 
     public static final String WORKSPACES_ENDPOINT = "/my/workspaces/";
 

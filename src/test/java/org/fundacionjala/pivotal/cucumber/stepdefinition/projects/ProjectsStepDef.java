@@ -11,11 +11,10 @@ import org.fundacionjala.pivotal.pages.project.ProjectSteps;
 
 /**
  * This class is used to execute the step of project scenarios.
- * Created by BrunoBarrios on 7/7/2016.
+ *
+ * @author Bruno Barrios.
  */
 public class ProjectsStepDef {
-
-    private static final Logger LOGGER = Logger.getLogger(ProjectsStepDef.class.getName());
 
     private LoginStepDef loginStepDef;
 
