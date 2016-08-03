@@ -16,7 +16,7 @@ public class PropertiesInfo {
 
     private static final Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
 
-    private static final String CONFIG_PROPERTIES = "pivotal.properties";
+    private static final String CONFIG_PROPERTIES = "gradle.properties";
 
     private static final String PROXY_PORT = "proxyPort";
 
@@ -79,7 +79,11 @@ public class PropertiesInfo {
     }
 
     public String getProperty(String propertyKey) {
-        return properties.getProperty(propertyKey);
+        String propertyValue = System.getProperty(propertyKey);
+        if (propertyValue == null) {
+            propertyValue = properties.getProperty(propertyKey);
+        }
+        return propertyValue;
     }
 
     public String getEmail() {
