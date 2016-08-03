@@ -33,6 +33,11 @@ public class StoryHooks {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID_STORY).toString());
             LOGGER.info("Response from story Hook: " + api.getResponse().prettyPrint());
         }
+    }
+
+    @After("@dashboard")
+    public void goToaDashboard(){
         DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
+        DriverManager.getInstance().getDriver().navigate().refresh();
     }
 }

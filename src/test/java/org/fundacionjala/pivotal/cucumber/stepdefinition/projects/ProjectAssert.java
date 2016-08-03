@@ -8,6 +8,7 @@ import cucumber.api.java.en.Then;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_PROJECT_TITLE_TEXT;
@@ -77,8 +78,6 @@ public class ProjectAssert {
         endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
         LOGGER.info("project id " + endpointProject.toString());
         responseProject = getRequest(endpointProject);
-        LOGGER.info("title project end point" + responseProject.jsonPath().get("name"));
-        LOGGER.info("title project locator" + projectsStepDef.getProject().getTitle());
         assertEquals(expectedValue, projectsStepDef.getProject().getTitle().replace("\n", " "));
     }
 

@@ -42,9 +42,9 @@ public class StoriesStepsDef {
     @Given("^I enter to (.*)$")
     public void iEnterTo(String projectProperty) {
         DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
+        Dashboard dashboard = new Dashboard();
         String name = mapResponse(projectProperty);
-
-        project = new Dashboard().clickOnProject(name);
+        project = dashboard.clickOnProject(name);
     }
 
     @And("^I create a new story$")

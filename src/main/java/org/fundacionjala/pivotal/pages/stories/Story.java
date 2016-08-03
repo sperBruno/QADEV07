@@ -178,7 +178,7 @@ public class Story extends BasePage {
     }
 
     public String getStoryType() {
-        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).getText().toLowerCase();
+        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName.toLowerCase() + "')]")).getText().toLowerCase();
     }
 
     public void setStoryType(String storyType) {
