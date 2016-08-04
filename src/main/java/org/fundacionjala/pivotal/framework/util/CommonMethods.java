@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
-import org.fundacionjala.pivotal.framework.selenium.RemoteBrowser;
 import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
@@ -34,7 +33,7 @@ public final class CommonMethods {
 
     private static final  WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
-    private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
     private CommonMethods() {
     }
