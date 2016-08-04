@@ -1,4 +1,4 @@
-@CleanEnviroment
+@acceptance
 Feature: Testing for setting projects for Pivotal page
 
   Background: create project
@@ -9,11 +9,11 @@ Feature: Testing for setting projects for Pivotal page
     And stored as Project1
     And I login with valid credentials
 
-#  @project
-#  Scenario: Delete Project
-#    When I click [Project1.id] settings
-#    And I click on delete project button
-#    Then I expect the delete message: [Project1.name] was successfully deleted.
+  @project
+  Scenario: Delete Project
+    When I click [Project1.id] settings
+    And I click on delete project button
+    Then I expect the delete message: [Project1.name] was successfully deleted.
 
   @project
   Scenario: Edit Project

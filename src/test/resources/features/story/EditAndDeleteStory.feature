@@ -1,3 +1,4 @@
+@acceptance
 Feature: Delete a new story in a project from pivotal tracker
 
   Background: Create Project and story
