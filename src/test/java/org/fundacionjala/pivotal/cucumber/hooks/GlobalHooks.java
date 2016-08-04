@@ -22,7 +22,6 @@ public class GlobalHooks {
     private static final String PROPERTIES_FILE_UNFILLED = "Error reading the properties file, one of the next properties is missing: email, api token or password";
 
     private static final String API_CREDENTIALS_INCORRECT = "The api rest credentials is not correct";
-
     private static boolean BEFORE_ALL_FLAG = false;
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();

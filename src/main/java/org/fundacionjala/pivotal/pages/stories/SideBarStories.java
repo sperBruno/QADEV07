@@ -1,10 +1,12 @@
 package org.fundacionjala.pivotal.pages.stories;
 
+import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
