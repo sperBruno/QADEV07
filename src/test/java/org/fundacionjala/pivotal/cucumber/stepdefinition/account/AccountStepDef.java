@@ -87,6 +87,6 @@ public class AccountStepDef {
     }
 
     public String getAccountName() {
-        return accountName.toString();
+        return accountName;
     }
 }

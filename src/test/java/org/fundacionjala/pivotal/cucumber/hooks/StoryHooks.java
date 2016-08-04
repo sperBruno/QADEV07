@@ -1,15 +1,18 @@
 package org.fundacionjala.pivotal.cucumber.hooks;
 
 
-import cucumber.api.java.After;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
-import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
+
+import cucumber.api.java.After;
 
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
-import static org.fundacionjala.pivotal.framework.util.Constants.*;
+import static org.fundacionjala.pivotal.framework.util.Constants.DASHBOARD_URL;
+import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
+import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 
 public class StoryHooks {
 
@@ -17,11 +20,8 @@ public class StoryHooks {
     public static final String PROJECT_ID_STORY = "project_id";
     private ApiResourcesSteps api;
 
-    private ToolBar toolBar;
-
     public StoryHooks(ApiResourcesSteps api) {
         this.api = api;
-        toolBar = new ToolBar();
     }
 
     /**
