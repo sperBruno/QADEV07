@@ -1,8 +1,8 @@
 language: java
 jdk:
 - oraclejdk8
-sudo: required
-script: script: gradle executeFeatures –Pemail=$email –Ppassword=$password –PapiToken=$apiToken -PcucumberOptions="--tags @smoke"
+sudo: false
+script: gradle compileJava compileTestJava
 branches:
   only:
    - develop
