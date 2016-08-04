@@ -7,7 +7,7 @@ import cucumber.api.java.en.When;
 import static org.fundacionjala.pivotal.pages.Login.loginAsPrimaryUser;
 
 /**
- * @author  mijhailvillarroel
+ * @author mijhailvillarroel
  */
 public class LoginStepDef {
 

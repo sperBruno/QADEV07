@@ -62,5 +62,5 @@ public class StoriesAssert {
         assertEquals("(0, 0)", iceBox.getIceboxSection());
     }
 
-    
+
 }

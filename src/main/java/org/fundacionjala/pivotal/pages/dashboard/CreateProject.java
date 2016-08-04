@@ -90,7 +90,7 @@ public class CreateProject extends BasePage {
         try {
             answer = driver.findElement(By.xpath("//span[text()='" + accountName + "']")).isDisplayed();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("Element could not be found",e);
+            LOGGER.warn("Element could not be found", e);
             answer = false;
         }
         LOGGER.info("AccountName is" + answer);
@@ -110,10 +110,10 @@ public class CreateProject extends BasePage {
             LOGGER.error("null pointer", e);
 
         } catch (InvalidSelectorException e) {
-            LOGGER.info("invalid web element",e);
+            LOGGER.info("invalid web element", e);
 
         } catch (NoSuchElementException e) {
-            LOGGER.warn("invalid no such element",e);
+            LOGGER.warn("invalid no such element", e);
         }
         return new Project();
 

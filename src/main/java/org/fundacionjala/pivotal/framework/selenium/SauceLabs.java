@@ -11,9 +11,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 /**
+ * This class initialize the Remote Selenium Web Driver given the required values in properties file
+ * <p>
+ *
  * @author Henrry Salinas.
- *         <p>
- *         This class initialize the Remote Selenium Web Driver given the required values in properties file
  */
 public class SauceLabs implements IDriver {
 

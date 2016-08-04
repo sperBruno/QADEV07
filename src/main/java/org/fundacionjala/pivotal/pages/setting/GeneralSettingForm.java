@@ -395,8 +395,8 @@ public class GeneralSettingForm extends BasePage {
         String nameDay = dayName(String.valueOf(values.get(PROJECT_START_DATE)));
         Map<Enum, Object> copy = new HashMap<>(values);
         copy.put(DATE_NAME, nameDay);
-        final String point="s.";
-        final int index= 1;
+        final String point = "s.";
+        final int index = 1;
         String result = endPoint;
         if (result.contains(REGEX_HALF_BRACKET)) {
             for (String endPointSplit : result.split(REGEX_BLACK_SPACE)) {
@@ -411,7 +411,7 @@ public class GeneralSettingForm extends BasePage {
         return result.concat(point);
     }
 
-    private String dayName(String inputDate){
+    private String dayName(String inputDate) {
         Date date = null;
         final String format = "YYYY/MM/DD";
         final String standard = "EEEE";

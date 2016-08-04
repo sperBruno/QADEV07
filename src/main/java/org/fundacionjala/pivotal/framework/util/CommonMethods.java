@@ -31,7 +31,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDP
  */
 public final class CommonMethods {
 
-    private static final  WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
+    private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 

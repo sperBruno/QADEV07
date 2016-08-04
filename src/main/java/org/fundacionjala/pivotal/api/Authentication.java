@@ -6,7 +6,6 @@ import com.jayway.restassured.specification.RequestSpecification;
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 
-
 /**
  *
  */

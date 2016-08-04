@@ -23,7 +23,7 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void refreshPage(){
+    public void refreshPage() {
         driver.navigate().refresh();
     }
 }

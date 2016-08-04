@@ -132,14 +132,16 @@ public class Dashboard extends BasePage {
         return new Project();
     }
 
-    public WebElement fluentWait(final By locator){
+    public WebElement fluentWait(final By locator) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(30, TimeUnit.SECONDS)
                 .pollingEvery(5, TimeUnit.SECONDS)
                 .ignoring(org.openqa.selenium.NoSuchElementException.class);
         return wait.until(driver1 -> driver1.findElement(locator));
-    };
-    
+    }
+
+    ;
+
     public Setting clickSettingsLink(String nameProjects) {
         refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));

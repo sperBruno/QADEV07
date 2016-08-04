@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class ProjectAssert {
 
-   private ProjectsStepDef projectsStepDef;
+    private ProjectsStepDef projectsStepDef;
 
     private ProjectSettingsStepDef projectSettingsStepDef;
 

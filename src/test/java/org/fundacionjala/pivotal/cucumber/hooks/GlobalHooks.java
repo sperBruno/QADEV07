@@ -15,8 +15,8 @@ import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_
 
 /**
  * @author Henrry Salinas.
- *
- * This class stores the global hooks methods required to run the test
+ *         <p>
+ *         This class stores the global hooks methods required to run the test
  */
 public class GlobalHooks {
 
@@ -41,7 +41,7 @@ public class GlobalHooks {
 
             if (StringUtils.isEmpty(PROPERTIES_INFO.getEmail()) || StringUtils.isEmpty(PROPERTIES_INFO.getApiToken()) || StringUtils.isEmpty(PROPERTIES_INFO.getPassword())) {
                 quitProgram(PROPERTIES_FILE_UNFILLED);
-            }else if(getRequest(PROJECTS_ENDPOINT).statusCode()!= SUCCESS_STATUS_CODE){
+            } else if (getRequest(PROJECTS_ENDPOINT).statusCode() != SUCCESS_STATUS_CODE) {
                 quitProgram(API_CREDENTIALS_INCORRECT);
             }
             BEFORE_ALL_FLAG = true;

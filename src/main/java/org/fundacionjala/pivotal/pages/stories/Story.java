@@ -117,7 +117,7 @@ public class Story extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             storyExpander.click();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("The Web element click expander Story not was find ",e);
+            LOGGER.warn("The Web element click expander Story not was find ", e);
             throw new NoSuchElementException("The Web element not was find ", e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
@@ -141,7 +141,7 @@ public class Story extends BasePage {
     public String getAddStoryTitleAlert() {
         String alert = addStoryTitleAlert.getText();
         okAlertButton.click();
-        LOGGER.info("Name the alert "+ alert);
+        LOGGER.info("Name the alert " + alert);
         return alert;
     }
 
@@ -201,7 +201,7 @@ public class Story extends BasePage {
      * @param storyTitle it is the name for a story
      */
     public void setStoryTitleTextArea(String storyTitle) {
-        CommonMethods.setWebElement(storyTitleTextArea,storyTitle);
+        CommonMethods.setWebElement(storyTitleTextArea, storyTitle);
     }
 
     /**

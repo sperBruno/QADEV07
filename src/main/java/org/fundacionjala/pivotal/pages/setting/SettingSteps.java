@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.pages.setting;
 
 public enum SettingSteps {
+
     DESCRIPTION,
     TITLE_PROJECTS,
     PROJECT_TIME_ZONE,

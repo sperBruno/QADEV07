@@ -4,7 +4,7 @@ Feature: Workspace
   Background: I login into pivotal
     Given I send a POST request to /projects
       | name   | ProjectTest2 |
-      | public | true |
+      | public | true         |
     And stored as ProjectW2
     Given I login with valid credentials
 
@@ -20,6 +20,6 @@ Feature: Workspace
   Scenario: Create a Workspace with empty name
 
     Given I create a new Workspace
-      | WORKSPACE_NAME |    |
+      | WORKSPACE_NAME |  |
     And click on the Create Workspace button
     Then A message displayed: workspace name can't be blank

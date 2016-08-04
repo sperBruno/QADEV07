@@ -5,13 +5,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * @author Henrry Salinas.
- *
- * This class initialize the Firefox Selenium Web Driver
+ *         <p>
+ *         This class initialize the Firefox Selenium Web Driver
  */
 public class Firefox implements IDriver {
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public WebDriver initDriver() {

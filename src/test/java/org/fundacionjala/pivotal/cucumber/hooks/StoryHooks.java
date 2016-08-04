@@ -36,7 +36,7 @@ public class StoryHooks {
     }
 
     @After("@dashboard")
-    public void goToaDashboard(){
+    public void goToaDashboard() {
         DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
         DriverManager.getInstance().getDriver().navigate().refresh();
     }

@@ -23,7 +23,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_T
  */
 public class Workspace extends BasePage {
 
-    private static final Logger LOGGER = Logger.getLogger (Workspace.class.getSimpleName ());
+    private static final Logger LOGGER = Logger.getLogger(Workspace.class.getSimpleName());
 
     private SideBarWorkspace sideBarWorkspace;
 
@@ -41,52 +41,52 @@ public class Workspace extends BasePage {
     @FindBy(className = "table")
     private WebElement panelContainerProjects;
 
-    public Workspace () {
+    public Workspace() {
 
-        sideBarWorkspace = new SideBarWorkspace ();
-        toolBarWorkspace = new ToolBarWorkspace ();
+        sideBarWorkspace = new SideBarWorkspace();
+        toolBarWorkspace = new ToolBarWorkspace();
     }
 
-    public Dashboard clickReturnDashboardLink () {
-        returnDashboardLink.click ();
-        return new Dashboard ();
+    public Dashboard clickReturnDashboardLink() {
+        returnDashboardLink.click();
+        return new Dashboard();
     }
 
-    public String getProjectIntoWorkspaceNameText () {
+    public String getProjectIntoWorkspaceNameText() {
         String projectIntoWorkspaceName = "";
         try {
             wait.until(ExpectedConditions.visibilityOf(panelContainerProjects));
-            projectIntoWorkspaceName = projectIntoWorkspaceNameText.getText ();
+            projectIntoWorkspaceName = projectIntoWorkspaceNameText.getText();
         } catch (NoSuchElementException e) {
-            LOGGER.warn (ELEMENT_COULD_NOT_BE_FOUND + e);
+            LOGGER.warn(ELEMENT_COULD_NOT_BE_FOUND + e);
         } finally {
-            driver.manage ().timeouts ().implicitlyWait (IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
         }
         return projectIntoWorkspaceName;
     }
 
-    public String getIdWorkspace () {
-        String url = driver.getCurrentUrl ();
+    public String getIdWorkspace() {
+        String url = driver.getCurrentUrl();
         String idWorkspace = "";
-        Pattern p = Pattern.compile ("[\\D]");
-        Matcher m = p.matcher (url);
-        if (m.find ()) {
-            idWorkspace = m.replaceAll ("");
+        Pattern p = Pattern.compile("[\\D]");
+        Matcher m = p.matcher(url);
+        if (m.find()) {
+            idWorkspace = m.replaceAll("");
         }
         return idWorkspace;
     }
 
     public Map<WorkspaceSteps, Object> getAssertionMap() {
         Map<WorkspaceSteps, Object> assertionMap = new EnumMap<>(WorkspaceSteps.class);
-        assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText ());
+        assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText());
         return assertionMap;
     }
 
-    public SideBarWorkspace getSideWorkspace () {
+    public SideBarWorkspace getSideWorkspace() {
         return sideBarWorkspace;
     }
 
-    public ToolBarWorkspace getToolBarWorkspace () {
+    public ToolBarWorkspace getToolBarWorkspace() {
         return toolBarWorkspace;
     }
 }

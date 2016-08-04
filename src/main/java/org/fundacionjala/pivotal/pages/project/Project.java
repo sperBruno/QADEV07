@@ -33,11 +33,11 @@ public class Project extends BasePage {
             clickWebElement(settings);
         } catch (NoSuchElementException e) {
             LOGGER.warn("The click tab Setting Element could not be found", e);
-            throw new NoSuchElementException("Setting was not found",e);
-        }catch (NullPointerException e){
+            throw new NoSuchElementException("Setting was not found", e);
+        } catch (NullPointerException e) {
             LOGGER.error("Setting was not found", e);
             throw new NullPointerException();
-        }finally {
+        } finally {
             wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
         }
