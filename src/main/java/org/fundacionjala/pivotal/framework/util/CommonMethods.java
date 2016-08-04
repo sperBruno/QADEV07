@@ -8,9 +8,12 @@ import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,6 +22,7 @@ import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
+import static org.fundacionjala.pivotal.framework.util.Constants.CAPABILITY_NAME;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
 import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDPOINT;
@@ -34,6 +38,8 @@ public final class CommonMethods {
     private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
+
+    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
     private CommonMethods() {
     }
@@ -183,5 +189,14 @@ public final class CommonMethods {
     public static void quitProgram(String message) {
         LOGGER.info("Element null " + message);
         Runtime.getRuntime().runFinalization();
+    }
+
+    public static Capabilities setCapabilities() {
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability(CapabilityType.BROWSER_NAME, PROPERTIES_INFO.getRemoteBrowser());
+        caps.setCapability(CapabilityType.VERSION, PROPERTIES_INFO.getBrowserVersion());
+        caps.setCapability(CapabilityType.PLATFORM, PROPERTIES_INFO.getPlatform());
+        caps.setCapability(CAPABILITY_NAME, PROPERTIES_INFO.getRemoteTestName());
+        return caps;
     }
 }

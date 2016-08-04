@@ -42,6 +42,12 @@ public final class Constants {
 
     public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
 
+    public static final String CAPABILITY_NAME = "name";
+
+    public static final String HTTP_PROXY_HOST = "http.proxyHost";
+
+    public static final String HTTP_PROXY_PORT = "http.proxyPort";
+
     private Constants() {
     }
 }
