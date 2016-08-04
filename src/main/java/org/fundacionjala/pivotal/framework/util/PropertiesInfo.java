@@ -106,11 +106,11 @@ public class PropertiesInfo {
         return getProperty(API_TOKEN);
     }
 
-    public String getSauceUser() {
+    public String getRemoteUser() {
         return getProperty(REMOTE_USER);
     }
 
-    public String getSauceAccessKey() {
+    public String getRemoteAccessKey() {
         return getProperty(REMOTE_ACCESS_KEY);
     }
 

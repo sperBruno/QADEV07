@@ -15,9 +15,9 @@ import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
  *         <p>
  *         This class initialize the Remote Selenium Web Driver given the required values in properties file
  */
-public class RemoteBrowser implements IDriver {
+public class SauceLabs implements IDriver {
 
-    private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(SauceLabs.class.getSimpleName());
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
@@ -40,7 +40,7 @@ public class RemoteBrowser implements IDriver {
         caps.setCapability(CapabilityType.PLATFORM, PROPERTIES_INFO.getPlatform());
         caps.setCapability(CAPABILITY_NAME, PROPERTIES_INFO.getRemoteTestName());
         final String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub",
-                PROPERTIES_INFO.getSauceUser(), PROPERTIES_INFO.getSauceAccessKey());
+                PROPERTIES_INFO.getRemoteUser(), PROPERTIES_INFO.getRemoteAccessKey());
         URL url = null;
         try {
             url = new URL(sauceUrl);

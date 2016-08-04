@@ -1,3 +1,4 @@
+@smoke
 Feature: Testing for login Pivotal page
 
   Scenario: Login with valid credentials
