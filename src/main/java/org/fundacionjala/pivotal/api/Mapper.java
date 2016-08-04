@@ -41,9 +41,9 @@ public final class Mapper {
         String result = endPoint;
         if (endPoint.contains(REGEX_HALF_BRACKET)) {
             Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
-            Matcher mKey = keyEndpoint.matcher(endPoint);
+            Matcher mKey = keyEndpoint.matcher(result);
             Pattern valueEndpoint = Pattern.compile(REGEX_VALUE);
-            Matcher mValue = valueEndpoint.matcher(endPoint);
+            Matcher mValue = valueEndpoint.matcher(result);
             while (mKey.find() && mValue.find()) {
                 final int groupRegex = 1;
                 String key = mKey.group(groupRegex);
@@ -81,11 +81,11 @@ public final class Mapper {
      */
     public static String mapResponse(String property) {
         String result = property;
-        if (property.contains(REGEX_HALF_BRACKET)) {
+        if (result.contains(REGEX_HALF_BRACKET)) {
             Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
-            Matcher mKey = keyEndpoint.matcher(property);
+            Matcher mKey = keyEndpoint.matcher(result);
             Pattern valueEndpoint = Pattern.compile(REGEX_VALUE);
-            Matcher mValue = valueEndpoint.matcher(property);
+            Matcher mValue = valueEndpoint.matcher(result);
             while (mKey.find() && mValue.find()) {
                 final int groupRegex = 1;
                 String key = mKey.group(groupRegex);
