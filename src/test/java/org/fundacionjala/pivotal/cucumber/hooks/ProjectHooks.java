@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
-import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 
 import cucumber.api.java.After;
@@ -65,16 +64,5 @@ public class ProjectHooks {
         assertEquals(DELETE_STATUS_CODE, response.getStatusCode());
         deleteAccounts();
     }
-
-    /**
-     * This method is used to delete an account of a project
-     *
-     * @param setting
-     */
-    private void deleteAccountUser(Setting setting) {
-        Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
-        account.getToolBarAccount().clickSettingTab().deleteAccount();
-    }
-
 
 }

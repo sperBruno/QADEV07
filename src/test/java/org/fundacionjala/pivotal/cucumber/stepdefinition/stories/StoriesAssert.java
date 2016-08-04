@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
-import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.pages.stories.IceBox;
 
 import cucumber.api.java.en.Then;
@@ -21,9 +20,8 @@ public class StoriesAssert {
      * Constructor class
      *
      * @param storiesStepsDef: steps before do assertion
-     * @param api:             Object with elements from Api
      */
-    public StoriesAssert(StoriesStepsDef storiesStepsDef, ApiResourcesSteps api) {
+    public StoriesAssert(StoriesStepsDef storiesStepsDef) {
         this.storiesStepsDef = storiesStepsDef;
     }
 
