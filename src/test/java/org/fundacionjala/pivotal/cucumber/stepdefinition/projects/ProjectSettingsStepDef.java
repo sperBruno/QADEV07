@@ -2,12 +2,9 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.api.Mapper;
-import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
@@ -21,8 +18,6 @@ import org.fundacionjala.pivotal.pages.setting.SideBarSetting;
  */
 public class ProjectSettingsStepDef {
 
-    private ApiResourcesSteps apiResourcesSteps;
-
     private LoginStepDef loginStepDef;
 
     private Setting setting;
@@ -33,8 +28,7 @@ public class ProjectSettingsStepDef {
 
     private Dashboard dashboard;
 
-    public ProjectSettingsStepDef(ApiResourcesSteps apiResourcesSteps, LoginStepDef loginStepDef) {
-        this.apiResourcesSteps = apiResourcesSteps;
+    public ProjectSettingsStepDef(LoginStepDef loginStepDef) {
         this.loginStepDef = loginStepDef;
     }
 
@@ -49,9 +43,9 @@ public class ProjectSettingsStepDef {
         this.valuesMap = values;
         SideBarSetting sideBar = setting.getSideBar();
         generalSettingForm = sideBar.clickGeneralSetting();
-        valuesMap.keySet().stream().forEach((step) -> {
-            generalSettingForm.getStrategyStepMap(valuesMap).get(step).executeStep();
-        });
+        valuesMap.keySet().forEach(step ->
+                generalSettingForm.getStrategyStepMap(valuesMap).get(step).executeStep()
+        );
         generalSettingForm.clickSaveButton();
     }
 
