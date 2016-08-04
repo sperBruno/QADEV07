@@ -12,10 +12,10 @@ import static org.fundacionjala.pivotal.framework.util.Constants.LOAD_PAGE_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
+ * The purpose of this class is to provide basic methods for manage the Selenium driver
+ * and initialize the logger main resources path
+ *
  * @author HenrrySalinas && Bruno Barrios.
- *         <p>
- *         The purpose of this class is to provide basic methods for manage the Selenium driver
- *         and initialize the logger main resources path
  */
 public class DriverManager {
 
