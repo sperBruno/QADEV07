@@ -25,18 +25,12 @@ public class ApiResourcesSteps {
 
     private Response response;
 
-    private Map<String, Object> parameters;
 
     private String endPoint;
 
     @Given("^I have the (.*) endpoint$")
     public void iHaveTheEndpoint(String endPoint) {
         this.endPoint = mapEndpoint(endPoint);
-    }
-
-    @Given("^I have the next parameters:$")
-    public void iHaveTheNextParameters(Map<String, Object> parameters) {
-        this.parameters = parameters;
     }
 
     @When("^I send a GET request to (.*) endpoint$")
@@ -72,8 +66,5 @@ public class ApiResourcesSteps {
     public Response getResponse() {
         return response;
     }
-
-    public String getEndPoint() {
-        return endPoint;
-    }
+    
 }

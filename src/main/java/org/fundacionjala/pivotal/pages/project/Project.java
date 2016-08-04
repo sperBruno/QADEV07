@@ -1,6 +1,5 @@
 package org.fundacionjala.pivotal.pages.project;
 
-
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -33,9 +32,11 @@ public class Project extends BasePage {
             wait.withTimeout(45, TimeUnit.SECONDS);
             clickWebElement(settings);
         } catch (NoSuchElementException e) {
-            throw new NoSuchElementException("Setting was not found");
+            LOGGER.warn("The click tab Setting Element could not be found", e);
+            throw new NoSuchElementException("Setting was not found",e);
         }catch (NullPointerException e){
-
+            LOGGER.error("Setting was not found", e);
+            throw new NullPointerException();
         }finally {
             wait.withTimeout(WAIT_TIME, TimeUnit.SECONDS);
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);

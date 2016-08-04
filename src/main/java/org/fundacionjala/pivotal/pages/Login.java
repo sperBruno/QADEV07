@@ -7,6 +7,12 @@ import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
+/**
+ * This Class is login page the pivotal
+ *
+ * @Mijhaol Villarroel
+ */
+
 public class Login extends BasePage {
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();

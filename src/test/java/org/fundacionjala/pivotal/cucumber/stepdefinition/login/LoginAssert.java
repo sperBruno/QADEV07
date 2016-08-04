@@ -6,7 +6,7 @@ import org.junit.Assert;
 import cucumber.api.java.en.Then;
 
 /**
- * Created by mijhailvillarroel on 6/30/2016.
+ * @author  mijhailvillarroel
  */
 public class LoginAssert {
 

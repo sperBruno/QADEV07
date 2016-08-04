@@ -3,10 +3,12 @@ package org.fundacionjala.pivotal.pages.setting;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.BasePage;
@@ -52,6 +54,9 @@ import static org.fundacionjala.pivotal.pages.setting.SettingSteps.VELOCITY_STRA
  * Created by mijhailvillarroel on 7/11/2016.
  */
 public class GeneralSettingForm extends BasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(GeneralSettingForm.class.getName());
+
     @FindBy(id = "project_name")
     private WebElement projectTitleTestField;
 
@@ -132,7 +137,7 @@ public class GeneralSettingForm extends BasePage {
     private static final String REGEX_BLACK_SPACE = " ";
 
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
-        Map<SettingSteps, IAutomationStep> strategyMap = new HashMap<>();
+        Map<SettingSteps, IAutomationStep> strategyMap = new EnumMap<>(SettingSteps.class);
         strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
         strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(values.get(DESCRIPTION).toString()));
         strategyMap.put(START_ITERATIONS_ON, () -> setProjectWeekStartDayComboBox(String.valueOf(values.get(START_ITERATIONS_ON).toString())));
@@ -278,7 +283,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getDescriptionText() {
-        return projectDescriptionTestField.getAttribute("value");
+        return projectDescriptionTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getProjectId() {
@@ -286,15 +291,15 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getProjectTitleTestField() {
-        return projectTitleTestField.getAttribute("value");
+        return projectTitleTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getNumberIterationShow() {
-        return projectNumberOfDoneIterationsToShowTestField.getAttribute("value");
+        return projectNumberOfDoneIterationsToShowTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getInitialVelocity() {
-        return projectInitialVelocityTestField.getAttribute("value");
+        return projectInitialVelocityTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getTextProjectWeekStartDaySelect() {
@@ -363,7 +368,7 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public Map<SettingSteps, Object> getAssertionMap() {
-        Map<SettingSteps, Object> assertionMap = new HashMap<>();
+        Map<SettingSteps, Object> assertionMap = new EnumMap<>(SettingSteps.class);
         assertionMap.put(TITLE_PROJECTS, getProjectTitleTestField());
         assertionMap.put(DESCRIPTION, getDescriptionText());
         assertionMap.put(ENABLE_TASKS, getEnableProjectsTasks());
@@ -388,21 +393,22 @@ public class GeneralSettingForm extends BasePage {
 
     public String getMassage(String endPoint, Map<SettingSteps, Object> values) {
         String nameDay = dayName(String.valueOf(values.get(PROJECT_START_DATE)));
-        Map<SettingSteps, Object> copy = new HashMap<>(values);
+        Map<Enum, Object> copy = new HashMap<>(values);
         copy.put(DATE_NAME, nameDay);
         final String point="s.";
         final int index= 1;
-        if (endPoint.contains(REGEX_HALF_BRACKET)) {
-            for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+        String result = endPoint;
+        if (result.contains(REGEX_HALF_BRACKET)) {
+            for (String endPointSplit : result.split(REGEX_BLACK_SPACE)) {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     StringBuilder value = new StringBuilder();
                     value.append(copy.get(SettingSteps.valueOf(mapString[index])));
-                    endPoint = endPoint.replace(endPointSplit, value);
+                    result = result.replace(endPointSplit, value);
                 }
             }
         }
-        return endPoint.concat(point);
+        return result.concat(point);
     }
 
     private String dayName(String inputDate){
@@ -412,7 +418,7 @@ public class GeneralSettingForm extends BasePage {
         try {
             date = new SimpleDateFormat(format).parse(inputDate);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LOGGER.warn("Convert String format the date", e);
         }
         return new SimpleDateFormat(standard, Locale.ENGLISH).format(date);
     }

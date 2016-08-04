@@ -32,8 +32,6 @@ public class WorkspaceStepDef {
 
     private SettingWorkspace settingWorkspace;
 
-    private DeleteWorkspace deleteWorkspace;
-
     private Map<WorkspaceSteps, Object> valuesMap;
 
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
@@ -85,7 +83,7 @@ public class WorkspaceStepDef {
 
     @And("^I click on Delete link and confirm$")
     public void iClickOnDeleteLink() {
-        deleteWorkspace = settingWorkspace.clickDeleteWorkspaceLink();
+        DeleteWorkspace deleteWorkspace = settingWorkspace.clickDeleteWorkspaceLink();
         dashboard = deleteWorkspace.clickConfirmDeleteLink();
     }
 

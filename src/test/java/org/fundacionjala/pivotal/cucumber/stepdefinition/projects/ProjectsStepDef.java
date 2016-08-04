@@ -3,7 +3,7 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 import java.util.Map;
 
 import cucumber.api.java.en.Given;
-import org.apache.log4j.Logger;
+
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.pages.dashboard.CreateProject;
 import org.fundacionjala.pivotal.pages.project.Project;

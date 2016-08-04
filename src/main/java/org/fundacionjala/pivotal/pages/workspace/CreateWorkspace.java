@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
@@ -66,7 +66,7 @@ public class CreateWorkspace extends BasePage {
      * @return a Map with the values of the workspace created
      */
     public Map<WorkspaceSteps, IAutomationStep> getStrategyStepMap(Map<WorkspaceSteps, Object> values) {
-        final Map<WorkspaceSteps, IAutomationStep> strategyMap = new HashMap<> ();
+        final Map<WorkspaceSteps, IAutomationStep> strategyMap = new EnumMap<>(WorkspaceSteps.class);
         strategyMap.put(WorkspaceSteps.WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WorkspaceSteps.WORKSPACE_NAME))));
         return strategyMap;
     }

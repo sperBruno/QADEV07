@@ -38,6 +38,7 @@ public final class Mapper {
      * @return: the new endpoint with ids
      */
     public static String mapEndpoint(String endPoint) {
+        String result = endPoint;
         if (endPoint.contains(REGEX_HALF_BRACKET)) {
             Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
             Matcher mKey = keyEndpoint.matcher(endPoint);
@@ -47,10 +48,10 @@ public final class Mapper {
                 final int groupRegex = 1;
                 String key = mKey.group(groupRegex);
                 String value = mValue.group(groupRegex);
-                endPoint = endPoint.replaceFirst(REGEX_REPLACE, RESPONSE_VALUES.get(key).jsonPath().get(value).toString());
+                result = result.replaceFirst(REGEX_REPLACE, RESPONSE_VALUES.get(key).jsonPath().get(value).toString());
             }
         }
-        return endPoint;
+        return result;
     }
 
     public static void addResponse(String key, Response response) {
@@ -58,17 +59,18 @@ public final class Mapper {
     }
 
     public static String getPropertiesProject(String endPoint) {
-        if (endPoint.contains(REGEX_HALF_BRACKET)) {
-            for (String endPointSplit : endPoint.split(REGEX_BLACK_SPACE)) {
+        String result = endPoint;
+        if (result.contains(REGEX_HALF_BRACKET)) {
+            for (String endPointSplit : result.split(REGEX_BLACK_SPACE)) {
                 if (endPointSplit.matches(REGEX_INSIDE_BRACKETS)) {
                     String[] mapString = endPointSplit.split(REGEX_BRACKETS);
                     StringBuilder value = new StringBuilder();
                     value.append(RESPONSE_VALUES.get(mapString[INDEX_1]).jsonPath().get(mapString[INDEX_2]).toString());
-                    endPoint = endPoint.replace(endPointSplit, value);
+                    result = result.replace(endPointSplit, value);
                 }
             }
         }
-        return endPoint;
+        return result;
     }
 
     /**
@@ -78,6 +80,7 @@ public final class Mapper {
      * @return property
      */
     public static String mapResponse(String property) {
+        String result = property;
         if (property.contains(REGEX_HALF_BRACKET)) {
             Pattern keyEndpoint = Pattern.compile(REGEX_KEY);
             Matcher mKey = keyEndpoint.matcher(property);
@@ -87,9 +90,9 @@ public final class Mapper {
                 final int groupRegex = 1;
                 String key = mKey.group(groupRegex);
                 String value = mValue.group(groupRegex);
-                property = RESPONSE_VALUES.get(key).jsonPath().get(value).toString();
+                result = RESPONSE_VALUES.get(key).jsonPath().get(value).toString();
             }
         }
-        return property;
+        return result;
     }
 }

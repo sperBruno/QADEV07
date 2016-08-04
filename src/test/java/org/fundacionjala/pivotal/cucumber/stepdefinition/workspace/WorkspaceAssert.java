@@ -26,9 +26,7 @@ public class WorkspaceAssert {
 
     @And("^the display name equals to workspace created$")
     public void theDisplayNameEqualsTo () {
-        workspaceStepDef.getValuesMap ().keySet ().stream ().forEach ((step) -> {
-            assertEquals(String.valueOf(workspaceStepDef.getWorkspace ().getAssertionMap ().get (step)), workspaceStepDef.getValuesMap().get(step));
-        });
+        workspaceStepDef.getValuesMap ().keySet ().stream ().forEach (step -> assertEquals(String.valueOf(workspaceStepDef.getWorkspace ().getAssertionMap ().get (step)), workspaceStepDef.getValuesMap().get(step)));
         workspaceHooks.DeleteWorkspace();
     }
 

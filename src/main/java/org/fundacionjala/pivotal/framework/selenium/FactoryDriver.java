@@ -13,15 +13,15 @@ public final class FactoryDriver {
     }
 
     public static IDriver getDriver(String browser) {
-        Browser currentBrowser = Browser.valueOf(browser.toUpperCase());
-        if (Browser.CHROME.equals(currentBrowser)) {
-            return new Chrome();
-        } else if (Browser.FIREFOX.equals(currentBrowser)) {
-            return new Firefox();
-        } else if (Browser.REMOTE.equals(currentBrowser)) {
-            return new RemoteBrowser();
-        } else {
-            throw new WebDriverException("Browser not found : " + browser);
+        switch (Browser.valueOf(browser.toUpperCase())) {
+            case CHROME:
+                return new Chrome();
+            case FIREFOX:
+                return new Firefox();
+            case REMOTE:
+                return new RemoteBrowser();
+            default:
+                throw new WebDriverException("Browser not found : " + browser);
         }
     }
 }

@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 public class AccountAssert {
 
     private AccountStepDef accountStepDef;
+
     private Accounts account;
+
     private String accountNameToBeDeleted;
-    private static final String SETTINGS = "/settings";
-    private static final String ACCOUNTS = "/accounts";
 
     /**
      * This class receives the AccountStepDef as a parameter.

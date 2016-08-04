@@ -21,9 +21,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class ProjectAssert {
 
-    private static final Logger LOGGER = Logger.getLogger(ProjectAssert.class.getName());
-
-    private ProjectsStepDef projectsStepDef;
+   private ProjectsStepDef projectsStepDef;
 
     private ProjectSettingsStepDef projectSettingsStepDef;
 
@@ -76,7 +74,6 @@ public class ProjectAssert {
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
         setting = projectsStepDef.getProject().clickSettingTab();
         endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
-        LOGGER.info("project id " + endpointProject.toString());
         responseProject = getRequest(endpointProject);
         assertEquals(expectedValue, projectsStepDef.getProject().getTitle().replace("\n", " "));
     }
@@ -97,7 +94,6 @@ public class ProjectAssert {
         Response responseAccount = getRequest(endpointAccount);
         final String nameAccount = "name";
         String actualResult = responseAccount.jsonPath().get(nameAccount);
-        LOGGER.info("Account is :" + actualResult);
         assertEquals(expectedAccount, actualResult);
     }
 
@@ -115,7 +111,6 @@ public class ProjectAssert {
     public void iValidateThatTheCreatedProjectIsPublic(String expectedProjectType) {
         final String project_type = "project_type";
         String actualProjectType = responseProject.jsonPath().get(project_type);
-        LOGGER.info("Project Type: " + actualProjectType);
         assertEquals(expectedProjectType, actualProjectType);
     }
 

@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -77,7 +77,7 @@ public class Workspace extends BasePage {
     }
 
     public Map<WorkspaceSteps, Object> getAssertionMap() {
-        Map<WorkspaceSteps, Object> assertionMap = new HashMap<> ();
+        Map<WorkspaceSteps, Object> assertionMap = new EnumMap<>(WorkspaceSteps.class);
         assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText ());
         return assertionMap;
     }
