@@ -1,4 +1,4 @@
-@CleanEnviroment
+@CleanEnviroment @acceptance
 Feature: Delete and Put a Workspace
 
   Background: I have workspace created

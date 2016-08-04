@@ -1,3 +1,4 @@
+@acceptance
 Feature: Create new story in project from pivotal tracker
 
   Background: create project

@@ -1,3 +1,4 @@
+@acceptance
 Feature: Account
 
   Background: login

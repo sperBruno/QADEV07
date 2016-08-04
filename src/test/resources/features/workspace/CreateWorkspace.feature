@@ -1,4 +1,4 @@
-@CleanEnviroment
+@CleanEnviroment @acceptance
 Feature: Workspace
 
   Background: I login into pivotal

@@ -1,3 +1,4 @@
+@acceptance
 Feature: Testing for setting projects for Pivotal page
 
   Background: create project

@@ -45,8 +45,7 @@ task executeFeatures() {
 
         File file = new File("cucumber-html-report")
         file.delete()
-        //try {
-
+        try {
             //showStandardStreams = true
             javaexec {
                 main = "cucumber.api.cli.Main"
@@ -69,9 +68,9 @@ task executeFeatures() {
                 jvmArgs = ["-DremoteBrowserVersion" + remoteBrowserVersion]
                 jvmArgs = ["-DremotePlatform" + remotePlatform]
             }
-//        } catch (Exception e) {
-//            //In order to avoid FAILURE: Build failed with an exception.
-//        }
+        } catch (Exception e) {
+            println("unable to execute task, see the next detail: "+ e)
+        }
         sleep(5000) // sleep due to cucumber.json is not created too fast
         generateReport("build/cucumber.json", "build/cucumber-html-report")
     }

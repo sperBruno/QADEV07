@@ -1,4 +1,4 @@
-@CleanEnviroment
+@CleanEnviroment @acceptance
 Feature: Workspace with Projects
 
   Background: I have projects created
