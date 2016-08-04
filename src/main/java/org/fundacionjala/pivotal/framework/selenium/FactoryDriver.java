@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriverException;
 
 /**
  * @author Henrry Salinas.
- *
- * This class handle the logic related to what kind of browser will be used in the test
+ *         <p>
+ *         This class handle the logic related to what kind of browser will be used in the test
  */
 public final class FactoryDriver {
 
@@ -22,6 +22,7 @@ public final class FactoryDriver {
                 return new SauceLabs();
             case BROWSERSTACK:
                 return new BrowserStack();
+
             default:
                 throw new WebDriverException("Browser not found : " + browser);
         }

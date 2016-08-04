@@ -31,8 +31,8 @@ Feature: Create Project
   Scenario: Validate the Creation of the Project with Sample Data checkbox enabled.
     Given I create a new project
       | PROJECT_TITLE       | My Sample Project |
-      | PROJECT_ACCOUNT     | Bruno               |
-      | PROJECT_SAMPLE_DATA | true                |
+      | PROJECT_ACCOUNT     | Bruno             |
+      | PROJECT_SAMPLE_DATA | true              |
     Then The project title should be equals My Sample Project
     And I verify that the account of the created project is Bruno
     And I validate that the created Project is private

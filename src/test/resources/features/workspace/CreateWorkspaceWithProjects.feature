@@ -4,7 +4,7 @@ Feature: Workspace with Projects
   Background: I have projects created
     Given I send a POST request to /projects
       | name   | ProjectTest3 |
-      | public | true |
+      | public | true         |
     And stored as ProjectW
     Given I login with valid credentials
 

@@ -28,7 +28,7 @@ public class ToolBarWorkspace extends BasePage {
     @FindBy(className = "page_header_container")
     private WebElement toolBarContainer;
 
-    public SettingWorkspace clickSettingsWorkspaceLink(){
+    public SettingWorkspace clickSettingsWorkspaceLink() {
         settingsWorkspaceLink.click();
         return new SettingWorkspace();
     }

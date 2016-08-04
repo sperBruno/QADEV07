@@ -7,7 +7,7 @@ import cucumber.api.java.en.When;
 import static org.fundacionjala.pivotal.pages.Login.loginAsPrimaryUser;
 
 /**
- * Created by mijhailvillarroel on 7/6/2016.
+ * @author mijhailvillarroel
  */
 public class LoginStepDef {
 
@@ -16,7 +16,7 @@ public class LoginStepDef {
     @When("^I login with valid credentials$")
     public void iLoginWithValidCredentials() {
         dashboard = loginAsPrimaryUser();
-        dashboard.refreshPage ();
+        //dashboard.refreshPage ();
     }
 
     public Dashboard getDashboard() {

@@ -90,8 +90,7 @@ public class CreateProject extends BasePage {
         try {
             answer = driver.findElement(By.xpath("//span[text()='" + accountName + "']")).isDisplayed();
         } catch (NoSuchElementException e) {
-            e=  new NoSuchElementException(accountName+"account was not found");
-            LOGGER.warn("Element could not be found",e);
+            LOGGER.warn("Element could not be found", e);
             answer = false;
         }
         LOGGER.info("AccountName is" + answer);
@@ -108,12 +107,13 @@ public class CreateProject extends BasePage {
             verifyErrorMessagesOfCreateProject();
 
         } catch (NullPointerException e) {
-            LOGGER.info("null pointer");
+            LOGGER.error("null pointer", e);
 
         } catch (InvalidSelectorException e) {
-            LOGGER.info("invalid web element");
+            LOGGER.info("invalid web element", e);
 
         } catch (NoSuchElementException e) {
+            LOGGER.warn("invalid no such element", e);
         }
         return new Project();
 
@@ -143,8 +143,8 @@ public class CreateProject extends BasePage {
         setCheckBox(projectPublicRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
     }
 
-    public Map<ProjectSteps, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
-        final Map<ProjectSteps, IAutomationStep> strategyMap = new HashMap<>();
+    public Map<Enum, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
+        final Map<Enum, IAutomationStep> strategyMap = new HashMap<>();
 
         strategyMap.put(ProjectSteps.PROJECT_TITLE, () -> setProjectName(String.valueOf(values.get(ProjectSteps.PROJECT_TITLE))));
         strategyMap.put(ProjectSteps.PROJECT_ACCOUNT, () -> setAccountDropDown(String.valueOf(values.get(ProjectSteps.PROJECT_ACCOUNT))));

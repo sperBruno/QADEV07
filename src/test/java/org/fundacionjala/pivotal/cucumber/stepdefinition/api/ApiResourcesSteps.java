@@ -17,26 +17,21 @@ import static org.fundacionjala.pivotal.api.RequestManager.putRequest;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author Henrry Salinas.
- *
  * This class provide the basic step definitions to work with api rest requests
+ * <p>
+ *
+ * @author Henrry Salinas.
  */
 public class ApiResourcesSteps {
 
     private Response response;
 
-    private Map<String, Object> parameters;
 
     private String endPoint;
 
     @Given("^I have the (.*) endpoint$")
     public void iHaveTheEndpoint(String endPoint) {
         this.endPoint = mapEndpoint(endPoint);
-    }
-
-    @Given("^I have the next parameters:$")
-    public void iHaveTheNextParameters(Map<String, Object> parameters) {
-        this.parameters = parameters;
     }
 
     @When("^I send a GET request to (.*) endpoint$")
@@ -73,7 +68,4 @@ public class ApiResourcesSteps {
         return response;
     }
 
-    public String getEndPoint() {
-        return endPoint;
-    }
 }

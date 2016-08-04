@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by Daniel Gonzales
- *
+ * <p>
  * CreateWorkspace is the class to create a new Workspace
  */
 public class CreateWorkspace extends BasePage {
@@ -44,7 +44,6 @@ public class CreateWorkspace extends BasePage {
 
     /**
      * Method to do click on the button "Cancel" on the Form
-     *
      */
     public void clickCancelCreateWorkspaceLink() {
         cancelCreateWorkspaceLink.click();
@@ -52,27 +51,30 @@ public class CreateWorkspace extends BasePage {
 
     /**
      * Method that to insert a name into Workspace Name field
+     *
      * @param workspaceName
      * @return CreateWorkspace
      */
     public CreateWorkspace setWorkspaceName(String workspaceName) {
-            workspaceNameTextField.sendKeys(workspaceName);
+        workspaceNameTextField.sendKeys(workspaceName);
         return this;
     }
 
     /**
      * Method that to permit set values necesary to create a new Workspace
+     *
      * @param values
      * @return a Map with the values of the workspace created
      */
     public Map<WorkspaceSteps, IAutomationStep> getStrategyStepMap(Map<WorkspaceSteps, Object> values) {
-        final Map<WorkspaceSteps, IAutomationStep> strategyMap = new HashMap<> ();
+        final Map<WorkspaceSteps, IAutomationStep> strategyMap = new EnumMap<>(WorkspaceSteps.class);
         strategyMap.put(WorkspaceSteps.WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WorkspaceSteps.WORKSPACE_NAME))));
         return strategyMap;
     }
 
     /**
      * Method that get a mesage when a workspace try to be created with empty name
+     *
      * @return
      */
     public String getMessageWorkspaceNameEmpty() {

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 
 /**
- * Created by mijhailvillarroel on 7/11/2016.
+ * @ Mijhail Villarroel.
  */
 public class ToolBar extends BasePage {
 
@@ -16,7 +16,7 @@ public class ToolBar extends BasePage {
     private WebElement returnDashboardLink;
 
     @FindBy(css = "[data-aid='navTab-settings']")
-    private WebElement SettingsTabLink;
+    private WebElement settingsTabLink;
 
     public Dashboard clickReturnDashboardLink() {
         clickWebElement(returnDashboardLink);
@@ -24,7 +24,7 @@ public class ToolBar extends BasePage {
     }
 
     public Setting clickSettingTabLink() {
-        clickWebElement(SettingsTabLink);
+        clickWebElement(settingsTabLink);
         return new Setting();
     }
 }

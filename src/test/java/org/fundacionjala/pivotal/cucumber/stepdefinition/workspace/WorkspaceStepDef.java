@@ -32,8 +32,6 @@ public class WorkspaceStepDef {
 
     private SettingWorkspace settingWorkspace;
 
-    private DeleteWorkspace deleteWorkspace;
-
     private Map<WorkspaceSteps, Object> valuesMap;
 
     public WorkspaceStepDef(LoginStepDef loginStepDef) {
@@ -42,16 +40,16 @@ public class WorkspaceStepDef {
 
     @When("^click on the Create Workspace button$")
     public void iClickOnTheCreateWorkspaceButton() {
-            workspace = createWorkspace.clickCreateWorkspaceLink();
-            sideBarWorkspace = workspace.getSideWorkspace();
-        }
+        workspace = createWorkspace.clickCreateWorkspaceLink();
+        sideBarWorkspace = workspace.getSideWorkspace();
+    }
 
     @Given("^I create a new Workspace$")
     public void iAmOnPivotalCreateWorkspaceForm(Map<WorkspaceSteps, Object> values) {
         dashboard = loginStepDef.getDashboard();
         this.valuesMap = values;
         createWorkspace = dashboard.clickCreateWorkspaceLink();
-        valuesMap.keySet().stream().forEach((step) -> createWorkspace.getStrategyStepMap (valuesMap).get(step).executeStep());
+        valuesMap.keySet().stream().forEach((step) -> createWorkspace.getStrategyStepMap(valuesMap).get(step).executeStep());
     }
 
     @When("^I click on Add Projects button$")
@@ -62,7 +60,7 @@ public class WorkspaceStepDef {
     @And("^I select the (.*) project created previously$")
     public void iSelectTheProjectCreatedPreviously(String nameProject) {
         String finalNameProject = Mapper.getPropertiesProject(nameProject);
-        sideBarWorkspace.clickListProjectLink ();
+        sideBarWorkspace.clickListProjectLink();
         sideBarWorkspace.clickProjectNameLink(finalNameProject);
     }
 
@@ -75,7 +73,7 @@ public class WorkspaceStepDef {
     public void iClickOnWorkspace(String nameWorkspace) {
         dashboard = loginStepDef.getDashboard();
         String finalNameWorkspace = Mapper.getPropertiesProject(nameWorkspace);
-        workspace = loginStepDef.getDashboard().clickNameWorkspaceLink (finalNameWorkspace);
+        workspace = loginStepDef.getDashboard().clickNameWorkspaceLink(finalNameWorkspace);
     }
 
     @When("^I click on Settings of SideBar$")
@@ -85,7 +83,7 @@ public class WorkspaceStepDef {
 
     @And("^I click on Delete link and confirm$")
     public void iClickOnDeleteLink() {
-        deleteWorkspace = settingWorkspace.clickDeleteWorkspaceLink();
+        DeleteWorkspace deleteWorkspace = settingWorkspace.clickDeleteWorkspaceLink();
         dashboard = deleteWorkspace.clickConfirmDeleteLink();
     }
 
@@ -115,5 +113,7 @@ public class WorkspaceStepDef {
         return settingWorkspace;
     }
 
-    public Map<WorkspaceSteps, Object> getValuesMap(){return valuesMap;}
+    public Map<WorkspaceSteps, Object> getValuesMap() {
+        return valuesMap;
     }
+}

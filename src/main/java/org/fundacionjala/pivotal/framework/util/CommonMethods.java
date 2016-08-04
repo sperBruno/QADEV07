@@ -3,6 +3,7 @@ package org.fundacionjala.pivotal.framework.util;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
@@ -24,35 +25,64 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDP
 
 
 /**
- * Created by mijhailvillarroel on 7/14/2016.
+ * This class groups the generic methods
+ *
+ * @ Mijhail Villarroel
  */
 public final class CommonMethods {
 
-private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
+    private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
+
+    private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
     private CommonMethods() {
     }
 
+    /**
+     * This Method return false o true if the element be present.
+     *
+     * @param webElement element
+     * @return True or false
+     */
     public static boolean isElementPresent(WebElement webElement) {
         try {
             webElement.getTagName();
             return true;
         } catch (WebDriverException e) {
+            LOGGER.error("Web element not found", e);
             return false;
+
         }
     }
 
+    /**
+     * This method set a Web Element
+     *
+     * @param webElement
+     * @param text
+     */
     public static void setWebElement(WebElement webElement, String text) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
 
+    /**
+     * This Method do click in element
+     *
+     * @param webElement
+     */
     public static void clickWebElement(WebElement webElement) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
+    /**
+     * This Method set a check box element
+     *
+     * @param webElement
+     * @param enable
+     */
     public static void setCheckBox(WebElement webElement, boolean enable) {
         if (enable) {
             unCheckBox(webElement);
@@ -61,65 +91,97 @@ private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
         }
     }
 
+    /**
+     * This Method set a unchecked box element
+     *
+     * @param webElement
+     */
     private static void unCheckBox(WebElement webElement) {
         if (!webElement.isSelected()) {
             webElement.click();
         }
     }
 
+    /**
+     * This Method set a check box element
+     *
+     * @param webElement
+     */
     private static void checkBox(WebElement webElement) {
         if (webElement.isSelected()) {
             webElement.click();
         }
     }
 
+    /**
+     * Select 1 element the list
+     *
+     * @param webElementSelect
+     * @param element
+     */
     public static void selectAElementComboBox(WebElement webElementSelect, String element) {
         Select oSelect = new Select(webElementSelect);
         oSelect.selectByValue(element);
     }
 
+    /**
+     * Convert a Select element
+     *
+     * @param webElement
+     * @return
+     */
     public static Select convertASelect(WebElement webElement) {
         return new Select(webElement);
     }
 
+    /**
+     * Delete all Project create by API
+     */
     public static void deleteAllProjects() {
         ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(PROJECTS_ENDPOINT).asString()).get("");
-        if (jsonAsArrayList.size() > 0) {
+        if (jsonAsArrayList.isEmpty()) {
             for (Map<String, ?> object : jsonAsArrayList) {
                 deleteRequest(PROJECTS_ENDPOINT + object.get(ATTRIBUTE_ID).toString());
             }
         }
     }
 
+    /**
+     * Delete all Project workspace by API
+     */
     public static void deleteAllWorkspaces() {
         ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
-        if (jsonAsArrayList.size() > 0) {
+        if (jsonAsArrayList.isEmpty()) {
             for (Map<String, ?> object : jsonAsArrayList) {
                 deleteRequest(WORKSPACES_ENDPOINT + object.get(ATTRIBUTE_ID).toString());
             }
         }
     }
 
-    public static void deleteAccounts(){
+    /**
+     * Delete all account
+     */
+    public static void deleteAccounts() {
         DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/accounts");
-        Accounts accounts=new Accounts();
+        Accounts accounts = new Accounts();
         try {
-            while(isElementPresent(accounts.getManageAccountBtn())){
+            while (isElementPresent(accounts.getManageAccountBtn())) {
                 AccountSetting accountSetting = accounts.manageAccount().clickSettingTab();
-                accounts= accountSetting.deleteAccount();
+                accounts = accountSetting.deleteAccount();
             }
-            CreateAccountForm createAccountForm=accounts.clickNewAccountBtn();
+            CreateAccountForm createAccountForm = accounts.clickNewAccountBtn();
             createAccountForm.setAccountNameTextField("SYSTEM");
             createAccountForm.clickCreateAccountBtn();
             DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
+            LOGGER.error("Element null", e);
             throw new NoSuchElementException("Element not found");
         }
         DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
     }
 
-    public static void quitProgram(String message){
-        System.err.println(message);
-        Runtime.getRuntime().exit(1);
+    public static void quitProgram(String message) {
+        LOGGER.info("Element null " + message);
+        Runtime.getRuntime().runFinalization();
     }
 }

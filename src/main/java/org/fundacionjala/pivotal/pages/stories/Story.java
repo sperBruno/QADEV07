@@ -1,6 +1,6 @@
 package org.fundacionjala.pivotal.pages.stories;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -117,8 +117,8 @@ public class Story extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             storyExpander.click();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("The Web element not was find ", e.getCause());
-            throw new NoSuchElementException("The Web element not was find ", e.getCause());
+            LOGGER.warn("The Web element click expander Story not was find ", e);
+            throw new NoSuchElementException("The Web element not was find ", e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
@@ -141,7 +141,7 @@ public class Story extends BasePage {
     public String getAddStoryTitleAlert() {
         String alert = addStoryTitleAlert.getText();
         okAlertButton.click();
-        System.out.println(alert);
+        LOGGER.info("Name the alert " + alert);
         return alert;
     }
 
@@ -188,7 +188,7 @@ public class Story extends BasePage {
             storyTypeArrow.click();
             driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).click();
         } catch (NoSuchElementException e) {
-            throw new NoSuchElementException("Story tipe nnot found");
+            throw new NoSuchElementException("Story type not found", e);
         } finally {
             wait.withTimeout(WAIT_TIME, SECONDS);
         }
@@ -201,7 +201,7 @@ public class Story extends BasePage {
      * @param storyTitle it is the name for a story
      */
     public void setStoryTitleTextArea(String storyTitle) {
-        CommonMethods.setWebElement(storyTitleTextArea,storyTitle);
+        CommonMethods.setWebElement(storyTitleTextArea, storyTitle);
     }
 
     /**
@@ -223,7 +223,7 @@ public class Story extends BasePage {
      * @param values Map of properties to set of a story
      */
     public void strategyStepMap(final Map<StoriesSteps, Object> values) {
-        Map<StoriesSteps, IAutomationStep> strategyMap = new HashMap<>();
+        EnumMap<StoriesSteps, IAutomationStep> strategyMap = new EnumMap<>(StoriesSteps.class);
         strategyMap.put(STORY_TITLE, () -> setStoryTitleTextArea(String.valueOf(values.get(STORY_TITLE))));
         strategyMap.put(STORY_TYPE, () -> setStoryType(String.valueOf(values.get(STORY_TYPE))));
         strategyMap.put(DESCRIPTION, () -> setDescriptionTextarea(String.valueOf(values.get(DESCRIPTION))));
@@ -240,7 +240,7 @@ public class Story extends BasePage {
      * @return map with the current values
      */
     public Map<StoriesSteps, Object> getAssertionMap() {
-        Map<StoriesSteps, Object> assertionMap = new HashMap<>();
+        EnumMap<StoriesSteps, Object> assertionMap = new EnumMap<>(StoriesSteps.class);
         assertionMap.put(STORY_TITLE, getStoryTitle());
         assertionMap.put(STORY_TYPE, getStoryType());
         assertionMap.put(DESCRIPTION, getDescriptionText());

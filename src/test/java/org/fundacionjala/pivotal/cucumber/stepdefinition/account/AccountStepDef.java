@@ -31,8 +31,6 @@ public class AccountStepDef {
 
     private AccountSetting accountSetting;
 
-    private Setting setting;
-
     private Map<String, String> accountData = new HashMap<String, String>();
 
     /**
@@ -59,7 +57,7 @@ public class AccountStepDef {
      */
     @And("^I delete the account of the project$")
     public void iDeleteTheAccountOfTheProject() {
-        setting = projectsStepDef.getProject().clickSettingTab();
+        Setting setting = projectsStepDef.getProject().clickSettingTab();
         account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
         AccountSetting accountSetting = account.getToolBarAccount().clickSettingTab();
         accountName = accountSetting.getAccountName();

@@ -3,7 +3,7 @@ Feature: Delete and Put a Workspace
 
   Background: I have workspace created
     Given I send a POST request to /my/workspaces
-      | name   | WorkspaceTest4 |
+      | name | WorkspaceTest4 |
     And stored as Workspace11
     Given I login with valid credentials
 
