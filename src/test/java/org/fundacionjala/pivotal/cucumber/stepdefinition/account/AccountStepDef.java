@@ -4,14 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDef;
 import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 
 /**
  * This class is used to execute the steps of Account scenarios.
@@ -31,7 +32,7 @@ public class AccountStepDef {
 
     private AccountSetting accountSetting;
 
-    private Map<String, String> accountData = new HashMap<String, String>();
+    private Map<String, String> accountData = new HashMap<>();
 
     /**
      * This class receives LoginStepDef and ProjectStepDef as a parameters.
@@ -59,9 +60,9 @@ public class AccountStepDef {
     public void iDeleteTheAccountOfTheProject() {
         Setting setting = projectsStepDef.getProject().clickSettingTab();
         account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
-        AccountSetting accountSetting = account.getToolBarAccount().clickSettingTab();
-        accountName = accountSetting.getAccountName();
-        accountSetting.deleteAccount();
+        AccountSetting accountSettingPage = account.getToolBarAccount().clickSettingTab();
+        accountName = accountSettingPage.getAccountName();
+        accountSettingPage.deleteAccount();
     }
 
     @And("^I create a new account with name (.*)$")

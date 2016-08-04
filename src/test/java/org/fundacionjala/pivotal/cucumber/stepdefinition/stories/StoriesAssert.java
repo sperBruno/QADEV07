@@ -17,8 +17,6 @@ public class StoriesAssert {
 
     private StoriesStepsDef storiesStepsDef;
 
-    private ApiResourcesSteps api;
-
     /**
      * Constructor class
      *
@@ -27,7 +25,6 @@ public class StoriesAssert {
      */
     public StoriesAssert(StoriesStepsDef storiesStepsDef, ApiResourcesSteps api) {
         this.storiesStepsDef = storiesStepsDef;
-        this.api = api;
     }
 
     /**

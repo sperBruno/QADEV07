@@ -2,9 +2,6 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.workspace;
 
 import java.util.Map;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
@@ -14,6 +11,10 @@ import org.fundacionjala.pivotal.pages.workspace.SettingWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.SideBarWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.Workspace;
 import org.fundacionjala.pivotal.pages.workspace.WorkspaceSteps;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.When;
 
 /**
  * Created by Daniel Gonzales
@@ -49,7 +50,7 @@ public class WorkspaceStepDef {
         dashboard = loginStepDef.getDashboard();
         this.valuesMap = values;
         createWorkspace = dashboard.clickCreateWorkspaceLink();
-        valuesMap.keySet().stream().forEach((step) -> createWorkspace.getStrategyStepMap(valuesMap).get(step).executeStep());
+        valuesMap.keySet().stream().forEach(step -> createWorkspace.getStrategyStepMap(valuesMap).get(step).executeStep());
     }
 
     @When("^I click on Add Projects button$")
