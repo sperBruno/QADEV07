@@ -34,6 +34,7 @@ public class GlobalHooks {
 
         if (!beforeAllFlag) {
             Runtime.getRuntime().addShutdownHook(new Thread() {
+                @Override
                 public void run() {
                     getInstance().quitDriver();
                     deleteAllProjects();
