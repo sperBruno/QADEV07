@@ -2,7 +2,6 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
 import java.util.Map;
 
-import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.fundacionjala.pivotal.pages.project.Project;
@@ -21,9 +20,7 @@ import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
  */
 public class StoriesStepsDef {
 
-    private static Project project;
-
-    private LoginStepDef loginStepDef;
+    private Project project;
 
     private Story story;
 
@@ -31,13 +28,12 @@ public class StoriesStepsDef {
 
     private SideBarStories sideBarStories;
 
-    public StoriesStepsDef(LoginStepDef loginStepDef) {
-        this.loginStepDef = loginStepDef;
+    public StoriesStepsDef() {
         story = new Story();
         sideBarStories = new SideBarStories();
     }
 
-    public static Project getProject() {
+    public Project getProject() {
         return project;
     }
 

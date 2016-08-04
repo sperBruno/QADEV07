@@ -1,8 +1,9 @@
 package org.fundacionjala.pivotal.cucumber.hooks;
 
-import cucumber.api.java.Before;
 import org.apache.commons.lang3.StringUtils;
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
+
+import cucumber.api.java.Before;
 
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
@@ -23,14 +24,15 @@ public class GlobalHooks {
     private static final String PROPERTIES_FILE_UNFILLED = "Error reading the properties file, one of the next properties is missing: email, api token or password";
 
     private static final String API_CREDENTIALS_INCORRECT = "The api rest credentials is not correct";
-    private static boolean BEFORE_ALL_FLAG = false;
+
+    private boolean beforeAllFlag = false;
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
     @Before
     public void beforeAll() {
 
-        if (!BEFORE_ALL_FLAG) {
+        if (!beforeAllFlag) {
             Runtime.getRuntime().addShutdownHook(new Thread() {
                 public void run() {
                     getInstance().quitDriver();
@@ -44,7 +46,7 @@ public class GlobalHooks {
             } else if (getRequest(PROJECTS_ENDPOINT).statusCode() != SUCCESS_STATUS_CODE) {
                 quitProgram(API_CREDENTIALS_INCORRECT);
             }
-            BEFORE_ALL_FLAG = true;
+            beforeAllFlag = true;
         }
     }
 
