@@ -154,7 +154,6 @@ public class GeneralSettingForm extends BasePage {
         strategyMap.put(BUGS_GIVEN_POINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString())));
         strategyMap.put(PROJECT_START_DATE, () -> setDateProjectStartTestField(String.valueOf(values.get(PROJECT_START_DATE).toString())));
         return strategyMap;
-
     }
 
     public GeneralSettingForm setProjectTitleTestField(String projectTitle) {
