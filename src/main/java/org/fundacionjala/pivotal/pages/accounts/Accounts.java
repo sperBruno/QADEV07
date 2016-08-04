@@ -63,16 +63,17 @@ public class Accounts extends BasePage {
     }
 
     /**
-     *
      * @return {@link CreateAccountForm}
      */
     public CreateAccountForm clickNewAccountBtn() {
         clickWebElement(createNewAccountLink);
         return new CreateAccountForm();
     }
-    public WebElement getManageAccountBtn(){
+
+    public WebElement getManageAccountBtn() {
         return manageAccountBtn;
     }
+
     public ToolBarAccount getToolBarAccount() {
         return toolBarAccount;
     }

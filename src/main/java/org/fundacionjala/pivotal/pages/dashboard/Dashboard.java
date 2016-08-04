@@ -62,7 +62,8 @@ public class Dashboard extends BasePage {
             wait.withTimeout(45, SECONDS);
             clickWebElement(createProjectLink);
         } catch (NoSuchElementException e) {
-            throw new NoSuchElementException("Create Project link was not found");
+            LOGGER.warn("Create Project link was not found", e);
+            throw new NoSuchElementException("Create Project link was not found", e);
         } finally {
             wait.withTimeout(WAIT_TIME, SECONDS);
         }
@@ -78,6 +79,7 @@ public class Dashboard extends BasePage {
             wait.withTimeout(45, SECONDS);
             clickWebElement(createWorkspaceLink);
         } catch (NoSuchElementException e) {
+            LOGGER.warn(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG, e);
             throw new NoSuchElementException(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG);
         } finally {
             wait.withTimeout(WAIT_TIME, SECONDS);
@@ -94,6 +96,7 @@ public class Dashboard extends BasePage {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             userName = userNameText.getText();
         } catch (NoSuchElementException e) {
+            LOGGER.warn("User name element not found", e);
 
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
@@ -121,25 +124,24 @@ public class Dashboard extends BasePage {
             WebElement projectNameLink = fluentWait(By.xpath("//a[contains(.,'" + projectName + "')]"));
             projectNameLink.click();
         } catch (NoSuchElementException e) {
-            LOGGER.warn("The Web element not was find ", e.getCause());
-            throw new NoSuchElementException("The Web element not was find ", e.getCause());
+            LOGGER.warn("The Project button web element not was find ", e);
+            throw new NoSuchElementException("The Web element not was find ", e);
         } finally {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
         return new Project();
     }
 
-    public WebElement fluentWait(final By locator){
+    public WebElement fluentWait(final By locator) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(30, TimeUnit.SECONDS)
                 .pollingEvery(5, TimeUnit.SECONDS)
                 .ignoring(org.openqa.selenium.NoSuchElementException.class);
-        WebElement projectLink = wait.until(
-                driver1 -> driver1.findElement(locator)
-        );
-        return  projectLink;
-    };
-    
+        return wait.until(driver1 -> driver1.findElement(locator));
+    }
+
+    ;
+
     public Setting clickSettingsLink(String nameProjects) {
         refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
@@ -161,10 +163,6 @@ public class Dashboard extends BasePage {
 
     public String getMessageDeleteWorkspace() {
         return messageDeleteWorkspace.getText();
-    }
-
-    public void refreshPage() {
-        driver.navigate().refresh();
     }
 
     public String getUserName(String value) {

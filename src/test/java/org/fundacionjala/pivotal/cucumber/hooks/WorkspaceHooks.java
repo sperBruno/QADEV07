@@ -29,9 +29,9 @@ public class WorkspaceHooks {
     @After("@DeleteWorkspace")
     public void DeleteWorkspace() {
         Workspace workspace = workspaceStepDef.getWorkspace();
-        String endPointDeleteWorkspace = WORKSPACES_ENDPOINT.concat (workspace.getIdWorkspace());
+        String endPointDeleteWorkspace = WORKSPACES_ENDPOINT.concat(workspace.getIdWorkspace());
         Response response = RequestManager.deleteRequest(endPointDeleteWorkspace);
-        workspaceStepDef.getWorkspace ().clickReturnDashboardLink ();
+        workspaceStepDef.getWorkspace().clickReturnDashboardLink();
     }
 
     /**
@@ -39,7 +39,7 @@ public class WorkspaceHooks {
      */
     @Before("@CleanEnviroment")
     public void DeleteAllWorkspaces() {
-        deleteAllProjects ();
+        deleteAllProjects();
         deleteAllWorkspaces();
     }
 
@@ -48,6 +48,6 @@ public class WorkspaceHooks {
      */
     @After("@ReturnDashboard")
     public void ReturnDashboard() {
-        workspaceStepDef.getWorkspace ().clickReturnDashboardLink ();
+        workspaceStepDef.getWorkspace().clickReturnDashboardLink();
     }
 }

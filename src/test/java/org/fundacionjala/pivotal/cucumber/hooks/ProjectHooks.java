@@ -39,8 +39,6 @@ public class ProjectHooks {
         this.projectsStepDef = projectsStepDef;
     }
 
-
-    
     /**
      * This method hook is used after a project is created using api.
      */

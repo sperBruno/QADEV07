@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 
 /**
- * Created by mijhailvillarroel on 7/15/2016.
+ * @ Mijhail Villarroel.
  */
 public class DeleteProjectAlert extends BasePage {
 

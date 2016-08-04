@@ -3,7 +3,7 @@ package org.fundacionjala.pivotal.pages.setting;
 import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
 
 /**
- * Created by mijhailvillarroel on 7/12/2016.
+ * @author Mijhail Villarroel.
  */
 public class Setting {
     SideBarSetting sideBar;

@@ -26,7 +26,7 @@ public class PropertiesInfo {
 
     private static final String EMAIL = "email";
 
-    private static final String PASSWORD = "password";
+    private static final String ACCESS_SECURITY = "password";
 
     private static final String URL = "url";
 
@@ -72,9 +72,9 @@ public class PropertiesInfo {
             properties.load(fileInputStream);
             fileInputStream.close();
         } catch (FileNotFoundException e) {
-            LOGGER.warn("The properties file couldn't be found", e.getCause());
+            LOGGER.warn("The properties file couldn't be found", e);
         } catch (IOException e) {
-            LOGGER.warn("A problem of type", e.getCause());
+            LOGGER.warn("A problem of type", e);
         }
     }
 
@@ -91,7 +91,7 @@ public class PropertiesInfo {
     }
 
     public String getPassword() {
-        return getProperty(PASSWORD);
+        return getProperty(ACCESS_SECURITY);
     }
 
     public String getUrl() {

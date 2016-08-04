@@ -24,26 +24,26 @@ public class SettingWorkspace extends BasePage {
     @FindBy(className = "message")
     private WebElement messageChangesWorkspace;
 
-    public void setNameWorkspaceTestField (String workspaceName) {
-        workspaceNameText.clear ();
-        workspaceNameText.sendKeys (workspaceName);
+    public void setNameWorkspaceTestField(String workspaceName) {
+        workspaceNameText.clear();
+        workspaceNameText.sendKeys(workspaceName);
     }
 
-    public DeleteWorkspace clickDeleteWorkspaceLink () {
-        deleteWorkspaceLink.click ();
-        return new DeleteWorkspace ();
+    public DeleteWorkspace clickDeleteWorkspaceLink() {
+        deleteWorkspaceLink.click();
+        return new DeleteWorkspace();
     }
 
-    public void clickSaveChangesWorkspaceLink () {
-        saveChangesWorkspaceLink.click ();
+    public void clickSaveChangesWorkspaceLink() {
+        saveChangesWorkspaceLink.click();
     }
 
-    public void cancelChangesWorkspaceLink () {
-        cancelChangesWorkspaceLink.click ();
+    public void cancelChangesWorkspaceLink() {
+        cancelChangesWorkspaceLink.click();
     }
 
-    public String getMessageChangesWorkspace () {
-        return messageChangesWorkspace.getText ();
+    public String getMessageChangesWorkspace() {
+        return messageChangesWorkspace.getText();
     }
 
 }

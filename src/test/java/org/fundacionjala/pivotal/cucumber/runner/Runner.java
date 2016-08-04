@@ -7,9 +7,10 @@ import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 
 /**
- * @author Henrry Salinas.
- *
  * This class store settings for the test execution
+ *
+ * @author Henrry Salinas.
+ *         <p>
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
