@@ -2,12 +2,11 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import com.jayway.restassured.response.Response;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-
-import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.pages.setting.Setting;
+
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
 
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.util.Constants.ERROR_ACCOUNT_MESSAGE_TEXT;
@@ -73,23 +72,21 @@ public class ProjectAssert {
     @Then("^The project title should be equals (.*)$")
     public void theProjectTitleShouldBeEqualsProjectSeleniumTest(String expectedValue) {
         setting = projectsStepDef.getProject().clickSettingTab();
-        endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId().toString();
+        endpointProject = PROJECTS_ENDPOINT + setting.getSideBar().clickGeneralSetting().getProjectId();
         responseProject = getRequest(endpointProject);
         assertEquals(expectedValue, projectsStepDef.getProject().getTitle().replace("\n", " "));
     }
 
     @And("^Validate all setting projects$")
     public void validateAllSettingProjects() {
-        projectSettingsStepDef.getValuesMap().keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)), projectSettingsStepDef.getValuesMap().get(step));
-        });
+        projectSettingsStepDef.getValuesMap().keySet().stream().forEach(step -> assertEquals(String.valueOf(projectSettingsStepDef.getGeneralSettingForm().getAssertionMap().get(step)), projectSettingsStepDef.getValuesMap().get(step)));
         projectSettingsStepDef.getSetting().getToolBar().clickReturnDashboardLink();
     }
 
     @And("^I verify that the account of the created project is (.*)$")
     public void iVerifyThatTheAccountOfTheCreatedProjectIsLuis(String expectedAccount) {
-        final String account_id = "account_id";
-        String accountId = responseProject.jsonPath().get(account_id).toString();
+        final String accountIdFieldName = "account_id";
+        String accountId = responseProject.jsonPath().get(accountIdFieldName).toString();
         String endpointAccount = "/accounts/" + accountId;
         Response responseAccount = getRequest(endpointAccount);
         final String nameAccount = "name";
@@ -109,8 +106,8 @@ public class ProjectAssert {
 
     @And("^I validate that the created Project is (.*)$")
     public void iValidateThatTheCreatedProjectIsPublic(String expectedProjectType) {
-        final String project_type = "project_type";
-        String actualProjectType = responseProject.jsonPath().get(project_type);
+        final String projectType = "project_type";
+        String actualProjectType = responseProject.jsonPath().get(projectType);
         assertEquals(expectedProjectType, actualProjectType);
     }
 

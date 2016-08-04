@@ -2,12 +2,12 @@ package org.fundacionjala.pivotal.cucumber.stepdefinition.projects;
 
 import java.util.Map;
 
-import cucumber.api.java.en.Given;
-
 import org.fundacionjala.pivotal.cucumber.stepdefinition.login.LoginStepDef;
 import org.fundacionjala.pivotal.pages.dashboard.CreateProject;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.project.ProjectSteps;
+
+import cucumber.api.java.en.Given;
 
 /**
  * This class is used to execute the step of project scenarios.
@@ -42,7 +42,7 @@ public class ProjectsStepDef {
     public void iCreateANewProject(Map<ProjectSteps, Object> values) {
         this.valuesMap = values;
         createProject = loginStepDef.getDashboard().clickCreateProjectLink();
-        valuesMap.keySet().stream().forEach((step) -> createProject.getStrategyStepMap(valuesMap).get(step).executeStep());
+        valuesMap.keySet().stream().forEach(step -> createProject.getStrategyStepMap(valuesMap).get(step).executeStep());
         project = createProject.clickCreateProject();
     }
 
