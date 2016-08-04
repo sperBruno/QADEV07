@@ -1,4 +1,4 @@
-@smoke
+@smoke @acceptance
 Feature: Create Project
 
   Background: I login into pivotal
