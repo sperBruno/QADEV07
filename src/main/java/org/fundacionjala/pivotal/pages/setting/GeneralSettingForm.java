@@ -7,10 +7,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.fundacionjala.pivotal.api.Mapper;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.project.DeleteProjectAlert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -23,7 +22,7 @@ import static org.fundacionjala.pivotal.framework.util.CommonMethods.convertASel
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.selectAElementComboBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
-import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_WEB_ELEMENT;
+import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_VALUE;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_HALF_BRACKET;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
@@ -299,15 +298,15 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectWeekStartDaySelect() {
-        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getTextDateProjectStart() {
-        return dateProjectStartTestField.getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return dateProjectStartTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getTextProjectTimeZone() {
-        return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
     public Accounts clickAccountLink() {
@@ -316,15 +315,15 @@ public class GeneralSettingForm extends BasePage {
     }
 
     public String getTextProjectIterationLength() {
-        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getTextProjectSettingPointScale() {
-        return convertASelect(projectSettingsPointScaleComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectSettingsPointScaleComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
     public String getTextProjectVelocity() {
-        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_WEB_ELEMENT);
+        return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
     public boolean getTextProjectAutomaticPlanning() {

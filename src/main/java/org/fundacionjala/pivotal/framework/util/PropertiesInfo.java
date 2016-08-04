@@ -16,6 +16,36 @@ public class PropertiesInfo {
 
     private static final Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
 
+    private static final String CONFIG_PROPERTIES = "gradle.properties";
+
+    private static final String PROXY_PORT = "proxyPort";
+
+    private static final String PROXY_HOST = "proxyHost";
+
+    private static final String REMOTE_TEST_NAME = "remoteTestName";
+
+    private static final String EMAIL = "email";
+
+    private static final String PASSWORD = "password";
+
+    private static final String URL = "url";
+
+    private static final String URL_API = "urlApi";
+
+    private static final String API_TOKEN = "apiToken";
+
+    private static final String REMOTE_ACCESS_KEY = "remoteAccessKey";
+
+    private static final String REMOTE_USER = "remoteUser";
+
+    private static final String LOCAL_BROWSER = "localBrowser";
+
+    private static final String REMOTE_BROWSER = "remoteBrowser";
+
+    private static final String REMOTE_BROWSER_VERSION = "remoteBrowserVersion";
+
+    private static final String REMOTE_PLATFORM = "remotePlatform";
+
     private static PropertiesInfo instance;
 
     private Properties properties;
@@ -37,7 +67,7 @@ public class PropertiesInfo {
      */
     private void loadProperties() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(Constants.CONFIG_PROPERTIES);
+            FileInputStream fileInputStream = new FileInputStream(CONFIG_PROPERTIES);
             properties = new Properties();
             properties.load(fileInputStream);
             fileInputStream.close();
@@ -49,66 +79,70 @@ public class PropertiesInfo {
     }
 
     public String getProperty(String propertyKey) {
-        return properties.getProperty(propertyKey);
+        String propertyValue = System.getProperty(propertyKey);
+        if (propertyValue == null) {
+            propertyValue = properties.getProperty(propertyKey);
+        }
+        return propertyValue;
     }
 
     public String getEmail() {
-        return getProperty(Constants.EMAIL);
+        return getProperty(EMAIL);
     }
 
     public String getPassword() {
-        return getProperty(Constants.PASSWORD);
+        return getProperty(PASSWORD);
     }
 
     public String getUrl() {
-        return getProperty(Constants.URL);
+        return getProperty(URL);
     }
 
     public String getUrlApi() {
-        return getProperty(Constants.URL_API);
+        return getProperty(URL_API);
     }
 
     public String getApiToken() {
-        return getProperty(Constants.API_TOKEN);
+        return getProperty(API_TOKEN);
     }
 
     public String getSauceUser() {
-        return getProperty(Constants.REMOTE_USER);
+        return getProperty(REMOTE_USER);
     }
 
     public String getSauceAccessKey() {
-        return getProperty(Constants.REMOTE_ACCESS_KEY);
+        return getProperty(REMOTE_ACCESS_KEY);
     }
 
     public String getBrowser() {
-        return getProperty(Constants.LOCAL_BROWSER);
+        return getProperty(LOCAL_BROWSER);
     }
 
     public String getRemoteBrowser() {
-        return getProperty(Constants.REMOTE_BROWSER);
+        return getProperty(REMOTE_BROWSER);
     }
 
     public String getBrowserVersion() {
-        return getProperty(Constants.REMOTE_BROWSER_VERSION);
+        return getProperty(REMOTE_BROWSER_VERSION);
     }
 
     public String getPlatform() {
-        return getProperty(Constants.REMOTE_PLATFORM);
+        return getProperty(REMOTE_PLATFORM);
     }
 
     public String getProxy() {
         return !getProxyHost().isEmpty() ? String.format("http://%s:%s", getProxyHost(), getProxyPort()) : null;
     }
 
-   public String getProxyHost() {
-        return getProperty(Constants.PROXY_HOST);
+    public String getProxyHost() {
+        return getProperty(PROXY_HOST);
     }
 
     public String getProxyPort() {
-        return getProperty(Constants.PROXY_PORT);
+        return getProperty(PROXY_PORT);
     }
 
     public String getRemoteTestName() {
-        return getProperty(Constants.REMOTE_TEST_NAME);
+        return getProperty(REMOTE_TEST_NAME);
     }
 }

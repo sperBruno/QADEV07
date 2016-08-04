@@ -2,7 +2,7 @@ package org.fundacionjala.pivotal.cucumber.hooks;
 
 
 import com.jayway.restassured.response.Response;
-import cucumber.api.java.After;
+
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.api.RequestManager;
 import org.fundacionjala.pivotal.cucumber.stepdefinition.api.ApiResourcesSteps;
@@ -10,11 +10,14 @@ import org.fundacionjala.pivotal.cucumber.stepdefinition.projects.ProjectsStepDe
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 
+import cucumber.api.java.After;
+
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.deleteAccounts;
+import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.DELETE_STATUS_CODE;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.SUCCESS_STATUS_CODE;
 import static org.junit.Assert.assertEquals;
 
@@ -36,6 +39,8 @@ public class ProjectHooks {
         this.projectsStepDef = projectsStepDef;
     }
 
+
+    
     /**
      * This method hook is used after a project is created using api.
      */
@@ -43,7 +48,7 @@ public class ProjectHooks {
     public void afterProjectScenario() {
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
             LOGGER.info("response project hook:" + api.getResponse().prettyPrint());
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
+            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(ATTRIBUTE_ID).toString());
         }
     }
 
@@ -60,6 +65,7 @@ public class ProjectHooks {
         setting.getToolBar().clickReturnDashboardLink();
         LOGGER.info("Into toolbar");
         assertEquals(DELETE_STATUS_CODE, response.getStatusCode());
+        deleteAccounts();
     }
 
     /**
@@ -71,4 +77,6 @@ public class ProjectHooks {
         Accounts account = setting.getSideBar().clickGeneralSetting().clickAccountLink();
         account.getToolBarAccount().clickSettingTab().deleteAccount();
     }
+
+
 }

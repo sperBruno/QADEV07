@@ -3,21 +3,17 @@ package org.fundacionjala.pivotal.framework.selenium;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import static org.fundacionjala.pivotal.framework.util.Constants.CAPABILITY_NAME;
-import static org.fundacionjala.pivotal.framework.util.Constants.HTTP_PROXY_HOST;
-import static org.fundacionjala.pivotal.framework.util.Constants.HTTP_PROXY_PORT;
+import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 /**
  * @author Henrry Salinas.
- *
- * This class initialize the Remote Selenium Web Driver given the required values in properties file
+ *         <p>
+ *         This class initialize the Remote Selenium Web Driver given the required values in properties file
  */
 public class RemoteBrowser implements IDriver {
 
@@ -25,8 +21,14 @@ public class RemoteBrowser implements IDriver {
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
+    private static final String CAPABILITY_NAME = "name";
+
+    private static final String HTTP_PROXY_HOST = "http.proxyHost";
+
+    private static final String HTTP_PROXY_PORT = "http.proxyPort";
+
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public WebDriver initDriver() {

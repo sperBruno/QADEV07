@@ -1,6 +1,7 @@
 package org.fundacionjala.pivotal.pages.workspace;
 
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,27 +16,23 @@ public class SideBarWorkspace extends BasePage {
     @FindBy(id = "_dropdown__arrow")
     private WebElement listProjectLink;
 
-    @FindBy(xpath = "//span[contains(.,'ProjectTest3')]")
-    private WebElement idProjectLink;
-
     @FindBy(id = "save_workspace_button")
     private WebElement saveWorkspaceLink;
 
-
-    public void clickAddProjectLink () {
-        addProjectLink.click ();
+    public void clickAddProjectLink() {
+        addProjectLink.click();
     }
 
-    public void clickListProjectLink () {
-        listProjectLink.click ();
+    public void clickListProjectLink() {
+        listProjectLink.click();
     }
 
-    public void clickIdProjectLink () {
-        idProjectLink.click ();
+    public void clickProjectNameLink(String projectName) {
+        driver.findElement(By.xpath("//span[contains(.,'" + projectName + "')]")).click();
     }
 
-    public Workspace clickSaveWorkspaceLink () {
-        saveWorkspaceLink.click ();
-        return new Workspace ();
+    public Workspace clickSaveWorkspaceLink() {
+        saveWorkspaceLink.click();
+        return new Workspace();
     }
 }

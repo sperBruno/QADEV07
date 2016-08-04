@@ -3,22 +3,25 @@ package org.fundacionjala.pivotal.framework.selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.fundacionjala.pivotal.framework.util.Constants.DRIVER_PATH;
-import static org.fundacionjala.pivotal.framework.util.Constants.WEBDRIVER_CHROME_DRIVER;
-
 /**
  * @author Henrry Salinas.
- *
- * This class initialize the Chrome Selenium Web Driver
+ *         <p>
+ *         This class initialize the Chrome Selenium Web Driver
  */
 public class Chrome implements IDriver {
+
+    private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
+
+    private static final String DRIVER_PATH = "lib/chromedriver.exe";
+
+    private static final String WEBDRIVER_CHROME_PROPERTY = "webdriver.chrome.driver";
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public WebDriver initDriver () {
-        System.setProperty (WEBDRIVER_CHROME_DRIVER, DRIVER_PATH);
-        return new ChromeDriver ();
+    public WebDriver initDriver() {
+        System.setProperty(WEBDRIVER_CHROME_DRIVER, DRIVER_PATH);
+        return new ChromeDriver();
     }
 }

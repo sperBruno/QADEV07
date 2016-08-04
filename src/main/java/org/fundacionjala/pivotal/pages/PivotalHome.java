@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pages.login;
+package org.fundacionjala.pivotal.pages;
 
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 import org.openqa.selenium.WebElement;

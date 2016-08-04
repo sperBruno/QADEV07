@@ -1,22 +1,26 @@
 package org.fundacionjala.pivotal.framework.util;
 
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
+import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
+import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import static com.jayway.restassured.path.json.JsonPath.from;
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
-import static org.fundacionjala.pivotal.framework.util.Constants.PROJECT_ID;
+import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDPOINT;
-import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACE_ID;
 
 
 /**
@@ -82,7 +86,7 @@ private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
         ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(PROJECTS_ENDPOINT).asString()).get("");
         if (jsonAsArrayList.size() > 0) {
             for (Map<String, ?> object : jsonAsArrayList) {
-                deleteRequest(PROJECTS_ENDPOINT + object.get(PROJECT_ID).toString());
+                deleteRequest(PROJECTS_ENDPOINT + object.get(ATTRIBUTE_ID).toString());
             }
         }
     }
@@ -91,10 +95,29 @@ private final static WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
         ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
         if (jsonAsArrayList.size() > 0) {
             for (Map<String, ?> object : jsonAsArrayList) {
-                deleteRequest(WORKSPACES_ENDPOINT + object.get(WORKSPACE_ID).toString());
+                deleteRequest(WORKSPACES_ENDPOINT + object.get(ATTRIBUTE_ID).toString());
             }
         }
     }
+
+    public static void deleteAccounts(){
+        DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/accounts");
+        Accounts accounts=new Accounts();
+        try {
+            while(isElementPresent(accounts.getManageAccountBtn())){
+                AccountSetting accountSetting = accounts.manageAccount().clickSettingTab();
+                accounts= accountSetting.deleteAccount();
+            }
+            CreateAccountForm createAccountForm=accounts.clickNewAccountBtn();
+            createAccountForm.setAccountNameTextField("SYSTEM");
+            createAccountForm.clickCreateAccountBtn();
+            DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
+        }catch (NullPointerException e){
+            throw new NoSuchElementException("Element not found");
+        }
+        DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
+    }
+
     public static void quitProgram(String message){
         System.err.println(message);
         Runtime.getRuntime().exit(1);

@@ -6,7 +6,6 @@ import com.jayway.restassured.specification.RequestSpecification;
 import org.fundacionjala.pivotal.framework.util.PropertiesInfo;
 
 import static com.jayway.restassured.RestAssured.baseURI;
-import static org.fundacionjala.pivotal.framework.util.Constants.TOKEN_HEADER;
 
 /**
  *
@@ -16,6 +15,8 @@ public class Authentication {
     private static Authentication instance;
 
     private RequestSpecification requestSpecification;
+
+    private static final String TOKEN_HEADER = "X-TrackerToken";
 
     private Authentication() {
         initApi();
@@ -33,7 +34,7 @@ public class Authentication {
         if (PropertiesInfo.getInstance().getProxy() != null) {
             requestSpecification = new RequestSpecBuilder()
                     .setRelaxedHTTPSValidation()
-                    //  .setProxy(PropertiesInfo.getInstance().getProxy())
+                    .setProxy(PropertiesInfo.getInstance().getProxy())
                     .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
                     .build();
         } else {

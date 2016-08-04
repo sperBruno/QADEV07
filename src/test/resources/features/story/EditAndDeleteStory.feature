@@ -10,7 +10,7 @@ Feature: Delete a new story in a project from pivotal tracker
     And stored as Story1
     Then I login with valid credentials
 
-  @story
+  @story @dashboard 
   Scenario: Edit story
     Given I enter to [Project1.name]
     When I edit the next parameter
@@ -21,13 +21,13 @@ Feature: Delete a new story in a project from pivotal tracker
       | COMMENT     | comment     |
     Then I validate fields
 
-  @story
+  @story @dashboard 
   Scenario: Delete story
     Given I enter to [Project1.name]
     When I delete the story created
     Then I expect the message 1 story deleted
 
-  @story
+  @story @dashboard 
   Scenario: Cancel delete story
     Given I enter to [Project1.name]
     When I cancel delete the story created

@@ -29,23 +29,15 @@ public class StoryHooks {
      */
     @After("@story")
     public void afterStoryScenario() {
-        toolBar.clickReturnDashboardLink();
         if (SUCCESS_STATUS_CODE == api.getResponse().statusCode() || DELETE_STATUS_CODE == api.getResponse().statusCode()) {
             deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID_STORY).toString());
             LOGGER.info("Response from story Hook: " + api.getResponse().prettyPrint());
         }
     }
 
-    /**
-     * Method to validate the message from delete test story
-     */
-    @After("@stories")
-    public void afterProjectScenario() {
-        if (SUCCESS_STATUS_CODE == api.getResponse().statusCode()) {
-            deleteRequest(PROJECTS_ENDPOINT + from(api.getResponse().asString()).get(PROJECT_ID).toString());
-            LOGGER.info("Response from stories Hook: " + api.getResponse().prettyPrint());
-        }
-        DriverManager.getInstance().getDriver().get("https://www.pivotaltracker.com/dashboard");
+    @After("@dashboard")
+    public void goToaDashboard(){
+        DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
+        DriverManager.getInstance().getDriver().navigate().refresh();
     }
-
 }

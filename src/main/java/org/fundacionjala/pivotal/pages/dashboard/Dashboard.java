@@ -1,24 +1,26 @@
 package org.fundacionjala.pivotal.pages.dashboard;
 
-import org.fundacionjala.pivotal.api.RequestManager;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.api.RequestManager;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.fundacionjala.pivotal.pages.accounts.Accounts;
-import org.fundacionjala.pivotal.pages.login.BasePage;
 import org.fundacionjala.pivotal.pages.project.Project;
 import org.fundacionjala.pivotal.pages.setting.Setting;
 import org.fundacionjala.pivotal.pages.workspace.CreateWorkspace;
 import org.fundacionjala.pivotal.pages.workspace.Workspace;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
-import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.*;
 
 /**
  * This class represent the Dashboard page
@@ -34,7 +36,7 @@ public class Dashboard extends BasePage {
     @FindBy(className = "tc_dropdown_name")
     private WebElement userNameText;
 
-    @FindBy(xpath = ".//*[@id='shared_header']/div/div/header/ul/li[3]/div/div/div/ul/li[2]/a")
+    @FindBy(css = "a[href='/accounts']")
     private WebElement accountOption;
 
     @FindBy(id = "create_new_project_button")
@@ -59,7 +61,6 @@ public class Dashboard extends BasePage {
         try {
             wait.withTimeout(45, SECONDS);
             clickWebElement(createProjectLink);
-            //createProjectLink.click();
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException("Create Project link was not found");
         } finally {
@@ -75,7 +76,6 @@ public class Dashboard extends BasePage {
 
         try {
             wait.withTimeout(45, SECONDS);
-            wait.until(ExpectedConditions.visibilityOf(workspaceContainer));
             clickWebElement(createWorkspaceLink);
         } catch (NoSuchElementException e) {
             throw new NoSuchElementException(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG);
@@ -118,7 +118,7 @@ public class Dashboard extends BasePage {
     public Project clickOnProject(String projectName) {
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
-            WebElement projectNameLink = driver.findElement(By.xpath("//a[contains(.,'" + projectName + "')]"));
+            WebElement projectNameLink = fluentWait(By.xpath("//a[contains(.,'" + projectName + "')]"));
             projectNameLink.click();
         } catch (NoSuchElementException e) {
             LOGGER.warn("The Web element not was find ", e.getCause());
@@ -129,6 +129,17 @@ public class Dashboard extends BasePage {
         return new Project();
     }
 
+    public WebElement fluentWait(final By locator){
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(30, TimeUnit.SECONDS)
+                .pollingEvery(5, TimeUnit.SECONDS)
+                .ignoring(org.openqa.selenium.NoSuchElementException.class);
+        WebElement projectLink = wait.until(
+                driver1 -> driver1.findElement(locator)
+        );
+        return  projectLink;
+    };
+    
     public Setting clickSettingsLink(String nameProjects) {
         refreshPage();
         WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));

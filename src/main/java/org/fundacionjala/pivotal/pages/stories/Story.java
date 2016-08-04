@@ -2,25 +2,20 @@ package org.fundacionjala.pivotal.pages.stories;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.CommonMethods;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
-import org.fundacionjala.pivotal.pages.login.BasePage;
+import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
-import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TYPE;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.fundacionjala.pivotal.framework.util.Constants.*;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
 
 /**
  * This class is for test the creation, set and delete
@@ -68,16 +63,10 @@ public class Story extends BasePage {
     @FindBy(name = "comment[text]")
     private WebElement comment;
 
-    @FindBy(xpath = "//button[@data-aid='comment-submit']")
+    @FindBy(css = "button[data-aid='comment-submit']")
     private WebElement addCommentButton;
 
-    @FindBy(xpath = "//div[data-aid='message']")
-    private WebElement commentMessage;
-
-    @FindBy(xpath = "//div[data-aid='ConfirmationDialog__message']")
-    private WebElement confirmCancelMessage;
-
-    @FindBy(xpath = "//button[@data-aid='ConfirmationDialog__confirm']")
+    @FindBy(css = "button[data-aid='ConfirmationDialog__confirm']")
     private WebElement confirmCancelButton;
     /**
      * Web elements to add an empty story
@@ -85,7 +74,7 @@ public class Story extends BasePage {
     @FindBy(className = "AlertDialog__message___873RxAXD")
     private WebElement addStoryTitleAlert;
 
-    @FindBy(xpath = "//button[@data-aid='AlertDialog__confirm']")
+    @FindBy(css = "button[data-aid='AlertDialog__confirm']")
     private WebElement okAlertButton;
     /**
      * Web elements to set story
@@ -125,13 +114,13 @@ public class Story extends BasePage {
 
     public void clickOnExpanderStory() {
         try {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
             storyExpander.click();
         } catch (NoSuchElementException e) {
             LOGGER.warn("The Web element not was find ", e.getCause());
             throw new NoSuchElementException("The Web element not was find ", e.getCause());
         } finally {
-            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, SECONDS);
         }
     }
 
@@ -189,13 +178,20 @@ public class Story extends BasePage {
     }
 
     public String getStoryType() {
-        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).getText().toLowerCase();
+        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName.toLowerCase() + "')]")).getText().toLowerCase();
     }
 
     public void setStoryType(String storyType) {
         storyTypeName = storyType.toLowerCase();
-        storyTypeArrow.click();
-        driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).click();
+        try {
+            wait.withTimeout(45, SECONDS);
+            storyTypeArrow.click();
+            driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).click();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Story tipe nnot found");
+        } finally {
+            wait.withTimeout(WAIT_TIME, SECONDS);
+        }
     }
 
     /**
@@ -205,8 +201,6 @@ public class Story extends BasePage {
      * @param storyTitle it is the name for a story
      */
     public void setStoryTitleTextArea(String storyTitle) {
-//        storyTitleTextArea.clear();
-//        storyTitleTextArea.sendKeys(storyTitle);
         CommonMethods.setWebElement(storyTitleTextArea,storyTitle);
     }
 
