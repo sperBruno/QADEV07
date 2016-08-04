@@ -38,7 +38,7 @@ public class PropertiesInfo {
 
     private static final String REMOTE_USER = "remoteUser";
 
-    private static final String LOCAL_BROWSER = "localBrowser";
+    private static final String BROWSER = "browser";
 
     private static final String REMOTE_BROWSER = "remoteBrowser";
 
@@ -115,7 +115,7 @@ public class PropertiesInfo {
     }
 
     public String getBrowser() {
-        return getProperty(LOCAL_BROWSER);
+        return getProperty(BROWSER);
     }
 
     public String getRemoteBrowser() {
