@@ -181,7 +181,7 @@ public final class CommonMethods {
     }
 
     public static void quitProgram(String message) {
-        LOGGER.info("Element null");
-        Runtime.getRuntime().exit(1);
+        LOGGER.info("Element null " + message);
+        Runtime.getRuntime().runFinalization();
     }
 }
