@@ -61,7 +61,7 @@ task executeFeatures() {
                 jvmArgs = ["-Demail=" + email]
                 jvmArgs = ["-Dpassword=" + password]
                 jvmArgs = ["-DapiToken=" + apiToken]
-                jvmArgs = ["-Dbrowser=" + apiToken]
+                jvmArgs = ["-Dbrowser=" + browser]
 
                 jvmArgs = ["-DremoteUser=" + remoteUser]
                 jvmArgs = ["-DremoteAccessKey=" + remoteAccessKey]
