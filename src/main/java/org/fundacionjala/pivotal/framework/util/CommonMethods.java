@@ -35,8 +35,6 @@ public final class CommonMethods {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
-    private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
-
     private CommonMethods() {
     }
 
