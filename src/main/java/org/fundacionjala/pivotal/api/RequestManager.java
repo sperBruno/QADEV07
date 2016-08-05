@@ -8,10 +8,10 @@ import com.jayway.restassured.specification.RequestSpecification;
 import static com.jayway.restassured.RestAssured.given;
 
 /**
+ * The purpose of this class is to provide methods that manage the API REST
+ * requests like GET, POST, PUT, and DELETE.
+ *
  * @author Henrry Salinas.
- *         <p>
- *         The purpose of this class is to provide methods that manage the API REST
- *         requests like GET, POST, PUT, and DELETE.
  */
 public final class RequestManager {
 

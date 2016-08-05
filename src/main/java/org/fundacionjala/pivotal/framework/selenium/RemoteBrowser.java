@@ -13,14 +13,13 @@ import static org.fundacionjala.pivotal.framework.util.Constants.HTTP_PROXY_HOST
 import static org.fundacionjala.pivotal.framework.util.Constants.HTTP_PROXY_PORT;
 
 /**
- * @author Henrry Salinas.
- *
  * This class initialize the Remote Selenium Web Driver given the required values in properties file
  *
+ * @author Henrry Salinas.
  */
-public class SauceLabs implements IDriver {
+public class RemoteBrowser implements IDriver {
 
-    private static final Logger LOGGER = Logger.getLogger(SauceLabs.class.getSimpleName());
+    private static final Logger LOGGER = Logger.getLogger(RemoteBrowser.class.getSimpleName());
 
     private static final PropertiesInfo PROPERTIES_INFO = PropertiesInfo.getInstance();
 
@@ -31,10 +30,10 @@ public class SauceLabs implements IDriver {
     public WebDriver initDriver() {
         System.getProperties().put(HTTP_PROXY_HOST, PROPERTIES_INFO.getProxyHost());
         System.getProperties().put(HTTP_PROXY_PORT, PROPERTIES_INFO.getProxyPort());
-        final String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub",
-                PROPERTIES_INFO.getRemoteUser(), PROPERTIES_INFO.getRemoteAccessKey());
         URL url = null;
         try {
+            final String sauceUrl = String.format(PROPERTIES_INFO.getRemoteTestHostUrl(),
+                    PROPERTIES_INFO.getRemoteUser(), PROPERTIES_INFO.getRemoteAccessKey());
             url = new URL(sauceUrl);
         } catch (MalformedURLException e) {
             LOGGER.warn("The url is not correct" + e);
