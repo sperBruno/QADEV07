@@ -67,6 +67,7 @@ task executeFeatures() {
                 jvmArgs = ["-DremoteBrowser=" + remoteBrowser]
                 jvmArgs = ["-DremoteBrowserVersion" + remoteBrowserVersion]
                 jvmArgs = ["-DremotePlatform" + remotePlatform]
+                jvmArgs = ["-DremoteTestHostUrl" + remoteTestHostUrl]
             }
         } catch (Exception e) {
             println("unable to execute task, see the next detail: "+ e)

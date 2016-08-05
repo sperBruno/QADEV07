@@ -46,6 +46,8 @@ public class PropertiesInfo {
 
     private static final String REMOTE_PLATFORM = "remotePlatform";
 
+    private static final String REMOTE_TEST_HOST_URL="remoteTestHostUrl";
+
     private static PropertiesInfo instance;
 
     private Properties properties;
@@ -144,5 +146,9 @@ public class PropertiesInfo {
 
     public String getRemoteTestName() {
         return getProperty(REMOTE_TEST_NAME);
+    }
+
+    public String getRemoteTestHostUrl() {
+        return getProperty(REMOTE_TEST_HOST_URL);
     }
 }
