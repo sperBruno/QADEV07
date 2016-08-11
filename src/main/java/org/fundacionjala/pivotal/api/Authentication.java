@@ -29,19 +29,13 @@ public class Authentication {
     }
 
     private void initApi() {
+        requestSpecification = new RequestSpecBuilder()
+                .setRelaxedHTTPSValidation()
+                .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
+                .build();
+        requestSpecification.baseUri(PropertiesInfo.getInstance().getUrlApi());
         if (PropertiesInfo.getInstance().getProxy() != null) {
-            requestSpecification = new RequestSpecBuilder()
-                    .setRelaxedHTTPSValidation()
-                    .setBaseUri(PropertiesInfo.getInstance().getUrlApi())
-                    .setProxy(PropertiesInfo.getInstance().getProxy())
-                    .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
-                    .build();
-        } else {
-            requestSpecification = new RequestSpecBuilder()
-                    .setRelaxedHTTPSValidation()
-                    .addHeader(TOKEN_HEADER, PropertiesInfo.getInstance().getApiToken())
-                    .setBaseUri(PropertiesInfo.getInstance().getUrlApi())
-                    .build();
+            requestSpecification.proxy(PropertiesInfo.getInstance().getProxy());
         }
     }
 

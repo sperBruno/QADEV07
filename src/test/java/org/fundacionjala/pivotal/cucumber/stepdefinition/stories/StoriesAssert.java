@@ -1,10 +1,12 @@
 package org.fundacionjala.pivotal.cucumber.stepdefinition.stories;
 
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
 import org.fundacionjala.pivotal.pages.stories.IceBox;
 
 import cucumber.api.java.en.Then;
 
 import static org.fundacionjala.pivotal.api.Mapper.mapResponse;
+import static org.fundacionjala.pivotal.framework.util.Constants.DASHBOARD_URL;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -49,6 +51,7 @@ public class StoriesAssert {
     public void iExpectTheStoryNameIsDisplayed(String property) {
         String storyName = mapResponse(property);
         assertEquals(storyName, storiesStepsDef.getStory().getStoryTitle());
+        DriverManager.getInstance().getDriver().get(DASHBOARD_URL);
     }
 
     @Then("^I expect none story added$")

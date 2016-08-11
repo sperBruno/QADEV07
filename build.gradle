@@ -67,9 +67,10 @@ task executeFeatures() {
                 jvmArgs = ["-DremoteBrowser=" + remoteBrowser]
                 jvmArgs = ["-DremoteBrowserVersion" + remoteBrowserVersion]
                 jvmArgs = ["-DremotePlatform" + remotePlatform]
+                systemProperty "remoteTestHostUrl", remoteTestHostUrl
             }
         } catch (Exception e) {
-            println("unable to execute task, see the next detail: "+ e)
+            println("unable to execute task, see the next detail: " + e)
         }
         sleep(5000) // sleep due to cucumber.json is not created too fast
         generateReport("build/cucumber.json", "build/cucumber-html-report")

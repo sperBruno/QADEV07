@@ -18,10 +18,8 @@ public final class FactoryDriver {
                 return new Chrome();
             case FIREFOX:
                 return new Firefox();
-            case SAUCELABS:
-                return new SauceLabs();
-            case BROWSERSTACK:
-                return new BrowserStack();
+            case REMOTE:
+                return new RemoteBrowser();
             default:
                 throw new WebDriverException("Browser not found : " + browser);
         }
