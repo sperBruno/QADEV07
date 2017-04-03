@@ -1,0 +1,8 @@
+/.idea/
+/target/
+*.fundacionjala.pivotal.iml
+*.log
+*.fundacionjala.PivotalFinalTest.iml
+*.iml
+/build/
+/classes/
