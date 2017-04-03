@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jayway.restassured.response.Response;
+import io.restassured.response.Response;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
