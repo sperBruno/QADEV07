@@ -1,0 +1,13 @@
+language: java
+jdk:
+- oraclejdk8
+sudo: false
+script: gradle compileJava compileTestJava
+branches:
+  only:
+   - develop
+   - ContinousIntegration
+notifications:
+ email:
+ - Rosario.Garcia@fundacion-jala.org
+ - Bruno.Barrios@fundacion-jala.org
