@@ -2,10 +2,10 @@ package org.fundacionjala.pivotal.api;
 
 import java.util.Map;
 
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
-import static com.jayway.restassured.RestAssured.given;
+import static io.restassured.RestAssured.given;
 
 /**
  * The purpose of this class is to provide methods that manage the API REST

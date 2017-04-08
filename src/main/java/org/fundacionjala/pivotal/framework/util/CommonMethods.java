@@ -3,11 +3,8 @@ package org.fundacionjala.pivotal.framework.util;
 import java.util.ArrayList;
 import java.util.Map;
 
+import io.restassured.path.json.JsonPath;
 import org.apache.log4j.Logger;
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
-import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
-import org.fundacionjala.pivotal.pages.accounts.Accounts;
-import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -15,7 +12,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.jayway.restassured.path.json.JsonPath.from;
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
+import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
+import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
+
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
@@ -138,7 +139,7 @@ public final class CommonMethods {
      * Delete all Project create by API
      */
     public static void deleteAllProjects() {
-        ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(PROJECTS_ENDPOINT).asString()).get("");
+        ArrayList<Map<String, ?>> jsonAsArrayList = JsonPath.from(getRequest(PROJECTS_ENDPOINT).asString()).get("");
         if (jsonAsArrayList.isEmpty()) {
             for (Map<String, ?> object : jsonAsArrayList) {
                 deleteRequest(PROJECTS_ENDPOINT + object.get(ATTRIBUTE_ID).toString());
@@ -150,7 +151,7 @@ public final class CommonMethods {
      * Delete all Project workspace by API
      */
     public static void deleteAllWorkspaces() {
-        ArrayList<Map<String, ?>> jsonAsArrayList = from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
+        ArrayList<Map<String, ?>> jsonAsArrayList = JsonPath.from(getRequest(WORKSPACES_ENDPOINT).asString()).get("");
         if (jsonAsArrayList.isEmpty()) {
             for (Map<String, ?> object : jsonAsArrayList) {
                 deleteRequest(WORKSPACES_ENDPOINT + object.get(ATTRIBUTE_ID).toString());
