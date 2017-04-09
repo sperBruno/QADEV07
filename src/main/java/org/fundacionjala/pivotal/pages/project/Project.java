@@ -10,9 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+import static org.fundacionjala.pivotal.framework.util.Constants.FORTY_FIVE;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_PROJECT_WAIT;
-import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
  * Created by Bruno on 7/7/2016.
@@ -27,14 +28,13 @@ public class Project extends BasePage {
     @FindBy(css = "[data-aid='navTab-settings']")
     private WebElement settings;
 
-
-
-
-
-
+    /**
+     * This method will select setting tab.
+     * @return Setting.
+     */
     public Setting clickSettingTab() {
         try {
-            wait.withTimeout(45, TimeUnit.SECONDS);
+            wait.withTimeout(FORTY_FIVE, TimeUnit.SECONDS);
             clickWebElement(settings);
         } catch (NoSuchElementException e) {
             LOGGER.warn("The click tab Setting Element could not be found", e);
@@ -49,6 +49,10 @@ public class Project extends BasePage {
         return new Setting();
     }
 
+    /**
+     * This method will verify if project title is displayed.
+     * @return true if so and false if not.
+     */
     public boolean isProjectTitleDisplayed() {
         boolean projectTitleDisplayed = false;
         try {
@@ -64,6 +68,10 @@ public class Project extends BasePage {
         return projectTitleDisplayed;
     }
 
+    /**
+     * This method will get project title.
+     * @return project title.
+     */
     public String getTitle() {
         String projectTitle = "";
         try {

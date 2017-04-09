@@ -10,27 +10,25 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
-import static org.testng.AssertJUnit.assertEquals;
-
 
 /**
  * Created by bruno on 4/8/2017.
  */
 public class StoryTest {
-    Dashboard dashboard;
-    Project project;
-    Story story;
-    SideBarStories sideBarStories;
+    private Dashboard dashboard;
+    private Project project;
 
+    /**
+     * This before will be executed before a suite.
+     */
     @BeforeSuite
     public void beforeSuite() {
         Login.loginAsPrimaryUser();
     }
 
+    /**
+     * This test will enter to a project.
+     */
     @Test
     public void enterToAProject() {
         final String projectNameLink = "template";
@@ -40,24 +38,9 @@ public class StoryTest {
         Assert.assertEquals(WordUtils.capitalize(projectNameLink), project.getTitle());
     }
 
-    @Test
-    public void createStoryInProject() {
-        Map<StoriesSteps, Object> storyValues = new HashMap<>();
-        storyValues.put(STORY_TITLE, "storyTest");
-        storyValues.put(STORY_TYPE, "bug");
-        storyValues.put(DESCRIPTION, "descriptionTest");
-        storyValues.put(LABELS, "labeltest");
-        storyValues.put(COMMENT, "commentTest");
-        sideBarStories = new SideBarStories();
-        story = sideBarStories.clickOnAddStoryButton();
-        story.strategyStepMap(storyValues);
-
-        story.clickOnExpanderStory();
-        storyValues.keySet().stream().forEach((step) -> {
-            assertEquals(story.getAssertionMap().get(step), storyValues.get(step));
-        });
-    }
-
+    /**
+     * This after suit will close the app.
+     */
     @AfterSuite
     public void logoutPivotal() {
         CommonMethods.quitProgram("Closing the app");

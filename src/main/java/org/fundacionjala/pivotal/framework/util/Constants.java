@@ -44,6 +44,7 @@ public final class Constants {
 
     public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
     public static final int FIVE = 5;
+    public static final int FORTY_FIVE = 45;
 
     /**
      * This is a private constructor.

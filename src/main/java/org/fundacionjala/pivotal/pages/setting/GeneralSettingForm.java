@@ -38,7 +38,7 @@ import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ENABLE_TASKS;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.HIDE_EMAIL_ADDRESSES;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.INITIAL_VELOCITY;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.ITERATION_LENGTH;
-import static org.fundacionjala.pivotal.pages.setting.SettingSteps.NUMBER_OF_DONE_ITERATION_SHOW;
+import static org.fundacionjala.pivotal.pages.setting.SettingSteps.DONE_ITERATION_SHOW;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PLAN_CURRENT_ITERATION;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.POINT_SCALE;
 import static org.fundacionjala.pivotal.pages.setting.SettingSteps.PROJECT_START_DATE;
@@ -127,100 +127,231 @@ public class GeneralSettingForm extends BasePage {
     private WebElement testMessage;
 
     @FindBy(className = "text_column")
-    WebElement projectId;
+    private WebElement projectId;
 
     @FindBy(className = "error_above_or_below")
-    WebElement massageErrorNameDayText;
+    private WebElement massageErrorNameDayText;
 
     private boolean flat;
 
     private static final String REGEX_BLACK_SPACE = " ";
 
+    /**
+     * This method will be used to create a Project at once.
+     *
+     * @param values required to create a project
+     * @return Map of executed steps.
+     */
     public Map<SettingSteps, IAutomationStep> getStrategyStepMap(Map<SettingSteps, Object> values) {
         Map<SettingSteps, IAutomationStep> strategyMap = new EnumMap<>(SettingSteps.class);
-        strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> setProjectTitleTestField(values.get(TITLE_PROJECTS).toString()));
-        strategyMap.put(DESCRIPTION, () -> setProjectDescriptionTestField(values.get(DESCRIPTION).toString()));
-        strategyMap.put(START_ITERATIONS_ON, () -> setProjectWeekStartDayComboBox(String.valueOf(values.get(START_ITERATIONS_ON).toString())));
+        strategyMap.put(SettingSteps.TITLE_PROJECTS, () -> {
+            String projectTitle = values.get(TITLE_PROJECTS).toString();
+            setProjectTitleTestField(projectTitle);
+        });
+        strategyMap.put(DESCRIPTION, () -> {
+            String projectDescription = values.get(DESCRIPTION).toString();
+            setProjectDescriptionTestField(projectDescription);
+        });
+        strategyMap.put(START_ITERATIONS_ON, () -> {
+            String nameDay = String.valueOf(values.get(START_ITERATIONS_ON).toString());
+            setProjectWeekStartDayComboBox(nameDay);
+        });
         strategyMap.put(PROJECT_TIME_ZONE, () -> setProjectTimeZoneComboBox(values.get(PROJECT_TIME_ZONE).toString()));
-        strategyMap.put(ITERATION_LENGTH, () -> setProjectIterationLengthComboBox(values.get(ITERATION_LENGTH).toString()));
+        strategyMap.put(ITERATION_LENGTH, () -> {
+            String projectIterationLength = values.get(ITERATION_LENGTH).toString();
+            setProjectIterationLengthComboBox(projectIterationLength);
+        });
         strategyMap.put(POINT_SCALE, () -> setProjectSettingsPointScaleComboBox(values.get(POINT_SCALE).toString()));
-        strategyMap.put(INITIAL_VELOCITY, () -> setProjectInitialVelocityTestField(values.get(INITIAL_VELOCITY).toString()));
+        strategyMap.put(INITIAL_VELOCITY, () -> {
+            String projectInitialVelocity = values.get(INITIAL_VELOCITY).toString();
+            setProjectInitialVelocityTestField(projectInitialVelocity);
+        });
         strategyMap.put(VELOCITY_STRATEGY, () -> setProjectVelocityComboBox(values.get(VELOCITY_STRATEGY).toString()));
-        strategyMap.put(NUMBER_OF_DONE_ITERATION_SHOW, () -> setProjectNumberOfDoneIterationsToShowTestField(values.get(NUMBER_OF_DONE_ITERATION_SHOW).toString()));
-        strategyMap.put(PLAN_CURRENT_ITERATION, () -> setProjectAutomaticPlanningCheckBox(Boolean.parseBoolean(values.get(PLAN_CURRENT_ITERATION).toString())));
-        strategyMap.put(ENABLE_TASKS, () -> setProjectEnableTasksCheckbox(Boolean.parseBoolean(values.get(ENABLE_TASKS).toString())));
-        strategyMap.put(ALLOW_API_ACCESS, () -> setProjectAPIAccessCheckbox(Boolean.parseBoolean(values.get(ALLOW_API_ACCESS).toString())));
-        strategyMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, () -> setProjectUseHttpsCheckBox(Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACCESS).toString())));
-        strategyMap.put(ENABLE_RSS, () -> setProjectAtomRssCheckBox(Boolean.parseBoolean(values.get(ENABLE_RSS).toString())));
-        strategyMap.put(PUBLIC_ACCESS, () -> setProjectPublicAccessCheckBox(Boolean.parseBoolean(values.get(PUBLIC_ACCESS).toString())));
-        strategyMap.put(ENABLE_INCOMING_EMAIL, () -> setProjectEnableIncomingEmailCheckBox(Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString())));
-        strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> setProjectHideEmailsFromCollaboratorsCheckBox(Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString())));
-        strategyMap.put(BUGS_GIVEN_POINTS, () -> setProjectBugsCheckBox(Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString())));
-        strategyMap.put(PROJECT_START_DATE, () -> setDateProjectStartTestField(String.valueOf(values.get(PROJECT_START_DATE).toString())));
+        strategyMap.put(DONE_ITERATION_SHOW, () -> {
+            String numberOfDoneIterationsToShow = values.get(DONE_ITERATION_SHOW).toString();
+            setProjectNumberOfDoneIterationsToShowTestField(numberOfDoneIterationsToShow);
+        });
+        strategyMap.put(PLAN_CURRENT_ITERATION, () -> {
+            boolean projectAutomaticPlanning = Boolean.parseBoolean(values.get(PLAN_CURRENT_ITERATION).toString());
+            setProjectAutomaticPlanningCheckBox(projectAutomaticPlanning);
+        });
+        strategyMap.put(ENABLE_TASKS, () -> {
+            boolean enableTasks = Boolean.parseBoolean(values.get(ENABLE_TASKS).toString());
+            setProjectEnableTasksCheckbox(enableTasks);
+        });
+        strategyMap.put(ALLOW_API_ACCESS, () -> {
+            boolean enableApiAccess = Boolean.parseBoolean(values.get(ALLOW_API_ACCESS).toString());
+            setProjectAPIAccessCheckbox(enableApiAccess);
+        });
+        strategyMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, () -> {
+            boolean enablehttps = Boolean.parseBoolean(values.get(REQUIRE_HTTPS_FOR_API_ACCESS).toString());
+            setProjectUseHttpsCheckBox(enablehttps);
+        });
+        strategyMap.put(ENABLE_RSS, () -> {
+            boolean enableRss = Boolean.parseBoolean(values.get(ENABLE_RSS).toString());
+            setProjectAtomRssCheckBox(enableRss);
+        });
+        strategyMap.put(PUBLIC_ACCESS, () -> {
+            boolean enablePublicAccess = Boolean.parseBoolean(values.get(PUBLIC_ACCESS).toString());
+            setProjectPublicAccessCheckBox(enablePublicAccess);
+        });
+        strategyMap.put(ENABLE_INCOMING_EMAIL, () -> {
+            boolean enableIncomingEmail = Boolean.parseBoolean(values.get(ENABLE_INCOMING_EMAIL).toString());
+            setProjectEnableIncomingEmailCheckBox(enableIncomingEmail);
+        });
+        strategyMap.put(HIDE_EMAIL_ADDRESSES, () -> {
+            boolean enableCollaborators = Boolean.parseBoolean(values.get(HIDE_EMAIL_ADDRESSES).toString());
+            setProjectHideEmailsFromCollaboratorsCheckBox(enableCollaborators);
+        });
+        strategyMap.put(BUGS_GIVEN_POINTS, () -> {
+            boolean enableBugPoints = Boolean.parseBoolean(values.get(BUGS_GIVEN_POINTS).toString());
+            setProjectBugsCheckBox(enableBugPoints);
+        });
+        strategyMap.put(PROJECT_START_DATE, () -> {
+            String dateProjectStart = String.valueOf(values.get(PROJECT_START_DATE).toString());
+            setDateProjectStartTestField(dateProjectStart);
+        });
         return strategyMap;
     }
 
+    /**
+     * This method will set project title.
+     *
+     * @param projectTitle to be set.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectTitleTestField(String projectTitle) {
         setWebElement(projectTitleTestField, projectTitle);
         return this;
     }
 
+    /**
+     * This method will set project description.
+     *
+     * @param projectDescription to be set.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectDescriptionTestField(String projectDescription) {
         setWebElement(projectDescriptionTestField, projectDescription);
         return this;
     }
 
+    /**
+     * This method will enable Tasks.
+     *
+     * @param enable tasks state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectEnableTasksCheckbox(boolean enable) {
         setCheckBox(projectEnableTasksCheckbox, enable);
         return this;
     }
 
+    /**
+     * This method will set week start day.
+     *
+     * @param nameDay start day.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectWeekStartDayComboBox(String nameDay) {
         selectAElementComboBox(projectWeekStartDaySelect, nameDay);
         return this;
     }
 
+    /**
+     * This method will set Date start test.
+     *
+     * @param dateProjectStart state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setDateProjectStartTestField(String dateProjectStart) {
         setWebElement(dateProjectStartTestField, dateProjectStart);
         return this;
     }
 
+    /**
+     * This method will set TimeZone.
+     *
+     * @param projectTimeZone state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectTimeZoneComboBox(String projectTimeZone) {
         selectAElementComboBox(projectTimeZoneComboBox, projectTimeZone);
         return this;
     }
 
+    /**
+     * This method will set iterations length.
+     *
+     * @param projectIterationLength state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectIterationLengthComboBox(String projectIterationLength) {
         selectAElementComboBox(projectIterationLengthComboBox, projectIterationLength);
         return this;
     }
 
+    /**
+     * This method will set point scale.
+     *
+     * @param projectSettingsPointScale state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectSettingsPointScaleComboBox(String projectSettingsPointScale) {
         selectAElementComboBox(projectSettingsPointScaleComboBox, projectSettingsPointScale);
         flat = true;
         return this;
     }
 
+    /**
+     * This method will set initial velocity.
+     *
+     * @param projectInitialVelocity state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectInitialVelocityTestField(String projectInitialVelocity) {
         setWebElement(projectInitialVelocityTestField, projectInitialVelocity);
         return this;
     }
 
+    /**
+     * This method will set velocity project.
+     *
+     * @param projectVelocity state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectVelocityComboBox(String projectVelocity) {
         selectAElementComboBox(projectVelocityComboBox, projectVelocity);
         return this;
     }
 
-    public GeneralSettingForm setProjectNumberOfDoneIterationsToShowTestField(String projectNumberOfDoneIterationsToShow) {
-        setWebElement(projectNumberOfDoneIterationsToShowTestField, projectNumberOfDoneIterationsToShow);
+    /**
+     * This method will number of done iterations.
+     *
+     * @param numberOfDoneIterationsToShow name of project
+     * @return GeneralSettingForm.
+     */
+    public GeneralSettingForm setProjectNumberOfDoneIterationsToShowTestField(String numberOfDoneIterationsToShow) {
+        setWebElement(projectNumberOfDoneIterationsToShowTestField, numberOfDoneIterationsToShow);
         return this;
     }
 
+    /**
+     * This method will be set enable automatic planning checkbox.
+     *
+     * @param projectAutomaticPlanning state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectAutomaticPlanningCheckBox(boolean projectAutomaticPlanning) {
         setCheckBox(projectAutomaticPlanningCheckBox, projectAutomaticPlanning);
         return this;
     }
 
+    /**
+     * This method will click on save button.
+     *
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm clickSaveButton() {
         clickWebElement(saveButton);
         if (flat) {
@@ -231,11 +362,23 @@ public class GeneralSettingForm extends BasePage {
         return this;
     }
 
+    /**
+     * This method will be set enable api access checkbox.
+     *
+     * @param enable api access state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectAPIAccessCheckbox(boolean enable) {
         setCheckBox(projectAPIAccessCheckbox, enable);
         return this;
     }
 
+    /**
+     * This method will be set enable user https checkbox.
+     *
+     * @param enable user https state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectUseHttpsCheckBox(boolean enable) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("javascript:window.scrollBy(0,500)");
@@ -244,16 +387,34 @@ public class GeneralSettingForm extends BasePage {
         return this;
     }
 
+    /**
+     * This method will be set enable atom Rss checkbox.
+     *
+     * @param enable atom rss state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectAtomRssCheckBox(boolean enable) {
         setCheckBox(projectAtomRssCheckBox, enable);
         return this;
     }
 
+    /**
+     * This method will be set enable public access checkbox.
+     *
+     * @param enable public access state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectPublicAccessCheckBox(boolean enable) {
         setCheckBox(projectPublicAccessCheckBox, enable);
         return this;
     }
 
+    /**
+     * This method will be set enable incoming email checkbox.
+     *
+     * @param enable incoming email state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectEnableIncomingEmailCheckBox(boolean enable) {
         setCheckBox(projectEnableIncomingEmailCheckBox, enable);
         return this;
@@ -261,6 +422,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will set hiden emails.
+     *
      * @param enable state.
      * @return GeneralSettingForm.
      */
@@ -271,6 +433,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will be used to set bug  checkbox.
+     *
      * @param enable state of bug.
      * @return GeneralSettingForm.
      */
@@ -281,6 +444,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will delete project alert.
+     *
      * @return the alert.
      */
     public DeleteProjectAlert clickLinkDeleteProject() {
@@ -289,8 +453,9 @@ public class GeneralSettingForm extends BasePage {
     }
 
     /**
-     * This method will be used to get messge.
-     * @return
+     * This method will be used to get message.
+     *
+     * @return Message text.
      */
     public String getMessageTest() {
         return testMessage.getText();
@@ -298,6 +463,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get error message relate to Name Day text.
+     *
      * @return the error message.
      */
     public String getMessageErrorNameDayText() {
@@ -306,6 +472,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get the description.
+     *
      * @return description.
      */
     public String getDescriptionText() {
@@ -314,6 +481,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get the project id.
+     *
      * @return project id.
      */
     public String getProjectId() {
@@ -322,6 +490,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will project title.
+     *
      * @return project title.
      */
     public String getProjectTitleTestField() {
@@ -330,6 +499,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get the number of iterations.
+     *
      * @return the number of iterations.
      */
     public String getNumberIterationShow() {
@@ -338,6 +508,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get initial velocity.
+     *
      * @return velocity.
      */
     public String getInitialVelocity() {
@@ -346,6 +517,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get week start day.
+     *
      * @return start day.
      */
     public String getTextProjectWeekStartDaySelect() {
@@ -354,6 +526,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get Data project start.
+     *
      * @return date project start.
      */
     public String getTextDateProjectStart() {
@@ -362,14 +535,16 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get the time zone.
-     * @return  time zone.
+     *
+     * @return time zone.
      */
     public String getTextProjectTimeZone() {
         return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
     /**
-     * This method will on account link
+     * This method will on account link.
+     *
      * @return Account.
      */
     public Accounts clickAccountLink() {
@@ -379,6 +554,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get interation lenght.
+     *
      * @return thjis method will get iteration length.
      */
     public String getTextProjectIterationLength() {
@@ -387,6 +563,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get point scale text.
+     *
      * @return point scale text.
      */
     public String getTextProjectSettingPointScale() {
@@ -395,6 +572,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will get project velocity text.
+     *
      * @return project velocity text.
      */
     public String getTextProjectVelocity() {
@@ -403,6 +581,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will verify if project automatic plannig is selected.
+     *
      * @return true if so and false if not.
      */
     public boolean getTextProjectAutomaticPlanning() {
@@ -411,6 +590,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will verify if allow api access is selected.
+     *
      * @return true if so and false if not.
      */
     public boolean getAllowAPIACCES() {
@@ -419,6 +599,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will verify if use https is selected.
+     *
      * @return true if so and false if not.
      */
     public boolean getUseHttps() {
@@ -436,6 +617,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will verify public access.
+     *
      * @return true if so and false if not.
      */
     public boolean getPublicAccess() {
@@ -444,6 +626,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will verify if enable incoming email is selected.
+     *
      * @return true if so and false if not.
      */
     public boolean getEnableIncomingEmailCheckBox() {
@@ -452,6 +635,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will verify the hide emails from collaborators.
+     *
      * @return true if so and false if not.
      */
     public boolean getHideEmailsFromCollaboratorsCheckBox() {
@@ -459,7 +643,8 @@ public class GeneralSettingForm extends BasePage {
     }
 
     /**
-     * This method will verify if a bug given points is selected
+     * This method will verify if a bug given points is selected.
+     *
      * @return true if so and false if not.
      */
     public boolean getBugGivenPointsCheckBox() {
@@ -468,6 +653,7 @@ public class GeneralSettingForm extends BasePage {
 
     /**
      * This method will set project tasks.
+     *
      * @return the state.
      */
     public boolean getEnableProjectsTasks() {
@@ -491,7 +677,7 @@ public class GeneralSettingForm extends BasePage {
         assertionMap.put(POINT_SCALE, getTextProjectSettingPointScale());
         assertionMap.put(INITIAL_VELOCITY, getInitialVelocity());
         assertionMap.put(VELOCITY_STRATEGY, getTextProjectVelocity());
-        assertionMap.put(NUMBER_OF_DONE_ITERATION_SHOW, getNumberIterationShow());
+        assertionMap.put(DONE_ITERATION_SHOW, getNumberIterationShow());
         assertionMap.put(PLAN_CURRENT_ITERATION, getTextProjectAutomaticPlanning());
         assertionMap.put(ALLOW_API_ACCESS, getAllowAPIACCES());
         assertionMap.put(REQUIRE_HTTPS_FOR_API_ACCESS, getUseHttps());

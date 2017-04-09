@@ -76,15 +76,23 @@ public final class PropertiesInfo {
      * which contains the configurations to project.
      */
     private void loadProperties() {
+        FileInputStream fileInputStream = null;
         try {
-            FileInputStream fileInputStream = new FileInputStream(CONFIG_PROPERTIES);
+            fileInputStream = new FileInputStream(CONFIG_PROPERTIES);
             properties = new Properties();
             properties.load(fileInputStream);
-            fileInputStream.close();
+
         } catch (FileNotFoundException e) {
             LOGGER.warn("The properties file couldn't be found", e);
         } catch (IOException e) {
             LOGGER.warn("A problem of type", e);
+        } finally {
+            try {
+                assert fileInputStream != null;
+                fileInputStream.close();
+            } catch (IOException e) {
+                LOGGER.warn("A problem happen while closing", e);
+            }
         }
     }
 

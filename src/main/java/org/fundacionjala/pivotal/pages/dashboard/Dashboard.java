@@ -20,12 +20,16 @@ import org.openqa.selenium.support.ui.Wait;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
-import static org.fundacionjala.pivotal.framework.util.Constants.*;
+import static org.fundacionjala.pivotal.framework.util.Constants.FORTY_FIVE;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.FIVE;
 
 /**
- * This class represent the Dashboard page
+ * This class represent the Dashboard page.
  *
- * @autor Mijhail Villarroel, Bruno Barrios, Daniel Gonzales, Rosario Garcia.
+ * @author Mijhail Villarroel, Bruno Barrios, Daniel Gonzales, Rosario Garcia.
  */
 public class Dashboard extends BasePage {
 
@@ -55,11 +59,13 @@ public class Dashboard extends BasePage {
     private WebElement workspaceContainer;
 
     /**
-     * @return
+     * This method will click on create a project.
+     *
+     * @return Create Project.
      */
     public CreateProject clickCreateProjectLink() {
         try {
-            wait.withTimeout(45, SECONDS);
+            wait.withTimeout(FORTY_FIVE, SECONDS);
             clickWebElement(createProjectLink);
         } catch (NoSuchElementException e) {
             LOGGER.warn("Create Project link was not found", e);
@@ -76,7 +82,7 @@ public class Dashboard extends BasePage {
     public CreateWorkspace clickCreateWorkspaceLink() {
 
         try {
-            wait.withTimeout(45, SECONDS);
+            wait.withTimeout(FORTY_FIVE, SECONDS);
             clickWebElement(createWorkspaceLink);
         } catch (NoSuchElementException e) {
             LOGGER.warn(CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG, e);
@@ -88,7 +94,9 @@ public class Dashboard extends BasePage {
     }
 
     /**
-     * @return
+     * This method will return user name.
+     *
+     * @return user name.
      */
     public String getUserNameText() {
         String userName = "";
@@ -105,7 +113,9 @@ public class Dashboard extends BasePage {
     }
 
     /**
-     * @return
+     * This method will get the delete message.
+     *
+     * @return delete message text.
      */
     public String getMessageTextDelete() {
         return deleteMessageText.getText();
@@ -115,8 +125,8 @@ public class Dashboard extends BasePage {
      * This method is used to enter to main page of
      * project created using its name.
      *
-     * @param projectName: This parameter is the project name of project created
-     * @return: return the project main page
+     * @param projectName This parameter is the project name of project created
+     * @return return the project main page
      */
     public Project clickOnProject(String projectName) {
         try {
@@ -132,39 +142,73 @@ public class Dashboard extends BasePage {
         return new Project();
     }
 
+    /**
+     * This method will be used to wait for a element.
+     *
+     * @param locator to wait for.
+     * @return WebElement.
+     */
     public WebElement fluentWait(final By locator) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(30, TimeUnit.SECONDS)
-                .pollingEvery(5, TimeUnit.SECONDS)
+                .withTimeout(WAIT_TIME, TimeUnit.SECONDS)
+                .pollingEvery(FIVE, TimeUnit.SECONDS)
                 .ignoring(org.openqa.selenium.NoSuchElementException.class);
         return wait.until(driver1 -> driver1.findElement(locator));
     }
 
-    ;
 
+    /**
+     * This method will select a project.
+     *
+     * @param nameProjects to select.
+     * @return Setting.
+     */
     public Setting clickSettingsLink(String nameProjects) {
         refreshPage();
-        WebElement taskElement = driver.findElement(By.xpath("//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]"));
+        String locator = "//*[@class='hover_link settings' and @href=\"/projects/" + nameProjects + "/settings\"]";
+        WebElement taskElement = driver.findElement(By.xpath(locator));
         clickWebElement(taskElement);
         return new Setting();
     }
 
+    /**
+     * This method will be used to select account option.
+     *
+     * @return Accounts.
+     */
     public Accounts selectAccountOption() {
         userNameText.click();
         accountOption.click();
         return new Accounts();
     }
 
+    /**
+     * This method will click on a workspace.
+     *
+     * @param nameWorkspace to be selected.
+     * @return Workspace.
+     */
     public Workspace clickNameWorkspaceLink(String nameWorkspace) {
         WebElement nameWorkspaceLink = driver.findElement(By.xpath("//a[contains(.,'" + nameWorkspace + "')]"));
         nameWorkspaceLink.click();
         return new Workspace();
     }
 
+    /**
+     * This method will delete a workspace.
+     *
+     * @return a workspace.
+     */
     public String getMessageDeleteWorkspace() {
         return messageDeleteWorkspace.getText();
     }
 
+    /**
+     * This method will be used to get user name.
+     *
+     * @param value expected user name.
+     * @return user name.
+     */
     public String getUserName(String value) {
 
         final String endPointProfile = "/me";

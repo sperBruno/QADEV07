@@ -18,11 +18,21 @@ public class ToolBar extends BasePage {
     @FindBy(css = "[data-aid='navTab-settings']")
     private WebElement settingsTabLink;
 
+    /**
+     * This method will click on dashboard link.
+     *
+     * @return Dashboard.
+     */
     public Dashboard clickReturnDashboardLink() {
         clickWebElement(returnDashboardLink);
         return new Dashboard();
     }
 
+    /**
+     * This method will click on setting tab link.
+     *
+     * @return Setting.
+     */
     public Setting clickSettingTabLink() {
         clickWebElement(settingsTabLink);
         return new Setting();

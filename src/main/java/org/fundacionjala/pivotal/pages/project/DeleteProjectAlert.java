@@ -19,6 +19,11 @@ public class DeleteProjectAlert extends BasePage {
     @FindBy(id = "confirm_delete")
     private WebElement deleteProjectBtn;
 
+    /**
+     * This method will click on delete button.
+     *
+     * @return Dashboard.
+     */
     public Dashboard clickDeleteBtn() {
         wait.until(ExpectedConditions.visibilityOf(deleteAlertContainer));
         clickWebElement(deleteProjectBtn);

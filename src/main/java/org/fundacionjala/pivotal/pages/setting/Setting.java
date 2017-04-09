@@ -6,9 +6,12 @@ import org.fundacionjala.pivotal.pages.dashboard.ToolBar;
  * @author Mijhail Villarroel.
  */
 public class Setting {
-    SideBarSetting sideBar;
-    ToolBar toolBar;
+    private SideBarSetting sideBar;
+    private ToolBar toolBar;
 
+    /**
+     * Setting constructor.
+     */
     public Setting() {
         sideBar = new SideBarSetting();
         toolBar = new ToolBar();
@@ -26,7 +29,7 @@ public class Setting {
     /**
      * This method will get tool bar.
      *
-     * @return
+     * @return ToolBar.
      */
     public ToolBar getToolBar() {
         return toolBar;
