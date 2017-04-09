@@ -21,15 +21,30 @@ public class CreateAccountForm extends BasePage {
     @FindBy(id = "error")
     private WebElement errorMessageAtCreateAccount;
 
+    /**
+     * This method will be used to set Account name.
+     *
+     * @param accountName to be set.
+     */
     public void setAccountNameTextField(String accountName) {
         setWebElement(accountNameTextField, accountName);
     }
 
+    /**
+     * This method will click on create account button.
+     *
+     * @return Accounts page.
+     */
     public Accounts clickCreateAccountBtn() {
         createNewAccountBtn.click();
         return new Accounts();
     }
 
+    /**
+     * This method will be used to get error messages that can appear when creating an account.
+     *
+     * @return the error message.
+     */
     public String getErrorMessageAtCreateAccount() {
         String errorMessage = "";
         if (isElementPresent(errorMessageAtCreateAccount)) {

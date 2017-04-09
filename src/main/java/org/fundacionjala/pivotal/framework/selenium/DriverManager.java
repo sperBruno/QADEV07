@@ -27,11 +27,19 @@ public class DriverManager {
 
     private WebDriverWait wait;
 
+    /**
+     * This is driver manager constructor.
+     */
     private DriverManager() {
         initWebDriver();
         PropertyConfigurator.configure(SRC_MAIN_RESOURCES_LOG4J_PROPERTIES);
     }
 
+    /**
+     * This method will be used to get FriverManager instance.
+     *
+     * @return DriverManager instance
+     */
     public static DriverManager getInstance() {
         if (instance == null) {
             instance = new DriverManager();
@@ -39,6 +47,9 @@ public class DriverManager {
         return instance;
     }
 
+    /**
+     * This method will initialise web driver.
+     */
     private void initWebDriver() {
         driver = FactoryDriver.getDriver(PropertiesInfo.getInstance().getBrowser()).initDriver();
         driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
@@ -47,14 +58,27 @@ public class DriverManager {
         wait = new WebDriverWait(driver, WAIT_TIME);
     }
 
+    /**
+     * This method will be used to get driver
+     *
+     * @return driver.
+     */
     public WebDriver getDriver() {
         return driver;
     }
 
+    /**
+     * This method will be used to quit driver.
+     */
     public void quitDriver() {
         driver.quit();
     }
 
+    /**
+     * This method will be used to get wait.
+     *
+     * @return wait.
+     */
     public WebDriverWait getWait() {
         return wait;
     }

@@ -70,14 +70,29 @@ public class Accounts extends BasePage {
         return new CreateAccountForm();
     }
 
+    /**
+     * This method will be used to get account button.
+     *
+     * @return manage account button.
+     */
     public WebElement getManageAccountBtn() {
         return manageAccountBtn;
     }
 
+    /**
+     * This method will be used to ToolBarAccount
+     *
+     * @return ToolBarAccount.
+     */
     public ToolBarAccount getToolBarAccount() {
         return toolBarAccount;
     }
 
+    /**
+     * This method will be used to get tool bar.
+     *
+     * @return ToolBar.
+     */
     public ToolBar getToolBar() {
         return new ToolBar();
     }

@@ -54,10 +54,20 @@ public final class Mapper {
         return result;
     }
 
+    /**
+     * This class will be used to add an api Response.
+     * @param key  of the response.
+     * @param response value.
+     */
     public static void addResponse(String key, Response response) {
         RESPONSE_VALUES.put(key, response);
     }
 
+    /**
+     * This method will get all project properties.
+     * @param endPoint to make the request.
+     * @return the current property.
+     */
     public static String getPropertiesProject(String endPoint) {
         String result = endPoint;
         if (result.contains(REGEX_HALF_BRACKET)) {

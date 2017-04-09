@@ -33,7 +33,7 @@ public class Dashboard extends BasePage {
 
     private static final String CREATE_WORKSPACE_BUTTON_WAS_NOT_FOUND_MSG = "Create Workspace Button was not found";
 
-    @FindBy(className = "tc_dropdown_name")
+    @FindBy(css = ".tc_dropdown_name")
     private WebElement userNameText;
 
     @FindBy(css = "a[href='/accounts']")

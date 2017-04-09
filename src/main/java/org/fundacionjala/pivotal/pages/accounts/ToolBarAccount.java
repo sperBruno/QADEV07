@@ -14,6 +14,11 @@ public class ToolBarAccount extends BasePage {
     @FindBy(xpath = "//a[contains(.,'Settings')]")
     private WebElement settingTab;
 
+    /**
+     * This method will be used to select setting tab.
+     *
+     * @return Account settings.
+     */
     public AccountSetting clickSettingTab() {
         clickWebElement(settingTab);
         return new AccountSetting();

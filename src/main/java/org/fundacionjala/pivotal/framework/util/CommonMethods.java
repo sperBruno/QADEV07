@@ -36,6 +36,9 @@ public final class CommonMethods {
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
+    /**
+     * This a private constructor.
+     */
     private CommonMethods() {
     }
 

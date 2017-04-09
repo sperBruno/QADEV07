@@ -58,11 +58,23 @@ public class CreateProject extends BasePage {
     @FindBy(className = "tc-account-selector__create-account-icon")
     private WebElement createAccountOption;
 
+    /**
+     * This method will be used set the project name.
+     *
+     * @param projectName to create.
+     * @return CreateProject.
+     */
     public CreateProject setProjectName(String projectName) {
         newProjectName.sendKeys(projectName);
         return this;
     }
 
+    /**
+     * This method will be used to select an account for the project.
+     *
+     * @param accountName to use.
+     * @return CreateProject.
+     */
     public CreateProject setAccountDropDown(String accountName) {
         accountDropDown.click();
         if (!isAccountNamePresent(accountName)) {
@@ -73,11 +85,23 @@ public class CreateProject extends BasePage {
         return this;
     }
 
+    /**
+     * This method will be used select data sample checkbox.
+     *
+     * @param isCheckBoxEnable chackbox state.
+     * @return CreateProject.
+     */
     public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable) {
         setCheckBox(projectPrivateRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
         return this;
     }
 
+    /**
+     * This method will be used to create an account.
+     *
+     * @param accountName for the account
+     * @return CreateProject.
+     */
     private CreateProject createAccount(String accountName) {
         LOGGER.info("creating account");
         createAccountOption.click();
@@ -85,6 +109,12 @@ public class CreateProject extends BasePage {
         return this;
     }
 
+    /**
+     * This method will be used to verify if an account name exists.
+     *
+     * @param accountName to shearch
+     * @return true if exists or false if not.
+     */
     private boolean isAccountNamePresent(String accountName) {
         boolean answer;
         try {
@@ -97,10 +127,18 @@ public class CreateProject extends BasePage {
         return answer;
     }
 
+    /**
+     * This method will be used to mark if a project will be visible.
+     */
     public void checkProjectVisible() {
         projectPublicRadioBtn.click();
     }
 
+    /**
+     * This method will be used to click on create project button.
+     *
+     * @return Project.
+     */
     public Project clickCreateProject() {
         try {
             clickWebElement(createNewProjectBtn);
@@ -119,6 +157,9 @@ public class CreateProject extends BasePage {
 
     }
 
+    /**
+     * This method will be used to verify if an error happens.
+     */
     private void verifyErrorMessagesOfCreateProject() {
         if (blankProjectNameMessage.isDisplayed()) {
             LOGGER.info("title message: " + blankProjectNameMessage.getText());
@@ -130,19 +171,40 @@ public class CreateProject extends BasePage {
         }
     }
 
+    /**
+     * This method will verify if a create project form was displayed.
+     *
+     * @return true if so and false if not.
+     */
     public boolean createProjectFormIsdisplayed() {
         return newProjectName.isDisplayed() && accountDropDown.isDisplayed() && createNewProjectBtn.isDisplayed();
     }
 
+    /**
+     * This method will be used to cancel the creation of a project.
+     *
+     * @return Dashboard.
+     */
     public Dashboard clickCancelCreateProjectBtn() {
         clickWebElement(cancelCreateProjectBtn);
         return new Dashboard();
     }
 
+    /**
+     * This method will be used to make a project visible.
+     *
+     * @param isCheckBoxEnable the state of the checkbox.
+     */
     public void clickMakeProjectVisibleCheckBox(String isCheckBoxEnable) {
         setCheckBox(projectPublicRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
     }
 
+    /**
+     * This method will be used to create a Project at once.
+     *
+     * @param values of the new project.
+     * @return the new Project.
+     */
     public Map<Enum, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
         final Map<Enum, IAutomationStep> strategyMap = new HashMap<>();
 
@@ -153,10 +215,20 @@ public class CreateProject extends BasePage {
         return strategyMap;
     }
 
+    /**
+     * This method will get the error message string.
+     *
+     * @return error message.
+     */
     public String getAccountMessage() {
         return accountMessage;
     }
 
+    /**
+     * This method will be used to get the title message.
+     *
+     * @return the tittle message.
+     */
     public String getProjectTitleMessage() {
         return projectTitleMessage;
     }

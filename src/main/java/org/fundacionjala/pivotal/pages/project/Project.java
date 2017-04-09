@@ -27,6 +27,11 @@ public class Project extends BasePage {
     @FindBy(css = "[data-aid='navTab-settings']")
     private WebElement settings;
 
+
+
+
+
+
     public Setting clickSettingTab() {
         try {
             wait.withTimeout(45, TimeUnit.SECONDS);
