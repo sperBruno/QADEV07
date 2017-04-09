@@ -26,6 +26,11 @@ public class SideBarSetting extends BasePage {
     @FindBy(xpath = "//a[text()='Export CSV']")
     private WebElement linkExportCSV;
 
+    /**
+     * This method will click on general setting link.
+     *
+     * @return general setting form.
+     */
     public GeneralSettingForm clickGeneralSetting() {
         clickWebElement(linkGeneralSettings);
         return new GeneralSettingForm();

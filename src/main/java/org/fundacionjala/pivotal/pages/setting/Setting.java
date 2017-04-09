@@ -14,10 +14,20 @@ public class Setting {
         toolBar = new ToolBar();
     }
 
+    /**
+     * This method will get the side bar.
+     *
+     * @return side bar.
+     */
     public SideBarSetting getSideBar() {
         return sideBar;
     }
 
+    /**
+     * This method will get tool bar.
+     *
+     * @return
+     */
     public ToolBar getToolBar() {
         return toolBar;
     }

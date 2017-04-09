@@ -259,114 +259,226 @@ public class GeneralSettingForm extends BasePage {
         return this;
     }
 
+    /**
+     * This method will set hiden emails.
+     * @param enable state.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectHideEmailsFromCollaboratorsCheckBox(boolean enable) {
         setCheckBox(projectHideEmailsFromCollaboratorsCheckBox, enable);
         return this;
     }
 
+    /**
+     * This method will be used to set bug  checkbox.
+     * @param enable state of bug.
+     * @return GeneralSettingForm.
+     */
     public GeneralSettingForm setProjectBugsCheckBox(boolean enable) {
         setCheckBox(projectBugsCheckBox, enable);
         return this;
     }
 
+    /**
+     * This method will delete project alert.
+     * @return the alert.
+     */
     public DeleteProjectAlert clickLinkDeleteProject() {
         clickWebElement(deleteLink);
         return new DeleteProjectAlert();
     }
 
+    /**
+     * This method will be used to get messge.
+     * @return
+     */
     public String getMessageTest() {
         return testMessage.getText();
     }
 
+    /**
+     * This method will get error message relate to Name Day text.
+     * @return the error message.
+     */
     public String getMessageErrorNameDayText() {
         return massageErrorNameDayText.getText();
     }
 
+    /**
+     * This method will get the description.
+     * @return description.
+     */
     public String getDescriptionText() {
         return projectDescriptionTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get the project id.
+     * @return project id.
+     */
     public String getProjectId() {
         return projectId.getText();
     }
 
+    /**
+     * This method will project title.
+     * @return project title.
+     */
     public String getProjectTitleTestField() {
         return projectTitleTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get the number of iterations.
+     * @return the number of iterations.
+     */
     public String getNumberIterationShow() {
         return projectNumberOfDoneIterationsToShowTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get initial velocity.
+     * @return velocity.
+     */
     public String getInitialVelocity() {
         return projectInitialVelocityTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get week start day.
+     * @return start day.
+     */
     public String getTextProjectWeekStartDaySelect() {
         return convertASelect(projectWeekStartDaySelect).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get Data project start.
+     * @return date project start.
+     */
     public String getTextDateProjectStart() {
         return dateProjectStartTestField.getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get the time zone.
+     * @return  time zone.
+     */
     public String getTextProjectTimeZone() {
         return convertASelect(projectTimeZoneComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will on account link
+     * @return Account.
+     */
     public Accounts clickAccountLink() {
         accountLink.click();
         return new Accounts();
     }
 
+    /**
+     * This method will get interation lenght.
+     * @return thjis method will get iteration length.
+     */
     public String getTextProjectIterationLength() {
         return convertASelect(projectIterationLengthComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get point scale text.
+     * @return point scale text.
+     */
     public String getTextProjectSettingPointScale() {
         return convertASelect(projectSettingsPointScaleComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will get project velocity text.
+     * @return project velocity text.
+     */
     public String getTextProjectVelocity() {
         return convertASelect(projectVelocityComboBox).getFirstSelectedOption().getAttribute(ATTRIBUTE_VALUE);
     }
 
+    /**
+     * This method will verify if project automatic plannig is selected.
+     * @return true if so and false if not.
+     */
     public boolean getTextProjectAutomaticPlanning() {
         return projectAutomaticPlanningCheckBox.isSelected();
     }
 
+    /**
+     * This method will verify if allow api access is selected.
+     * @return true if so and false if not.
+     */
     public boolean getAllowAPIACCES() {
         return projectAPIAccessCheckbox.isSelected();
     }
 
+    /**
+     * This method will verify if use https is selected.
+     * @return true if so and false if not.
+     */
     public boolean getUseHttps() {
         return projectUseHttpsCheckBox.isSelected();
     }
 
+    /**
+     * This method will verify if atom rss is selected.
+     *
+     * @return true if so and false if not.
+     */
     public boolean getAtomRss() {
         return projectAtomRssCheckBox.isSelected();
     }
 
+    /**
+     * This method will verify public access.
+     * @return true if so and false if not.
+     */
     public boolean getPublicAccess() {
         return projectPublicAccessCheckBox.isSelected();
     }
 
+    /**
+     * This method will verify if enable incoming email is selected.
+     * @return true if so and false if not.
+     */
     public boolean getEnableIncomingEmailCheckBox() {
         return projectEnableIncomingEmailCheckBox.isSelected();
     }
 
+    /**
+     * This method will verify the hide emails from collaborators.
+     * @return true if so and false if not.
+     */
     public boolean getHideEmailsFromCollaboratorsCheckBox() {
         return projectHideEmailsFromCollaboratorsCheckBox.isSelected();
     }
 
+    /**
+     * This method will verify if a bug given points is selected
+     * @return true if so and false if not.
+     */
     public boolean getBugGivenPointsCheckBox() {
         return projectBugsCheckBox.isSelected();
     }
 
+    /**
+     * This method will set project tasks.
+     * @return the state.
+     */
     public boolean getEnableProjectsTasks() {
         return projectEnableTasksCheckbox.isSelected();
     }
 
+    /**
+     * This method will verify the settings.
+     *
+     * @return Map of assertions.
+     */
     public Map<SettingSteps, Object> getAssertionMap() {
         Map<SettingSteps, Object> assertionMap = new EnumMap<>(SettingSteps.class);
         assertionMap.put(TITLE_PROJECTS, getProjectTitleTestField());
@@ -391,6 +503,13 @@ public class GeneralSettingForm extends BasePage {
         return assertionMap;
     }
 
+    /**
+     * This method will get a message.
+     *
+     * @param endPoint to make requst.
+     * @param values   to send with the request.
+     * @return request message.
+     */
     public String getMassage(String endPoint, Map<SettingSteps, Object> values) {
         String nameDay = dayName(String.valueOf(values.get(PROJECT_START_DATE)));
         Map<Enum, Object> copy = new HashMap<>(values);
@@ -411,6 +530,12 @@ public class GeneralSettingForm extends BasePage {
         return result.concat(point);
     }
 
+    /**
+     * This method will get the day name.
+     *
+     * @param inputDate to set.
+     * @return formatted day.
+     */
     private String dayName(String inputDate) {
         Date date = null;
         final String format = "YYYY/MM/DD";
