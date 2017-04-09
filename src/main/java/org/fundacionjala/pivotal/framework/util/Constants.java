@@ -13,6 +13,8 @@ public final class Constants {
     public static final int WAIT_TIME = 30;
 
     public static final int LOAD_PAGE_TIME = 40;
+    public static final int FOURTY_FIVE = 45;
+
 
     public static final int IMPLICIT_FAIL_WAIT_TIME = 8;
 
@@ -41,6 +43,7 @@ public final class Constants {
     public static final String ERROR_PROJECT_TITLE_TEXT = "project name can't be blank";
 
     public static final String ELEMENT_COULD_NOT_BE_FOUND = "The element could not be found";
+    public static final int FIVE = 5;
 
     /**
      * This is a private constructor.

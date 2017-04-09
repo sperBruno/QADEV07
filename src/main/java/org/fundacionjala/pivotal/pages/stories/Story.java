@@ -14,11 +14,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.fundacionjala.pivotal.framework.util.Constants.*;
-import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.*;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_FAIL_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_TIME;
+import static org.fundacionjala.pivotal.framework.util.Constants.FOURTY_FIVE;
+import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TITLE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.STORY_TYPE;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.DESCRIPTION;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.LABELS;
+import static org.fundacionjala.pivotal.pages.stories.StoriesSteps.COMMENT;
 
 /**
- * This class is for test the creation, set and delete
+ * This class is for test the creation, set and delete.
  * of a story in a project of pivotal tracker.
  *
  * @author RosarioGarcia
@@ -28,7 +35,7 @@ public class Story extends BasePage {
     private static final Logger LOGGER = Logger.getLogger(Story.class.getName());
 
     /**
-     * Web elements to add story
+     * Web elements to add story.
      */
     @FindBy(css = ".button.add_story > span")
     private WebElement storyTitleTextArea;
@@ -69,7 +76,7 @@ public class Story extends BasePage {
     @FindBy(css = "button[data-aid='ConfirmationDialog__confirm']")
     private WebElement confirmCancelButton;
     /**
-     * Web elements to add an empty story
+     * Web elements to add an empty story.
      */
     @FindBy(className = "AlertDialog__message___873RxAXD")
     private WebElement addStoryTitleAlert;
@@ -77,12 +84,12 @@ public class Story extends BasePage {
     @FindBy(css = "button[data-aid='AlertDialog__confirm']")
     private WebElement okAlertButton;
     /**
-     * Web elements to set story
+     * Web elements to set story.
      */
     @FindBy(xpath = "//button[contains(.,'Close')]")
     private WebElement closeButton;
     /**
-     * Web elements to delete story
+     * Web elements to delete story.
      */
     @FindBy(css = ".expander.undraggable")
     private WebElement storyExpander;
@@ -97,21 +104,39 @@ public class Story extends BasePage {
     private String commentMesage;
     private String storyTypeName;
 
+    /**
+     * This button will cancel button.
+     *
+     * @return Story.
+     */
     public Story clickOnCancelDeleteButton() {
         cancelDeleteButton.click();
         return this;
     }
 
+    /**
+     * This method will Save a story.
+     *
+     * @return Story.
+     */
     public Story clickOnSaveStoryButton() {
         saveStoryButton.click();
         return this;
     }
 
+    /**
+     * This method will close a story.
+     *
+     * @return Story.
+     */
     public Story clickOnCloseStoryButton() {
         closeButton.click();
         return this;
     }
 
+    /**
+     * This method will expand a story.
+     */
     public void clickOnExpanderStory() {
         try {
             driver.manage().timeouts().implicitlyWait(IMPLICIT_FAIL_WAIT_TIME, SECONDS);
@@ -124,20 +149,36 @@ public class Story extends BasePage {
         }
     }
 
+    /**
+     * This method will click the delete story button.
+     */
     public void clickOnDeleteStoryButton() {
         deleteStoryButton.click();
     }
 
+    /**
+     * This method will confirm the delete story.
+     */
     public void clickOnConfirmDeleteStoryButton() {
         confirmDeleteButton.click();
     }
 
+    /**
+     * This method will cancel the creation of a story.
+     *
+     * @return IceBox.
+     */
     public IceBox cancelAddStory() {
         cancelCreateStoryButton.click();
         confirmCancelButton.click();
         return new IceBox();
     }
 
+    /**
+     * This method will story alert.
+     *
+     * @return stroy alert.
+     */
     public String getAddStoryTitleAlert() {
         String alert = addStoryTitleAlert.getText();
         okAlertButton.click();
@@ -145,31 +186,66 @@ public class Story extends BasePage {
         return alert;
     }
 
+    /**
+     * This method will get delete message.
+     *
+     * @return delete message.
+     */
     public String getStoryDeletedMessage() {
         return storyDeletedMessage.getText();
     }
 
+    /**
+     * This method will story Title.
+     *
+     * @return story Title.
+     */
     public String getStoryTitle() {
         return storyTitleTextArea.getText();
     }
 
+    /**
+     * This method will get story description.
+     *
+     * @return description.
+     */
     public String getDescriptionText() {
         return descriptionText.getText();
     }
 
+    /**
+     * THis method will get staory label.
+     *
+     * @return story label.
+     */
     public String getLabel() {
         return labelName.getText();
     }
 
+    /**
+     * This method will set story label.
+     *
+     * @param storyLabel to set.
+     */
     public void setLabel(String storyLabel) {
         label.clear();
         label.sendKeys(storyLabel, Keys.ENTER);
     }
 
+    /**
+     * This method will get the story comment.
+     *
+     * @return story comment.
+     */
     public String getComment() {
         return driver.findElement(By.xpath("//p[contains(.,'" + commentMesage + "')]")).getText();
     }
 
+    /**
+     * This method will be used to set a story comment.
+     *
+     * @param storyComment to set.
+     */
     public void setComment(String storyComment) {
         commentMesage = storyComment;
         comment.clear();
@@ -177,14 +253,26 @@ public class Story extends BasePage {
         addCommentButton.click();
     }
 
+    /**
+     * This method will get the story type.
+     *
+     * @return story type.
+     */
     public String getStoryType() {
-        return driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName.toLowerCase() + "')]")).getText().toLowerCase();
+        By xpathLocator = By.xpath("//span[contains(.,'" + storyTypeName.toLowerCase() + "')]");
+        WebElement storyType = driver.findElement(xpathLocator);
+        return storyType.getText().toLowerCase();
     }
 
+    /**
+     * This method will set story type.
+     *
+     * @param storyType to set.
+     */
     public void setStoryType(String storyType) {
         storyTypeName = storyType.toLowerCase();
         try {
-            wait.withTimeout(45, SECONDS);
+            wait.withTimeout(FOURTY_FIVE, SECONDS);
             storyTypeArrow.click();
             driver.findElement(By.xpath("//span[contains(.,'" + storyTypeName + "')]")).click();
         } catch (NoSuchElementException e) {
@@ -195,20 +283,20 @@ public class Story extends BasePage {
     }
 
     /**
-     * This method is for set the story title text field
+     * This method is for set the story title text field.
      * wich contains the name of a story.
      *
-     * @param storyTitle it is the name for a story
+     * @param storyTitle it is the name for a story.
      */
     public void setStoryTitleTextArea(String storyTitle) {
         CommonMethods.setWebElement(storyTitleTextArea, storyTitle);
     }
 
     /**
-     * This method is for set the description text field
+     * This method is for set the description text field.
      * wich contains the description of a story.
      *
-     * @param storyDescription it is the description for a story
+     * @param storyDescription it is the description for a story.
      */
     public void setDescriptionTextarea(String storyDescription) {
         editDescriptionButton.click();
@@ -218,9 +306,9 @@ public class Story extends BasePage {
     }
 
     /**
-     * General method to set the values of properties of a story
+     * General method to set the values of properties of a story.
      *
-     * @param values Map of properties to set of a story
+     * @param values Map of properties to set of a story.
      */
     public void strategyStepMap(final Map<StoriesSteps, Object> values) {
         EnumMap<StoriesSteps, IAutomationStep> strategyMap = new EnumMap<>(StoriesSteps.class);
@@ -235,9 +323,9 @@ public class Story extends BasePage {
     }
 
     /**
-     * General method to compare the values of properties of a story
+     * General method to compare the values of properties of a story.
      *
-     * @return map with the current values
+     * @return map with the current values.
      */
     public Map<StoriesSteps, Object> getAssertionMap() {
         EnumMap<StoriesSteps, Object> assertionMap = new EnumMap<>(StoriesSteps.class);

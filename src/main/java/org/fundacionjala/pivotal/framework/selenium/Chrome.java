@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
- * This class initialize the Chrome Selenium Web Driver
+ * This class initialize the Chrome Selenium Web Driver.
  *
  * @author Henrry Salinas.
  */

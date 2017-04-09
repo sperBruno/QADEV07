@@ -1,12 +1,12 @@
 package org.fundacionjala.pivotal.framework.util;
 
 /**
- * @author RosarioGarcia
+ * @author RosarioGarcia.
  */
 @FunctionalInterface
 public interface IAutomationStep {
     /**
-     * Method to execute steps
+     * Method to execute steps.
      */
     void executeStep();
 }

@@ -36,7 +36,7 @@ public class AccountSetting extends BasePage {
     }
 
     /**
-     * This method will be used to get AccountId
+     * This method will be used to get AccountId.
      *
      * @return AccountId.
      */
@@ -44,6 +44,11 @@ public class AccountSetting extends BasePage {
         return accountID.getText();
     }
 
+    /**
+     * This method will get the account name.
+     *
+     * @return account name.
+     */
     public String getAccountName() {
         return accountName.getText();
     }

@@ -80,7 +80,7 @@ public class Accounts extends BasePage {
     }
 
     /**
-     * This method will be used to ToolBarAccount
+     * This method will be used to ToolBarAccount.
      *
      * @return ToolBarAccount.
      */

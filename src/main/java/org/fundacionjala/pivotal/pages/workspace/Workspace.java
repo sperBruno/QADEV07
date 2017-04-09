@@ -19,7 +19,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.IMPLICIT_WAIT_T
 
 
 /**
- * Created by Daniel
+ * Created by Daniel.
  */
 public class Workspace extends BasePage {
 
@@ -41,17 +41,30 @@ public class Workspace extends BasePage {
     @FindBy(className = "table")
     private WebElement panelContainerProjects;
 
+    /**
+     * This is the workspace constructor.
+     */
     public Workspace() {
 
         sideBarWorkspace = new SideBarWorkspace();
         toolBarWorkspace = new ToolBarWorkspace();
     }
 
+    /**
+     * This method will click on return Dashboard link.
+     *
+     * @return Dashboard.
+     */
     public Dashboard clickReturnDashboardLink() {
         returnDashboardLink.click();
         return new Dashboard();
     }
 
+    /**
+     * This method will add a project to a workspace.
+     *
+     * @return workspace name.
+     */
     public String getProjectIntoWorkspaceNameText() {
         String projectIntoWorkspaceName = "";
         try {
@@ -65,6 +78,11 @@ public class Workspace extends BasePage {
         return projectIntoWorkspaceName;
     }
 
+    /**
+     * This method will get workspace id.
+     *
+     * @return workspaceId.
+     */
     public String getIdWorkspace() {
         String url = driver.getCurrentUrl();
         String idWorkspace = "";
@@ -76,16 +94,31 @@ public class Workspace extends BasePage {
         return idWorkspace;
     }
 
+    /**
+     * This method will perform assertions.
+     *
+     * @return a map.
+     */
     public Map<WorkspaceSteps, Object> getAssertionMap() {
         Map<WorkspaceSteps, Object> assertionMap = new EnumMap<>(WorkspaceSteps.class);
         assertionMap.put(WorkspaceSteps.WORKSPACE_NAME, toolBarWorkspace.getWorkspaceNameText());
         return assertionMap;
     }
 
+    /**
+     * This method will be used to get workspace side.
+     *
+     * @return side workspace.
+     */
     public SideBarWorkspace getSideWorkspace() {
         return sideBarWorkspace;
     }
 
+    /**
+     * This method will be used to  tool bar workspace.
+     *
+     * @return toolbar.
+     */
     public ToolBarWorkspace getToolBarWorkspace() {
         return toolBarWorkspace;
     }

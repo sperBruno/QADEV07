@@ -36,6 +36,7 @@ public final class RequestManager {
     /**
      * This method will be used to make post requests.
      * @param endpoint to make post request.
+     * @param parameters to make post request.
      * @return a request response.
      */
     public static Response postRequest(String endpoint, Map<String, Object> parameters) {
@@ -46,6 +47,7 @@ public final class RequestManager {
     /**
      * This method will be used to make put requests.
      * @param endpoint to make put request.
+     * @param parameters to make put request.
      * @return a request response.
      */
     public static Response putRequest(String endpoint, Map<String, Object> parameters) {

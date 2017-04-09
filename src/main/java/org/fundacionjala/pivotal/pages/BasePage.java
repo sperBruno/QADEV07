@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
+/**
+ * Abstract base page class.
+ */
 public abstract class BasePage {
 
     protected WebDriver driver;
@@ -16,6 +19,9 @@ public abstract class BasePage {
 
     protected Actions action;
 
+    /**
+     * This is base page constructor.
+     */
     public BasePage() {
         driver = DriverManager.getInstance().getDriver();
         wait = new WebDriverWait(driver, WAIT_TIME);
@@ -23,6 +29,9 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * This method will be used to refresh the page.
+     */
     public void refreshPage() {
         driver.navigate().refresh();
     }

@@ -8,11 +8,11 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 
 /**
- * This class is for get the properties defined into properties file
+ * This class is for get the properties defined into properties file.
  *
- * @author RosarioGarcia
+ * @author RosarioGarcia.
  */
-public class PropertiesInfo {
+public final class PropertiesInfo {
 
     private static final Logger LOGGER = Logger.getLogger(PropertiesInfo.class.getSimpleName());
 
@@ -72,8 +72,8 @@ public class PropertiesInfo {
     }
 
     /**
-     * This method is used to load the .properties file
-     * which contains the configurations to project
+     * This method is used to load the .properties file.
+     * which contains the configurations to project.
      */
     private void loadProperties() {
         try {

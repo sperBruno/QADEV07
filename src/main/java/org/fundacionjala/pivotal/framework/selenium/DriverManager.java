@@ -12,12 +12,12 @@ import static org.fundacionjala.pivotal.framework.util.Constants.LOAD_PAGE_TIME;
 import static org.fundacionjala.pivotal.framework.util.Constants.WAIT_TIME;
 
 /**
- * The purpose of this class is to provide basic methods for manage the Selenium driver
- * and initialize the logger main resources path
+ * The purpose of this class is to provide basic methods for manage the Selenium driver.
+ * and initialize the logger main resources path.
  *
  * @author HenrrySalinas && Bruno Barrios.
  */
-public class DriverManager {
+public final class DriverManager {
 
     private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
 
@@ -59,7 +59,7 @@ public class DriverManager {
     }
 
     /**
-     * This method will be used to get driver
+     * This method will be used to get driver.
      *
      * @return driver.
      */

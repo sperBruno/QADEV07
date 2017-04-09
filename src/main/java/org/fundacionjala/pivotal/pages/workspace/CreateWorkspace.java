@@ -9,10 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.fundacionjala.pivotal.pages.workspace.WorkspaceSteps.WORKSPACE_NAME;
+
 /**
- * Created by Daniel Gonzales
+ * Created by Daniel Gonzales.
  * <p>
- * CreateWorkspace is the class to create a new Workspace
+ * CreateWorkspace is the class to create a new Workspace.
  */
 public class CreateWorkspace extends BasePage {
 
@@ -32,9 +34,9 @@ public class CreateWorkspace extends BasePage {
     private WebElement getCreateWorkspaceContainer;
 
     /**
-     * Method to do click on the button "Create Workspace" on the Form
+     * Method to do click on the button "Create Workspace" on the Form.
      *
-     * @return Workspaces
+     * @return Workspaces.
      */
     public Workspace clickCreateWorkspaceLink() {
         wait.until(ExpectedConditions.visibilityOf(getCreateWorkspaceContainer));
@@ -43,16 +45,16 @@ public class CreateWorkspace extends BasePage {
     }
 
     /**
-     * Method to do click on the button "Cancel" on the Form
+     * Method to do click on the button "Cancel" on the Form.
      */
     public void clickCancelCreateWorkspaceLink() {
         cancelCreateWorkspaceLink.click();
     }
 
     /**
-     * Method that to insert a name into Workspace Name field
+     * Method that to insert a name into Workspace Name field.
      *
-     * @param workspaceName
+     * @param workspaceName to use.
      * @return CreateWorkspace
      */
     public CreateWorkspace setWorkspaceName(String workspaceName) {
@@ -61,21 +63,21 @@ public class CreateWorkspace extends BasePage {
     }
 
     /**
-     * Method that to permit set values necesary to create a new Workspace
+     * Method that to permit set values necesary to create a new Workspace.
      *
-     * @param values
-     * @return a Map with the values of the workspace created
+     * @param values to create workspace.
+     * @return a Map with the values of the workspace created.
      */
     public Map<WorkspaceSteps, IAutomationStep> getStrategyStepMap(Map<WorkspaceSteps, Object> values) {
         final Map<WorkspaceSteps, IAutomationStep> strategyMap = new EnumMap<>(WorkspaceSteps.class);
-        strategyMap.put(WorkspaceSteps.WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WorkspaceSteps.WORKSPACE_NAME))));
+        strategyMap.put(WORKSPACE_NAME, () -> setWorkspaceName(String.valueOf(values.get(WORKSPACE_NAME))));
         return strategyMap;
     }
 
     /**
-     * Method that get a mesage when a workspace try to be created with empty name
+     * Method that get a mesage when a workspace try to be created with empty name.
      *
-     * @return
+     * @return message text.
      */
     public String getMessageWorkspaceNameEmpty() {
         return messageWorkspaceNameEmpty.getText();

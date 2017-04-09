@@ -16,6 +16,10 @@ import org.openqa.selenium.support.FindBy;
 
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
+import static org.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_TITLE;
+import static org.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_ACCOUNT;
+import static org.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_VISIBLE;
+import static org.fundacionjala.pivotal.pages.project.ProjectSteps.PROJECT_SAMPLE_DATA;
 
 /**
  * @BrunoBarrios
@@ -207,11 +211,14 @@ public class CreateProject extends BasePage {
      */
     public Map<Enum, IAutomationStep> getStrategyStepMap(Map<ProjectSteps, Object> values) {
         final Map<Enum, IAutomationStep> strategyMap = new HashMap<>();
-
-        strategyMap.put(ProjectSteps.PROJECT_TITLE, () -> setProjectName(String.valueOf(values.get(ProjectSteps.PROJECT_TITLE))));
-        strategyMap.put(ProjectSteps.PROJECT_ACCOUNT, () -> setAccountDropDown(String.valueOf(values.get(ProjectSteps.PROJECT_ACCOUNT))));
-        strategyMap.put(ProjectSteps.PROJECT_VISIBLE, () -> clickMakeProjectVisibleCheckBox(String.valueOf(values.get(ProjectSteps.PROJECT_VISIBLE))));
-        strategyMap.put(ProjectSteps.PROJECT_SAMPLE_DATA, () -> clickDataSampleCheckBox(String.valueOf(values.get(ProjectSteps.PROJECT_SAMPLE_DATA))));
+        String projectTitle = String.valueOf(values.get(PROJECT_TITLE));
+        String accountName = String.valueOf(values.get(PROJECT_ACCOUNT));
+        String isCheckBoxEnable = String.valueOf(values.get(PROJECT_VISIBLE));
+        String sampleData = String.valueOf(values.get(PROJECT_SAMPLE_DATA));
+        strategyMap.put(PROJECT_TITLE, () -> setProjectName(projectTitle));
+        strategyMap.put(PROJECT_ACCOUNT, () -> setAccountDropDown(accountName));
+        strategyMap.put(PROJECT_VISIBLE, () -> clickMakeProjectVisibleCheckBox(isCheckBoxEnable));
+        strategyMap.put(PROJECT_SAMPLE_DATA, () -> clickDataSampleCheckBox(sampleData));
         return strategyMap;
     }
 

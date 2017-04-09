@@ -14,10 +14,18 @@ public class PivotalHome extends BasePage {
     @FindBy(css = "a[href='/signin']")
     private WebElement signInLink;
 
+    /**
+     * Pivotal constructor.
+     */
     public PivotalHome() {
         driver.get(PropertiesInfo.getInstance().getUrl());
     }
 
+    /**
+     * This method will click on singin link.
+     *
+     * @return Login.
+     */
     public Login clickSingInLink() {
         clickWebElement(signInLink);
         return new Login();

@@ -10,6 +10,9 @@ import io.restassured.response.Response;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_BRACKETS;
 import static org.fundacionjala.pivotal.framework.util.Constants.REGEX_INSIDE_BRACKETS;
 
+/**
+ * This class will be used to map endpoint request.
+ */
 public final class Mapper {
 
     private static final String REGEX_KEY = "\\[(.*?)\\.";
@@ -28,14 +31,17 @@ public final class Mapper {
 
     private static final Map<String, Response> RESPONSE_VALUES = new HashMap<>();
 
+    /**
+     * This is a private constructor.
+     */
     private Mapper() {
     }
 
     /**
-     * Method to format the endpoint with the ids specified
+     * Method to format the endpoint with the ids specified.
      *
-     * @param endPoint: endpoint with Key and Value to replace
-     * @return: the new endpoint with ids
+     * @param endPoint endpoint with Key and Value to replace.
+     * @return the new endpoint with ids.
      */
     public static String mapEndpoint(String endPoint) {
         String result = endPoint;
@@ -84,10 +90,10 @@ public final class Mapper {
     }
 
     /**
-     * Method to get the property specified from response saved
+     * Method to get the property specified from response saved.
      *
-     * @param property property to get
-     * @return property
+     * @param property property to get.
+     * @return property.
      */
     public static String mapResponse(String property) {
         String result = property;
