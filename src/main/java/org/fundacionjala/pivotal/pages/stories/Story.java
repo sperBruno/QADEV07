@@ -30,7 +30,7 @@ public class Story extends BasePage {
     /**
      * Web elements to add story
      */
-    @FindBy(name = "story[name]")
+    @FindBy(css = ".button.add_story > span")
     private WebElement storyTitleTextArea;
 
     @FindBy(css = ".dropdown.story_type")
