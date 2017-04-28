@@ -5,8 +5,10 @@ import java.util.Map;
 
 import io.restassured.path.json.JsonPath;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -31,6 +33,7 @@ import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDP
 public final class CommonMethods {
 
     private static final WebDriverWait WEB_DRIVER_WAIT = getInstance().getWait();
+    private static final WebDriver WEB_DRIVER = getInstance().getDriver();
 
     private static final Logger LOGGER = Logger.getLogger(CommonMethods.class.getSimpleName());
 
@@ -70,13 +73,23 @@ public final class CommonMethods {
     }
 
     /**
-     * This Method do clicks the element.
+     * This Method do clicks the web element.
      *
      * @param webElement the object to be clicked.
      */
     public static void clickWebElement(WebElement webElement) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
+    }
+
+    /**
+     * This Method do clicks the by element.
+     *
+     * @param byElement the object to be clicked.
+     */
+    public static void clickWebElement(By byElement) {
+        WEB_DRIVER_WAIT.until(ExpectedConditions.elementToBeClickable(byElement));
+        WEB_DRIVER.findElement(byElement).click();
     }
 
     /**
@@ -192,5 +205,51 @@ public final class CommonMethods {
     public static void quitProgram(String message) {
         LOGGER.info("Element null " + message);
         Runtime.getRuntime().runFinalization();
+    }
+
+    /**
+     * Method that gets the value of a web element.
+     * @param webElement WebElement.
+     * @return Text of the WebElement.
+     */
+    public static String getTextFieldValue(WebElement webElement) {
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+    }
+
+    /**
+     * Method that gets the color of the text field WebElement.
+     * @param webElement Text field WebElement.
+     * @return A string with the color.
+     */
+    public static String getTextFieldColor(WebElement webElement) {
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getCssValue("border-color").toString();
+    }
+
+    /**
+     * * Method to gets the color in hexadecimal format.
+     * @param color Color name.
+     * @return The color in hexadecimal format.
+     */
+    public static String getColorInHex(String color) {
+        String[] hexValue = color.replace("rgb(", "").replace(")", "").split(",");
+        int hexValue1 = Integer.parseInt(hexValue[0]);
+        hexValue[1] = hexValue[1].trim();
+        int hexValue2 = Integer.parseInt(hexValue[1]);
+        hexValue[2] = hexValue[2].trim();
+        int hexValue3 = Integer.parseInt(hexValue[2]);
+        return String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
+    }
+
+    /**
+     * Mehod to get the attribute value of a WebElement.
+     * @param webElement WebElement.
+     * @param attribute Attribute name.
+     * @return The value of the attribute.
+     */
+    public static String getWebElementAttribute(WebElement webElement, String attribute) {
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute(attribute);
     }
 }

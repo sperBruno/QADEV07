@@ -4,16 +4,21 @@ import org.fundacionjala.pivotal.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.getTextFieldValue;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.setWebElement;
+
 /**
  * Class that represents to the workspace settings with
  * its characteristics.
  */
 public class SettingWorkspace extends BasePage {
 
+    public static final String VALUE = "value";
     @FindBy(id = "workspace_name")
     private WebElement workspaceNameText;
 
-    @FindBy(id = "delete_link")
+    @FindBy(css = "a#delete_link")
     private WebElement deleteWorkspaceLink;
 
     @FindBy(className = "save_bar__submit")
@@ -31,8 +36,7 @@ public class SettingWorkspace extends BasePage {
      * @param workspaceName the value to enter to the field
      */
     public void setNameWorkspaceTestField(String workspaceName) {
-        workspaceNameText.clear();
-        workspaceNameText.sendKeys(workspaceName);
+        setWebElement(workspaceNameText, workspaceName);
     }
 
     /**
@@ -42,7 +46,7 @@ public class SettingWorkspace extends BasePage {
      * @return the delete workspace instance
      */
     public DeleteWorkspace clickDeleteWorkspaceLink() {
-        deleteWorkspaceLink.click();
+        clickWebElement(deleteWorkspaceLink);
         return new DeleteWorkspace();
     }
 
@@ -50,7 +54,7 @@ public class SettingWorkspace extends BasePage {
      * Method that clicks the workspace link.
      */
     public void clickSaveChangesWorkspaceLink() {
-        saveChangesWorkspaceLink.click();
+        clickWebElement(saveChangesWorkspaceLink);
     }
 
     /**
@@ -58,7 +62,7 @@ public class SettingWorkspace extends BasePage {
      * workspace link.
      */
     public void cancelChangesWorkspaceLink() {
-        cancelChangesWorkspaceLink.click();
+        clickWebElement(cancelChangesWorkspaceLink);
     }
 
     /**
@@ -68,7 +72,15 @@ public class SettingWorkspace extends BasePage {
      * @return the value of the message
      */
     public String getMessageChangesWorkspace() {
-        return messageChangesWorkspace.getText();
+        return getTextFieldValue(messageChangesWorkspace);
+    }
+
+    /**
+     * Returns the name of the workspace.
+     * @return the value of the workspace name.
+     */
+    public String getWorkspaceName() {
+        return workspaceNameText.getAttribute(VALUE);
     }
 
 }
