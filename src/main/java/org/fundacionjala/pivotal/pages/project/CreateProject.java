@@ -1,4 +1,4 @@
-package org.fundacionjala.pivotal.pages.dashboard;
+package org.fundacionjala.pivotal.pages.project;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,8 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.fundacionjala.pivotal.framework.util.IAutomationStep;
 import org.fundacionjala.pivotal.pages.BasePage;
-import org.fundacionjala.pivotal.pages.project.Project;
-import org.fundacionjala.pivotal.pages.project.ProjectSteps;
+import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidSelectorException;
 import org.openqa.selenium.NoSuchElementException;
@@ -15,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.clickWebElement;
+import static org.fundacionjala.pivotal.framework.util.CommonMethods.getWebElementTextFieldColor;
 import static org.fundacionjala.pivotal.framework.util.CommonMethods.setCheckBox;
 
 /**
@@ -28,34 +28,34 @@ public class CreateProject extends BasePage {
 
     private String projectTitleMessage;
 
-    @FindBy(className = "tc-project-name__input")
+    @FindBy(className = ".tc-project-name > label > input")
     private WebElement newProjectName;
 
-    @FindBy(className = "tc-account-creator__name")
+    @FindBy(className = "[class=tc-account-creator__name]")
     private WebElement createNewAccountTxt;
 
-    @FindBy(className = "tc-account-selector__header")
+    @FindBy(className = "[class=tc-account-selector__header]")
     private WebElement accountDropDown;
 
-    @FindBy(css = ".tc-create-project-footer__button.tc-create-project-footer__button--submit")
+    @FindBy(css = ".tc-form-modal-footer__button.tc-form-modal-footer__button--submit")
     private WebElement createNewProjectBtn;
 
     @FindBy(css = "input[type='radio'][value='public']")
     private WebElement projectPublicRadioBtn;
 
-    @FindBy(css = "span[contains(.,'Please select or create an account for the new project')]")
+    @FindBy(css = ".tc-form__input--error-message > span")
     private WebElement accountErrorMessage;
 
-    @FindBy(css = ".tc-project-name__info > span")
+    @FindBy(css = ".tc-project-name > label > div > span")
     private WebElement blankProjectNameMessage;
 
-    @FindBy(css = ".tc-create-project-footer__button.tc-create-project-footer__button--cancel")
+    @FindBy(css = ".tc-form-modal-footer__button.tc-form-modal-footer__button--cancel")
     private WebElement cancelCreateProjectBtn;
 
     @FindBy(css = "input[type='radio'][value='private']")
     private WebElement projectPrivateRadioBtn;
 
-    @FindBy(className = "tc-account-selector__create-account-icon")
+    @FindBy(className = "[class=tc-account-selector__create-account-icon]")
     private WebElement createAccountOption;
 
     /**
@@ -81,7 +81,7 @@ public class CreateProject extends BasePage {
         if (!isAccountNamePresent(accountName)) {
             createAccount(accountName);
         } else {
-            driver.findElement(By.xpath("//span[text()='" + accountName + "']")).click();
+            driver.findElement(By.xpath("//div[text()='" + accountName + "']")).click();
         }
         return this;
     }
@@ -89,11 +89,11 @@ public class CreateProject extends BasePage {
     /**
      * Method that enables to click the data sample checkbox.
      *
-     * @param isCheckBoxEnable boolean value to verify the checkbox
+     * @param isCheckBoxEnabled boolean value to verify the checkbox
      * @return this same instance with the parameter updated
      */
-    public CreateProject clickDataSampleCheckBox(String isCheckBoxEnable) {
-        setCheckBox(projectPrivateRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
+    public CreateProject clickDataSampleCheckBox(String isCheckBoxEnabled) {
+        setCheckBox(projectPrivateRadioBtn, Boolean.parseBoolean(isCheckBoxEnabled));
         return this;
     }
 
@@ -118,7 +118,7 @@ public class CreateProject extends BasePage {
     private boolean isAccountNamePresent(String accountName) {
         boolean answer;
         try {
-            answer = driver.findElement(By.xpath("//span[text()='" + accountName + "']")).isDisplayed();
+            answer = driver.findElement(By.xpath("//div[text()='" + accountName + "']")).isDisplayed();
         } catch (NoSuchElementException e) {
             LOGGER.warn("Element could not be found", e);
             answer = false;
@@ -128,9 +128,10 @@ public class CreateProject extends BasePage {
     }
 
     /**
-     * Method that verifies that the radio button is visible.
+     * Method that clicks the radio button "Public"
+     * inside Project privacy options.
      */
-    public void checkProjectVisible() {
+    public void clickPublicProjectPrivacy() {
         projectPublicRadioBtn.click();
     }
 
@@ -176,9 +177,9 @@ public class CreateProject extends BasePage {
     /**
      * Method that verifies if the project form is displayed.
      *
-     * @return the boleean value for the verification
+     * @return the boolean value for the verification
      */
-    public boolean createProjectFormIsdisplayed() {
+    public boolean createProjectFormIsDisplayed() {
         return newProjectName.isDisplayed() && accountDropDown.isDisplayed() && createNewProjectBtn.isDisplayed();
     }
 
@@ -197,11 +198,11 @@ public class CreateProject extends BasePage {
      * Method that allows to the project to be visible clicking
      * the checkbox and verifying if it is enabled.
      *
-     * @param isCheckBoxEnable the boleean value that let the
+     * @param isCheckBoxEnabled the boolean value that let the
      *                         checkbox knows if it is enabled
      */
-    public void clickMakeProjectVisibleCheckBox(String isCheckBoxEnable) {
-        setCheckBox(projectPublicRadioBtn, Boolean.parseBoolean(isCheckBoxEnable));
+    public void clickMakeProjectVisibleCheckBox(String isCheckBoxEnabled) {
+        setCheckBox(projectPublicRadioBtn, Boolean.parseBoolean(isCheckBoxEnabled));
     }
 
     /**
@@ -244,5 +245,23 @@ public class CreateProject extends BasePage {
      */
     public String getProjectTitleMessage() {
         return projectTitleMessage;
+    }
+
+    /**
+     * Method to get the text color of the Project name text field.
+     *
+     * @return The color of the text field or null.
+     */
+    public String getProjectNameTextFieldColor() {
+        return getWebElementTextFieldColor(newProjectName);
+    }
+
+    /**
+     * Method to get the text color of the Account text field.
+     *
+     * @return The color of the text field or null.
+     */
+    public String getAccountTextFieldColor() {
+        return getWebElementTextFieldColor(accountDropDown);
     }
 }
