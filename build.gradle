@@ -51,6 +51,15 @@ test {
 
     useTestNG()
 
+    options {
+        suites 'src/test/resources/suite1.xml'
+        includeGroups
+        listeners << 'org.fundacionjala.pivotal.testng.SuiteListener'
+        listeners << 'org.fundacionjala.pivotal.testng.TestListener'
+    }
+
+    scanForTestClasses false
+
     testLogging {
         events "PASSED", "STARTED", "FAILED", "SKIPPED"
     }

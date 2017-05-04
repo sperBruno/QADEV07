@@ -23,7 +23,7 @@ public class AddWorkSpaceTests {
     /**
      * Before method.
      */
-    @BeforeMethod
+    @BeforeMethod(groups = {"Functional"})
     public void setUp() {
         // Given
         dashboardPage = Login.loginAsPrimaryUser();
