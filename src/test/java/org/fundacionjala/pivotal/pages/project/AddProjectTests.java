@@ -2,7 +2,7 @@ package org.fundacionjala.pivotal.pages.project;
 
 import org.fundacionjala.pivotal.pages.Login;
 import org.fundacionjala.pivotal.pages.dashboard.Dashboard;
-import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -59,7 +59,7 @@ public class AddProjectTests {
      * Test that verifies the error message for project name
      * text field.
      */
-    @Test (groups = {"Functional"})
+    @Test
     public void testErrorMsgWhenProjectNameIsEmpty() {
         //When
         CreateProject createProject = dashboard.clickCreateProjectButton();
@@ -78,7 +78,7 @@ public class AddProjectTests {
     /**
      * Test that verifies the error message for account field.
      */
-    @Test (groups = {"Functional"})
+    @Test
     public void testErrorMsgWhenAccountNameIsEmpty() {
         //When
         CreateProject createProject = dashboard.clickCreateProjectButton();
@@ -97,7 +97,7 @@ public class AddProjectTests {
     /**
      * After groups method.
      */
-    @AfterGroups("Functional")
+    @AfterMethod(groups = {"Functional"})
     public void deleteTheProject() {
         ProjectSettings projectSettings = project.clickSettingTab();
         String projectId = projectSettings.getProjectId();

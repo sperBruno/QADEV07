@@ -28,7 +28,7 @@ public class UpdateProjectTests {
     /**
      * Before method.
      */
-    @BeforeMethod
+    @BeforeMethod(groups = {"Functional"})
     public void setUp() {
         projectId = createProject(PROJECT);
         dashboard = Login.loginAsPrimaryUser();
@@ -37,7 +37,7 @@ public class UpdateProjectTests {
     /**
      * Verify that the project name can be updated.
      */
-    @Test
+    @Test(groups = {"Functional"})
     public void testUpdateProjectName() {
         //When
         Project project = dashboard.clickOnProject(PROJECT);
@@ -97,7 +97,7 @@ public class UpdateProjectTests {
     /**
      * Cleanup method.
      */
-    @AfterMethod
+    @AfterMethod(groups = {"Functional"})
     public void cleanUp() {
         deleteProject(projectId);
     }

@@ -21,7 +21,7 @@ public class DeleteProjectTests {
     /**
      * Before method.
      */
-    @BeforeMethod
+    @BeforeMethod(groups = {"Functional"})
     public void setUp() {
         //Given
         createProject(PROJECT_TO_BE_DELETED);
@@ -31,7 +31,7 @@ public class DeleteProjectTests {
     /**
      * Test that verifies that the project is deleted.
      */
-    @Test
+    @Test(groups = {"Functional"})
     public void testDeleteProject() {
         //When
         Project project = dashboard.clickOnProject(PROJECT_TO_BE_DELETED);

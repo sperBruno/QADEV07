@@ -29,9 +29,9 @@ public final class FactoryDriver {
             case FIREFOX:
                 return new Firefox();
             case BROWSERSTACK:
-                //return new BrowserStack();
+                return new BrowserStack();
             case SAUCELABS:
-                //return new SauceLabs();
+                return new SauceLabs();
             default:
                 throw new WebDriverException(BROWSER_NOT_FOUND_MSG);
         }
