@@ -1,33 +1,35 @@
 package org.fundacionjala.pivotal.framework.util;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import io.restassured.path.json.JsonPath;
 import org.apache.log4j.Logger;
+import org.fundacionjala.pivotal.framework.selenium.DriverManager;
+import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
+import org.fundacionjala.pivotal.pages.accounts.Accounts;
+import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.JavascriptExecutor;
+
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-import org.fundacionjala.pivotal.framework.selenium.DriverManager;
-import org.fundacionjala.pivotal.pages.accounts.AccountSetting;
-import org.fundacionjala.pivotal.pages.accounts.Accounts;
-import org.fundacionjala.pivotal.pages.accounts.CreateAccountForm;
+import java.util.ArrayList;
+import java.util.Map;
 
 import static org.fundacionjala.pivotal.api.RequestManager.deleteRequest;
 import static org.fundacionjala.pivotal.api.RequestManager.getRequest;
 import static org.fundacionjala.pivotal.framework.selenium.DriverManager.getInstance;
-import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.PROJECTS_ENDPOINT;
+import static org.fundacionjala.pivotal.framework.util.Constants.ATTRIBUTE_ID;
 import static org.fundacionjala.pivotal.framework.util.Constants.WORKSPACES_ENDPOINT;
+
+
+//import org.openqa.selenium.*;
 
 
 /**
@@ -67,7 +69,7 @@ public final class CommonMethods {
      * This method sets the Web Element.
      *
      * @param webElement the object to be catched and the replaced
-     * @param text the value that will be filled on the web element
+     * @param text       the value that will be filled on the web element
      */
     public static void setWebElement(WebElement webElement, String text) {
         WEB_DRIVER_WAIT.until(ExpectedConditions.visibilityOf(webElement));
@@ -100,7 +102,7 @@ public final class CommonMethods {
      * the checkbox element.
      *
      * @param webElement the checkbox to be set
-     * @param enable the state to be configured
+     * @param enable     the state to be configured
      */
     public static void setCheckBox(WebElement webElement, boolean enable) {
         if (enable) {
@@ -138,7 +140,7 @@ public final class CommonMethods {
      * Selects one element present on the list.
      *
      * @param webElementSelect the web element to be selected
-     * @param element the value type to be selected
+     * @param element          the value type to be selected
      */
     public static void selectAElementComboBox(WebElement webElementSelect, String element) {
         Select oSelect = new Select(webElementSelect);
@@ -203,6 +205,7 @@ public final class CommonMethods {
 
     /**
      * This method closes the browser used.
+     *
      * @param message the string to be displayed
      */
     public static void quitProgram(String message) {
@@ -212,6 +215,7 @@ public final class CommonMethods {
 
     /**
      * Method that gets the value of a web element.
+     *
      * @param webElement WebElement.
      * @return Text of the WebElement.
      */
@@ -222,6 +226,7 @@ public final class CommonMethods {
 
     /**
      * Method that gets the color of the text field WebElement.
+     *
      * @param webElement Text field WebElement.
      * @return A string with the color.
      */
@@ -232,6 +237,7 @@ public final class CommonMethods {
 
     /**
      * * Method to gets the color in hexadecimal format.
+     *
      * @param color Color name.
      * @return The color in hexadecimal format.
      */
@@ -247,8 +253,9 @@ public final class CommonMethods {
 
     /**
      * Mehod to get the attribute value of a WebElement.
+     *
      * @param webElement WebElement.
-     * @param attribute Attribute name.
+     * @param attribute  Attribute name.
      * @return The value of the attribute.
      */
     public static String getWebElementAttribute(WebElement webElement, String attribute) {
@@ -257,7 +264,8 @@ public final class CommonMethods {
     }
 
     /**
-     *scrollIntoViewWebElement.
+     * scrollIntoViewWebElement.
+     *
      * @param webElement that requires to scroll to be visible.
      */
     public static void scrollIntoViewWebElement(final WebElement webElement) {
@@ -281,5 +289,22 @@ public final class CommonMethods {
             throwable.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * @param webElement web element from user
+     * @return an String for the Text of the web element
+     */
+    public static String getTextForElement(WebElement webElement) {
+        return webElement.getText();
+    }
+
+    /**
+     * @param webElement web element from user
+     * @return the value of the web element
+     */
+    public static String getValue(WebElement webElement) {
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute("value");
     }
 }
