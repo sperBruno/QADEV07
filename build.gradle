@@ -76,4 +76,6 @@ test {
     systemProperty 'proxyPort', proxyPort
     systemProperty 'groups', groups
     systemProperty 'suite', suite
+    systemProperty 'remoteUser', remoteUser
+    systemProperty 'remoteAccessKey', remoteAccessKey
 }
